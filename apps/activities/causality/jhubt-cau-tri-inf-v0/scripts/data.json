@@ -1,0 +1,31 @@
+[
+  {
+    "Causal Hypothesis": "Does regular physical exercise causally improve academic performance in students?",
+    "studies": [
+      {
+        "type": "Observational - Human",
+        "population": "2,500 high school students across 15 schools",
+        "methodology": "Surveyed sports team participation, GPA, and standardized test scores, controlling for family income, parental education, and study time",
+        "keyFindings": "Students participating in organized sports had significantly higher GPAs (3.4 vs 2.8) and test scores compared to non-athletes",
+        "majorLimitations": [
+          "•Reverse causation possible (better students join sports teams)",
+          "•Unmeasured confounders (self-discipline, family values)",
+          "•Selection bias (sports team members differ systematically)",
+          "•Access barriers vary by socioeconomic status"
+        ]
+      },
+      {
+        "type": "Experimental - Animal Model",
+        "population": "120 laboratory mice",
+        "methodology": "Randomly assigned to high exercise (running wheels 6hrs daily) vs sedentary conditions for 8 weeks, then cognitive testing",
+        "keyFindings": "Exercise mice showed better spatial memory and learning, plus increased BDNF in hippocampus",
+        "majorLimitations": [
+          "•Mouse cognition may not translate to human academic performance",
+          "•Artificial lab environment lacks real-world complexity",
+          "•Simple cognitive tasks ≠ multifaceted academic performance",
+          "•Equal access design misses real-world access barriers"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+<script>
+    setTimeout(function() {
+    document.querySelectorAll('[fs-cmstabs-element="tab-link"]').forEach((element, index) => {
+        element.textContent = `${index + 1}. ${element.textContent}`;
+    });
+    }, 800);
+    document.addEventListener("DOMContentLoaded", function() {
+        var firstLinkBlock = document.querySelector('[xa-type="unit-link"]');
+        var startCourseBtn = document.querySelector('[xa-type="start-course-btn"]');
+        
+        if (firstLinkBlock && startCourseBtn) {
+            startCourseBtn.href = firstLinkBlock.href;
+        }
+    });
+    </script>
+    <script>
+    let firstElement = document.querySelectorAll('[xa-section="list"]')[0];
+    if (firstElement) {
+      firstElement.remove();
+    };
+    
+    setTimeout(function() {
+      var script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmstabs@1/cmstabs.js";
+      script.async = true;
+      document.head.appendChild(script);
+    }, 1000);
+    </script>

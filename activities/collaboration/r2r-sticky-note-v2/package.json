@@ -1,0 +1,36 @@
+{
+  "name": "2r-sticky-note-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@lottiefiles/dotlottie-react": "^0.9.3",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
+    "@mui/material": "^6.1.4",
+    "@mui/material-nextjs": "^6.1.4",
+    "chart.js": "^4.4.5",
+    "html2pdf.js": "^0.10.2",
+    "install": "^0.13.0",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
+    "mongoose": "^8.7.2",
+    "next": "14.2.15",
+    "next-qrcode": "^2.5.1",
+    "npm": "^10.9.0",
+    "react": "^18",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.15"
+  }
+}

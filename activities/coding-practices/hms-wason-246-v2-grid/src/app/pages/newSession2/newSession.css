@@ -1,0 +1,29 @@
+
+/*
+
+
+
+*/
+
+.new-session-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-session-options-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.qr-code-container {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+}
+
+.copy-link-container {
+
+}
+

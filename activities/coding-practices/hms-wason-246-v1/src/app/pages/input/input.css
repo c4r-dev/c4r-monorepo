@@ -1,0 +1,273 @@
+/* Color Variables */
+:root {
+    --primary-color: #979797;
+    --secondary-color: #5e5e5e;
+    --tertiary-color: #6c6c6c;
+    --quaternary-color: #333333;
+
+    --grey-dark: #373737; /* Usually background */
+    --grey-medium: #BFBFBF1A; /* Input fields */
+    --grey-light: #979797;
+    --grey-lighter: #5e5e5e;
+    --grey-lightest: #6c6c6c;
+
+    --grey-panel-labels: #FFFFFF99;
+}
+
+
+/* FFFFFF at 100% opacity = FFFFFF */
+/* FFFFFF at 80% opacity = FFFFFFCC */
+/* FFFFFF at 60% opacity = FFFFFF99 */
+/* FFFFFF at 40% opacity = FFFFFF66 */
+/* FFFFFF at 20% opacity = FFFFFF33 */
+
+
+
+/* Mobile First Styles   */
+.full-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    /* background-color: #f5f5f5; */
+    min-height: 100vh;
+}
+
+.input-top-container {
+    /* background-color: #4CAF50;
+    padding: 20px;
+    text-align: center; */
+}
+
+.input-bottom-container {
+    flex: 1;
+    display: flex;
+    padding: 20px;
+    gap: 40px;
+    overflow-y: auto;
+    flex-direction: row;
+}
+
+/* Input Panel Styles */
+.input-panel {
+    flex: 1;
+    /* background-color: #ffffff; */
+    padding: 0;
+    /* border-radius: 8px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    width: 40%;
+}
+
+.input-panel h2 {
+    margin-bottom: 10px;
+    color: var(--grey-panel-labels);
+}
+
+.sequence-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    /* background-color: #bfbfbf3f; */
+}
+
+.number-input {
+    width: 60px;
+    padding: 10px;
+    /* border: 1px solid #cccccc; */
+    border-radius: 4px;
+    text-align: center;
+    font-size: 16px;
+        background-color: #bfbfbf3f;
+
+}
+
+.hypothesis-input {
+    width: 100%;
+    padding: 10px;
+    /* border: 1px solid #cccccc; */
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    background-color: #bfbfbf3f;
+}
+
+.final-guess-input {
+    width: 100%;
+    padding: 10px;
+    /* border: 1px solid #cccccc; */
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    background-color: #bfbfbf3f;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.clear-button,
+.test-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.clear-button {
+    background-color: #5e5e5e80;
+    color: #ffffff;
+}
+
+.clear-button:hover {
+    background-color: #6c6c6c80;
+}
+
+.test-button {
+    background-color: #97979780;
+    color: #ffffff;
+}
+
+.test-button:hover {
+    background-color: #6c6c6c80;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 60%;
+}
+.table-container h2 {
+    margin-bottom: 20px;
+    align-self: flex-start;
+    color: var(--grey-panel-labels);
+}
+
+.data-table-wrapper {
+    padding: 5px;
+    background-color: #454545;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.final-guess-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+
+/* Data Table Styles */
+.data-table {
+    flex: 2;
+    background-color: #454545;
+    /* padding: 20px; */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Enables scrolling for table body */
+    max-height: 500px;
+    width: 100%;
+}
+
+.data-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    /* table-layout: fixed;  */
+    table-layout: inherit;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.data-table th {
+    position: sticky; /* Makes header sticky */
+    top: 0; /* Positions header at the top */
+    background-color: #454545; /* Ensures header background matches table */
+    color: #FFFFFF80;
+    z-index: 1; /* Keeps header above table content */
+}
+
+.data-table tr {
+    /* Optional: Add styling for table rows */
+    text-wrap: pretty;
+}
+
+/* Optional: Add border-radius to table rows for better appearance */
+.data-table tr td {
+    /* border-radius: 4px; */
+}
+
+.data-table-row {
+    background-color: #535353;
+    border-radius: 10px;
+    /* padding: 2px; */
+}
+
+.data-table-body {
+    /* overflow-y: auto; */
+    /* max-height: 500px; */
+    /* overflow-x: hidden; */
+}
+
+.data-table-body-container {
+
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .input-bottom-container {
+        flex-direction: column;
+        /* width: 100%; */
+    }
+    .data-container {
+        width: 100%;
+    }
+    .data-table {
+        width: 100%;
+    }
+    .table-container {
+        width: 100%;
+    }
+    .input-panel {
+        width: 100%;
+    }
+
+    .sequence-inputs {
+        /* flex-direction: column; */
+        align-items: center;
+    }
+
+    .number-input {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .button-group {
+        /* flex-direction: column; */
+    }
+
+    .clear-button,
+    .test-button {
+        width: 100%;
+    }
+
+    .dark-mode-btn {
+        background-color: #333333;
+        color: #ffffff;
+    }
+}

@@ -1,0 +1,422 @@
+.bias-mapping-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* background-color: #f5f5f5; */
+
+}
+
+.bias-mapping-interface {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 95%;
+}
+
+.bias-mapping-directions {
+  /* align-self: center;
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: auto;
+  max-width: 500px; */
+
+  margin: 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  align-self: center;
+  text-align: center;
+  /* border: none; */
+}
+
+.dndflow {
+  flex-direction: column;
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  gap: 10px;
+}
+
+.bias-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bias-sidebar .description {
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.bias-bottom-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.bias-info-container {
+  display: none;
+}
+
+.bias-info-title {
+  font-weight: bold;
+}
+
+.bias-info-description {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #666;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.draggable-nodes-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bias-footer-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dndnode.bias {
+  width: 100%;
+  height: auto;
+  padding: 8px 12px;
+  border: 1px solid #1a192b;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: grab;
+  background: white;
+  transition: all 0.2s;
+  text-align: center;
+  word-break: break-word;
+  max-width: 250px;
+}
+
+.dndnode.bias:hover,
+.dndnode.bias.selected {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+  border: 2px solid #4b4bdd;
+  background-color: #f8f8ff;
+}
+
+.dndnode.bias.selected {
+  background-color: #eeeeff;
+}
+
+.reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: border 0.3s ease-in-out;
+}
+
+.reactflow-wrapper.dragging {
+  border: 2px dashed #4b4bdd;
+  border-radius: 8px;
+  background-color: rgba(75, 75, 221, 0.05);
+}
+
+/* Side bar position for desktop */
+/* @media screen and (max-width: 768px) {
+  .dndflow {
+    flex-direction: column;
+  }
+
+  .bias-sidebar {
+    width: 20%;
+    max-width: 250px;
+  }
+} */
+
+.customNodeBody {
+  width: 180px;
+  height: auto;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: 1px solid #1a192b;
+  cursor: grab;
+}
+
+.customNodeBody:hover {
+  /* Optional: Add styles if needed */
+  border: 2px solid #4b4bdd;
+}
+
+.connectionArea {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  cursor: crosshair;
+}
+
+.customHandle {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 0 !important;
+  border: none !important;
+  cursor: crosshair !important;
+}
+
+/* Optional: Add visual feedback for the connection area on hover */
+.connectionArea:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+
+.nodeLabelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+}
+
+.nodeMainLabel {
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+.nodeDescription {
+  font-size: 10px;
+  color: #666;
+  text-align: center;
+  line-height: 1.2;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; */
+}
+
+/* Make the connection lines thicker */
+.react-flow__edge-path {
+  stroke-width: 2px; /* Increase the stroke width as desired */
+}
+
+/* Scale up the marker end to make it larger */
+.marker-arrowclosed {
+  transform: scale(1.5); /* Adjust the scale factor as needed */
+}
+
+.react-flow__edge-text {
+  font-size: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* Adjusts the text position upon hover */
+.react-flow__edge:hover .react-flow__edge-text {
+  /* Adjusts the text position upon hover */
+  /* transform: scale(1.1); */
+  /* transition: transform 0.2s ease; */
+
+}
+
+.edge-label-container {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.8); /* Slight background for better readability */
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.edge-label-container:hover {
+  background: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 0 2px rgb(255, 255, 255));
+}
+
+.edge-label-foreign-object {
+  overflow: visible;
+  pointer-events: all;
+}
+
+.edge-label-text {
+  font-size: 12px;
+  font-family: inherit;
+  pointer-events: all;
+  user-select: none;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2;
+  padding: 2px 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+
+.edge-label-text:hover {
+  background: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px rgb(255, 255, 255));
+}
+
+/* Add a subtle background to make text more readable */
+.edge-label-container:hover .edge-label-text {
+  font-weight: 600;
+}
+
+.node-delete-button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0;
+  line-height: 1;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.node-delete-button:hover {
+  background-color: #ff0000;
+  transform: scale(1.1);
+}
+
+.customNode {
+  position: relative;
+}
+
+.customNodeBody {
+  position: relative;
+  /* ... existing styles ... */
+}
+
+.customNode.selected .customNodeBody {
+  background-color: #eeeeff;
+  border: 2px solid #4b4bdd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.customNodeBody {
+  transition: all 0.2s ease-in-out;
+}
+
+.customNodeBody:hover {
+  border: 2px solid #4b4bdd;
+  background-color: #f8f8ff;
+  transform: translateY(-1px);
+}
+
+.config-popup-placeholder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.shuffle-button {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.shuffle-button:hover {
+  background: #e0e0e0;
+}
+
+.description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 21px;
+  justify-content: center;
+}
+
+.draggable-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* padding: 10px; */
+  width: 95%;
+  column-gap: 36px;
+  grid-row-gap: 7px;
+  row-gap: 7px;
+  justify-items: center;
+  align-items: start;
+  max-height: 30vh;
+  overflow-y: auto;
+  overflow-x: unset;
+  padding: 25px;
+}
+
+.bias-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.bias-description {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.2;
+  overflow: hidden;
+  /* text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; */
+}
+

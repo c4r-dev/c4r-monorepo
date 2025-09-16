@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intuition for Publication Bias</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-BSRN8BCRJ6');
+    </script>
+    <!-- End Google Analytics -->
+
+    <script src="https://c4r-dev.github.io/publicationbias/pyodide/pyodide.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        #slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 10px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        #plot {
+            width: 95%;
+            max-width: 1200px;
+            height: 100%;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            label {
+                font-size: 0.8rem;
+            }
+        }
+
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        #loading-overlay p {
+            font-size: 1.5rem;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading-overlay">
+        <p>Loading, please wait...</p>
+    </div>
+    <h1>Intuition: How Publication Bias Affects Literature</h1>
+    <div id="slider-container">
+        <label for="effect-slider">Effect size (mu/std): <span id="effect-value">0</span></label>
+        <input type="range" id="effect-slider" min="-3" max="3" step="0.01" value="0">
+        <label for="s2-slider">% of non-significant/negative effects not published: <span id="s2-value">0</span></label>
+        <input type="range" id="s2-slider" min="0" max="1" step="0.01" value="0">
+    </div>
+    <p>If effect size is zero, all findings are false positives or false negatives. Choose a real effect.</p>
+
+    <div id="plot"></div>
+
+    <script type="text/javascript">
+        async function main() {
+            const loadingOverlay = document.getElementById("loading-overlay");
+            const plotDiv = document.getElementById("plot");
+            const s2Slider = document.getElementById("s2-slider");
+            const effectSlider = document.getElementById("effect-slider");
+            const s2Value = document.getElementById("s2-value");
+            const effectValue = document.getElementById("effect-value");
+
+            // Show loading overlay
+            loadingOverlay.style.display = "flex";
+
+            const pyodide = await loadPyodide({
+                indexURL: "https://c4r-dev.github.io/publicationbias/pyodide/",
+            });
+            console.log("Pyodide loaded successfully!");
+
+            try {
+                await pyodide.loadPackage("micropip");
+                await pyodide.loadPackage("pandas");
+                await pyodide.loadPackage("numpy");
+                console.log("Default packages loaded!");
+            } catch (error) {
+                console.error("Error loading default packages:", error);
+            }
+
+            try {
+                const micropip = pyodide.pyimport("micropip");
+                await micropip.install("plotly");
+                console.log("Plotly package loaded!");
+            } catch (error) {
+                console.error("Error loading Plotly:", error);
+            }
+
+            const pythonCode = `
+import numpy as np
+import plotly.graph_objects as go
+import plotly.subplots as sp
+import json
+
+def numpy_to_list(obj):
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {key: numpy_to_list(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [numpy_to_list(item) for item in obj]
+    return obj
+
+def plot_bias(non_significant_rate, effect_size):
+    significant_rate = 1 - non_significant_rate
+    dark_blue = "#1f77b4"
+    dark_orange = "#ff7f0e"
+
+    x_values = np.linspace(-10, 10, 500)
+    real_pdf = np.exp(-0.5 * (x_values - effect_size) ** 2) / np.sqrt(2 * np.pi)
+
+    published_pdf = np.copy(real_pdf)
+    published_pdf[x_values < 2] *= significant_rate
+    published_pdf /= np.trapz(published_pdf, x_values)
+
+    bins = [-10, -1.96, 0, 1.96, 10]
+    real_integrals = [np.trapz(real_pdf[(x_values >= bins[i]) & (x_values < bins[i + 1])],
+                               x_values[(x_values >= bins[i]) & (x_values < bins[i + 1])])
+                      for i in range(len(bins) - 1)]
+    published_integrals = [np.trapz(published_pdf[(x_values >= bins[i]) & (x_values < bins[i + 1])],
+                                    x_values[(x_values >= bins[i]) & (x_values < bins[i + 1])])
+                           for i in range(len(bins) - 1)]
+
+    bar_labels = ["p<0.05, neg", "NS, neg", "NS, pos", "p<0.05, pos"]
+    real_bar_values = np.array(real_integrals) / np.sum(real_integrals)
+    published_bar_values = np.array(published_integrals) / np.sum(published_integrals)
+
+    fig = sp.make_subplots(
+        rows=4, cols=1,
+        row_heights=[0.25, 0.25, 0.25, 0.25],
+        vertical_spacing=0.1,
+        subplot_titles=[
+            "Distribution of Real Effects",
+            "Distribution of Published Papers",
+            "Significance of Experiments",
+            "Significance of Published Papers"
+        ]
+    )
+
+    fig.add_trace(go.Scatter(x=x_values, y=real_pdf, mode='lines', line=dict(color=dark_blue)), row=1, col=1)
+    fig.add_trace(go.Scatter(x=x_values, y=published_pdf, mode='lines', line=dict(color=dark_orange)), row=2, col=1)
+    fig.add_trace(go.Bar(x=bar_labels, y=real_bar_values, marker_color=dark_blue), row=3, col=1)
+    fig.add_trace(go.Bar(x=bar_labels, y=published_bar_values, marker_color=dark_orange), row=4, col=1)
+
+    fig.update_layout(
+        autosize=True,
+        height=900,
+        title="Publication Bias Visualization",
+        title_x=0.5,
+        showlegend=False
+    )
+
+    fig.update_xaxes(title_text="Z-score (mean/std)", row=1, col=1)
+    fig.update_yaxes(title_text="Density", row=1, col=1)
+    fig.update_xaxes(title_text="Z-score (mean/std)", row=2, col=1)
+    fig.update_yaxes(title_text="Density", row=2, col=1)
+
+    return json.dumps(numpy_to_list(fig.to_dict()))
+            `;
+            await pyodide.runPythonAsync(pythonCode);
+            const plotBias = pyodide.globals.get("plot_bias");
+
+            async function updatePlot(nonSignificantRate, effectSize) {
+                try {
+                    const plotJSON = plotBias(nonSignificantRate, effectSize);
+                    const plotData = JSON.parse(plotJSON);
+                    Plotly.react(plotDiv, plotData.data, plotData.layout, { responsive: true });
+                } catch (error) {
+                    console.error("Error generating Plotly plot:", error);
+                    plotDiv.innerHTML = `<p class="error">Error: Unable to generate plot. Check console for details.</p>`;
+                }
+            }
+
+            s2Slider.addEventListener("input", async () => {
+                const nonSignificantRate = parseFloat(s2Slider.value);
+                s2Value.textContent = nonSignificantRate;
+                const effectSize = parseFloat(effectSlider.value);
+                await updatePlot(nonSignificantRate, effectSize);
+            });
+
+            effectSlider.addEventListener("input", async () => {
+                const effectSize = parseFloat(effectSlider.value);
+                effectValue.textContent = effectSize;
+                const nonSignificantRate = parseFloat(s2Slider.value);
+                await updatePlot(nonSignificantRate, effectSize);
+            });
+
+            await updatePlot(parseFloat(s2Slider.value), parseFloat(effectSlider.value));
+
+            // Hide loading overlay once plots are rendered
+            loadingOverlay.style.display = "none";
+            window.addEventListener("resize", () => Plotly.Plots.resize(plotDiv));
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

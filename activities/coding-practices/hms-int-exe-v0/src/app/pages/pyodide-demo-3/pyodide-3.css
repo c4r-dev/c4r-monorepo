@@ -1,0 +1,742 @@
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  .instructions {
+    background-color: #e6e6e6;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  .function-builder {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .function-panel {
+    width: 400px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .function-tabs {
+    display: flex;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .function-tab {
+    padding: 8px 16px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    border-right: 1px solid #ccc;
+    transition: all 0.2s;
+  }
+  
+  .function-tab:last-child {
+    border-right: none;
+  }
+  
+  .function-tab.active {
+    background-color: white;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .function-tab.new-tab {
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .function-tab.new-tab:hover {
+    background-color: #5a6268;
+  }
+  
+  .function-content {
+    height: 200px;
+    padding: 1rem;
+    background-color: white;
+    border: 2px dashed #ccc;
+    margin: 1rem;
+    border-radius: 4px;
+    overflow-y: auto;
+    color: #e2e8f0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.4;
+  }
+  
+  .function-code {
+    font-family: monospace;
+    font-size: 14px;
+    margin: 0;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    background-color: transparent;
+    color: #333;
+  }
+  
+  .function-code .hljs-keyword {
+    color: #d73a49;
+  }
+  
+  .function-code .hljs-string {
+    color: #032f62;
+  }
+  
+  .function-code .hljs-number {
+    color: #005cc5;
+  }
+  
+  .function-code .hljs-comment {
+    color: #6a737d;
+    font-style: italic;
+  }
+  
+  .function-code .hljs-function {
+    color: #6f42c1;
+  }
+  
+  .function-code .hljs-built_in {
+    color: #e36209;
+  }
+  
+  .function-code .hljs-variable {
+    color: #333;
+  }
+  
+  .function-code-simple {
+    font-family: monospace;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    line-height: 1.4;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  .no-function {
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .function-controls {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .control-group {
+    position: relative;
+  }
+  
+  .control-button {
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .control-button:hover:not(:disabled) {
+    background-color: #495057;
+  }
+  
+  .control-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .control-button.delete-button {
+    background-color: #dc3545;
+  }
+  
+  .control-button.delete-button:hover:not(:disabled) {
+    background-color: #c82333;
+  }
+  
+  .color-picker {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    width: 200px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .color-option {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .color-option:hover {
+    transform: scale(1.1);
+  }
+  
+  .name-editor {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  
+  .name-input {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  
+  .save-button, .cancel-button {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .save-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancel-button {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .save-button:hover {
+    background-color: #218838;
+  }
+  
+  .cancel-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .code-section {
+    margin-bottom: 1rem;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: #f8f9fa;
+  }
+  
+  .run-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.2s;
+  }
+  
+  .run-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .output-section {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  
+  .output-section h3 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .plot-section {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .plot-section h3 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .plot-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .phase-controls {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .next-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+
+  .next-button:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+
+  .next-button.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+
+  .function-review {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .function-review h2 {
+    background-color: #e6e6e6;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .function-review-tabs {
+    display: flex;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #ccc;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+    overflow-x: auto;
+  }
+
+  .review-tab {
+    padding: 12px 24px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    border-right: 1px solid #ccc;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .review-tab:last-child {
+    border-right: none;
+  }
+
+  .review-tab.active {
+    background-color: #f8f9fa;
+    border-bottom: 3px solid #007bff;
+    color: #007bff;
+    font-weight: 600;
+  }
+
+  .review-tab:hover:not(.active) {
+    background-color: #f1f3f4;
+  }
+
+  .function-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin-bottom: 0;
+  }
+
+  .nav-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-button:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+
+  .nav-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .function-counter {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    background-color: #e9ecef;
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+
+  .function-review-item {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .function-header, .function-body, .function-return {
+    background-color: #2d3748;
+    color: white;
+    padding: 8px 16px;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 1rem;
+    border-radius: 4px;
+  }
+
+  .line-number {
+    color: #a0a0a0;
+    margin-right: 1rem;
+    font-weight: bold;
+  }
+
+  .function-def {
+    color: #ff6b6b;
+    font-weight: bold;
+  }
+
+  .function-name {
+    color: #4ecdc4;
+    font-weight: bold;
+  }
+
+  .function-name.editable {
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+  }
+
+  .function-name.editable:hover {
+    background-color: rgba(78, 205, 196, 0.2);
+  }
+
+  .function-name-editor {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .function-name-input {
+    background-color: #1a202c;
+    color: #4ecdc4;
+    border: 1px solid #4ecdc4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: inherit;
+    font-weight: bold;
+    min-width: 120px;
+  }
+
+  .function-name-input:focus {
+    outline: none;
+    border-color: #38d9a9;
+    box-shadow: 0 0 0 2px rgba(56, 217, 169, 0.2);
+  }
+
+  .name-save-btn, .name-cancel-btn {
+    background-color: transparent;
+    border: 1px solid;
+    color: inherit;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    transition: background-color 0.2s;
+  }
+
+  .name-save-btn {
+    border-color: #38d9a9;
+    color: #38d9a9;
+  }
+
+  .name-save-btn:hover {
+    background-color: rgba(56, 217, 169, 0.2);
+  }
+
+  .name-cancel-btn {
+    border-color: #fc8181;
+    color: #fc8181;
+  }
+
+  .name-cancel-btn:hover {
+    background-color: rgba(252, 129, 129, 0.2);
+  }
+
+  .function-params, .return-statement {
+    color: white;
+  }
+
+  .function-body .function-content {
+    color: #e2e8f0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-family: monospace;
+  }
+
+  .function-body .function-content .hljs-keyword {
+    color: #ff6b6b;
+  }
+
+  .function-body .function-content .hljs-string {
+    color: #a8e6cf;
+  }
+
+  .function-body .function-content .hljs-number {
+    color: #ffd93d;
+  }
+
+  .function-body .function-content .hljs-comment {
+    color: #b0b0b0;
+    font-style: italic;
+  }
+
+  .function-body .function-content .hljs-function {
+    color: #4ecdc4;
+  }
+
+  .function-body .function-content .hljs-built_in {
+    color: #ff9f43;
+  }
+
+  .function-body .function-content .hljs-variable {
+    color: #e2e8f0;
+  }
+
+  .function-content-simple {
+    color: #e2e8f0;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1.4;
+    overflow-x: auto;
+    border: none;
+    display: inline-block;
+    width: calc(100% - 3rem);
+    vertical-align: top;
+  }
+
+  .param-selector, .return-selector {
+    background-color: transparent;
+    color: #feca57;
+    border: 1px dashed #feca57;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: inherit;
+  }
+
+  .param-selector:hover, .return-selector:hover {
+    background-color: rgba(254, 202, 87, 0.1);
+  }
+
+  .variable-picker {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .variable-picker-header {
+    color: #e91e63;
+    font-size: 14px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .variable-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .variable-option {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+
+  .variable-option:hover {
+    background-color: #e9ecef;
+  }
+
+  .function-questions {
+    padding: 1rem;
+  }
+
+  .question-group {
+    background-color: #e6e6e6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .question {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .answer-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .answer-button {
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+
+  .answer-button:hover {
+    background-color: #495057;
+  }
+
+  .answer-button.selected {
+    background-color: #007bff;
+  }
+
+  .review-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .back-button {
+    background-color: #6c757d;
+  }
+
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+
+  .proceed-button {
+    background-color: #28a745;
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  .proceed-button:hover:not(:disabled) {
+    background-color: #218838;
+  }
+
+  .proceed-button.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  } 

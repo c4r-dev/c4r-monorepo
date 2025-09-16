@@ -1,0 +1,33 @@
+[
+  {
+    "Number": 1,
+    "Example": "Atrial Fibrillation and Stroke",
+    "Study Description": "Researchers analyzed electronic health records from 47,000 patients over 10 years to examine the relationship between atrial fibrillation and stroke.",
+    "Key Findings": [
+      {
+        "finding": "Patients with atrial fibrillation had a 5.2-fold higher stroke risk compared to patients without AF",
+        "additional_findings": []
+      },
+      {
+        "finding": "Stroke risk increased with severity of AF:",
+        "additional_findings": [
+          "- Paroxysmal (intermittent) AF: 3.1-fold increase",
+          "- Persistent AF: 4.8-fold increase",
+          "- Permanent AF: 6.4-fold increase"
+        ]
+      },
+      {
+        "finding": "Among patients with AF, 18% experienced a stroke during the study period, while only 3.2% of patients without AF had a stroke",
+        "additional_findings": []
+      },
+      {
+        "finding": "AF diagnosis preceded stroke by an average of 2.8 years",
+        "additional_findings": []
+      },
+      {
+        "finding": "Results were consistent across three separate hospital systems in different regions",
+        "additional_findings": []
+      }
+    ]
+  }
+]

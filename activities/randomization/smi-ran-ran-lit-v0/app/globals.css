@@ -1,0 +1,540 @@
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Regular.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Bold.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --header-height: 60px;
+  --content-padding: 20px;
+  --primary-color: #333;
+  --background-color: #f9f9f9;
+  --header-background: white;
+  --header-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  --instruction-bg: #e6f3ff;
+  --instruction-border: #2573b3;
+}
+
+* {
+  text-wrap: balance;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'General Sans', Courier, sans-serif;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  line-height: 1.6;
+  padding: var(--content-padding);
+  /* Increase the top padding to prevent header overlap */
+  padding-top: calc(var(--header-height) + var(--content-padding) * 2);
+  overflow-x: hidden;
+}
+
+/* Header Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Changed from space-between to align items to the left */
+  padding: 0 var(--content-padding);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--header-background);
+  z-index: 1000;
+  box-shadow: var(--header-shadow);
+  height: var(--header-height);
+}
+
+.favicon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.title-container {
+  flex-grow: 1;
+  /* Remove width: 100% to prevent pushing other elements */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+h1,
+.title {
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  margin: 0;
+}
+
+/* Main content styling */
+div {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+h2 {
+  margin: 1.5rem 0 1rem 0;
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+}
+
+h3 {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: normal;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+/* Content Container Styles */
+.content-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.review-section {
+  /* Add margin-top to create more space after the header */
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  color: var(--primary-color);
+}
+
+.instructions-container {
+  background-color: var(--instruction-bg); /* Light blue background */
+  border: 2px solid var(--instruction-border); /* Darker blue border */
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.instruction-text p {
+  margin-bottom: 1.2rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+.review-points {
+  list-style-position: inside;
+  padding-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+.review-points li {
+  margin-bottom: 0.8rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+/* Paper Selection Styles */
+.paper-selection-heading {
+  margin: 2rem 0 1rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+}
+
+.paper-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.paper-option {
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.paper-option:hover {
+  border-color: #2573b3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.paper-option.selected {
+  border-color: #2573b3;
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 12px rgba(37, 115, 179, 0.2);
+}
+
+.paper-option h3 {
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.paper-citation {
+  color: #666;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  margin-top: auto;
+  font-style: italic;
+}
+
+/* Methods Section Styling */
+.methods-review-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.methods-title {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.3rem, 5vw, 1.7rem);
+  color: var(--primary-color);
+}
+
+.methods-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.methods-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.methods-header h3 {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.methods-citation {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.methods-content {
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+  line-height: 1.6;
+}
+
+.methods-content h4 {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: bold;
+  margin: 1.5rem 0 0.7rem 0;
+  color: #444;
+}
+
+.methods-content h4:first-child {
+  margin-top: 0;
+}
+
+.methods-content p {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Review Prompts Styling */
+.review-prompt-container {
+  background-color: var(--instruction-bg);
+  border: 2px solid var(--instruction-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.review-prompt-container h3 {
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #222;
+}
+
+.review-prompt-container > p {
+  margin-bottom: 1.5rem;
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+}
+
+.review-questions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.review-question {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+}
+
+.review-question h4 {
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.review-question p {
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  color: #444;
+}
+
+/* Answer Input Styling */
+.answer-input {
+  width: 100%;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'General Sans', Courier, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: white;
+}
+
+.answer-input:focus {
+  border-color: var(--instruction-border);
+  box-shadow: 0 0 0 2px rgba(37, 115, 179, 0.2);
+  outline: none;
+}
+
+.answer-input::placeholder {
+  color: #aaa;
+}
+
+/* Submit Section Styling */
+.submit-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save-proceed-button {
+  background-color: var(--instruction-border);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.save-proceed-button:hover:not(:disabled) {
+  background-color: #1a5d99;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.save-proceed-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.save-proceed-button:disabled {
+  background-color: #b0c8de;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.submit-note {
+  margin-top: 0.75rem;
+  color: #666;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  :root {
+    --content-padding: 15px;
+    /* Increase header height for mobile */
+    --header-height: 70px;
+  }
+
+  body {
+    /* Increase top padding for mobile to prevent header overlap */
+    padding-top: calc(var(--header-height) + var(--content-padding) * 1.5);
+  }
+
+  .header {
+    height: var(--header-height);
+    padding: 8px var(--content-padding);
+    flex-wrap: nowrap;
+  }
+
+  /* Ensure the title is properly sized and wrapped */
+  .title-container {
+    max-width: 80%;
+  }
+
+  .title {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  .instructions-container {
+    padding: 1.2rem;
+  }
+
+  /* Additional spacing for the first heading */
+  .section-title {
+    margin-top: 0.5rem;
+  }
+  
+  .paper-selection {
+    grid-template-columns: 1fr;
+  }
+  
+  .paper-option {
+    padding: 1rem;
+  }
+  
+  .methods-container,
+  .review-prompt-container {
+    padding: 1.2rem;
+  }
+  
+  .review-questions {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .review-question {
+    padding: 0.8rem;
+  }
+  
+  .answer-input {
+    padding: 0.7rem;
+  }
+  
+  .submit-section {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --content-padding: 10px;
+    /* Increase header height even more for very small screens */
+    --header-height: 80px;
+  }
+
+  body {
+    /* Increase padding further for small screens */
+    padding-top: calc(var(--header-height) + var(--content-padding));
+    line-height: 1.4;
+  }
+
+  .header {
+    /* Allow the header to wrap if needed */
+    height: auto;
+    min-height: var(--header-height);
+    padding: 8px var(--content-padding);
+  }
+
+  .favicon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+
+  .title-container {
+    max-width: 75%;
+  }
+
+  h1,
+  .title {
+    font-size: 1rem;
+    /* Allow title to wrap on small screens */
+    white-space: normal;
+  }
+
+  .section-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .instructions-container {
+    padding: 1rem;
+  }
+
+  .review-points li {
+    margin-bottom: 0.6rem;
+  }
+  
+  .methods-container,
+  .review-prompt-container {
+    padding: 1rem;
+  }
+  
+  .methods-review-section {
+    margin-top: 2rem;
+  }
+  
+  .methods-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+  }
+  
+  .review-question {
+    padding: 0.8rem;
+  }
+  
+  .answer-input {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .save-proceed-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+}

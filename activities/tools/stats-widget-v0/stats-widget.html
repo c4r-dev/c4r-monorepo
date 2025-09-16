@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Widget</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Inter"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="stats-widget.css" />
+    </head>
+
+    <body>
+        <div class="embed-container">
+            <div class="outer-container">
+                <div class="header">
+                    <div class="header-text">
+                        <!-- <h3>How widespread are these issues? </h3>
+                        <p3> Rigor & reproducibility issues go beyond just big bad-faith fraud. In fact, most rigor
+                            violations are the result of scientists acting in good faith, but lacking proper the tools,
+                            procedures, & training!</p3>
+                        <p3><b>Click on the plots below and take a guess at the extent of the problem... </b></p3> -->
+                    </div>
+                    <div class="header-image-container">
+                        <img class="header-image" src="assets/raven-white-bg-01.svg" />
+                    </div>
+                </div>
+                <div class="main-container">
+                    <div class="section" id="section1">
+                        <div
+                            class="section1-question-text"
+                            id="section1-question-text"
+                        >
+                            <!-- <p>What percentage of researchers do you think believe that there is a reproducibility crisis?
+                        </p> -->
+                        </div>
+                        <div class="donut1">
+                            <!-- <p>DONUT HERE</p> -->
+                        </div>
+                        <button
+                            class="next-button"
+                            onclick="onNextButtonClick()"
+                        >
+                            Next
+                        </button>
+                    </div>
+
+                    <div class="section" id="section2">
+                        <div
+                            class="section1-question-text"
+                            id="section2-question-text"
+                        >
+                            <!-- <p>What percentage of researchers do you think believe that there is a reproducibility crisis?
+                            (Baker, 2016)</p>
+                        <p>n = 1,578</p> -->
+                        </div>
+                        <div class="section2-donuts-containers">
+                            <div class="donut2-container">
+                                <div class="donut2"></div>
+                            </div>
+                            <div class="donut3-container">
+                                <div class="donut3"></div>
+                            </div>
+                        </div>
+                        <div
+                            class="feedback-container"
+                            id="feedback-container-1"
+                        >
+                            <div class="feedback" id="feedback1">
+                                <div class="feedback-image-container">
+                                    <img
+                                        class="feedback-image1"
+                                        src="assets/raven-white-bg-01.svg"
+                                    />
+                                </div>
+                                <div class="feedback-content">
+                                    <div
+                                        class="feedback-heading"
+                                        id="feedback1-heading-1"
+                                    ></div>
+                                    <div
+                                        class="feedback-text"
+                                        id="feedback1-follow-up-q1"
+                                    ></div>
+                                    <div
+                                        class="feedback-text"
+                                        id="feedback1-follow-up-q2"
+                                    ></div>
+                                    <div class="feedback-btn-containers">
+                                        <button
+                                            id="back"
+                                            onclick="onBackButtonClick()"
+                                        >
+                                            Back
+                                        </button>
+                                        <button
+                                            class=""
+                                            onclick="onNextButtonClick()"
+                                        >
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section" id="section3">
+                        <div
+                            class="section3-question-text"
+                            id="section3-question-text"
+                        >
+                            <!-- <p>What percentage of work in your field do you think is reproducible? (Baker, 2016)
+                            n = 1,578</p> -->
+                        </div>
+                        <div class="donut4">
+                            <!-- <p>DONUT HERE</p> -->
+                        </div>
+                        <div class="section3-buttons-container">
+                            <button id="back" onclick="onBackButtonClick()">
+                                Back
+                            </button>
+                            <button onclick="onNextButtonClick()">Next</button>
+                        </div>
+                    </div>
+                    <div class="section" id="section4">
+                        <div
+                            class="section3-question-text"
+                            id="section4-question-text"
+                        >
+                            <!-- <p>What percentage of work in your field do you think is reproducible? (Baker, 2016)
+                            n = 1,578</p> -->
+                        </div>
+                        <div class="chart-container">
+                            <!-- <p> CHART HERE</p> -->
+                        </div>
+                        <div class="section4-buttons-container">
+                            <button
+                                class="section-4-back"
+                                id="back"
+                                onclick="onBackButtonClick()"
+                            >
+                                Back
+                            </button>
+                            <!-- <button class="section-4-back" id="openPromptBtn" >
+                            Open Prompt
+                        </button> -->
+                        </div>
+
+                        <!-- <div class="feedback-container" id="feedback-container-1">
+                        <div class="feedback" id="feedback1">
+                            <div class="feedback-image-container">
+                                <img class="feedback-image1" src="assets/raven-white-bg-01.svg">
+                            </div>
+                            <div class="feedback-content">
+                                <div class="feedback-heading" id="feedback2-feedback-heading-1"></div>
+                                <div class="feedback-text" id="feedback2-follow-up-q1"></div>
+                                <div class="feedback-text" id="feedback2-follow-up-q2"></div>
+                                <div class="feedback-btn-containers">
+                                    <button id="back" id="back" onclick="onBackButtonClick()">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    </div>
+                </div>
+
+                <div class="citation-pane">
+                    <div class="citation-content">
+                        <p>
+                            Data comes from a
+                            <a
+                                href="https://www.nature.com/articles/533452a"
+                                target="_blank"
+                                >2016 online
+                            </a>
+                            Nature survey.
+                        </p>
+                        <p>
+                            Baker, M. 1,500 scientists lift the lid on
+                            reproducibility. Nature 533, 452–454 (2016).
+                            https://doi.org/10.1038/533452a
+                        </p>
+                        <a
+                            href="https://www.nature.com/articles/533452a.pdf"
+                            target="_blank"
+                            >View Paper</a
+                        >
+                        <a
+                            href="https://www.nature.com/articles/533452a#citeas:~:text=org/10.1038/533452a-,Download%20citation,-Published"
+                            target="_blank"
+                            >Download citation</a
+                        >
+                    </div>
+                    <button type="button" class="collapsible-btn">
+                        <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path
+                                d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+                            ></path>
+                        </svg>
+
+                        <div>
+                            Curious as to where these numbers came from? Click
+                            here for a citation.
+                        </div>
+
+                        <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path
+                                d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script>
+            let customText = null;
+            // Load and render custom text customText/stats-widget-text.json
+            function initCustomText() {
+                fetch("stats-widget-text.json")
+                    .then((response) => response.json())
+                    .then((data) => data[0])
+                    .then((textArray) => {
+                        customText = textArray;
+
+                        // Append h2 and two p3 elements to the header-text div
+                        let headerText = document.querySelector(".header-text");
+                        let headerTitle = document.createElement("h3");
+                        headerTitle.innerHTML = customText.headerTitle;
+                        headerText.appendChild(headerTitle);
+
+                        let headerSubtitle1 = document.createElement("p3");
+                        headerSubtitle1.innerHTML = customText.headerSubtitle1;
+                        headerText.appendChild(headerSubtitle1);
+
+                        let headerSubtitle2 = document.createElement("p3");
+                        headerSubtitle2.innerHTML = customText.headerSubtitle2;
+                        headerText.appendChild(headerSubtitle2);
+
+                        // Append question text to section 1
+                        let section1QuestionText = document.querySelector(
+                            "#section1-question-text"
+                        );
+                        let section1Question = document.createElement("p");
+                        section1Question.innerHTML =
+                            customText.section1Question;
+                        section1QuestionText.appendChild(section1Question);
+
+                        // Append question text to section 2
+                        let section2QuestionText = document.querySelector(
+                            "#section2-question-text"
+                        );
+                        let section2Question = document.createElement("p");
+                        section2Question.innerHTML =
+                            customText.section2Question;
+                        section2QuestionText.appendChild(section2Question);
+                        // let section2Question2 = document.createElement("p");
+                        // section2Question2.innerHTML =
+                        //     customText.section2Question2;
+                        // section2QuestionText.appendChild(section2Question2);
+
+                        // Append question text to section 3
+                        let section3QuestionText = document.querySelector(
+                            "#section3-question-text"
+                        );
+                        let section3Question = document.createElement("p");
+                        section3Question.innerHTML =
+                            customText.section3Question;
+                        section3QuestionText.appendChild(section3Question);
+
+                        // Append question text to section 4
+                        let section4QuestionText = document.querySelector(
+                            "#section4-question-text"
+                        );
+                        let section4Question = document.createElement("p");
+                        section4Question.innerHTML =
+                            customText.section4Question;
+                        section4QuestionText.appendChild(section4Question);
+                    })
+                    .catch((err) =>
+                        alert("there was an error loading the activity text")
+                    );
+            }
+            initCustomText();
+
+            function updateFirstFeedbackText() {
+                // Compare mainSliceValue to the actual value and render the appropriate feedback
+                let inputValue = Math.round(mainSliceValue);
+                let actualValue = mainSliceValue3;
+
+                let feedbackHeading1 = document.getElementById(
+                    "feedback1-heading-1"
+                );
+
+                let followUpQ1 = document.getElementById(
+                    "feedback1-follow-up-q1"
+                );
+                let followUpQ2 = document.getElementById(
+                    "feedback1-follow-up-q2"
+                );
+
+                if (
+                    inputValue + 15 > actualValue &&
+                    inputValue - 15 < actualValue
+                ) {
+                    feedbackHeading1.innerHTML = customText.feedback1Accurate;
+                    followUpQ1.innerHTML = customText.feedback1AccurateFollowUp;
+                    followUpQ2.innerHTML =
+                        customText.feedback1AccurateFollowUp2;
+                } else if (inputValue > actualValue) {
+                    feedbackHeading1.innerHTML =
+                        customText.feedback1Overestimate;
+                    followUpQ1.innerHTML =
+                        customText.feedback1OverestimateFollowUp;
+                    followUpQ2.innerHTML =
+                        customText.feedback1OverestimateFollowUp2;
+                } else if (inputValue < actualValue) {
+                    feedbackHeading1.innerHTML =
+                        customText.feedback1Underestimate;
+                    followUpQ1.innerHTML =
+                        customText.feedback1UnderestimateFollowUp;
+                    followUpQ2.innerHTML =
+                        customText.feedback1UnderestimateFollowUp2;
+                }
+            }
+
+            function updateSecondFeedback() {
+                // Compare mainSliceValue4 to the actual value and render the appropriate feedback
+                let inputValue = Math.round(mainSliceValue4);
+                let actualValue = 85; // Hardcoded for now
+
+                let feedbackHeading = document.getElementById(
+                    "feedback2-feedback-heading-1"
+                );
+
+                let followUpQ1 = document.getElementById(
+                    "feedback2-follow-up-q1"
+                );
+                let followUpQ2 = document.getElementById(
+                    "feedback2-follow-up-q2"
+                );
+
+                if (
+                    inputValue + 15 > actualValue &&
+                    inputValue - 15 < actualValue
+                ) {
+                    feedbackHeading.innerHTML = customText.feedback2Accurate;
+                    followUpQ1.innerHTML = customText.feedback2AccurateFollowUp;
+                    followUpQ2.innerHTML =
+                        customText.feedback2AccurateFollowUp2;
+                } else if (inputValue > actualValue) {
+                    feedbackHeading.innerHTML =
+                        customText.feedback2Overestimate;
+                    followUpQ1.innerHTML =
+                        customText.feedback2OverestimateFollowUp;
+                    followUpQ2.innerHTML =
+                        customText.feedback2OverestimateFollowUp2;
+                } else if (inputValue < actualValue) {
+                    feedbackHeading.innerHTML =
+                        customText.feedback2Underestimate;
+                    followUpQ1.innerHTML =
+                        customText.feedback2UnderestimateFollowUp;
+                    followUpQ2.innerHTML =
+                        customText.feedback2UnderestimateFollowUp2;
+                }
+            }
+
+            let currentSection = 0;
+            const sections = document.querySelectorAll(".section");
+            const totalSections = sections.length;
+
+            function onNextButtonClick() {
+                if (currentSection < totalSections - 1) {
+                    // Render the feedback container's contents
+                    if (currentSection === 0) {
+                        // Get feedback heading 1
+                        updateFirstFeedbackText();
+                    } else if (currentSection === 2) {
+                        // Not using second feedback for now
+                        // updateSecondFeedback();
+                    }
+                    changeMainContainerHeight(currentSection + 1);
+                    currentSection++;
+                    scrollToSection(currentSection);
+                }
+            }
+
+            function onBackButtonClick() {
+                if (currentSection > 0) {
+                    changeMainContainerHeight(currentSection - 1);
+                    currentSection--;
+                    scrollToSection(currentSection);
+                }
+            }
+
+            function scrollToSection(sectionIndex) {
+                const yOffset = sections[sectionIndex].offsetTop - 150;
+                const mainContainer = document.querySelector(".main-container");
+                mainContainer.scrollTo({
+                    top: yOffset,
+                    behavior: "smooth",
+                });
+            }
+
+            // Donut 1 implementation
+            let emptySliceValue = 100 - 15 * 4;
+            let animationSpeed = 45;
+            let mainSliceValue = 15;
+
+            function getRemainingValue() {
+                let remainingValue = 100 - mainSliceValue;
+
+                emptySliceValue = remainingValue;
+                return remainingValue;
+            }
+
+            var svg = d3.select(".donut1").append("svg").append("g");
+
+            svg.append("g").attr("class", "slices");
+            svg.append("g").attr("class", "labels");
+            svg.append("g").attr("class", "lines");
+
+            // Add handler for movement over the the donut
+            d3.select(".slices").on("mousemove", function () {
+                // If mobile device is being used
+                if (d3?.event?.sourceCapabilities?.firesTouchEvents) {
+                    updateDonutPercent(d3.mouse(this));
+                    updateDonutPercent2(d3.mouse(this));
+                }
+
+                if (d3.event.buttons == 1) {
+                    // console.log("mouse down");
+                    updateDonutPercent(d3.mouse(this));
+                    updateDonutPercent2(d3.mouse(this));
+                }
+            });
+
+            function updateDonutPercent(clickCoordinates) {
+                if (clickCoordinates == null) {
+                    // console.log("click coordinates null");
+                    let remainingValue = getRemainingValue();
+                    updateDonutTitle();
+                    change(getData());
+                    getRemainingValue();
+                    return;
+                }
+
+                // Get coordinates of the center of the svg
+                let svgCenter = [svg.attr("width") / 2, svg.attr("height") / 2];
+
+                // Get the angle of the click relative to the center of the svg
+                let angle = Math.atan2(
+                    clickCoordinates[1] - svgCenter[1],
+                    clickCoordinates[0] - svgCenter[0]
+                );
+
+                // Convert angle to degrees from -180 to 180
+                let angleDegrees = angle * (180 / Math.PI);
+
+                // Convert angle to degrees from 0 to 360
+                let angleDegrees2 = (angleDegrees + 360) % 360;
+                let angleDegrees3 = (angleDegrees2 + 90) % 360;
+
+                // Convert angleDegrees from 0 to 360 to 0 to 100
+                let slicePercent = (angleDegrees3 / 360) * 100;
+
+                // Copy of slider implementation
+                let remainingValue = getRemainingValue();
+                let currentValue = mainSliceValue;
+                mainSliceValue = slicePercent;
+                let maxValue = currentValue + remainingValue;
+
+                updateDonutTitle();
+                change(getData());
+                getRemainingValue();
+            }
+
+            var width = 400,
+                height = 400,
+                radius = Math.min(width, height) / 2;
+
+            var pie = d3.layout
+                .pie()
+                .sort(null)
+                .value(function (d) {
+                    return d.value;
+                });
+
+            var arc = d3.svg
+                .arc()
+                .outerRadius(radius * 0.8)
+                .innerRadius(radius * 0.4);
+
+            var outerArc = d3.svg
+                .arc()
+                .innerRadius(radius * 0.9)
+                .outerRadius(radius * 0.9);
+
+            svg.attr(
+                "transform",
+                "translate(" + width / 2 + "," + height / 2 + ")"
+            );
+
+            var key = function (d) {
+                return d.data.label;
+            };
+
+            var color = d3.scale
+                .ordinal()
+                .domain([
+                    "Slice 1",
+                    "Slice 2",
+                    "Slice 3",
+                    "Slice 4",
+                    "No Response",
+                ])
+                .range(["#6d39a9", "#cac7c8", "#de4c4e", "#ef9699", "#b5b6b8"]);
+
+            function getData() {
+                return [
+                    {
+                        label: "Slice 1",
+                        value: +mainSliceValue,
+                    },
+                    {
+                        label: "No Response",
+                        value: +emptySliceValue,
+                    },
+                ];
+            }
+
+            change(getData());
+
+            d3.selectAll(".slider").on("input", function () {
+                change(getData());
+            });
+
+            function change(data) {
+                var total = data.reduce((acc, slice) => acc + slice.value, 0);
+
+                /* ------- PIE SLICES ------- */
+                var slice = svg
+                    .select(".slices")
+                    .selectAll("path.slice")
+                    .data(pie(data), key);
+
+                slice
+                    .enter()
+                    .insert("path")
+                    .style("fill", function (d) {
+                        return color(d.data.label);
+                    })
+                    .attr("class", "slice");
+
+                slice
+                    .transition()
+                    .duration(animationSpeed)
+                    .attrTween("d", function (d) {
+                        this._current = this._current || d;
+                        var interpolate = d3.interpolate(this._current, d);
+                        this._current = interpolate(0);
+                        return function (t) {
+                            return arc(interpolate(t));
+                        };
+                    });
+
+                slice.exit().remove();
+            }
+
+            // Render the percentage value of slice 1 in the middle of the donut chart
+            svg.append("text")
+                .attr("text-anchor", "middle")
+                .attr("class", "donut-percent")
+                .attr("y", 24)
+                .attr("style", "color: blue;")
+                .attr("style", "fill: darkOrange;")
+                .text(function () {
+                    return Math.round(mainSliceValue) + "%";
+                });
+
+            // Function to update the value of the percentage in the middle of the donut chart
+            function updateDonutTitle() {
+                svg.select(".donut-percent").text(function () {
+                    return Math.round(mainSliceValue) + "%";
+                });
+            }
+
+            // Set text color of the donut chart title to the color of the slice
+            svg.select(".donut-percent").attr("style", function () {
+                return "color: " + color("pink") + ";";
+            });
+        </script>
+
+        <!-- section 2 -->
+        <script>
+            // Donut 2 implementation
+            let emptySliceValue2 = 100 - 15 * 4;
+            let animationSpeed2 = 45;
+            let mainSliceValue2 = 30;
+
+            let emptySliceValue3 = 100 - 91;
+            let animationSpeed3 = 45;
+            let mainSliceValue3 = 91;
+
+            function getRemainingValue2() {
+                let remainingValue2 = 100 - mainSliceValue;
+
+                emptySliceValue = remainingValue2;
+                return remainingValue2;
+            }
+            function getRemainingValue3() {
+                let remainingValue3 = 100 - mainSliceValue3;
+
+                emptySliceValue3 = remainingValue3;
+                return remainingValue3;
+            }
+
+            var svg2 = d3.select(".donut2").append("svg").append("g");
+
+            svg2.append("g").attr("class", "slices2");
+            svg2.append("g").attr("class", "labels");
+            svg2.append("g").attr("class", "lines");
+
+            var svg3 = d3.select(".donut3").append("svg").append("g");
+            svg3.append("g").attr("class", "slices3");
+            svg3.append("g").attr("class", "labels");
+            svg3.append("g").attr("class", "lines");
+
+            function updateDonutPercent2(clickCoordinates) {
+                if (clickCoordinates == null) {
+                    // console.log("click coordinates null");
+                    let remainingValue = getRemainingValue2();
+                    updateDonutTitle2();
+                    change2(getData2());
+                    getRemainingValue2();
+                    return;
+                }
+
+                // Get coordinates of the center of the svg
+                let svgCenter = [
+                    svg2.attr("width") / 2,
+                    svg2.attr("height") / 2,
+                ];
+
+                // Get the angle of the click relative to the center of the svg
+                let angle = Math.atan2(
+                    clickCoordinates[1] - svgCenter[1],
+                    clickCoordinates[0] - svgCenter[0]
+                );
+
+                // Convert angle to degrees from -180 to 180
+                let angleDegrees = angle * (180 / Math.PI);
+
+                // Convert angle to degrees from 0 to 360
+                let angleDegrees2 = (angleDegrees + 360) % 360;
+                let angleDegrees3 = (angleDegrees2 + 90) % 360;
+
+                // Convert angleDegrees from 0 to 360 to 0 to 100
+                let slicePercent2 = (angleDegrees3 / 360) * 100;
+
+                let remainingValue2 = getRemainingValue2();
+                let currentValue2 = mainSliceValue;
+
+                updateDonutTitle2();
+                change2(getData2());
+                getRemainingValue2();
+            }
+            function updateDonutPercent3(clickCoordinates) {
+                if (clickCoordinates == null) {
+                    let remainingValue = getRemainingValue3();
+                    updateDonutTitle3();
+                    change3(getData3());
+                    getRemainingValue3();
+                    return;
+                }
+
+                // Get coordinates of the center of the svg
+                let svgCenter = [
+                    svg3.attr("width") / 2,
+                    svg3.attr("height") / 2,
+                ];
+
+                // Get the angle of the click relative to the center of the svg
+                let angle = Math.atan2(
+                    clickCoordinates[1] - svgCenter[1],
+                    clickCoordinates[0] - svgCenter[0]
+                );
+
+                // Convert angle to degrees from -180 to 180
+                let angleDegrees = angle * (180 / Math.PI);
+
+                // Convert angle to degrees from 0 to 360
+                let angleDegrees2 = (angleDegrees + 360) % 360;
+
+                let angleDegrees3 = (angleDegrees2 + 90) % 360;
+
+                // Convert angleDegrees from 0 to 360 to 0 to 100
+                let slicePercent3 = (angleDegrees3 / 360) * 100;
+
+                let remainingValue3 = getRemainingValue3();
+                let currentValue3 = mainSliceValue3;
+                mainSliceValue3 = slicePercent3;
+                let maxValue3 = currentValue3 + remainingValue3;
+
+                updateDonutTitle3();
+                change3(getData3());
+                getRemainingValue3();
+            }
+
+            var width2 = 300,
+                height2 = 300,
+                radius2 = Math.min(width2, height2) / 2;
+
+            var pie2 = d3.layout
+                .pie()
+                .sort(null)
+                .value(function (d) {
+                    return d.value;
+                });
+
+            var arc2 = d3.svg
+                .arc()
+                .outerRadius(radius2 * 0.8)
+                .innerRadius(radius2 * 0.4);
+
+            var outerArc2 = d3.svg
+                .arc()
+                .innerRadius(radius2 * 0.9)
+                .outerRadius(radius2 * 0.9);
+
+            // donut 3
+            var width3 = 300,
+                height3 = 300,
+                radius3 = Math.min(width3, height3) / 2;
+
+            var pie3 = d3.layout
+                .pie()
+                .sort(null)
+                .value(function (d) {
+                    return d.value;
+                });
+
+            var arc3 = d3.svg
+                .arc()
+                .outerRadius(radius2 * 0.8)
+                .innerRadius(radius2 * 0.4);
+
+            var outerArc3 = d3.svg
+                .arc()
+                .innerRadius(radius2 * 0.9)
+                .outerRadius(radius2 * 0.9);
+
+            svg2.attr("transform", "translate(150,150) scale(0.8)");
+
+            var key = function (d) {
+                return d.data.label;
+            };
+
+            var color2 = d3.scale
+                .ordinal()
+                .domain([
+                    "Slice 1",
+                    "Slice 2",
+                    "Slice 3",
+                    "Slice 4",
+                    "No Response",
+                ])
+                .range(["#6d39a9", "#cac7c8", "#de4c4e", "#ef9699", "#b5b6b8"]);
+
+            function getData2() {
+                return [
+                    {
+                        label: "Slice 1",
+                        value: +mainSliceValue,
+                    },
+                    {
+                        label: "No Response",
+                        value: +emptySliceValue,
+                    },
+                ];
+            }
+
+            change2(getData2());
+
+            // translate half of initial width and height before downscale
+            svg3.attr("transform", "translate(150,150) scale(0.8)");
+
+            var key = function (d) {
+                return d.data.label;
+            };
+
+            var color3 = d3.scale
+                .ordinal()
+                .domain([
+                    "Slice 1",
+                    "Slice 2",
+                    "Slice 3",
+                    "Slice 4",
+                    "No Response",
+                ])
+                .range(["#6d39a9", "#cac7c8", "#de4c4e", "#ef9699", "#b5b6b8"]);
+
+            function getData3() {
+                return [
+                    {
+                        label: "Slice 1",
+                        value: +mainSliceValue3,
+                    },
+                    {
+                        label: "No Response",
+                        value: +emptySliceValue3,
+                    },
+                ];
+            }
+
+            change3(getData3());
+
+            function change2(data) {
+                var total = data.reduce((acc, slice) => acc + slice.value, 0);
+
+                /* ------- PIE SLICES ------- */
+                var slice = svg2
+                    .select(".slices2")
+                    .selectAll("path.slice")
+                    .data(pie(data), key);
+
+                slice
+                    .enter()
+                    .insert("path")
+                    .style("fill", function (d) {
+                        return color(d.data.label);
+                    })
+                    .attr("class", "slice");
+
+                slice
+                    .transition()
+                    .duration(animationSpeed)
+                    .attrTween("d", function (d) {
+                        this._current = this._current || d;
+                        var interpolate = d3.interpolate(this._current, d);
+                        this._current = interpolate(0);
+                        return function (t) {
+                            return arc(interpolate(t));
+                        };
+                    });
+
+                slice.exit().remove();
+            }
+            function change3(data) {
+                var total = data.reduce((acc, slice) => acc + slice.value, 0);
+
+                /* ------- PIE SLICES ------- */
+                var slice = svg3
+                    .select(".slices3")
+                    .selectAll("path.slice")
+                    .data(pie(data), key);
+
+                slice
+                    .enter()
+                    .insert("path")
+                    .style("fill", function (d) {
+                        return color(d.data.label);
+                    })
+                    .attr("class", "slice");
+
+                slice
+                    .transition()
+                    .duration(animationSpeed)
+                    .attrTween("d", function (d) {
+                        this._current = this._current || d;
+                        var interpolate = d3.interpolate(this._current, d);
+                        this._current = interpolate(0);
+                        return function (t) {
+                            return arc(interpolate(t));
+                        };
+                    });
+
+                slice.exit().remove();
+            }
+
+            // Render the percentage value of slice 1 in the middle of the donut chart
+            svg2.append("text")
+                .attr("text-anchor", "middle")
+                .attr("class", "donut-percent2")
+                .attr("y", 18)
+                .attr("style", "color: blue;")
+                .attr("style", "fill: white;")
+                .text(function () {
+                    return Math.round(mainSliceValue) + "%";
+                });
+
+            svg3.append("text")
+                .attr("text-anchor", "middle")
+                .attr("class", "donut-percent3")
+                .attr("y", 18)
+                .attr("style", "color: blue;")
+                .attr("style", "fill: white;")
+                .text(function () {
+                    return Math.round(mainSliceValue3) + "%";
+                });
+
+            // Function to update the value of the percentage in the middle of the donut chart
+            function updateDonutTitle2() {
+                svg2.select(".donut-percent2").text(function () {
+                    return Math.round(mainSliceValue) + "%";
+                });
+            }
+            function updateDonutTitle3() {
+                svg3.select(".donut-percent3").text(function () {
+                    return Math.round(mainSliceValue3) + "%";
+                });
+            }
+            // Set text color of the donut chart title to the color of the slice
+            svg2.select(".donut-percent2").attr("style", function () {
+                return "color: " + color("pink") + ";";
+            });
+            svg3.select(".donut-percent3").attr("style", function () {
+                return "color: " + color("pink") + ";";
+            });
+            // End of section 2
+
+            // Section 3 donut 4 implementation
+
+            let emptySliceValue4 = 100 - 15 * 4;
+            let animationSpeed4 = 45;
+            let mainSliceValue4 = 15;
+
+            function getRemainingValue4() {
+                let remainingValue = 100 - mainSliceValue4;
+
+                emptySliceValue4 = remainingValue;
+                return remainingValue;
+            }
+
+            var svg4 = d3.select(".donut4").append("svg").append("g");
+
+            svg4.append("g").attr("class", "slices4");
+            svg4.append("g").attr("class", "labels");
+            svg4.append("g").attr("class", "lines");
+
+            // Add handler for movement over the the donut
+            d3.select(".slices4").on("mousemove", function () {
+                // conditional if mouse is down
+                if (d3.event.buttons == 1) {
+                    updateDonutPercent4(d3.mouse(this));
+                }
+                // change color of slice while mouse is hovering over it
+                //d3.select(this).style("fill", "red");
+            });
+
+            function updateDonutPercent4(clickCoordinates) {
+                // Get coordinates of the center of the svg
+                let svgCenter = [
+                    svg4.attr("width") / 2,
+                    svg4.attr("height") / 2,
+                ];
+
+                // Get the angle of the click relative to the center of the svg
+                let angle = Math.atan2(
+                    clickCoordinates[1] - svgCenter[1],
+                    clickCoordinates[0] - svgCenter[0]
+                );
+
+                // Convert angle to degrees from -180 to 180
+                let angleDegrees = angle * (180 / Math.PI);
+                // console.log('angle degrees', angleDegrees);
+
+                // Convert angle to degrees from 0 to 360
+                let angleDegrees2 = (angleDegrees + 360) % 360;
+
+                let angleDegrees3 = (angleDegrees2 + 90) % 360;
+
+                // Convert angleDegrees from 0 to 360 to 0 to 100
+                let slicePercent = (angleDegrees3 / 360) * 100;
+
+                changeBarColor(slicePercent);
+
+                // Copy of slider implementation
+                let remainingValue = getRemainingValue4();
+                let currentValue = mainSliceValue4;
+                mainSliceValue4 = slicePercent;
+                let maxValue = currentValue + remainingValue;
+
+                updateDonutTitle4();
+                change4(getData4());
+                getRemainingValue4();
+            }
+
+            var width4 = 400,
+                height4 = 400,
+                radius4 = Math.min(width4, height4) / 2;
+
+            var pie4 = d3.layout
+                .pie()
+                .sort(null)
+                .value(function (d) {
+                    return d.value;
+                });
+
+            var arc4 = d3.svg
+                .arc()
+                .outerRadius(radius4 * 0.8)
+                .innerRadius(radius4 * 0.4);
+
+            var outerArc4 = d3.svg
+                .arc()
+                .innerRadius(radius4 * 0.9)
+                .outerRadius(radius4 * 0.9);
+
+            svg4.attr(
+                "transform",
+                "translate(" + width4 / 2 + "," + height4 / 2 + ")"
+            );
+
+            var key4 = function (d) {
+                return d.data.label;
+            };
+
+            var color4 = d3.scale
+                .ordinal()
+                .domain([
+                    "Slice 1",
+                    "Slice 2",
+                    "Slice 3",
+                    "Slice 4",
+                    "No Response",
+                ])
+                .range(["#6d39a9", "#cac7c8", "#de4c4e", "#ef9699", "#b5b6b8"]);
+
+            function getData4() {
+                return [
+                    {
+                        label: "Slice 1",
+                        value: +mainSliceValue4,
+                    },
+                    {
+                        label: "No Response",
+                        value: +emptySliceValue4,
+                    },
+                ];
+            }
+
+            change4(getData4());
+
+            function change4(data) {
+                var total = data.reduce((acc, slice) => acc + slice.value, 0);
+
+                /* ------- PIE SLICES ------- */
+                var slice = svg4
+                    .select(".slices4")
+                    .selectAll("path.slice")
+                    .data(pie(data), key4);
+
+                slice
+                    .enter()
+                    .insert("path")
+                    .style("fill", function (d) {
+                        return color(d.data.label);
+                    })
+                    .attr("class", "slice");
+
+                slice
+                    .transition()
+                    .duration(animationSpeed4)
+                    .attrTween("d", function (d) {
+                        this._current = this._current || d;
+                        var interpolate = d3.interpolate(this._current, d);
+                        this._current = interpolate(0);
+                        return function (t) {
+                            return arc(interpolate(t));
+                        };
+                    });
+
+                slice.exit().remove();
+            }
+
+            // Render the percentage value of slice 1 in the middle of the donut chart
+            svg4.append("text")
+                .attr("text-anchor", "middle")
+                .attr("class", "donut-percent4")
+                .attr("y", 18)
+                .attr("style", "color: blue;")
+                .attr("style", "fill: darkOrange;")
+                .text(function () {
+                    return Math.round(mainSliceValue4) + "%";
+                });
+
+            // Function to update the value of the percentage in the middle of the donut chart
+            function updateDonutTitle4() {
+                svg4.select(".donut-percent4").text(function () {
+                    return Math.round(mainSliceValue4) + "%";
+                });
+            }
+
+            // Set text color of the donut chart title to the color of the slice
+            svg4.select(".donut-percent4").attr("style", function () {
+                return "color: " + color("pink") + ";";
+            });
+            // end of section 3
+
+            // Histogram code
+            function generateHistogram() {
+                const data = {
+                    "10%": 10,
+                    "20%": 54,
+                    "30%": 87,
+                    "40%": 153,
+                    "50%": 129,
+                    "60%": 220,
+                    "70%": 195,
+                    "80%": 315,
+                    "90%": 242,
+                    "100%": 171,
+                };
+
+                const dataArray = Object.keys(data).map((key) => {
+                    return {
+                        label: key,
+                        value: data[key],
+                    };
+                });
+
+                const margin = { top: 20, right: 20, bottom: 70, left: 40 };
+                const width = 550 - margin.left - margin.right;
+                const height = 350 - margin.top - margin.bottom;
+
+                const x = d3.scale.ordinal().rangeRoundBands([0, width], 0.05);
+                const y = d3.scale.linear().range([height, 0]);
+
+                const xAxis = d3.svg.axis().scale(x).orient("bottom");
+
+                const yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
+
+                const svg = d3
+                    .select(".chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr(
+                        "transform",
+                        "translate(" + margin.left + "," + margin.top + ")"
+                    );
+
+                x.domain(dataArray.map((d) => d.label));
+                y.domain([0, d3.max(dataArray, (d) => d.value)]);
+
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "1em")
+                    .attr("dy", "0.85em");
+                // .attr("dy", "-.55em")
+                // .attr("transform", "rotate(-45)" );
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+                    .append("text")
+                    .attr("transform", "rotate(-90)")
+                    // .attr("transform",  "translate(0, 50)")
+                    .attr("y", 6)
+                    // .attr("dx", "-20px")
+                    .attr("dy", ".71em")
+                    .style("text-anchor", "end")
+                    .text("# of people in field who guessed this");
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+                    .append("text")
+                    .attr("y", 6)
+                    .attr("dx", "385px")
+                    .attr("dy", "300px")
+                    .style("text-anchor", "end")
+                    .text("% of work in field estimated to be reproducible");
+
+                svg.selectAll("bar")
+                    .data(dataArray)
+                    .enter()
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("x", (d) => x(d.label))
+                    .attr("width", x.rangeBand())
+                    .attr("y", (d) => y(d.value))
+                    .attr("height", (d) => height - y(d.value));
+            }
+            generateHistogram();
+            // Initialize selected bar as default percent value
+            changeBarColor(15);
+
+            // Change bar color based on intput
+            function changeBarColor(percentInput) {
+                // Round percentInput to the nearest increment of 10, starting at 10 and ending at 100
+                let roundedPercent = Math.round(percentInput / 10) * 10;
+
+                // If the roundedPercent is 0, set it to 10
+                if (roundedPercent === 0) {
+                    roundedPercent = 10;
+                }
+
+                let roundedPercentString = roundedPercent + "%";
+
+                const svg = d3.select(".chart-container");
+                // conditionally set the bar color
+                svg.selectAll("rect").style("fill", (d) => {
+                    if (d.label === roundedPercentString) {
+                        return "red";
+                    } else {
+                        return "steelblue";
+                    }
+                });
+            }
+
+            // Collapsable citation handler
+            var coll = document.getElementsByClassName("collapsible-btn");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    let content = document.querySelector(".citation-content");
+                    // If has class open, remove it
+                    if (content.classList.contains("open")) {
+                        content.classList.remove("open");
+                    } else {
+                        content.classList.add("open");
+                    }
+                });
+            }
+
+            // Function to change hight of the main-container when section is changed
+            function changeMainContainerHeight(targetSection) {
+                // Get the current height of the main-container
+                let currentHeight =
+                    document.querySelector(".main-container").offsetHeight;
+
+                if (targetSection === 0) {
+                    let section1Height =
+                        document.querySelector("#section1").offsetHeight;
+                    document.querySelector(".main-container").style.height =
+                        section1Height + "px";
+                }
+                if (targetSection === 1) {
+                    let section2Height =
+                        document.querySelector("#section2").offsetHeight;
+                    document.querySelector(".main-container").style.height =
+                        section2Height + "px";
+                } else if (targetSection === 2) {
+                    let section3Height =
+                        document.querySelector("#section3").offsetHeight;
+                    document.querySelector(".main-container").style.height =
+                        section3Height + "px";
+                } else if (targetSection === 3) {
+                    let section4Height =
+                        document.querySelector("#section4").offsetHeight;
+                    document.querySelector(".main-container").style.height =
+                        section4Height + "px";
+                }
+            }
+
+            // Initialize donut chart
+            updateDonutPercent(null);
+        </script>
+    </body>
+</html>

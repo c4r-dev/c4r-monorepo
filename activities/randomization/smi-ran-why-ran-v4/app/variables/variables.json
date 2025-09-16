@@ -1,0 +1,24 @@
+[
+  {
+    "id": 0,
+    "variableName": "Sex"
+  },
+  {
+    "id": 1,
+    "variableName": "Time to fall"
+  },
+  {
+    "id": 2,
+    "variableName": "Age"
+  },
+  {
+    "id": 3,
+    "variableName": "Litter" 
+  },
+  {
+    "id": 4,
+    "variableName": "Weight"
+  }
+]
+
+

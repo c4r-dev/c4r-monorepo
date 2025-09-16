@@ -1,0 +1,155 @@
+[
+    {
+        "BiasNumber": 1,
+        "BiasName": "Adherence Bias",
+        "BiasDescription": "Subjects will follow the protocol closer than others. The distortion in data due to different levels of protocol adherence can bias the outcome.",
+        "Example": "Subjects are instructed to take an antibiotic regimen, but stop once they start feeling better. This data may not be usable or give biased measures of the treatment's efficacy.",
+        "Link": "https://catalogofbias.org/biases/adherence-bias/"
+    },
+    {
+        "BiasNumber": 2,
+        "BiasName": "Apprehension Bias",
+        "BiasDescription": "Subjects may respond differently due to being observed.",
+        "Example": "Patients become anxious when visiting a health professional and getting their blood pressure measured. This can introduce bias when evaluating the efficacy of blood pressure medication.",
+        "Link": "https://catalogofbias.org/biases/apprehension-bias/"
+    },
+    {
+        "BiasNumber": 3,
+        "BiasName": "Chronological Bias",
+        "BiasDescription": "A systematic difference between subjects that are recruited early in the study vs. later.",
+        "Example": "Assigning subjects to treatments based on when they arrive or sign up may introduce bias due to confounding factors that influence temporal order.",
+        "Link": "https://catalogofbias.org/biases/chronological-bias/"
+    },
+    {
+        "BiasNumber": 4,
+        "BiasName": "Confirmation Bias",
+        "BiasDescription": "A systemic bias for seeking, observing, and interpreting information in support of a prior belief.",
+        "Example": "A scientist uncritically cites papers that support their hypothesis while detailing the flaws in papers that find evidence to the contrary.",
+        "Link": "https://catalogofbias.org/biases/confirmation-bias/"
+    },
+    {
+        "BiasNumber": 5,
+        "BiasName": "Cognitive Dissonance",
+        "BiasDescription": "When one's beliefs and behavior conflict.",
+        "Example": "",
+        "Link": "https://en.wikipedia.org/wiki/Cognitive_dissonance"
+    },
+    {
+        "BiasNumber": 6,
+        "BiasName": "Bandwagon Effect",
+        "BiasDescription": "When one adopts behaviors, styles, beliefs because others are doing so.",
+        "Example": "",
+        "Link": "https://en.wikipedia.org/wiki/Bandwagon_effect"
+    },
+    {
+        "BiasNumber": 7,
+        "BiasName": "Hawthorne Effect",
+        "BiasDescription": "Participants behave differently because they know they are being observed.",
+        "Example": "Medical staff complied more with proper hand-washing practice more when they were being watched.",
+        "Link": "https://catalogofbias.org/biases/hawthorne-effect/"
+    },
+    {
+        "BiasNumber": 8,
+        "BiasName": "Novelty Bias",
+        "BiasDescription": "Tendency for a novel effect or intervention to appear better when it is new.",
+        "Example": "The first publication of a new phenomenon often exaggerates the effect size; several large-scale replications have found that actual effect sizes are 50-80% of what is initially reported.",
+        "Link": [
+            "https://catalogofbias.org/biases/novelty-bias/",
+            "https://pubmed.ncbi.nlm.nih.gov/20687172/"
+        ]
+    },
+    {
+        "BiasNumber": 9,
+        "BiasName": "Observer Bias",
+        "BiasDescription": "Observing or recording information with methods that can introduce subjectivity.",
+        "Example": "Investigators who know whether subjects are part of the control or treatment arm may inadvertently round up or down in a systematic way.",
+        "Link": [
+            "https://catalogofbias.org/biases/observer-bias/",
+            "https://pubmed.ncbi.nlm.nih.gov/8205467/"
+        ]
+    },
+    {
+        "BiasNumber": 10,
+        "BiasName": "Performance Bias",
+        "BiasDescription": "Differences resulting from either subject or investigator awareness of the assigned treatment group.",
+        "Example": "Investigators know that one lineage of mice are hypothesized to be more docile, and treat the mice differently, resulting in measurable changes.",
+        "Link": "https://catalogofbias.org/biases/performance-bias/"
+    },
+    {
+        "BiasNumber": 11,
+        "BiasName": "Selective Reporting",
+        "BiasDescription": "Selectively reporting research or information based on the findings.",
+        "Example": "A research team conducts 4 experiments to test a hypothesis, but end up only writing about 3 of them that were significant in the paper.",
+        "Link": "https://catalogofbias.org/biases/reporting-biases/"
+    },
+    {
+        "BiasNumber": 12,
+        "BiasName": "Racial Bias",
+        "BiasDescription": "Systematic under-representation of ethnic minority populations and inappropriate interpretation of disparities between racial groups.",
+        "Example": "A systemic review of trails leading to FDA approvals showed race wasn't reported for a third of cases. Black and hispanic populations were underrepresented for those that did report.",
+        "Link": "https://catalogofbias.org/biases/racial-bias/"
+    },
+    {
+        "BiasNumber": 13,
+        "BiasName": "Selection Bias",
+        "BiasDescription": "Subjects in study may differ from the population of interest based on the selection method.",
+        "Example": "An investigator recruits university undergraduates to study the relationship between social media usage and mental health; but this sample may be unique in many ways relative to the general population that the findings appear to be relevant for.",
+        "Link": "https://catalogofbias.org/biases/selection-bias/"
+    },
+    {
+        "BiasNumber": 14,
+        "BiasName": "Volunteer Bias",
+        "BiasDescription": "Participants volunteering to take part in a study have different characteristics from the general population of interest.",
+        "Example": "",
+        "Link": "https://catalogofbias.org/biases/volunteer-bias/"
+    },
+    {
+        "BiasNumber": 15,
+        "BiasName": "Ecological Fallacy",
+        "BiasDescription": "An error in interpreting statistical data that occurs when group attributes are used inappropriately when describing individuals.",
+        "Example": "Smokers are at a higher risk for developing lung cancer; this does not mean that an individual smoker will develop lung cancer or is more at-risk than any non-smoker.",
+        "Link": "https://en.wikipedia.org/wiki/Ecological_fallacy"
+    },
+    {
+        "BiasNumber": 16,
+        "BiasName": "Clustering Illusion",
+        "BiasDescription": "Perceiving random noise or data as evidence of a real effect or pattern.",
+        "Example": "When observing a random distribution of points, humans will ascribe meaning to clusters of points and empty spaces.",
+        "Link": "https://en.wikipedia.org/wiki/Clustering_illusion"
+    },
+    {
+        "BiasNumber": 17,
+        "BiasName": "Social Desirability Bias",
+        "BiasDescription": "A tendency for subjects to answer questions in a way that appears more favorable to others.",
+        "Example": "Respondents inflate their answers when asked about their charitable contributions.",
+        "Link": "https://en.wikipedia.org/wiki/Social-desirability_bias"
+    },
+    {
+        "BiasNumber": 18,
+        "BiasName": "Fundamental Attribution Error",
+        "BiasDescription": "Observers interpret the behaviors of others as related to personality rather than situational factors.",
+        "Example": "I believe others are poor at planning when they show up late to a meeting, but attribute my own lateness to bad traffic.",
+        "Link": "https://en.wikipedia.org/wiki/Fundamental_attribution_error"
+    },
+    {
+        "BiasNumber": 19,
+        "BiasName": "Availability Bias",
+        "BiasDescription": "When making evaluations or judgments, relying on examples that come to mind more regularly.",
+        "Example": "When asked what disease they are worried about, respondents may say a rare disease that is widely covered in the news rather than a common cold.",
+        "Link": "https://en.wikipedia.org/wiki/Availability_heuristic"
+    },
+    {
+        "BiasNumber": 20,
+        "BiasName": "Survivorship Bias",
+        "BiasDescription": "Erroneous interpretations of a subset that has passed through a screening process, and overlooking the subset that did not pass.",
+        "Example": "A lottery winner provides financial advice to buy lottery tickets because 'it worked for them'.",
+        "Link": "https://en.wikipedia.org/wiki/Survivorship_bias"
+    },
+    {
+        "BiasNumber": 21,
+        "BiasName": "Consensus Bias",
+        "BiasDescription": "Perceiving one's personal choices and judgments as more common than they actually are.",
+        "Example": "A survey asks people to predict how much time others spend on social media - the results are close to the respondent's own behavior.",
+        "Link": "https://en.wikipedia.org/wiki/False_consensus_effect"
+    }
+]

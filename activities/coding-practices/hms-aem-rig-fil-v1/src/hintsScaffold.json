@@ -1,0 +1,52 @@
+[
+    {
+        "number": "1",
+        "hint": "Is there any difference in color or taste between the active drug and the placebo?",
+        "explanation": "Even if patients swallow the pill whole, they might still get some idea of its taste. If the real medication is somewhat bitter, this could be a tip-off. Additionally, medical staff observing a patient’s reaction (e.g., making a sour face) during the first dose could become un-blinded, potentially affecting the assessment of outcomes."
+    },
+    {
+        "number": "2",
+        "hint": "Are there any side effects associated with the drug or treatment?",
+        "explanation": "Active drugs are more likely to produce real side effects compared to placebos. For blood pressure medications, classic side effects include “lightheadedness upon standing” (postural hypotension) and increased urination (common for diuretics). Encourage students to consult with experts to explore specific classes of side effects relevant to their case study."
+    },
+    {
+        "number": "3",
+        "hint": "Have you considered using an “active placebo” for drugs with noticeable side effects?",
+        "explanation": "Investigators sometimes use an agent as a control that mimics the side effects of the active drug but doesn’t produce the intended drug effect. This concept is more common for drugs with noticeable side effects (like flushing or dry mouth)."
+    },
+    {
+        "number": "4",
+        "hint": "Could at-home monitors pose a problem for the study? What measures could be taken to address this issue?",
+        "explanation": "Patients actively monitoring their own progress might inadvertently figure out which group they are in. This knowledge could artificially exaggerate results, especially if patients drop out or alter their behavior based on their perceived group assignment."
+    },
+    {
+        "number": "5",
+        "hint": "How might the clinical staff potentially influence results during the data collection or assessment phase, even if measurements are taken automatically?",
+        "explanation": "Despite automated measurements, clinical staff can impact results based on how they conduct the assessment. For instance, while administering measurement tools, evaluators might inadvertently influence patient stress levels."
+    },
+    {
+        "number": "6",
+        "hint": "How can experimenter bias unintentionally compromise blinding?",
+        "explanation": "Experimenter bias occurs when researchers unintentionally influence study outcomes due to their expectations or behavior. It can compromise blinding if the staff is not truly blind to treatment assignments."
+    },
+    {
+        "number": "7",
+        "hint": "What steps can researchers take to minimize inadvertent cues given to participants?",
+        "explanation": "Researchers should be cautious about unintentional cues (subtle gestures, tone of voice, etc.) that might reveal treatment conditions to participants."
+    },
+    {
+        "number": "8",
+        "hint": "How can researchers address participant expectations and prevent unblinding?",
+        "explanation": "Participants’ knowledge (e.g., side effects, dosage) can impact blinding integrity. Researchers need strategies to manage participant expectations and prevent unmasking."
+    },
+    {
+        "number": "9",
+        "hint": "How can interim analyses or data monitoring committees affect blinding?",
+        "explanation": "During interim analyses, there’s a risk of unmasking due to early data inspection."
+    },
+    {
+        "number": "10",
+        "hint": "What protocols should be in place to handle emergencies during a blinded study?",
+        "explanation": "Researchers need to balance participant safety with maintaining blinding. Anticipate scenarios involving adverse events or medical crises."
+    }
+]

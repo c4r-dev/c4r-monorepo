@@ -1,0 +1,131 @@
+/* Container for the entire content */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1300px;
+    margin: 15px;
+    background-color:#454545;
+}
+
+/* Header styling */
+.info-container h1 {
+    margin-bottom: 5px;
+    font-size: 2rem;
+    align-self: flex-start;
+}
+
+/* Content container */
+.info-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+/* Text section */
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+    line-height: 1.6;
+    width: 85%;
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.chart-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+/* Chart placeholder */
+.chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #9c9c9c;
+    font-size: 1.2rem;
+    min-width: 0%; /* Fix bug where responsive chart may grow but fails to shrink */
+    max-width: 100%;
+    width: 100%;
+}
+
+.chart-row h2 {
+    text-align: center;
+}
+
+.compare-graph {
+    min-height: 220px;
+}
+
+.chart-border {
+    /* border: 2px solid #00FF00; */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+    width: 100%;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1300px;
+    padding-right: 15px;
+}
+
+/* Button styling */
+.button-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    background-color: #979797; /*grey*/
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+}
+
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+
+    .info-text, .chart {
+        width: 100%;
+    }
+
+    .chart-container {
+        width: 100%;
+    }
+
+    .compare-graph {
+        height: 30vh;
+    }
+
+    .chart-row {
+        flex-direction: column;
+    }
+
+    .button-container {
+        margin-bottom: 30px;
+    }
+}

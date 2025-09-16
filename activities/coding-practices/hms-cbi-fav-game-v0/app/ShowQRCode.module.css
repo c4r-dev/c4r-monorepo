@@ -1,0 +1,177 @@
+/* Back to Studies Button */
+.back-button {
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #e0e0e0; /* Updated background color */
+  color: #333; /* Text color for contrast */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  float: left; /* Force the button to align to the left */
+}
+
+.back-button:hover {
+  background-color: #bdbdbd; /* Darker shade on hover */
+}
+
+
+/* Outer container */
+.outerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the top */
+  height: 100vh;
+  background: #f2f2f2; /* Light gray background */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Main heading */
+.mainHeading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center; /* Center text */
+  width: 100%; /* Ensure it spans the full width */
+}
+
+/* QR Code page container */
+.qrCodePage {
+  background: #e5e5e5; /* Light gray box */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+}
+
+/* Subheading */
+.qrCodeTextHeading {
+  font-size: 18px;
+  font-weight: bold;
+  color: #673ab7; /* Purple */
+  margin-bottom: 20px;
+}
+
+/* QR code and link row */
+.contentRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+/* QR code container */
+.qrCodeContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* OR separator */
+.orContainer {
+  font-size: 20px;
+  font-weight: bold;
+  color: #777;
+}
+
+/* Link container */
+.copyLinkContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copyLinkBox {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 400px;
+  overflow-wrap: break-word;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.copyLinkBox a {
+  text-decoration: none;
+  color: #0073e6;
+  font-size: 14px;
+}
+
+.copyLinkButton {
+  background: #0073e6;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.copyLinkButton:hover {
+  background: #005bb5;
+}
+
+/* Button row */
+.buttonRow {
+  display: flex;
+   justify-content: center;
+  /* align-items: center; */
+
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Cancel button */
+.cancelButton {
+  background: black;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: #333;
+}
+
+/* Continue button */
+.continueButton {
+  background: black;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.continueButton:hover {
+  background: #333;
+}
+
+.continueButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Participant label */
+.discussionLeadContainer {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+}

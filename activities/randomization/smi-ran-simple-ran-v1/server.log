@@ -1,0 +1,608 @@
+
+> simple_randomization@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.2.1
+   - Local:        http://localhost:3000
+   - Network:      http://10.0.0.189:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 916ms
+ ○ Compiling /api/nmda-sessions ...
+ ✓ Compiled /api/nmda-sessions in 614ms (365 modules)
+MongoDB connection string available: Yes
+Creating new MongoDB connection...
+Waiting for MongoDB connection...
+MongoDB connected successfully
+MongoDB connection established
+Fetching aggregated data...
+Found 0 sessions
+Aggregated data before sorting: { task1: [], task2: [], task3: [] }
+Final aggregated data: { task1: [], task2: [], task3: [] }
+ GET /api/nmda-sessions?aggregated=true 200 in 1813ms
+Connecting to MongoDB...
+Using existing MongoDB connection
+MongoDB connected successfully
+Received session data: {
+  "sessionId": "test_session_123",
+  "moveHistory": {
+    "task1": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "A",
+        "selectedTask": "Generate Random Treatment Allocation",
+        "selectedReason": "test reason",
+        "timestamp": "2025-05-28T22:00:00.000Z"
+      }
+    ],
+    "task2": [],
+    "task3": []
+  },
+  "finalState": {
+    "task1": {
+      "team": "A",
+      "response": "test reason"
+    },
+    "task2": {
+      "team": "unassigned",
+      "response": ""
+    },
+    "task3": {
+      "team": "unassigned",
+      "response": ""
+    }
+  }
+}
+Processing session: test_session_123
+Move history: {
+  "task1": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "A",
+      "selectedTask": "Generate Random Treatment Allocation",
+      "selectedReason": "test reason",
+      "timestamp": "2025-05-28T22:00:00.000Z"
+    }
+  ],
+  "task2": [],
+  "task3": []
+}
+Final state: {
+  "task1": {
+    "team": "A",
+    "response": "test reason"
+  },
+  "task2": {
+    "team": "unassigned",
+    "response": ""
+  },
+  "task3": {
+    "team": "unassigned",
+    "response": ""
+  }
+}
+Attempting to update or create session document...
+Session saved successfully: {
+  _id: new ObjectId('6837913c1fb404f7aec5d182'),
+  sessionId: 'test_session_123',
+  __v: 0,
+  finalState: {
+    task1: { team: 'A', response: 'test reason' },
+    task2: { team: 'unassigned', response: '' },
+    task3: { team: 'unassigned', response: '' }
+  },
+  moveHistory: { task1: [ [Object] ], task2: [], task3: [] },
+  timestamp: 2025-05-28T22:42:04.682Z
+}
+ POST /api/nmda-sessions 200 in 83ms
+Using existing MongoDB connection
+Fetching aggregated data...
+Found 1 sessions
+Processing session 1: test_session_123
+Session moveHistory: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'test reason',
+      timestamp: 2025-05-28T22:00:00.000Z
+    }
+  ],
+  task2: [],
+  task3: []
+}
+Found 1 moves for task1
+Processing move: {
+  moveNumber: 1,
+  selectedOption: 'A',
+  selectedTask: 'Generate Random Treatment Allocation',
+  selectedReason: 'test reason',
+  timestamp: 2025-05-28T22:00:00.000Z
+}
+Aggregated data before sorting: {
+  task1: [
+    {
+      __parentArray: [Array],
+      __index: 0,
+      '$__parent': [Object],
+      '$__': [InternalCache],
+      _doc: [Object],
+      '$isNew': false,
+      sessionId: 'test_session_123',
+      sessionTimestamp: 2025-05-28T22:42:04.682Z,
+      [Symbol(mongoose#documentArrayParent)]: [Object]
+    }
+  ],
+  task2: [],
+  task3: []
+}
+Final aggregated data: {
+  task1: [
+    {
+      __parentArray: [Array],
+      __index: 0,
+      '$__parent': [Object],
+      '$__': [InternalCache],
+      _doc: [Object],
+      '$isNew': false,
+      sessionId: 'test_session_123',
+      sessionTimestamp: 2025-05-28T22:42:04.682Z,
+      [Symbol(mongoose#documentArrayParent)]: [Object]
+    }
+  ],
+  task2: [],
+  task3: []
+}
+ GET /api/nmda-sessions?aggregated=true 200 in 35ms
+ ✓ Compiled in 87ms (86 modules)
+MongoDB connection string available: Yes
+Using existing MongoDB connection
+Fetching aggregated data...
+Found 1 sessions
+Processing session 1: test_session_123
+Session moveHistory: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'test reason',
+      timestamp: 2025-05-28T22:00:00.000Z
+    }
+  ],
+  task2: [],
+  task3: []
+}
+Found 1 moves for task1
+Processing move: {
+  moveNumber: 1,
+  selectedOption: 'A',
+  selectedTask: 'Generate Random Treatment Allocation',
+  selectedReason: 'test reason',
+  timestamp: 2025-05-28T22:00:00.000Z
+}
+Aggregated data before sorting: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'test reason',
+      timestamp: 2025-05-28T22:00:00.000Z,
+      sessionId: 'test_session_123',
+      sessionTimestamp: 2025-05-28T22:42:04.682Z
+    }
+  ],
+  task2: [],
+  task3: []
+}
+Final aggregated data: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'test reason',
+      timestamp: 2025-05-28T22:00:00.000Z,
+      sessionId: 'test_session_123',
+      sessionTimestamp: 2025-05-28T22:42:04.682Z
+    }
+  ],
+  task2: [],
+  task3: []
+}
+ GET /api/nmda-sessions?aggregated=true 200 in 56ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1132ms (1951 modules)
+ GET / 200 in 1308ms
+ ✓ Compiled /api/nmda-sessions in 175ms (1017 modules)
+MongoDB connection string available: Yes
+Connecting to MongoDB...
+Using existing MongoDB connection
+MongoDB connected successfully
+Received session data: {
+  "sessionId": "session_1748472216641_dk2bay2d",
+  "moveHistory": {
+    "task1": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "A",
+        "selectedTask": "Generate Random Treatment Allocation",
+        "selectedReason": "testing 1",
+        "timestamp": "2025-05-28T22:44:52.123Z"
+      }
+    ],
+    "task2": [],
+    "task3": []
+  },
+  "finalState": {
+    "task1": {
+      "team": "A",
+      "response": "testing 1"
+    },
+    "task2": {},
+    "task3": {}
+  },
+  "timestamp": "2025-05-28T22:44:52.123Z"
+}
+Processing session: session_1748472216641_dk2bay2d
+Move history: {
+  "task1": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "A",
+      "selectedTask": "Generate Random Treatment Allocation",
+      "selectedReason": "testing 1",
+      "timestamp": "2025-05-28T22:44:52.123Z"
+    }
+  ],
+  "task2": [],
+  "task3": []
+}
+Final state: {
+  "task1": {
+    "team": "A",
+    "response": "testing 1"
+  },
+  "task2": {},
+  "task3": {}
+}
+Attempting to update or create session document...
+Session saved successfully: {
+  _id: new ObjectId('683791e41fb404f7aec5d186'),
+  sessionId: 'session_1748472216641_dk2bay2d',
+  __v: 0,
+  finalState: {
+    task1: { team: 'A', response: 'testing 1' },
+    task2: { team: 'unassigned', response: '' },
+    task3: { team: 'unassigned', response: '' }
+  },
+  moveHistory: { task1: [ [Object] ], task2: [], task3: [] },
+  timestamp: 2025-05-28T22:44:52.123Z
+}
+ POST /api/nmda-sessions 200 in 279ms
+Connecting to MongoDB...
+Using existing MongoDB connection
+MongoDB connected successfully
+Received session data: {
+  "sessionId": "session_1748472216641_dk2bay2d",
+  "moveHistory": {
+    "task1": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "A",
+        "selectedTask": "Generate Random Treatment Allocation",
+        "selectedReason": "testing 1",
+        "timestamp": "2025-05-28T22:44:52.123Z"
+      }
+    ],
+    "task2": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "A",
+        "selectedTask": "Prepare Coded Syringes with Drug or Vehicle",
+        "selectedReason": "testing 2",
+        "timestamp": "2025-05-28T22:45:01.582Z"
+      }
+    ],
+    "task3": []
+  },
+  "finalState": {
+    "task1": {
+      "team": "A",
+      "response": "testing 1"
+    },
+    "task2": {
+      "team": "A",
+      "response": "testing 2"
+    },
+    "task3": {}
+  },
+  "timestamp": "2025-05-28T22:45:01.583Z"
+}
+Processing session: session_1748472216641_dk2bay2d
+Move history: {
+  "task1": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "A",
+      "selectedTask": "Generate Random Treatment Allocation",
+      "selectedReason": "testing 1",
+      "timestamp": "2025-05-28T22:44:52.123Z"
+    }
+  ],
+  "task2": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "A",
+      "selectedTask": "Prepare Coded Syringes with Drug or Vehicle",
+      "selectedReason": "testing 2",
+      "timestamp": "2025-05-28T22:45:01.582Z"
+    }
+  ],
+  "task3": []
+}
+Final state: {
+  "task1": {
+    "team": "A",
+    "response": "testing 1"
+  },
+  "task2": {
+    "team": "A",
+    "response": "testing 2"
+  },
+  "task3": {}
+}
+Attempting to update or create session document...
+Session saved successfully: {
+  _id: new ObjectId('683791e41fb404f7aec5d186'),
+  sessionId: 'session_1748472216641_dk2bay2d',
+  __v: 0,
+  finalState: {
+    task1: { team: 'A', response: 'testing 1' },
+    task2: { team: 'A', response: 'testing 2' },
+    task3: { team: 'unassigned', response: '' }
+  },
+  moveHistory: { task1: [ [Object] ], task2: [ [Object] ], task3: [] },
+  timestamp: 2025-05-28T22:45:01.583Z
+}
+ POST /api/nmda-sessions 200 in 57ms
+Connecting to MongoDB...
+Using existing MongoDB connection
+MongoDB connected successfully
+Received session data: {
+  "sessionId": "session_1748472216641_dk2bay2d",
+  "moveHistory": {
+    "task1": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "A",
+        "selectedTask": "Generate Random Treatment Allocation",
+        "selectedReason": "testing 1",
+        "timestamp": "2025-05-28T22:44:52.123Z"
+      }
+    ],
+    "task2": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "A",
+        "selectedTask": "Prepare Coded Syringes with Drug or Vehicle",
+        "selectedReason": "testing 2",
+        "timestamp": "2025-05-28T22:45:01.582Z"
+      }
+    ],
+    "task3": [
+      {
+        "moveNumber": 1,
+        "selectedOption": "B",
+        "selectedTask": "Record Maze Performance and Behavioral Data",
+        "selectedReason": "testing",
+        "timestamp": "2025-05-28T22:45:26.185Z"
+      }
+    ]
+  },
+  "finalState": {
+    "task1": {
+      "team": "A",
+      "response": "testing 1"
+    },
+    "task2": {
+      "team": "A",
+      "response": "testing 2"
+    },
+    "task3": {
+      "team": "B",
+      "response": "testing"
+    }
+  },
+  "timestamp": "2025-05-28T22:45:26.185Z"
+}
+Processing session: session_1748472216641_dk2bay2d
+Move history: {
+  "task1": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "A",
+      "selectedTask": "Generate Random Treatment Allocation",
+      "selectedReason": "testing 1",
+      "timestamp": "2025-05-28T22:44:52.123Z"
+    }
+  ],
+  "task2": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "A",
+      "selectedTask": "Prepare Coded Syringes with Drug or Vehicle",
+      "selectedReason": "testing 2",
+      "timestamp": "2025-05-28T22:45:01.582Z"
+    }
+  ],
+  "task3": [
+    {
+      "moveNumber": 1,
+      "selectedOption": "B",
+      "selectedTask": "Record Maze Performance and Behavioral Data",
+      "selectedReason": "testing",
+      "timestamp": "2025-05-28T22:45:26.185Z"
+    }
+  ]
+}
+Final state: {
+  "task1": {
+    "team": "A",
+    "response": "testing 1"
+  },
+  "task2": {
+    "team": "A",
+    "response": "testing 2"
+  },
+  "task3": {
+    "team": "B",
+    "response": "testing"
+  }
+}
+Attempting to update or create session document...
+Session saved successfully: {
+  _id: new ObjectId('683791e41fb404f7aec5d186'),
+  sessionId: 'session_1748472216641_dk2bay2d',
+  __v: 0,
+  finalState: {
+    task1: { team: 'A', response: 'testing 1' },
+    task2: { team: 'A', response: 'testing 2' },
+    task3: { team: 'B', response: 'testing' }
+  },
+  moveHistory: { task1: [ [Object] ], task2: [ [Object] ], task3: [ [Object] ] },
+  timestamp: 2025-05-28T22:45:26.185Z
+}
+ POST /api/nmda-sessions 200 in 53ms
+Using existing MongoDB connection
+Fetching aggregated data...
+Found 1 sessions
+Processing session 1: session_1748472216641_dk2bay2d
+Session moveHistory: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'testing 1',
+      timestamp: 2025-05-28T22:44:52.123Z
+    }
+  ],
+  task2: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Prepare Coded Syringes with Drug or Vehicle',
+      selectedReason: 'testing 2',
+      timestamp: 2025-05-28T22:45:01.582Z
+    }
+  ],
+  task3: [
+    {
+      moveNumber: 1,
+      selectedOption: 'B',
+      selectedTask: 'Record Maze Performance and Behavioral Data',
+      selectedReason: 'testing',
+      timestamp: 2025-05-28T22:45:26.185Z
+    }
+  ]
+}
+Found 1 moves for task1
+Processing move: {
+  moveNumber: 1,
+  selectedOption: 'A',
+  selectedTask: 'Generate Random Treatment Allocation',
+  selectedReason: 'testing 1',
+  timestamp: 2025-05-28T22:44:52.123Z
+}
+Found 1 moves for task2
+Processing move: {
+  moveNumber: 1,
+  selectedOption: 'A',
+  selectedTask: 'Prepare Coded Syringes with Drug or Vehicle',
+  selectedReason: 'testing 2',
+  timestamp: 2025-05-28T22:45:01.582Z
+}
+Found 1 moves for task3
+Processing move: {
+  moveNumber: 1,
+  selectedOption: 'B',
+  selectedTask: 'Record Maze Performance and Behavioral Data',
+  selectedReason: 'testing',
+  timestamp: 2025-05-28T22:45:26.185Z
+}
+Aggregated data before sorting: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'testing 1',
+      timestamp: 2025-05-28T22:44:52.123Z,
+      sessionId: 'session_1748472216641_dk2bay2d',
+      sessionTimestamp: 2025-05-28T22:45:26.185Z
+    }
+  ],
+  task2: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Prepare Coded Syringes with Drug or Vehicle',
+      selectedReason: 'testing 2',
+      timestamp: 2025-05-28T22:45:01.582Z,
+      sessionId: 'session_1748472216641_dk2bay2d',
+      sessionTimestamp: 2025-05-28T22:45:26.185Z
+    }
+  ],
+  task3: [
+    {
+      moveNumber: 1,
+      selectedOption: 'B',
+      selectedTask: 'Record Maze Performance and Behavioral Data',
+      selectedReason: 'testing',
+      timestamp: 2025-05-28T22:45:26.185Z,
+      sessionId: 'session_1748472216641_dk2bay2d',
+      sessionTimestamp: 2025-05-28T22:45:26.185Z
+    }
+  ]
+}
+Final aggregated data: {
+  task1: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Generate Random Treatment Allocation',
+      selectedReason: 'testing 1',
+      timestamp: 2025-05-28T22:44:52.123Z,
+      sessionId: 'session_1748472216641_dk2bay2d',
+      sessionTimestamp: 2025-05-28T22:45:26.185Z
+    }
+  ],
+  task2: [
+    {
+      moveNumber: 1,
+      selectedOption: 'A',
+      selectedTask: 'Prepare Coded Syringes with Drug or Vehicle',
+      selectedReason: 'testing 2',
+      timestamp: 2025-05-28T22:45:01.582Z,
+      sessionId: 'session_1748472216641_dk2bay2d',
+      sessionTimestamp: 2025-05-28T22:45:26.185Z
+    }
+  ],
+  task3: [
+    {
+      moveNumber: 1,
+      selectedOption: 'B',
+      selectedTask: 'Record Maze Performance and Behavioral Data',
+      selectedReason: 'testing',
+      timestamp: 2025-05-28T22:45:26.185Z,
+      sessionId: 'session_1748472216641_dk2bay2d',
+      sessionTimestamp: 2025-05-28T22:45:26.185Z
+    }
+  ]
+}
+ GET /api/nmda-sessions?aggregated=true 200 in 40ms
+[?25h

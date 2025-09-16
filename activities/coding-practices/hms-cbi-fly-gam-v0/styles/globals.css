@@ -1,0 +1,318 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font-size: 100%; */
+  /* font: inherit; */
+  /* vertical-align: baseline; */
+}
+
+/* Apply text-wrap: balance to all elements */
+* {
+  text-wrap: balance;
+}
+
+/* Global Font Setting */
+body {
+  font-family: 'GeneralSans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.full-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  /* background-color: #f5f5f5; */
+  min-height: 100vh;
+}
+
+/* General Container */
+.container {
+  max-width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.grid-items-container {
+  max-width: 100%;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+/* .header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+} */
+
+.favicon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  transform: rotate(90deg);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Title Below Header */
+.centeredTitle {
+  font-size: 20px;
+  margin: 60px 0 20px;
+}
+
+/* Grid for Study Selection */
+.buttonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  justify-items: center;
+}
+
+.detailedBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 235px;
+  width: 238px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.detailedBox.selected {
+  border: 5px solid #7d3c98; /* Purple */
+}
+
+.detailedBox:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detailedBox h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.detailedBox p {
+  margin: 0;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Footer Section */
+.footer {
+  margin-top: 30px;
+}
+
+.selectionMessage {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Obstacle Container */
+.obstacle-container {
+  width: 90%; /* Make it fill 90% of the screen width */
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Obstacle Header and Text */
+.obstacle-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.obstacle-header p {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Selected Strategy Message */
+.selected-strategy-message {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #9b59b6; /* Purple */
+}
+
+.selected-strategy-message strong {
+  font-weight: bold;
+  color: #7d3c98; /* Darker purple */
+}
+
+.impact-text {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  font-style: italic;
+}
+
+/* Strategy Buttons */
+.strategy-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.strategy-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border: 2px solid #9b59b6; /* Purple border */
+  border-radius: 8px;
+  background-color: white;
+  color: #9b59b6;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  text-align: center;
+}
+
+.strategy-button.selected {
+  background-color: #9b59b6; /* Purple */
+  color: white;
+}
+
+.strategy-button:hover {
+  background-color: #7d3c98; /* Darker purple */
+  color: white;
+  transform: scale(1.05);
+}
+
+.strategy-button.disabled-hover:hover {
+  background-color: white; /* Revert to default background */
+  color: #9b59b6; /* Revert to default color */
+  transform: none; /* Remove scaling */
+  cursor: not-allowed;
+}
+
+.strategy-button h4 {
+  font-size: 22px; /* Increased size for headers */
+  margin: 0 0 10px; /* Adjusted margin for better spacing */
+}
+
+.strategy-button p {
+  font-size: 20px; /* Increased size for text */
+  margin: 0;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.lock-button,
+.nav-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #9b59b6; /* Purple */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.lock-button:hover,
+.nav-button:hover {
+  background-color: #7d3c98; /* Darker purple */
+}
+
+.nav-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Back to Studies Button */
+.back-button {
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #e0e0e0; /* Updated background color */
+  color: #333; /* Text color for contrast */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  float: left; /* Force the button to align to the left */
+}
+
+.back-button:hover {
+  background-color: #bdbdbd; /* Darker shade on hover */
+}
+
+/* Spacer */
+.spacer {
+  margin-bottom: 20px; /* Add space between buttons */
+}
+
+/* Table for Obstacles */
+.obstacle-table {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 5px 0;
+  table-layout: fixed; /* Ensures equal width for columns */
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;
+  width: 33.33%; /* Equal width for all columns */
+  word-wrap: break-word; /* Ensures text doesn't overflow */
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+td {
+  vertical-align: top;
+}
+
+/* Highlighted Table Cell */
+.highlight {
+  font-weight: bold;
+  background-color: #f5e6fa; /* Light purple */
+}
+
+

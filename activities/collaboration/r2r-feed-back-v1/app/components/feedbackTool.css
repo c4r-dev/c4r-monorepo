@@ -1,0 +1,125 @@
+.outer-container,
+.flex-container,
+.flex-container2,
+.section,
+.widget-container,
+.widget-header,
+.widget-input,
+.widget-text-input {
+  /* Styles moved from globals.css */
+}
+
+.form-outer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.flex-container,
+.widget-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #FFFFFF;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.flex-container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  background-color: #F0F0F0;
+  color: #282828;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.widget-header {
+  display: flex;
+  text-align: left;
+  align-self: flex-start;
+  text-wrap: balance;
+  align-self: center;
+  width: 100%;
+}
+
+.widget-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.widget-input img {
+  border-radius: 8px;
+}
+
+.widget-text-input {
+  height: 200px;
+  background-color: #e5e3e3;
+  border-width: 0px;
+  border-color: #282828;
+  font-size: 1.2rem;
+  padding: 10px;
+  resize: none;
+}
+
+
+.flex-container2  button{
+    background-color: #282828;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 7px;
+    /* width: 20%; */
+    align-self: flex-end;
+    margin-right: 5px;
+    font-size: 1.2rem;
+  }
+
+
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 800px;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  .feedback-response{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-wrap: balance;
+    text-align: center;
+  }

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Transform Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .section-1 {
+            background-color: #f8f9fa;
+        }
+
+        .section-1 h1 {
+            font-size: 4rem;
+            color: #333;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .section-2 {
+            background-color: #000;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .section-2-part-2 {
+            background-color: #000;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .image-container {
+            width: 80vw;
+            height: 80vh;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .image-container h2 {
+            font-size: 3rem;
+            color: #e9e9e9;
+            text-align: center;
+            /* max-width: 800px; */
+            width: 100%;
+            padding: 2rem;
+            z-index: 101;
+            top: -80px;
+            /* bottom: 50px; */
+            position: absolute;
+            /* transform: translateZ(-500px); */
+            /* transform-origin: center; */
+        }
+
+        .image-container-part-2 {
+            width: 80vw;
+            height: 80vh;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .image-container-part-2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .image-container-part-2 h2 {
+            font-size: 3rem;
+            color: #e9e9e9;
+            text-align: center;
+            position: absolute;
+            top: -100px;
+            /* left: 0; */
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-3 {
+            background-color: #f8f9fa;
+        }
+
+        .section-3 h2 {
+            font-size: 3rem;
+            color: #333;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .section-2-part-2 h2 {
+            font-size: 3rem;
+            color: #e9e9e9;
+            text-align: center;
+            position: absolute;
+            top: -100px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .staggered-section {
+            background-color: #000;
+            min-height: 200vh;
+            perspective: 1000px;
+            display: block;
+            padding: 100px 0;
+        }
+
+        .stagger-container {
+            width: 80vw;
+            margin: 0px auto;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .stagger-text {
+            font-size: 2.5rem;
+            color: #e9e9e9;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .stagger-image {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .stagger-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <section class="section-1">
+        <h1>Scroll Down 3D Transform Demo</h1>
+        <!-- Link: "Replication of this effect: https://3d-scrolling-animation.webflow.io/" -->
+         <!-- Show the above link in the h1 -->
+         <a href="https://3d-scrolling-animation.webflow.io/" target="_blank">Link to the original effect</a>
+    </section>
+
+    <section class="section-2">
+        <div class="image-container">
+            <!-- Header -->
+            <h2>Auto animation on scroll into view</h2>
+            <img src="img.png" alt="Nature Image">
+            <!-- <h2>Section 2</h2> -->
+        </div>
+    </section>
+
+
+
+    <section class="section-2-part-2">
+        <div class="image-container-part-2">
+            <!-- Header -->
+            <h2>Animation linked with scroll position</h2>
+            <img src="img.png" alt="Nature Image">
+        </div>
+    </section>
+
+    <section class="staggered-section">
+        <div class="stagger-container">
+            <div class="stagger-text" id="text1">
+                Transform your perspective
+            </div>
+        </div>
+        <div class="stagger-container">
+            <div class="stagger-image" id="image1">
+                <img src="img.png" alt="Staggered Image">
+            </div>
+        </div>
+        <div class="stagger-container">
+            <div class="stagger-text" id="text2">
+                With smooth scroll animations
+            </div>
+        </div>
+        <div class="stagger-container">
+            <div class="stagger-text" id="text3">
+                That create depth and dimension
+            </div>
+        </div>
+    </section>
+
+    <section class="section-3">
+        <h2>Thanks for Watching!</h2>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize the image container with starting rotation
+        gsap.set('.image-container', {
+            rotateX: 90,
+            opacity: 0.1
+        });
+
+        // Create the scroll-triggered animation
+        gsap.to('.image-container', {
+            scrollTrigger: {
+                trigger: '.section-2',
+                start: 'top center',
+                end: 'bottom center',
+                scrub: false,
+                markers: true,
+            },
+            rotateX: 0,
+            opacity: 1,
+            duration: 4,
+            ease: 'power3.out'
+        });
+
+
+
+        gsap.set('.image-container-part-2', {
+            rotateX: 90,
+            opacity: 0.3,
+            z: 500,
+        });
+
+        // Create the scroll-triggered animation
+        gsap.to('.image-container-part-2', {
+            scrollTrigger: {
+                trigger: '.section-2-part-2',
+                start: 'top center',
+                end: 'bottom center',
+                scrub: true,
+                markers: true,
+            },
+            rotateX: 0,
+            opacity: 1,
+            duration: 4,
+            z: 0,
+            ease: 'power2.out'
+        });
+
+        // Staggered animations setup
+        const staggerElements = ["#text1", "#image1", "#text2", "#text3"];
+        
+        staggerElements.forEach((element, index) => {
+            // Set initial state
+            gsap.set(element, {
+                rotateX: 55,
+                opacity: 0.1,
+                z: 0
+            });
+
+            // Create animation
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top center+=200",
+                    end: "top center-=300",
+                    scrub: true,
+                    markers: true,
+                },
+                rotateX: 0,
+                opacity: 1,
+                z: 0,
+                duration: 2,
+                ease: "power2.out",
+                delay: index * 0.2 // Add slight delay based on element order
+            });
+        });
+    </script>
+</body>
+</html>

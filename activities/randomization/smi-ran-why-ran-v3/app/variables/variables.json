@@ -1,0 +1,30 @@
+[
+  {
+    "id": 0,
+    "variableName": "Sex"
+  },
+  {
+    "id": 1,
+    "variableName": "Age"
+  },
+  {
+    "id": 2,
+    "variableName": "BMI"
+  },
+  {
+    "id": 3,
+    "variableName": "Annual household income" 
+  },
+  {
+    "id": 4,
+    "variableName": "Years of education"
+  },
+  {
+    "id": 5,
+    "variableName": "Smoking history in years" 
+  },
+  {
+    "id": 6,
+    "variableName": "Physical activity (daily hours)"
+  }
+]

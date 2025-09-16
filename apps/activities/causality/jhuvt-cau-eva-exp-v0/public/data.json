@@ -1,0 +1,137 @@
+[
+  {
+    "Example": "Stress <-> Memory",
+    "Study Description": "This experiment tests whether acute stress impairs memory consolidation.",
+    "Causal Pathway": "Stress exposure triggers cortisol release, which activates glucocorticoid receptors in the hippocampus and ultimately impairs memory consolidation",
+    "Independent Variable": "Acute stress exposure (TSST vs. control condition)",
+    "Dependent Variable": "Memory performance (percentage of word pairs correctly recalled)",
+    "subElements": [
+      {
+        "Experimental Methods": "Participants study a list of 16 semantically related word pairs for 5 minutes (encoding phase)",
+        "Correct": "N",
+        "correctness of methods selection": "Incorrect - please try again",
+        "fix1": "NA",
+        "fix1 correct": "N",
+        "fix2": "NA",
+        "fix2 correct": "N",
+        "fix3": "NA",
+        "fix3 correct": "N",
+        "fix4": "NA",
+        "fix4 correct": "N"
+      },
+      {
+        "Experimental Methods": "Participants are randomly assigned to either: - Stress condition: Complete the Trier Social Stress Test (TSST) - 5 minutes of public speaking and mental arithmetic in front of evaluators - Control condition: Complete simple math problems and read a short passage quietly for the same duration",
+        "Correct": "N",
+        "correctness of methods selection": "Incorrect - please try again",
+        "fix1": "NA",
+        "fix1 correct": "N",
+        "fix2": "NA",
+        "fix2 correct": "N",
+        "fix3": "NA",
+        "fix3 correct": "N",
+        "fix4": "NA",
+        "fix4 correct": "N"
+      },
+      {
+        "Experimental Methods": "Participants fill out a self-questionnaire to measure their stress levels",
+        "Correct": "Y",
+        "correctness of methods selection": "Correct - a more direct measure of stress can be implemented.",
+        "fix1": "Collect saliva samples to measure cortisol levels",
+        "fix1 correct": "Y",
+        "fix2": "Use EEG to monitor stress-related brain activity",
+        "fix2 correct": "N",
+        "fix3": "Measure blood pressure changes to measure stress levels",
+        "fix3 correct": "N",
+        "fix4": "Collect galvanic skin response data during the intervention to verify stress induction",
+        "fix4 correct": "Y"
+      },
+      {
+        "Experimental Methods": "Participants complete a 15-minute distractor task (sudoku puzzles)",
+        "Correct": "N",
+        "correctness of methods selection": "Incorrect - please try again",
+        "fix1": "NA",
+        "fix1 correct": "N",
+        "fix2": "NA",
+        "fix2 correct": "N",
+        "fix3": "NA",
+        "fix3 correct": "N",
+        "fix4": "NA",
+        "fix4 correct": "N"
+      },
+      {
+        "Experimental Methods": "Participants complete a cued recall test where they see the first word of each pair and must recall the second word",
+        "Correct": "Y",
+        "correctness of methods selection": "Correct - this measure of memory might be influenced by factors outside our hypothesized mediators.",
+        "fix1": "Use fMRI to measure hippocampal activity during the memory task",
+        "fix1 correct": "Y",
+        "fix2": "Use a follow-up test at 24 hours to measure long-term retention",
+        "fix2 correct": "N",
+        "fix3": "Compare the GSR stress response for correct and incorrect answers.",
+        "fix3 correct": "N",
+        "fix4": "Ask subjects to rate their confidence for each word pair.",
+        "fix4 correct": "N"
+      }
+    ]
+  },
+  {
+    "Example": "Caffeine <-> Cognitive performance",
+    "Study Description": "This experiment tests whether caffeine improves cognitive performance.",
+    "Causal Pathway": "Caffeine blocks adenosine receptors, which normally promote a feeling of sleepiness. This blockage improves alertness, leading to improved cognitive performance.",
+    "Independent Variable": "Caffeine",
+    "Dependent Variable": "Cognitive performance",
+    "subElements": [
+      {
+        "Experimental Methods": "Subjects are randomly assigned to receive a 200mg caffeine pill or identical-appearing placebo.",
+        "Correct": "Y",
+        "correctness of methods selection": "Correct - the dosage might not be an appropriate amount for each individual.",
+        "fix1": "Ensure that subjects have not taken caffeine before the experiment",
+        "fix1 correct": "Y",
+        "fix2": "Survey the subjects to identify a reasonable dosage based on their average daily intake",
+        "fix2 correct": "Y",
+        "fix3": "Provide caffeinated and decaf coffee instead of a pill and placebo.",
+        "fix3 correct": "N",
+        "fix4": "Measure heart rate to ensure that the caffeine has an effect.",
+        "fix4 correct": "N"
+      },
+      {
+        "Experimental Methods": "Subjects wait 45 minutes for the caffeine to take effect.",
+        "Correct": "N",
+        "correctness of methods selection": "Incorrect - please try again",
+        "fix1": "NA",
+        "fix1 correct": "N",
+        "fix2": "NA",
+        "fix2 correct": "N",
+        "fix3": "NA",
+        "fix3 correct": "N",
+        "fix4": "NA",
+        "fix4 correct": "N"
+      },
+      {
+        "Experimental Methods": "Subjects complete a simple reflex task of pressing the spacebar as quickly as possible when a red circle appears on screen, while they attempt to solve simple arithmetic problems.",
+        "Correct": "N",
+        "correctness of methods selection": "Incorrect - please try again",
+        "fix1": "NA",
+        "fix1 correct": "N",
+        "fix2": "NA",
+        "fix2 correct": "N",
+        "fix3": "NA",
+        "fix3 correct": "N",
+        "fix4": "NA",
+        "fix4 correct": "N"
+      },
+      {
+        "Experimental Methods": "Average reflex time and total number of correct arithmetic problems are calculated as measures of cognitive performance.",
+        "Correct": "Y",
+        "correctness of methods selection": "Correct - these measures are a limited set of factors that are typically considered cognitive performance.",
+        "fix1": "Use a comprehensive set of tests that include working memory, attention, and executive function tasks.",
+        "fix1 correct": "Y",
+        "fix2": "Use both visual and auditory stimuli to test reflexes",
+        "fix2 correct": "N",
+        "fix3": "Use word association in addition to mathquestions",
+        "fix3 correct": "N",
+        "fix4": "Measure reflex time before caffeine to establish a baseline.",
+        "fix4 correct": "N"
+      }
+    ]
+  }
+]

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollytelling Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        section:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            transform: translateX(-100%);
+            opacity: 0;
+            /* transition: all 1s linear; */
+            transition: all 1s ease-out;
+            transition-timing-function: cubic-bezier(0.470, 0.415, 0.345, 0.985); /* custom */
+            transition-timing-function: cubic-bezier(0.170, 0.645, 0.065, 0.890);
+            transition: all 1500ms cubic-bezier(0.240, 0.515, 0.315, 0.970); /* custom */
+
+
+/* transition-timing-function: cubic-bezier(.29, 1.01, 1, -0.68); */
+
+        }
+
+        .slide-right {
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .scale {
+            transform: scale(0.5);
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .active {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="content-wrapper">
+            <h2>Welcome to Scrollytelling</h2>
+            <p>Scroll down to explore different animation effects as you move through the page. Each section demonstrates a unique way of revealing content.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="content-wrapper slide-left">
+            <h2>Slide from Left</h2>
+            <p>This section slides in from the left side of the screen as you scroll down. It demonstrates how movement can create engaging transitions between sections.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="content-wrapper slide-right">
+            <h2>Slide from Right</h2>
+            <p>Now we're sliding in from the right! This creates a nice alternating pattern with the previous section, keeping the visual flow interesting.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="content-wrapper scale">
+            <h2>Scale Effect</h2>
+            <p>This section scales up from a smaller size, creating a zoom effect as you scroll. It's perfect for emphasizing important content or creating visual hierarchy.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="content-wrapper">
+            <h2>Final Thoughts</h2>
+            <p>Scrollytelling can create engaging and interactive experiences that keep users interested as they explore your content. The key is to use animations subtly and purposefully.</p>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer setup
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add appropriate animation class based on existing classes
+                    if (entry.target.classList.contains('slide-left') || 
+                        entry.target.classList.contains('slide-right') ||
+                        entry.target.classList.contains('scale')) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.add('fade-in');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+
+        // Observe all content wrappers
+        document.querySelectorAll('.content-wrapper').forEach(wrapper => {
+            observer.observe(wrapper);
+        });
+    </script>
+</body>
+</html>

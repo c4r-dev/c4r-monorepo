@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "question": "Does neuroserpin induce axonal elongation during neuronal development?",
+    "independentVariable": "Neuroserpin protein exposure",
+    "dependentVariable": "Axon length of neurons",
+    "methodologicalConsiderations": [
+      {
+        "feature": "Sterilization protocol",
+        "description": "Sterlizing the neuroserpin matches the pre-sterilized medium, but could the sterilization protocol itself affect axon growth?",
+        "option1": "ABSENT",
+        "option1Text": "Absent",
+        "absent": "Y"
+      },
+      {
+        "feature": "Protein suspension vehicle",
+        "description": "Is the neuroserpin protein suspended in water, or a buffer of some kind? Could this make a difference?",
+        "option1": "ABSENT",
+        "option1Text": "Absent",
+        "absent": "Y"
+      },
+      {
+        "feature": "Protein purification protocol",
+        "description": "Could any sort of contaminant or processing artifact from the protein purification process be responsible for axon growth?",
+        "option1": "ABSENT",
+        "option1Text": "Absent",
+        "absent": "Y"
+      },
+      {
+        "feature": "Protein addition protocol",
+        "description": "When the cells are treated with neuroserpin, are they exposed to circulating air or shaking of the plates? Could this make a difference?",
+        "option1": "ABSENT",
+        "option1Text": "Absent",
+        "absent": "Y"
+      },
+      {
+        "feature": "Presence of a protein",
+        "description": "Neuroserpin has a specific functional role, but it is also a protein. Could the neurons detect or metabolize this added protein in a way that alters growth but is unrelated to the identity of the specific protein?",
+        "option1": "ABSENT",
+        "option1Text": "Absent",
+        "absent": "Y"
+      },
+      {
+        "feature": "Neuroserpin functionality",
+        "description": "Neuroserpin has a specific functional role as a serine protease inhibitor. This is the one thing we really want to test, our true independent variable.",
+        "option1": "ABSENT",
+        "option1Text": "Absent",
+        "absent": "Y"
+      }
+    ]
+  }
+]

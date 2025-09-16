@@ -1,0 +1,702 @@
+/* Activity 1 Page Styles */
+.activity-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* height: 100vh; */
+  /* overflow: auto; */
+  background-color: #f5f5f5;
+  padding-bottom: 1.875rem; /* 30px */
+  padding-top: 80px; /* Add space for fixed header (60px + 20px buffer) */
+  position: relative; /* For positioning the continue button */
+  min-height: 100vh;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+  .activity-page {
+    padding-top: 70px; /* Reduced padding for mobile */
+    padding-bottom: 80px; /* More space for continue button */
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Extra small screens (phones in portrait mode) */
+@media (max-width: 480px) {
+  .activity-page {
+    padding-top: 60px;
+    padding-bottom: 90px;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}
+
+/* Header styles */
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9375rem 1.25rem; /* 15px 20px */
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); /* 2px 4px */
+}
+
+.activity-header h1 {
+  margin: 0;
+  font-size: 1.6rem; /* Kept as rem */
+  color: #333;
+}
+
+.flow-selection {
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem; /* 15px */
+}
+
+.flow-select {
+  min-width: 18.75rem; /* 300px */
+  padding: 0.5rem 0.75rem; /* 8px 12px */
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem; /* 4px */
+  font-size: var(--font-size-small); /* 14px */
+  background-color: white;
+}
+
+/* Mobile flow selection */
+@media (max-width: 768px) {
+  .activity-header-0 {
+    padding: 0.5rem;
+  }
+  
+  .flow-selection {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .flow-select {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0.75rem; /* Larger touch targets */
+    font-size: 1rem; /* Larger text for mobile */
+  }
+}
+
+/* Selected flow info styling */
+.selected-flow-info {
+  background-color: #f8f9fa;
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  margin-bottom: 0.3125rem; /* 5px */
+}
+
+.selected-flow-info h2 {
+  margin: 0 0 0.3125rem 0; /* 5px */
+  font-size: 1.4rem; /* Kept as rem */
+  color: #333;
+}
+
+.selected-flow-info .flow-date {
+  font-size: 0.85rem; /* Kept as rem */
+  color: #6c757d;
+  margin-bottom: 0.3125rem; /* 5px */
+}
+
+.selected-flow-info .flow-description {
+  font-size: 0.95rem; /* Kept as rem */
+  color: #495057;
+  margin-bottom: 0.625rem; /* 10px */
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Main content layout - side by side */
+.content-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 200px); /* Adjust for header (60px) + padding (80px) + bottom buffer (60px) */
+  overflow: hidden;
+}
+
+/* Left panel for concerns */
+.left-panel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 0.625rem; /* 10px */
+}
+
+/* Right panel for flow */
+.right-panel {
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Mobile layout - stack vertically */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+    gap: 1rem;
+  }
+  
+  .left-panel {
+    width: 100%;
+    order: 1;
+    padding: 0;
+    overflow-y: visible;
+  }
+  
+  .right-panel {
+    width: 100%;
+    order: 2;
+    overflow: visible;
+    min-height: 400px; /* Ensure flow has enough space */
+  }
+}
+
+/* Flow container */
+.flow-container {
+  background-color: white;
+  margin: 0.625rem; /* 10px */
+  border-radius: 0.3125rem; /* 5px */
+  box-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.1); /* 3px */
+  padding: 0;
+  overflow: visible; /* Allow controls to show */
+  height: calc(100% - 20px); /* Account for margin */
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .flow-container {
+    margin: 0.5rem 0; /* Reduced horizontal margin */
+    height: 400px; /* Fixed height for mobile */
+    border-radius: 0.5rem;
+  }
+  
+  .flow-container::after {
+    font-size: 10px;
+    padding: 2px 4px;
+    bottom: 5px;
+    right: 5px;
+  }
+}
+
+/* Style for selected steps in ReactFlow */
+.node-selected {
+  border: 4px solid #4287f5 !important;
+  box-shadow: 0 0 15px rgba(66, 135, 245, 0.8) !important;
+}
+
+/* Style for highlighted steps in ReactFlow */
+.node-highlighted {
+  border: 4px solid #ff6b6b !important;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.8) !important;
+}
+
+/* Add explanation text for step interaction */
+.flow-container::after {
+  content: 'Click on steps to select them for your concern';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.no-flow-selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f9f9f9;
+  color: #6c757d;
+  font-size: var(--font-size-medium); /* 18px */
+  text-align: center;
+  padding: 1.25rem; /* 20px */
+}
+
+/* Concern form styles */
+.concern-form-container {
+  margin-bottom: 0.625rem; /* 10px */
+  background-color: white;
+  border-radius: 0.3125rem; /* 5px */
+  box-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.1); /* 3px */
+  padding: 1.25rem; /* 20px */
+}
+
+@media (max-width: 768px) {
+  .concern-form-container {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+
+.concern-form .form-header h2 {
+  margin: 0 0 0.9375rem 0; /* 15px */
+  font-size: 1.3rem; /* Kept as rem */
+  color: #333;
+}
+
+.instruction-text {
+  margin-bottom: 1.25rem; /* 20px */
+  padding: 0.9375rem; /* 15px */
+  background-color: #f8f9fa;
+  border-left: 4px solid #007bff;
+  border-radius: 0.25rem; /* 4px */
+  color: #495057;
+  font-size: 0.95rem; /* Kept as rem */
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .instruction-text {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .concern-form .form-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .concern-table-wrapper h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.concern-form {
+  width: 100%;
+}
+
+.concern-form .form-row {
+  display: flex;
+  gap: 0.625rem; /* 10px */
+  margin-bottom: 0.9375rem; /* 15px */
+  width: 100%;
+}
+
+.concern-form .form-group {
+  margin-bottom: 0;
+}
+
+.concern-text-group {
+  flex: 1;
+}
+
+.concern-dropdown-group {
+  width: 9.375rem; /* 150px */
+}
+
+.concern-submit-group {
+  width: 11.25rem; /* 180px */
+}
+
+.concern-form input[type="text"] {
+  width: 100%;
+  height: 2.375rem; /* 38px */
+}
+
+.node-select-group {
+  width: 100%;
+}
+
+/* Mobile form adjustments */
+@media (max-width: 768px) {
+  .concern-form .form-row {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .concern-text-group,
+  .concern-dropdown-group,
+  .concern-submit-group,
+  .node-select-group {
+    width: 100%;
+  }
+  
+  .concern-form input[type="text"] {
+    height: 3rem; /* Larger touch targets */
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .concern-form button {
+    height: 3rem; /* Larger touch targets */
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Button overrides */
+.concern-form button {
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.03125rem; /* 0.5px */
+}
+
+/* Concern table styles */
+.concern-table-container {
+  flex: 1;
+  background-color: white;
+  border-radius: 0.3125rem; /* 5px */
+  box-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.1); /* 3px */
+  padding: 1.25rem; /* 20px */
+  overflow: hidden; /* Prevent outer container scrolling */
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .concern-table-container {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+  }
+}
+
+.concern-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.concern-table-wrapper h2 {
+  margin: 0 0 0.9375rem 0; /* 15px */
+  font-size: 1.3rem; /* Kept as rem */
+  color: #333;
+  flex-shrink: 0; /* Prevent title from shrinking */
+}
+
+.concern-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem; /* Kept as rem */
+  table-layout: fixed; /* Fix table layout to prevent width changes */
+  flex: 1;
+  display: block; /* Make table behave like a block element for scrolling */
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .concern-table {
+    font-size: 0.85rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .concern-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+}
+
+.concern-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.concern-table tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(100% - 50px); /* Account for header height */
+  width: 100%;
+}
+
+.concern-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.concern-table th {
+  text-align: left;
+  padding: 0.75rem 0.9375rem; /* 12px 15px */
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.85rem; /* Kept as rem */
+  color: #495057;
+}
+
+.concern-table td {
+  padding: 0.75rem 0.9375rem; /* 12px 15px */
+  border-bottom: 1px solid #f1f3f5;
+  word-wrap: break-word; /* Handle long text properly in fixed layout */
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .concern-table th {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .concern-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Make table cells more compact on mobile */
+  .concern-col {
+    width: 50% !important;
+  }
+  
+  .processes-col {
+    width: 35% !important;
+  }
+  
+  .actions-col {
+    width: 15% !important;
+  }
+}
+
+/* Extra small screens adjustments */
+@media (max-width: 480px) {
+  .flow-container {
+    height: 300px; /* Smaller height for very small screens */
+    margin: 0.25rem 0;
+  }
+  
+  .concern-form-container,
+  .concern-table-container {
+    padding: 0.75rem;
+  }
+  
+  .concern-form input[type="text"] {
+    height: 2.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .concern-form button {
+    height: 2.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .instruction-text {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .concern-table th,
+  .concern-table td {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .continue-button-container .button {
+    height: 2.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+.concern-row {
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.concern-row:hover {
+  background-color: #e9ecef;
+  border-left: 4px solid #ff6b6b;
+}
+
+/* Add more pronounced hover effect for concern rows */
+.concern-row:hover td {
+  background-color: #e9ecef;
+}
+
+/* Enhanced styling for concern types */
+.concern-type-confound {
+  border-left: 3px solid #d63384;
+}
+
+.concern-type-bias {
+  border-left: 3px solid #fd7e14;
+}
+
+.concern-type-not_sure {
+  border-left: 3px solid #6c757d;
+}
+
+.concern-type-other {
+  border-left: 3px solid #20c997;
+}
+
+/* When hovering, make the text a little bolder for emphasis */
+.concern-row:hover .concern-col {
+  font-weight: 600;
+}
+
+.concern-col {
+  width: 40%;
+  font-weight: 500;
+}
+
+.type-col {
+  width: 15%;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.85rem; /* Kept as rem */
+}
+
+.processes-col {
+  width: 40%;
+  color: #6c757d;
+}
+
+.actions-col {
+  width: 5%;
+  text-align: right;
+}
+
+/* Type styling */
+.concern-type-confound .type-col {
+  color: #d63384;
+}
+
+.concern-type-bias .type-col {
+  color: #fd7e14;
+}
+
+.concern-type-not_sure .type-col {
+  color: #6c757d;
+}
+
+.concern-type-other .type-col {
+  color: #20c997;
+}
+
+/* Loading and empty states */
+.loading-indicator {
+  padding: 1.25rem; /* 20px */
+  text-align: center;
+  color: #6c757d;
+}
+
+.no-concerns {
+  padding: 1.25rem; /* 20px */
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Error messages */
+.error-message {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 0.625rem; /* 10px */
+  border-radius: 0.25rem; /* 4px */
+  margin-bottom: 0.9375rem; /* 15px */
+  font-size: 0.9rem; /* Kept as rem */
+}
+
+/* Delete button */
+.delete-button {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: var(--font-size-medium); /* 18px */
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.3125rem; /* 5px */
+}
+
+.delete-button:hover {
+  color: #bd2130;
+}
+
+/* Form controls */
+.form-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem; /* 8px 12px */
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem; /* 4px */
+  font-size: var(--font-size-small); /* 14px */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+  .form-control {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    min-height: 3rem; /* Ensure proper touch targets */
+  }
+}
+
+
+/* Continue Button Styles */
+.continue-button-container {
+  position: fixed; /* Changed from absolute to fixed for viewport positioning */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem; /* 20px for spacing */
+  background-color: #f5f5f5; /* Match page background */
+  width: 100%; /* Ensure it spans the bottom if needed, or adjust */
+  box-sizing: border-box; /* Include padding in width */
+  display: flex;
+  justify-content: center; /* Center the button */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+@media (max-width: 768px) {
+  .continue-button-container {
+    padding: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .continue-button-container .button {
+    width: 100%;
+    max-width: 300px;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+/* Custom Minimap Styles */
+.custom-minimap {
+  height: 90px !important;
+  width: 150px !important;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-minimap .react-flow__minimap-mask {
+  fill: rgba(66, 135, 245, 0.2);
+  stroke: #4287f5;
+  stroke-width: 1;
+}
+
+.custom-minimap .react-flow__minimap-node {
+  fill: #e1e5e9;
+  stroke: #b1b5b9;
+  stroke-width: 0.5;
+}
+
+
+ 

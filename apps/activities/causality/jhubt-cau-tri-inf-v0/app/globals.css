@@ -1,0 +1,214 @@
+/* app/globals.css - No changes needed for this specific request */
+/* */
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Regular.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* */
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Bold.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+/* */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+/* */
+* {
+  text-wrap: wrap;
+  box-sizing: border-box; /* Add box-sizing */
+}
+/* */
+html, body {
+  height: 100%; /* Ensure html and body take full height */
+}
+/* */
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  font-family: 'General Sans', sans-serif; /* Apply General Sans globally */
+  padding-top: 60px; /* Add padding to offset fixed header */
+}
+/* */
+/* Header Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Fixed header height */
+}
+/* */
+.favicon-button {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+/* */
+.favicon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  display: block;
+}
+/* */
+.title-container {
+  flex-grow: 1;
+  max-width: 80%;
+}
+/* */
+h1,
+.title {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+/* */
+h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 10%;
+}
+/* */
+/* --- Container and Layout styles --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  padding: 40px 0;
+}
+
+.intro-section {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #6F00FF;
+  max-width: 600px;
+  margin: 20px auto 0;
+  line-height: 1.6;
+}
+
+.content-section {
+  margin-top: 40px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.content-card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.content-card h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #020202;
+}
+
+.content-card p {
+  color: #6F00FF;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Button styles --- */
+.button {
+    background-color: #020202;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #6F00FF !important;
+}
+
+.button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.button:disabled:hover {
+    background-color: #ccc !important;
+}
+
+/* --- Typography enhancements --- */
+h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* --- Responsive design --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .content-card {
+    padding: 20px;
+  }
+  
+  .main-content {
+    padding: 20px 0;
+  }
+}

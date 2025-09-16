@@ -1,0 +1,9 @@
+.plot-axis-label {
+    font-size: 24px; /* Adjust as needed */
+    font-weight: bold;
+  }
+  
+  .plot-axis-tick text {
+    font-size: 18px; /* For axis tick labels */
+  }
+  

@@ -1,0 +1,40 @@
+[{
+    "headerTitle": "How widespread are these issues?",
+    "headerSubtitle1": "Rigor & reproducibility issues go beyond just big bad-faith fraud. In fact, most rigor violations are the result of scientists acting in good faith, but lacking proper the tools, procedures, & training!",
+    "headerSubtitle2": "Click on the plots below and take a guess at the extent of the problem...",
+
+    "section1Question": "What percentage of researchers do you think believe that there is a reproducibility crisis?",
+
+    "section2Question": "What percentage of researchers do you think believe that there is a reproducibility crisis?",
+    "section2Question2": "n = 1,578",
+
+    "feedback1Accurate": "Great Job!",
+    "feedback1Overestimate": "Interesting!",
+    "feedback1Underestimate": "Shocked?",
+
+    "feedback1AccurateFollowUp": "What do you think this should mean to your lab?",
+    "feedback1AccurateFollowUp2": "How should it affect your work?",
+
+    "feedback1OverestimateFollowUp": "Why do you suppose less people know about this problem than you expected?",
+    "feedback1OverestimateFollowUp2": "How do you think someone could end up holding that belief?",
+
+    "feedback1UnderestimateFollowUp": "Why do you think your guess was so far off?",
+    "feedback1UnderestimateFollowUp2": "What might this suggest about your lab, its blind spots, and your field's culture more broadly?",
+
+    "section3Question": "What percentage of work in your field do you think is reproducible?",
+
+    "section4Question": "What percentage of work in your field do you think is reproducible?",
+
+    "feedback2Accurate": "Great Job!",
+    "feedback2Overestimate": "Interesting!",
+    "feedback2Underestimate": "Shocked?",
+
+    "feedback2AccurateFollowUp": "Follow up question 1?",
+    "feedback2AccurateFollowUp2": "Follow up question 2?",
+
+    "feedback2OverestimateFollowUp": "Follow up question 1?",
+    "feedback2OverestimateFollowUp2": "Follow up question 2?",
+
+    "feedback2UnderestimateFollowUp": "Follow up question 1?",
+    "feedback2UnderestimateFollowUp2": "Follow up question 2?"
+}]

@@ -1,0 +1,31 @@
+.App {
+    font-family: sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  #tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    display: none;
+    pointer-events: none;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.5;
+    border-radius: 4px;
+  }
+  
+  #tooltip div {
+    padding: 4px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #tooltip div:last-child {
+    border-bottom: none;
+  }
+  
+ 
+  

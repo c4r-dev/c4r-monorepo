@@ -1,0 +1,158 @@
+[
+  {
+    "id": 1,
+    "title": "Biomedical Engineering",
+    "description": "A team of biomedical engineers is developing a new medical device for diagnosing a rare genetic disorder. They conduct a clinical trial involving patients with the disorder and healthy controls.",
+    "color": "yellow",
+    "narative": "You helped the biomedical engineering team address masking constraints in their study! You helped ensure transparency, fostered teamwork, and convinced skeptics all in the support of patient welfare. As a result, you helped build a solid foundation for research.",
+    "obstacles": [
+      {
+        "header": "Ownership Issues",
+        "text": "The team lead believes that if other researchers contribute to the experiment, it will lead to ownership or authorship issues. They worry about difficulties in attributing credit for the work conducted.",
+        "st1header": "Collaborative Agreements",
+        "st1text": "Develop clear collaboration agreements. Document how contributions, authorship, and credit will work. Revisit the agreements with the team to clarify or make adjustments.",
+        "st2header": "Shared Credit",
+        "st2text": "Promote a culture of shared credit. Acknowledge all contributors in publications and presentations. Use the Contributor Role Taxonomy to recognize everyone’s role.",
+        "st1texta": "By fostering open communication and creating clear agreements, the team promotes collaborative practices. Regularly revisiting these agreements ensures that the division of work and recognition continue to feel transparent and fair to everyone.",
+        "st2texta": "Acknowledging all contributors promotes fairness. While it might not fully address concerns about credit allocation, contributor statements foster the practice of recognizing each person's contributions."
+      },
+      {
+        "header": "Belief in the Value of Masking",
+        "text": "One of the engineers on the team believes that masking is unnecessary for this type of study. They argue that the diagnostic accuracy of the medical device won’t be affected if subjects are aware of their status.",
+        "st1header": "Literature Review",
+        "st1text": "Conduct a literature review on similar diagnostic device trials. Highlight studies where masking was practiced - is there a standard practice in the community? Present this evidence to the team to demonstrate the importance of masking.",
+        "st2header": "Discuss Performance Bias",
+        "st2text": "Gather the team and review the concept of performance bias. Provide historical examples (e.g N rays) and discuss the possible impacts of unmasked conditions on diagnostic accuracy.",
+        "st1texta": "Highlighting studies which make use of standardized masking approaches can sway the team toward implementing masking. It reinforces the importance of rigorous scientific practices that align with the broader community.",
+        "st2texta": "Discussing the potential outcomes of unmasked conditions demonstrates a commitment to evidence-based decision-making. It encourages a proactive approach to addressing concerns."
+      },
+      {
+        "header": "Welfare Constraint",
+        "text": "The study coordinator expresses concern that if masking is used, it might compromise patient care during the study. They emphasize the importance of balancing scientific rigor with patient well-being.",
+        "st1header": "Ethical Oversight",
+        "st1text": "Review the study protocol with an independent ethics committee or review board. Seek their input on the balance between scientific rigor and patient welfare. Their recommendations can guide the team's decision on masking.",
+        "st2header": "Informed Consent",
+        "st2text": "Clearly communicate the purpose and benefits of masking to patients participating in the study. Obtain informed consent that includes information about procedures. Prioritize patient autonomy and understanding.",
+        "st1texta": "Involving an independent ethics committee ensures patient welfare while maintaining scientific rigor. Their recommendations can provide reassurance and foster trust.",
+        "st2texta": "Prioritizing patient autonomy by clearly explaining masking benefits via informed consent builds a positive relationship with participants. It reflects ethical and respectful conduct."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Neuroscience",
+    "description": "Neuroscientists are investigating the effects of a new drug on memory consolidation. They conduct an experiment with human participants.",
+    "color": "rgb(76, 240, 76)",
+    "narative": "You helped the team of neuroscientists contend with masking constraints during their memory consolidation study! You supported designing protocols, ensuring proper procedures, and maintaining data integrity. As a result, you paved the way for insights into memory mechanisms.",
+    "obstacles": [
+      {
+        "header": "Knowledge Constraint",
+        "text": "The lead researcher acknowledges that there is a lack of knowledge about masking and its implementation. They want to seek guidance from experts or collaborate with statisticians to address this constraint.",
+        "st1header": "Training and Workshops",
+        "st1text": "Organize workshops or training sessions on masking techniques. Invite experts to educate the team on practical implementation. Share resources (e.g., manuals, online courses) to enhance knowledge.",
+        "st2header": "Collaborate with Statisticians",
+        "st2text": "Invite statisticians or data analysts who specialize in experimental design to join the team. Seek their guidance on effective masking methods. Collaborate closely to ensure proper implementation.",
+        "st1texta": "Educating the team on masking techniques can empower them with practical knowledge. This collaborative approach fosters a sense of shared responsibility and expertise.",
+        "st2texta": "Partnering with statisticians ensures robust masking methods. Their guidance not only enhances the study but also promotes interdisciplinary collaboration."
+      },
+      {
+        "header": "Resource Constraint",
+        "text": "Due to limited personnel qualified to run the experiment, the team is considering partial masking.",
+        "st1header": "Collaborative Research",
+        "st1text": "Collaborate with other research groups or institutions. Share resources (e.g., personnel, equipment) to enable effective masking.",
+        "st2header": "Prioritize Key Measures",
+        "st2text": "Identify critical outcome measures that require masking. Allocate resources to mask the rat treatment group during data analysis.",
+        "st1texta": "Collaborating with other research groups pools resources together to be more efficient. This collective effort can lead to benefits for everyone and strengthen the scientific community.",
+        "st2texta": "Allocating resources specifically for critical outcome measures avoids some avenues for bias. It acknowledges resource limitations."
+      },
+      {
+       "header": "Fear of Errors",
+        "text": "The lead researcher worries that masking could result in giving incorrect dosages of the supplement. They worry that errors will create bottlenecks for an already tight turnaround time.",
+        "st1header": "Double-Check Procedures and Data Entry",
+        "st1text": "Implement regular checks of experimental procedures and data entry. Assign different team members to do independent checks. Use best practices in data masking to avoid errors.",
+        "st2header": "Conduct Tests to Refine Masking",
+        "st2text": "Before testing with actual animals, simulate experiments to identify challenges and potential sources of error. Refine masking procedures to reduce error, based on feedback.",
+        "st1texta": "While it requires additional time and effort, regular verification minimizes errors. Automated validation scripts can catch inconsistencies and the team’s commitment to accuracy ensures reliable results.",
+        "st2texta": "Simulated experiments help identify pitfalls and pave the way for improvements, without expending valuable experimental resources. This approach to refinement is a flexible way to navigate challenges effectively."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Pharmacology",
+    "description": "A pharmaceutical company is testing a new drug for a common chronic condition. They conduct a large-scale clinical trial.",
+    "color": "hotpink",
+    "narative": "You committed to masking protocols and worked to ensure reliable results! You supported planning, documentation, and transparent communication. As a result, patients will benefit from evidence-based treatments.",
+    "obstacles": [
+      {
+        "header": "Operational Constraints",
+        "text": "The project manager acknowledges that the existing processes do not currently include masking. They plan to allocate additional resources to ensure proper procedures across multiple sites.",
+        "st1header": "Dedicated Masking Team",
+        "st1text": "Create a dedicated team responsible for masking. Task the team with developing standard protocols for masking at each stage of the study. Support the team in coordinating across sites, addressing logistical challenges, and ensuring compliance.",
+        "st2header": "Pilot Testing",
+        "st2text": "Conduct pilot testing of masking procedures. Identify and address operational bottlenecks early. Train personnel (e.g., site coordinators, data managers) on masking protocols. Adjust workflows based on lessons learned during the pilot phase.",
+        "st1texta": "Creating a dedicated team ensures consistent implementation of masking. This team can make sure that the same procedures are used across sites. It demonstrates the company’s commitment to rigorous scientific practices.",
+        "st2texta": "Pilot testing helps identify issues early and refine procedures. It allows adjustments based on lessons learned during the pilot phase, ultimately enhancing the study's quality and reliability."
+      },
+      {
+        "header": "Practical Constraint",
+        "text": "The study is facing issues with participant compliance. Researchers are fielding many questions from participants who want to know about their assigned treatment regimen and how soon they will experience improvements.",
+        "st1header": "Informed Randomization Process",
+        "st1text": "Educate participants about the need for masking. Explain the procedural steps for randomization and how it will be implemented, such that neither researchers nor participants know their group assignment.",
+        "st2header": "Independent Data Monitoring Committee (IDMC) Collaboration",
+        "st2text": "Involve an IDMC in the study. An IDMC is an external group that reviews interim results without revealing treatment details to the study team. They help maintain integrity and care for study participants.",
+        "st1texta": "Randomly assigning participants helps mitigate bias and properly evaluate the drug's efficacy. Communicating the importance of rigor so that the study can help ALL patients with the chronic condition can provide study participants with the motivation to adhere to study procedures.",
+        "st2texta": "Collaborating with an external IDMC helps maintain study integrity. Their feedback ensures scientific rigor and proper care for study participants, contributing positively to the credibility of the study's results."
+      },
+      {
+       "header": "Technological Constraint",
+        "text": "The IT team identifies a challenge related to the study's data management systems. Existing procedures for ensuring data integrity may accidentally unmask the data.",
+        "st1header": "Software Solutions",
+        "st1text": "Develop software tools or databases that support masking. Ensure that data entry, data management, and analysis processes maintain blinding. Collaborate with IT experts to create tailored solutions.",
+        "st2header": "Data Audits",
+        "st2text": "Regularly audit data handling processes to verify that masking remains intact. Implement additional checks that can detect unmasking in the data. Create procedures for promptly addressing any breaches.",
+        "st1texta": "Developing custom software tools ensures data integrity while maintaining masking. It showcases innovation and commitment to robust research practices.",
+        "st2texta": "Regular audits verify masking integrity. Implementing automated checks and response procedures demonstrate proactive measures to maintain the study's reliability."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Psychology",
+    "description": "Psychologists are studying the impact of a novel mindfulness intervention on stress reduction. Study participants attend weekly sessions.",
+    "color": "#39e1f8",
+    "narative": "You helped implement masking strategies during the mindfulness intervention study! Your attention to detail, consistent monitoring, and collaboration with participants fostered an environment of trust. As a result, the study’s outcomes will contribute to enhancing mental well-being.",
+    "obstacles": [
+      {
+        "header": "Tradition",
+        "text": "The lead psychologist wants to follow their standard practice for previous studies. They believe masking is not necessary, because they have never needed it before.",
+        "st1header": "Gradual Transition",
+        "st1text": "Gradually introduce masking practices in this team. Start with partial masking (e.g., group assignment is hidden when assessing stress) and demonstrate its practicality.",
+        "st2header": "Challenge Norms with Evidence",
+        "st2text": "Counter cultural norms with evidence. Share research articles or case studies that highlight successful masking in psychology experiments.",
+        "st1texta": "By gradually introducing masking practices, the team respects existing norms. Demonstrating the benefits of partial masking can pave the way for further change.",
+        "st2texta": "Engaging in evidence-based discussions challenges prevailing norms. Sharing research articles or case studies can shift perspectives and promote openness to masking."
+      },
+      {
+        "header": "Fear of Errors",
+        "text": "The junior researcher expresses fear that masking could introduce errors or bias into the study. They worry that masking the participants might affect their engagement with the mindfulness intervention.",
+        "st1header": "Pilot Testing and Training",
+        "st1text": "Conduct pilot testing to identify issues related to masking. Train team members on error prevention techniques (e.g., double-checking procedures, clear documentation). Build confidence in the process.",
+        "st2header": "Transparent Communication",
+        "st2text": "Create a feedback system where team members can report concerns without fear of judgment. Encourage communication about errors or doubts related to masking.",
+        "st1texta": "Conducting pilot testing minimizes errors. Training team members on error prevention techniques builds confidence. Addressing fears head-on ensures a more accurate study.",
+        "st2texta": "Creating an environment for open communication encourages reporting of concerns. Allowing the sharing of concerns and addressing them without judgment fosters trust."
+      },
+      {
+       "header": "Practical Constraint",
+        "text": "Given the weekly session format, the team decides to implement partial masking. They recognize the need to balance practical considerations with scientific rigor.",
+        "st1header": "Partial Masking with Outcome Assessors",
+        "st1text": "This form of partial masking means that the people who measure study outcomes (e.g., stress levels, mindfulness scores) would not know whether participants belong to the intervention group or the control group. Outcome assessors can remain unbiased, even if participants attend sessions regularly.",
+        "st2header": "Sham Procedure",
+        "st2text": "Because participants will be aware of what treatment they receive, a missing mindfulness intervention is not possible. Instead, the control group receives a sham intervention that is known (from previous studies) to have little to no effect.",
+        "st1texta": "Partial masking maintains scientific rigor. Participants will know what intervention they receive, but this practice reduces bias in the outcome measures. This compromise balances practicality and validity.",
+        "st2texta": "A sham procedure hides from participants which intervention is actually being tested. This allows comparison of the new treatment against a known placebo."
+      }
+    ]
+  }
+]

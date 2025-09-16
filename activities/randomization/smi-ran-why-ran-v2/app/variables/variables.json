@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "variableName": "Sex"
+  },
+  {
+    "id": 1,
+    "variableName": "Age"
+  },
+  {
+    "id": 2,
+    "variableName": "BMI"
+  },
+  {
+    "id": 3,
+    "variableName": "Annual household income" 
+  }
+]

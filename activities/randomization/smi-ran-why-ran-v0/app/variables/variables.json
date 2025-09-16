@@ -1,0 +1,51 @@
+[
+   {
+    "id":1,
+    "variableName":"AGE"
+   },
+   {
+    "id":2,
+    "variableName":"SEX"
+   },
+   {
+    "id":3,
+    "variableName":"RACE"
+   },
+   {
+    "id":4,
+    "variableName":"ETHNICITY"
+   },
+   {
+    "id":5,
+    "variableName":"ALCOHOL CONSUMPTION"
+   },
+   {
+    "id":6,
+    "variableName":"EDUCATION"
+   },
+   {
+    "id":7,
+    "variableName":"INCOME"
+   },
+   {
+    "id":8,
+    "variableName":"COUNTRY OF ORIGIN"
+   },
+   {
+    "id":9,
+    "variableName":"DIET"
+   },
+   {
+    "id":10,
+    "variableName":"SMOKING STATUS"
+   },
+   {
+    "id":11,
+    "variableName":"BMI"
+   },
+   {
+    "id":12,
+    "variableName":"EXERCISE LEVEL"
+   }
+
+]

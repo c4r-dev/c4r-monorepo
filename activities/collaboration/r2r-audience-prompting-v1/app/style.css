@@ -1,0 +1,355 @@
+
+/* Importing fonts  */
+  @font-face {
+    font-family: 'GeneralSans-Semibold';
+    src: url('../assets/GeneralSans-Semibold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'GeneralSans-Semibold';
+    src: url('../assets/GeneralSans-Regular.ttf') format('truetype');
+  }
+  * {
+    font-family: 'GeneralSans-Semibold', sans-serif;
+    /* font-family: 'GeneralSans-Regular', sans-serif; */
+  }
+  .outer-container {
+    background-color: #EBEBEB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  h1 {
+    font-family: 'GeneralSans-Regular', sans-serif;
+    /* font-size: 24px; */
+    font-weight: 800;
+}
+h2 {
+  /* font-size: 20px; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'GeneralSans-Regular', sans-serif;
+}
+p {
+  font-family: 'GeneralSans-Regular', sans-serif;
+}
+
+button {
+  background-color: #333132;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'GeneralSans-Regular', sans-serif;
+  font-weight: 600;
+  border: none;
+}
+
+.container {
+  background-color: #F3F3F3;
+  padding: 20px;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+.text-container {
+}
+.text-container h2 {
+  font-size: 24px;
+  margin: 5px;
+}
+
+.footer-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.generate-button {
+  width: 230px;
+  /* height: 50px; */
+  position: relative;
+  right: 100px;
+}
+.raven-group {
+  width: 650px;
+  /* height: 50px; */
+}
+
+
+
+/* QR code page */
+.qr-code-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: #F3F3F3; */
+}
+.header-container {
+  width: 100%;
+  text-align: left;
+}
+.or-container h1 {
+  color: #6C6C6C;
+  font-family: 'GeneralSans-Regular', sans-serif;
+  font-weight: 400;
+  width: 200px;
+  text-align: center;
+  font-size: 38px;
+}
+.link-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  text-align: left;
+}
+.copy-link-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* width: 100%; */
+  background-color: #EEEEEE;
+  /* padding: 10px; */
+  border-radius: 10px;
+  margin: 10px;
+  max-width: 200px;
+  width: 220px;
+  text-align: center;
+}
+.copy-link-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid #D4CFCF;
+  padding: 0px;
+  font-size: 14px;
+}
+
+.copy-link-button{
+    background-color: #EEEEEE;
+    color: #333132;
+    border-radius: 0px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 10px;
+    border: 1px solid #D4CFCF;
+    font-size: 18px;
+}
+.copy-link-button:hover{
+    background-color: #c0bfbf;
+    /* color: #FFFFFF; */
+}
+
+.cancel-button {
+  background-color: #E0E0E0;
+  color: #6C6C6C;
+  /* border: 1px solid #6C6C6C; */
+  /* font-size: 18px; */
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+/* Student Input page */
+.student-input-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+/* Discussion page */
+.discussion-page {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  min-height: 500px;
+}
+.discussion-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.discussion-timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  /* align-self: center; */
+  /* justify-self: center; */
+  margin-top: 60px;
+}
+.loading-bar {
+  height: 50px;
+  max-width: 100%;
+  background-color: #333132;
+}
+.loading-area h2 {
+    color: #797979;
+}
+
+/* answers page */
+.answers-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.answers-page {
+    padding: 20px;
+    width: 100%;
+    min-width: 400px;
+  }
+  
+  .answer-list {
+    min-width: 400px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .answer-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .answer-item.left {
+    justify-content: flex-start;
+  }
+  
+  .answer-item.right {
+    justify-content: flex-end;
+  }
+  
+  .bubble {
+    background-color: rgba(97, 97, 97, 0.25);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 200px;
+    max-width: 300px;
+    position: relative;
+    min-height: 0px;
+  }
+  
+  .answer-item.left .bubble::after {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: -20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent rgba(97, 97, 97, 0.25) transparent transparent;
+  }
+
+
+  .answer-item.right .bubble::after {
+    content: "";
+    position: absolute;
+    top: 35px;
+    right: -20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(97, 97, 97, 0.25);
+  }
+  .answer-item.left .answer-icon {
+    position: absolute;
+    top: 15px; 
+    right: 240px;
+  }
+  .answer-item.right .answer-icon {
+    position: absolute;
+    top: 15px;
+    left: 240px;
+  }
+  
+  .icon {
+    margin-right: 10px;
+  }
+  
+  .answer-text {
+    margin-bottom: 5px;
+  }
+  
+  .answer-meta {
+    font-size: 12px;
+    color: #666;
+  }
+  /* .answer-icon {
+    margin-right: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  } */
+  
+  .answers-header-text {
+    font-size: 24px;
+    color: #333132;
+  }
+  .answers-header-text h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 24px;
+    color: #333132;
+  }
+  .answers-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .try-again-button {
+    /* width: 230px; */
+
+    background-color: rgba(97, 97, 97, 0.25);
+    color: #6C6C6C;
+    border: none;
+
+  }
+
+
+  /* Student input */
+  .student-input-container {
+    width: 100%;
+    min-width: 400px;
+    /* height: ; */
+  }
+  .student-input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 80%;
+}
+
+.text-input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #D4CFCF;
+  border-radius: 5px;
+  padding: 10px;
+}

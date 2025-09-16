@@ -1,0 +1,426 @@
+:root {
+  /* Color variables */
+  --color-primary: #6F00FF;
+  --color-primary-hover: #5700CA;
+  --color-primary-disabled: rgba(111, 0, 255, 0.4);
+  --color-text: #333;
+  --color-background: #f9f9f9;
+  --color-secondary: #f0f0f0;
+  --color-light-text: #666;
+  --color-border: #ddd;
+  --color-green: #00C802;
+  --color-black: #020202;
+  --color-red: #FF5A00;
+  
+  /* Typography */
+  --font-family-primary: 'General Sans', Courier, sans-serif;
+  --font-family-code: 'JetBrains Mono', monospace;
+  --font-size-xs: 0.9rem;
+  --font-size-sm: 1rem;
+  --font-size-md: 1.2rem;
+  --font-size-lg: 1.8rem;
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 40px;
+  --spacing-xl: 80px;
+  
+  /* Border radii */
+  --border-radius-sm: 5px;
+  --border-radius-md: 6px;
+  --border-radius-circle: 50%;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Regular.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improved font loading */
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Bold.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  text-wrap: balance;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  margin: 0;
+  padding-top: var(--spacing-sm);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background);
+  line-height: 1.6;
+}
+
+/* Header Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0;
+  padding-bottom: var(--spacing-xs);
+}
+
+.left-aligned-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: var(--spacing-md);
+}
+
+.favicon-button {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-right: var(--spacing-sm);
+  cursor: pointer;
+}
+
+.favicon {
+  width: 40px;
+  height: 40px;
+  margin-right: var(--spacing-sm);
+  display: block;
+}
+
+.title-container {
+  flex-grow: 1;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 0 !important;
+}
+
+/* Typography */
+h1, .title {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  text-align: left;
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding: 0 10%;
+}
+
+.sequence-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
+  padding: var(--spacing-md);
+  margin: 0 auto;
+}
+
+/* Button Styling */
+.compare-answer-button {
+  flex: 1;
+  max-width: 120px;
+  min-width: 80px;
+  text-align: center;
+  margin: var(--spacing-sm) auto;
+  padding: var(--spacing-sm) var(--spacing-xs);
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.compare-answer-button:hover {
+  background-color: var(--color-primary-hover) !important;
+}
+
+/* Disabled state */
+.compare-answer-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Ensure buttons are aligned horizontally */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-sm);
+}
+
+.regenerate-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 250px;
+  text-align: center;
+  margin: var(--spacing-sm) auto;
+  padding: 8px var(--spacing-xs);
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+}
+
+.regenerate-button:hover {
+  background-color: var(--color-primary-hover) !important;
+}
+
+.responsive-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(16px, 4vw, 22px);
+  padding: 0 0%;
+  margin: 120px auto var(--spacing-md) auto;
+}
+
+.responsive-title {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: var(--spacing-md);
+}
+
+/* Styling for radio buttons */
+.radio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-top: var(--spacing-md);
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.radio-group input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--border-radius-circle);
+  border: 2px solid var(--color-primary-disabled);
+  background-color: white;
+  outline: none;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.radio-group input[type="radio"]:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.random-sequence-message {
+  background-color: var(--color-primary-disabled);
+  color: var(--color-black);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  max-width: 250px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .header {
+    justify-content: flex-start !important;
+    flex-direction: column;
+    text-align: center;
+    padding-top: var(--spacing-xs) !important;
+    flex-wrap: wrap;
+    height: auto;
+    align-items: center;
+  }
+
+  .image-container img {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .favicon-button {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .sequence-container {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .compare-answer-button,
+  .regenerate-button {
+    width: 90%;
+    max-width: 250px;
+  }
+
+  .left-aligned-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .title {
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .title-container {
+    justify-content: center !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+  }
+
+  h1 {
+    font-size: clamp(18px, 4vw, 22px);
+  }
+
+  .regenerate-button {
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .responsive-text {
+    font-size: 14px;
+    padding-top: 50px 0 0 0;
+    margin-top: 100px;
+  }
+
+  .scrollable-table {
+    max-height: 250px;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .table-container {
+    max-width: 100%;
+    padding: 0 var(--spacing-sm);
+  }
+
+  th,
+  td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .responsive-title {
+    text-align: center !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: var(--font-size-sm);
+    padding: 0 5%;
+  }
+
+  .responsive-text {
+    margin-top: 50px;
+    font-size: 14px;
+    padding: 40px 0 0 0;
+  }
+
+  .sequence-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .regenerate-button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .scrollable-table {
+    max-height: 200px;
+  }
+
+  .button-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .compare-answer-button {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 100px;
+  }
+}

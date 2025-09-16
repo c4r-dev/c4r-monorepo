@@ -1,0 +1,159 @@
+/* Styles specific to Phase 3 */
+
+.phase-summary-container {
+    margin: 2rem 0;
+  }
+  
+  .phase-summary {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .phase-summary h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+  
+  .expert-revision-section {
+    margin: 2.5rem 0;
+  }
+  
+  .section-intro {
+    margin: 1rem 0 1.5rem;
+    font-size: clamp(0.95rem, 2.5vw, 1rem);
+    line-height: 1.6;
+  }
+  
+  .expert-revision-container {
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #2573b3;
+  }
+  
+  .expert-revision-container h3 {
+    margin-bottom: 1.2rem;
+    color: #2573b3;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    font-weight: bold;
+  }
+  
+  .expert-content {
+    line-height: 1.6;
+  }
+  
+  .expert-content h4 {
+    margin: 1.2rem 0 0.7rem;
+    color: #333;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: bold;
+  }
+  
+  .expert-content h4:first-child {
+    margin-top: 0;
+  }
+  
+  .expert-content p {
+    margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1rem);
+  }
+  
+  .application-section {
+    margin: 2.5rem 0;
+  }
+  
+  .application-questions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .application-question {
+    padding: 1.25rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .application-question h4 {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+    color: #1a1a1a;
+  }
+  
+  .application-question p {
+    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .completion-message {
+    background-color: #e8f5e9;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 2px solid #66bb6a;
+  }
+  
+  .completion-message h2 {
+    color: #2e7d32;
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .completion-message p {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .completion-actions {
+    margin-top: 2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .application-questions {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .expert-revision-container,
+    .application-question {
+      padding: 1.2rem;
+    }
+    
+    .phase-summary,
+    .completion-message {
+      padding: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .expert-revision-container,
+    .application-question {
+      padding: 1rem;
+    }
+    
+    .phase-summary,
+    .completion-message {
+      padding: 1rem;
+    }
+    
+    .completion-message h2 {
+      margin-bottom: 0.8rem;
+    }
+    
+    .completion-actions {
+      margin-top: 1.5rem;
+    }
+  }

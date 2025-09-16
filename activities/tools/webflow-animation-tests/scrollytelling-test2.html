@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrollytelling Demo</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+    .section {
+      position: relative;
+      min-height: 100vh;
+      padding: 50px 20px;
+    }
+    
+    /* Section 1 - Black background with white text */
+    .section1 {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .section1 h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+    .section1 h2 {
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+    
+    /* Section 2 & 4 - Fixed Background with fade in text */
+    .section2,
+    .section4 {
+      color: #fff;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    .section2 {
+      background-image: url('background1.jpg');
+    }
+    .section4 {
+      background-image: url('background3.jpg');
+    }
+    
+    /* Columns and fullwidth text styles */
+    .columns {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .column {
+      flex: 1;
+      margin: 10px;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 8px;
+      min-width: 250px;
+    }
+    .column h3 {
+      margin-top: 0;
+    }
+    .fullwidth-text {
+      text-align: center;
+      margin: 20px auto;
+      max-width: 800px;
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    
+    /* Section 3 - Fixed image on left, scrolling text on right */
+    .section3 {
+      background-color: #fff;
+      color: #000;
+      display: flex;
+    }
+    .fixed-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .fixed-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .scrolling-text {
+      margin-left: 50%;
+      padding: 50px;
+      width: 50%;
+    }
+    
+    /* Fade in class for GSAP animations */
+    .fade-in {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Section 1: Title and Subheader -->
+  <section class="section section1">
+    <h1>Discover the Journey</h1>
+    <h2>Exploring new horizons beyond the familiar</h2>
+  </section>
+  
+  <!-- Section 2: Fixed Background with Columns & Fullwidth Text -->
+  <section class="section section2">
+    <div class="columns">
+      <div class="column fade-in">
+        <h3>Insight One</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula felis ac ligula vestibulum.</p>
+      </div>
+      <div class="column fade-in">
+        <h3>Observation Two</h3>
+        <p>Curabitur vel sem at dolor placerat tincidunt non ac urna. Fusce euismod mauris in libero blandit.</p>
+      </div>
+      <div class="column fade-in">
+        <h3>Perspective Three</h3>
+        <p>Sed tristique orci at quam volutpat, at tincidunt nisi blandit. Praesent euismod libero ut massa.</p>
+      </div>
+    </div>
+    <div class="fullwidth-text fade-in">
+      <h2>Engaging Narratives</h2>
+      <p>Vivamus semper justo in efficitur vehicula. Nulla facilisi. Cras vitae purus nec sapien fermentum.</p>
+    </div>
+  </section>
+  
+  <!-- Section 3: Fixed Image on Left, Scrolling Text on Right -->
+  <section class="section section3">
+    <div class="fixed-image">
+      <img src="background2.jpeg" alt="Fixed Background" />
+    </div>
+    <div class="scrolling-text">
+      <h2>Unfolding the Story</h2>
+      <p>Phasellus in mi ac felis vestibulum varius. Quisque vitae dignissim nisi, nec maximus lorem.</p>
+      <p>Aliquam erat volutpat. Proin nec urna in sem bibendum vehicula. Integer non felis ac urna efficitur dictum.</p>
+      <p>Morbi dapibus, dolor a viverra facilisis, ligula ligula tincidunt eros, ut scelerisque massa arcu nec lorem.</p>
+      <p>Donec sit amet nisi nec sapien interdum tristique. Curabitur finibus nunc in magna bibendum, a aliquet ligula egestas.</p>
+    </div>
+  </section>
+  
+  <!-- Section 4: Repeat of Section 2 with a different fixed background -->
+  <section class="section section4">
+    <div class="columns">
+      <div class="column fade-in">
+        <h3>Chapter One</h3>
+        <p>Integer nec magna at lorem fermentum aliquet. Sed in ex vel metus cursus vehicula.</p>
+      </div>
+      <div class="column fade-in">
+        <h3>Chapter Two</h3>
+        <p>Donec efficitur, lorem non lacinia dictum, nisi ante pulvinar dui, at scelerisque nibh justo eget nunc.</p>
+      </div>
+      <div class="column fade-in">
+        <h3>Chapter Three</h3>
+        <p>Maecenas vehicula velit sed turpis consequat, quis varius magna facilisis. Suspendisse potenti in ante.</p>
+      </div>
+    </div>
+    <div class="fullwidth-text fade-in">
+      <h2>The Final Act</h2>
+      <p>Suspendisse potenti. Praesent at ligula ac odio pharetra tristique. In hac habitasse platea dictumst.</p>
+    </div>
+  </section>
+  
+  <!-- GSAP and ScrollTrigger Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate elements with the fade-in class as they scroll into view
+    gsap.utils.toArray('.fade-in').forEach(function(elem) {
+      gsap.from(elem, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+  </script>
+</body>
+</html>

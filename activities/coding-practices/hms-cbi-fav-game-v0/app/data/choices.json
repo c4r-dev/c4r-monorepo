@@ -1,0 +1,10 @@
+[{
+    "choice 1":"Inspect the fMRI results, and define a region of interest based on the voxels (i.e. three-dimensional pixels) that show the most task-relevant activation. Use the same data to compute a correlation between stimuli and brain activity within the chosen subset of voxels.",
+    "choice 2":"Create a model brain by averaging all participant data. Calculate (and report) correlations between brain activity and behavioral measures of personality, emotion, and social cognition by calculating the mean activity level in the model brain.",
+    "choice 3":"Prioritize time and resource efficiency by recruiting 12 subjects and simulating an additional 12 subjects after data has been collected.",
+    "choice 4":"When screening participants for inclusion in the study, distribute a personality inventory to measure participants for underlying personality traits such as neuroticism and extraversion that may influence their responses to emotional stimuli. Include only participants with similar personality traits in the study population.",
+    "choice 5":"Establish a baseline for visual stimulation correlating with blood oxygenation levels in the brain by showing participants emotionally neutral images of landscapes, in addition to the positively and negatively valenced images.",
+    "choice 6":"Reduce noise through data smoothing using a Gaussian kernel. Replace each three dimensional pixel (voxel)'s value with a weighted average of its neighbors within a 4 mm radius. Increase to 6mm if results do not yield smooth clusters.",
+    "choice 7":"Define regions of interest in subject brain images by based on known anatomical regions, then adjust the region of interest that gets analyzed for each participant to capture the peak of activation if it falls outside of, but near the anatomically defined region of interest.",
+    "choice 8":"Apply a Bonferroni correction, dividing the threshold for statistical significance by the number of tests, i.e. the number of three dimensional pixels (voxels) examined.",
+}]

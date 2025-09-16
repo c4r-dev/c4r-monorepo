@@ -1,0 +1,50 @@
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    text-align: center;
+}
+
+.code {
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: normal;
+    color: white;
+    padding: 15px;
+    background-color: black;
+    text-align: left;
+    margin: 0 auto;
+    /* Center the code block */
+    width: fit-content;
+    /* Fit the width of the content */
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        font-size: 11px;
+    }
+
+    @media (min-width: 768px) {
+        /* width: 50vw; */
+    }
+}
+
+.sG {
+    color: rgb(31, 172, 31);
+}
+
+.sB {
+    color: rgb(134, 151, 198);
+}
+
+.sP {
+    color: rgb(237, 49, 215);
+}
+
+.sY {
+    color: yellow;
+}
+
+.indent {
+    text-indent: 30px;
+}

@@ -1,0 +1,836 @@
+* {
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Add these CSS styles to your activity-1.css file for better tooltip visibility */
+
+/* Ensure tooltips are always on top */
+.code-tooltip {
+  position: fixed !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  background-color: #2d3748 !important;
+  color: white !important;
+  border: 1px solid #4a5568 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  padding: 12px 16px !important;
+  border-radius: 6px !important;
+  max-width: 300px !important;
+  word-wrap: break-word !important;
+}
+
+/* Explain mode container styling */
+.editor-section.explain-mode-active {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e7f3ff 100%);
+  border: 2px solid #4dabf7;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(77, 171, 247, 0.3);
+}
+
+/* Textarea in explain mode - use CSS classes instead of direct styles */
+.explain-mode-active textarea {
+  background-color: #f8f9ff !important;
+  border: 2px solid #4dabf7 !important;
+  cursor: help !important;
+  border-radius: 4px !important;
+}
+
+/* Add a subtle glow animation when explain mode is active */
+.editor-section.explain-mode-active::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #4dabf7, #74c0fc, #4dabf7);
+  border-radius: 10px;
+  z-index: -1;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { opacity: 0.5; }
+  to { opacity: 0.8; }
+}
+
+/* Explanation indicator styles */
+.explanation-indicator {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 999 !important;
+  background: linear-gradient(135deg, #e7f3ff 0%, #b3d9ff 100%) !important;
+  border: 1px solid #b3d9ff !important;
+  border-radius: 5px !important;
+  padding: 10px 15px !important;
+  font-size: 14px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* Debug panel styles */
+.debug-panel {
+  position: fixed !important;
+  top: 80px !important;
+  right: 20px !important;
+  background: #f0f0f0 !important;
+  border: 1px solid #ccc !important;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  font-size: 12px !important;
+  z-index: 1001 !important;
+  max-width: 300px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Ensure TextareaHighlight component doesn't get hidden */
+.editor-section textarea {
+  min-height: 400px !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+/* Fix any potential overflow issues */
+.editor-section {
+  position: relative;
+  overflow: visible;
+}
+
+/* Hover test button styles */
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Expand container width for validation and completion phases to eliminate blank space */
+body .container {
+  max-width: calc(100vw - 4rem) !important;
+  width: calc(100vw - 4rem) !important;
+  padding: 0 2rem !important;
+  box-sizing: border-box !important;
+}
+
+.activity-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.activity-title h1 {
+  color: #333;
+  font-size: 2rem;
+  margin: 0;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.instructions {
+  background-color: #e6e6e6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.main-content {
+  display: flex;
+  gap: 0.25rem !important;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.editor-section {
+  flex: 1;
+  min-width: 0; /* Allows flex item to shrink below content size */
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: -1px !important;
+}
+
+.output-section {
+  width: min(450px, 35vw);
+  min-width: 350px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-left: -15px !important;
+  margin-right: 0 !important;
+}
+
+.output-header {
+  background-color: #e9ecef;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.output-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.execute-button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.execute-button:hover:not(:disabled) {
+  background-color: rgb(98, 0, 238);
+}
+
+.execute-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.code-output {
+  height: 400px;
+  padding: 1rem;
+  background-color: white;
+  overflow-y: auto;
+  font-family: 'General Sans Semibold', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.code-output.error {
+  background-color: #fff5f5;
+  color: #d32f2f;
+}
+
+/* Styles for plot images in output */
+.code-output img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: block;
+}
+
+.code-output h4 {
+  margin: 15px 0 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.code-output pre {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.phase-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Special positioning for modification phase buttons */
+.main-content + .phase-controls {
+  position: relative;
+  border-top: none;
+  padding: 0;
+  margin: 0;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.main-content + .phase-controls .back-button {
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  margin: 0;
+}
+
+.main-content + .phase-controls .continue-button {
+  position: absolute;
+  right: 0;
+  bottom: -60px;
+  margin: 0;
+}
+
+.continue-button,
+.back-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 200px;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.continue-button {
+  background-color: #000000;
+  color: white;
+}
+
+.continue-button:hover:not(:disabled) {
+  background-color: rgb(98, 0, 238);
+}
+
+.continue-button.disabled,
+.continue-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.back-button {
+  background-color: #000000;
+  color: white;
+}
+
+.back-button:hover {
+  background-color: rgb(98, 0, 238);
+}
+
+.completion-summary {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.completion-summary h3 {
+  color: #155724;
+  margin-bottom: 1rem;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.completion-summary p {
+  color: #155724;
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.summary-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #155724;
+  font-weight: 500;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #155724;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Responsive design for smaller screens and high zoom levels */
+@media (max-width: 1400px) and (min-width: 1101px) {
+  .main-content {
+    gap: 0.25rem !important;
+    flex-direction: row !important;
+  }
+  
+  .output-section {
+    width: min(420px, 34vw) !important;
+    min-width: 340px !important;
+    margin-left: -12px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-content {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .output-section {
+    width: 100% !important;
+    max-width: 600px !important;
+    min-width: unset !important;
+    margin-left: 0 !important;
+  }
+  
+  .summary-stats {
+    gap: 1rem;
+  }
+}
+
+/* High zoom level compatibility (110% to 150%+ zoom) */
+@media (max-width: 1100px) and (min-width: 801px) {
+  .main-content {
+    gap: 0.25rem !important;
+    flex-direction: row !important;
+  }
+  
+  .editor-section {
+    flex: 1;
+    flex-shrink: 1;
+    min-width: 300px;
+  }
+  
+  .output-section {
+    width: min(380px, 40vw) !important;
+    min-width: 280px !important;
+    margin-left: -10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .activity-title h1 {
+    font-size: 1.5rem;
+  }
+  
+  .instructions {
+    padding: 1rem;
+    font-size: 14px;
+  }
+  
+  .phase-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .continue-button,
+  .back-button {
+    min-width: 250px;
+  }
+  
+  .completion-summary {
+    padding: 1rem;
+  }
+  
+  .summary-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Enhanced button styling for better UX */
+.continue-button:focus,
+.back-button:focus,
+.execute-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Loading state animation for execute button */
+.execute-button:disabled::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Toast notification style for future use */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast.success {
+  background-color: #28a745;
+}
+
+.toast.error {
+  background-color: #dc3545;
+}
+
+/* Highlight animation for important elements */
+.highlight-flash {
+  animation: highlightFlash 1s ease-in-out;
+}
+
+@keyframes highlightFlash {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(255, 235, 59, 0.3); }
+  100% { background-color: transparent; }
+}
+
+/* Phase 3 & 4 Tab Comparison Styles */
+.comparison-view {
+  width: 100% !important;
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tab-container {
+  flex: 1;
+  width: 100% !important;
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-buttons {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0;
+  gap: 0.5rem;
+}
+
+.tab-button {
+  padding: 12px 24px;
+  border: none;
+  background-color: #000000;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.tab-button:hover {
+  background-color: rgb(98, 0, 238);
+  color: white;
+}
+
+.tab-button.active {
+  background-color: rgb(98, 0, 238);
+  color: white;
+  border-bottom-color: rgb(98, 0, 238);
+}
+
+.tab-content {
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  width: 100% !important;
+}
+
+/* Ensure textarea uses full width in comparison view without causing overflow */
+.comparison-view textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+/* Make sure TextareaHighlight component takes full width */
+.comparison-view .tab-content > div,
+.comparison-view .tab-content .textarea-highlight-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Questions Section for Phase 3 */
+.questions-section {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.question-block {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.question-block h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.answer-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.answer-button {
+  padding: 8px 16px;
+  border: 2px solid #000000;
+  background-color: #000000;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.answer-button:hover {
+  border-color: rgb(98, 0, 238);
+  background-color: rgb(98, 0, 238);
+  color: white;
+}
+
+.answer-button.selected {
+  background-color: rgb(98, 0, 238);
+  color: white;
+  border-color: rgb(98, 0, 238);
+}
+
+.answer-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.answer-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.answer-button:disabled:hover {
+  border-color: #000000;
+  background-color: #000000;
+}
+
+/* Feedback block styles */
+.feedback-block {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  border-left: 4px solid rgb(98, 0, 238);
+}
+
+.feedback-content {
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.feedback-content strong {
+  font-weight: bold;
+  color: #212529;
+}
+
+.feedback-content code {
+  background-color: #e9ecef;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+/* Close Activity Button for Phase 4 */
+.close-activity-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.close-activity-button {
+  padding: 12px 24px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+  font-family: 'General Sans Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.close-activity-button:hover {
+  background-color: rgb(98, 0, 238);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(98, 0, 238, 0.4);
+}
+
+.close-activity-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Completion phase - height to show exactly up to line 37 with proper syntax highlighting */
+.comparison-view .tab-content textarea,
+.comparison-view .tab-content .textarea-highlight-container textarea,
+.comparison-view .tab-content div textarea {
+  min-height: 950px !important;
+  height: 950px !important;
+  max-height: 950px !important;
+  overflow-y: hidden !important;
+  overflow-x: visible !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+}
+
+/* TextareaHighlight wrapper must match textarea dimensions exactly */
+.comparison-view .tab-content > div,
+.comparison-view .tab-content .textarea-highlight-container {
+  height: 950px !important;
+  min-height: 950px !important;
+  max-height: 950px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+/* Highlight backgrounds must have identical positioning and sizing */
+.comparison-view .tab-content .highlight-background,
+.comparison-view .tab-content .highlight-overlay,
+.comparison-view .tab-content .highlight-layer {
+  height: 950px !important;
+  min-height: 950px !important;
+  max-height: 950px !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+  pointer-events: none !important;
+}
+
+/* Responsive updates for new components */
+@media (max-width: 1200px) {
+  .comparison-view {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tab-button {
+    padding: 10px 16px;
+    font-size: 12px;
+    flex: 1;
+  }
+  
+  .question-block {
+    padding: 1rem;
+  }
+  
+  .answer-buttons {
+    justify-content: center;
+  }
+  
+  .answer-button {
+    padding: 10px 12px;
+    font-size: 12px;
+    min-width: 80px;
+  }
+  
+  .close-activity-container {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .close-activity-button {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}

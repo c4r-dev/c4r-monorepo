@@ -1,0 +1,135 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .flex-container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .p {
+    font-weight: bold;
+  }
+  
+  .page-header {
+    /* font-size: 2.5rem; */
+    /* font-weight: bold; */
+    background-color: #373737;
+    color: #FFFFFF;
+    border-radius: 5px;
+  }
+  .page-header h1 {
+    margin: 5px;
+    padding: 5px;
+    /* border-radius: 5px; */
+  }
+  .sub-header {
+    background-color: #F0F0F0;
+    color: #282828;
+    /* border-radius: 5px; */
+    margin: 5px;
+    padding: 5px;
+  }
+  .sub-header h1 {
+    margin: 5px;
+    padding: 5px;
+    font-size: 1.5rem;
+    margin: 0px;
+    padding: 0px;
+  }
+  .section {
+    background-color: #F0F0F0;
+    color: #282828;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .section-title{
+    font-size: 1.3rem;
+    /* font-weight: bold; */
+    align-self: flex-start;
+  }
+  .section-content{
+    width: 70%;
+    margin-right: 10px;
+  }
+  
+  .section-content p{
+    font-size: 1.2rem;
+  }
+  
+  .flex-container {
+     background-color: #FFFFFF;
+     margin: 5px;
+     padding: 5px;
+     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .widget-container{
+    flex-direction: column;
+    justify-content: flex-start;
+    /* padding: 10px; */
+  }
+  .widget-container p{
+    padding-left: 10px;
+  }
+  
+  .widget-header{
+    display: flex;
+    text-align: left;
+    align-self: flex-start;
+  }
+  
+  .widget-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .widget-input input{
+    width: 0px;
+    height: 0px;
+  }
+  
+  .flex-container2  button{
+    background-color: #282828;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 5px;
+    width: 20%;
+    align-self: flex-end;
+    margin-right: 5px;
+    font-size: 1.2rem;
+  }
+  
+  .outer-container{
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .widget-input input:checked + label img {
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    box-shadow: 0 0 10px #6f00ff;
+    border-radius: 5px;
+  }
+  
+  .widget-text-input{
+    height: 200px;
+    background-color: #e5e3e3;
+    border-width: 0px;
+    border-color: #282828;
+    font-size: 1.2rem;
+    padding: 10px;
+    resize: none;
+  }
+  
+  

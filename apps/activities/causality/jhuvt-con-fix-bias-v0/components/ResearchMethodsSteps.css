@@ -1,0 +1,201 @@
+.research-methods-container {
+  width: 100%;
+  min-height: 400px;
+  max-height: 450px; /* Reduced max height to ensure buttons are visible on desktop */
+  padding: 24px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow-y: auto; /* Enable scrolling on all screen sizes */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.research-methods-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.research-methods-title {
+  margin-bottom: 24px;
+  color: #374151;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.method-step-button {
+  background-color: #ffffff;
+  border: 2px solid #6b7280;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  width: 100%;
+  text-align: left;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* iPad Air specific (820x1180) - between tablet and desktop */
+@media (min-width: 769px) and (max-width: 900px) {
+  .research-methods-container {
+    max-height: 200px; /* Very small height for iPad Air */
+    min-height: 150px;
+    padding: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .research-methods-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .method-step-button {
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+
+/* Desktop/Laptop screens - ensure buttons are visible */
+@media (min-width: 1024px) {
+  .research-methods-container {
+    max-height: 400px; /* Smaller height on desktop to ensure button visibility */
+    min-height: 350px;
+  }
+}
+
+/* iPad mini specific (768x1024) - ensure button visibility */
+@media (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) {
+  .research-methods-container {
+    max-height: 180px !important; /* Much smaller height for iPad mini to ensure button visibility */
+    min-height: 150px !important;
+    padding: 8px;
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #e5e7eb !important; /* Clean subtle border */
+    background-color: #f9fafb !important; /* Clean light background */
+  }
+  
+  .research-methods-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .method-step-button {
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .research-methods-container {
+    padding: 16px;
+    min-height: 300px;
+    max-height: 400px; /* Enable scrolling on tablet screens */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .research-methods-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .method-step-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Medium mobile screens */
+@media (max-width: 600px) and (min-width: 481px) {
+  .research-methods-container {
+    padding: 12px;
+    min-height: 250px;
+    max-height: 350px; /* Scrollable container for medium mobile */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .research-methods-title {
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+  
+  .method-step-button {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .research-methods-container {
+    padding: 8px; /* Reduce padding to save space */
+    min-height: 120px; /* Extremely small height to guarantee button space */
+    max-height: 120px;
+    overflow-y: scroll; /* Force scroll bar to be visible */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .research-methods-content {
+    max-width: 100%;
+    min-height: 100%;
+  }
+  
+  .research-methods-title {
+    font-size: 14px;
+    margin-bottom: 16px;
+    flex-shrink: 0; /* Prevent title from shrinking */
+  }
+  
+  .method-step-button {
+    padding: 8px; /* Reduce button padding to fit more */
+    font-size: 12px; /* Smaller font */
+    margin-bottom: 6px; /* Reduce spacing between buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    line-height: 1.3; /* Tighter line spacing */
+  }
+  
+  .step-label {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .research-methods-container {
+    padding: 6px; /* Minimal padding for tiny screens */
+    min-height: 180px; /* Much smaller height to guarantee button space */
+    max-height: 180px;
+    overflow-y: scroll; /* Force scroll bar to be visible */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .method-step-button {
+    padding: 6px; /* Minimal padding for very small screens */
+    font-size: 11px; /* Smaller font for tiny screens */
+    margin-bottom: 4px; /* Minimal spacing */
+    flex-shrink: 0;
+    line-height: 1.2; /* Very tight line spacing */
+  }
+  
+  .research-methods-title {
+    font-size: 13px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+  }
+}

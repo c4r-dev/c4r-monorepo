@@ -1,0 +1,908 @@
+body {
+  font-family: sans-serif;
+  background-color: #f4f7f6; /* Light background for the page */ 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.flowchart-container {
+  background-color: #ffffff; /* White background for the main content */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 900px; /* Limit overall width */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flowchart-image-container {
+  margin-bottom: 30px; /* Space below the image */
+  width: 100%; /* Ensure container takes width */
+  display: flex;
+  justify-content: center;
+}
+
+/* Ensure regular img tag respects container */
+.flowchart-image {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px;
+  display: block; /* Remove any inline spacing */
+}
+
+/* Ensure Image component respects container */
+.flowchart-image-container img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px;
+}
+
+.randomization-section {
+  background-color: #f0f0f0; /* Light grey background for this section */
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px; /* Control width of the ideas section */
+  box-sizing: border-box; /* Include padding in width */
+  margin-bottom: 30px; /* Space before action buttons */
+}
+
+/* Container for Title and Timer */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Puts title left, timer right */
+  align-items: center; /* Vertically aligns title and timer */
+  margin-bottom: 15px; /* Keep space below header block */
+  min-height: 2em; /* Ensure space even if timer isn't shown yet */
+}
+
+/* Timer Display Styles */
+.timer-display {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+  background-color: #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.timer-display.expired {
+  color: #d32f2f; /* Red when expired */
+  background-color: #ffebee;
+}
+
+.randomization-section h2 {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: left;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+
+.input-container {
+  display: flex; /* Align input and potential button */
+  margin-bottom: 15px;
+  gap: 10px; /* Add space between input and button */
+}
+
+.input-container input[type="text"] {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.input-container input[type="text"]:focus {
+  border-color: #888;
+}
+
+.input-container input[type="text"]:disabled {
+  background-color: #eee; /* Grey out when disabled */
+  cursor: not-allowed;
+}
+
+.ideas-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ideas-list li {
+  background-color: #e9e9e9; /* Slightly darker background for items */
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.ideas-list li.system-added {
+  background-color: #c5aaf1; /* Purple background for system added */
+  color: #333;
+}
+
+.ideas-list li.inspiration-idea {
+  background-color: #e0e7ff; /* Light blue for inspiration */
+  color: #333;
+  font-style: italic;
+  opacity: 0.85;
+  cursor: default;
+}
+
+.ideas-list li span {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1.4rem; /* Make 'X' bigger */
+  cursor: pointer;
+  padding: 0 5px;
+  line-height: 1;
+}
+
+.remove-button:hover {
+  color: #000;
+}
+
+/* Renamed container class */
+.action-buttons-container {
+  width: 100%;
+  max-width: 700px; /* Match width of randomization section */
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px; /* Add space between buttons */
+}
+
+/* Style for the new Save Ideas button */
+.save-ideas-button {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+  max-width: 260px;
+  width: 100%;
+}
+
+.save-ideas-button:hover {
+  background-color: #45a049;
+}
+
+.save-ideas-button:disabled {
+  background-color: #aaa; /* More distinct disabled color */
+  color: #eee;
+  cursor: not-allowed;
+}
+
+.continue-button {
+  background-color: #333; /* Dark background */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.continue-button:hover {
+  background-color: #888;
+}
+
+.continue-button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+  padding: 5px 10px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  border-left: 3px solid #d32f2f;
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.add-idea-button {
+  background-color: #666;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-idea-button:hover {
+  background-color: #888;
+}
+
+/* Ensure Add Idea button also gets disabled styling */
+.add-idea-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Programmatic Flowchart Styles */
+.programmatic-flowchart {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Takes width of its parent, flowchart-container */
+  gap: 20px; /* Increased space between rows */
+  margin-bottom: 30px; /* Space below the flowchart */
+  position: relative; /* For positioning arrows */
+}
+
+.flowchart-row-header,
+.flowchart-row {
+  display: flex;
+  gap: 30px; /* Increased space between columns */
+  align-items: stretch; /* Make items in a row take same height */
+}
+
+.flowchart-step {
+  padding: 10px 12px; /* Reduced padding */
+  border-radius: 5px; /* Slightly adjusted border radius */
+  color: white;
+  font-size: 0.85rem; /* Reduced font size */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* Allow steps to grow and fill space */
+  flex-basis: 0; /* Important for equal distribution with flex-grow */
+  box-sizing: border-box;
+  line-height: 1.3;
+  min-height: 44px; /* Adjusted min-height */
+}
+
+/* Team Headers */
+.team-a-header {
+  background-color: #3cb878; /* Team A Green */
+}
+
+.team-b-header {
+  background-color: #4a86e8; /* Team B Blue */
+}
+
+/* Shared Steps */
+.shared-step.prepare-step {
+  background-color: #3cb878; /* Team A Green */
+  /* flex-basis is already 0 and grow is 1, so it will take full width if it's the only child */
+}
+
+.shared-step.manuscript-step {
+  background-color: #2a8f5d; /* Darker Green for manuscript step */
+   /* flex-basis is already 0 and grow is 1 */
+}
+
+/* Team-Specific Steps */
+.team-a-step {
+  background-color: #3cb878; /* Team A Green */
+}
+
+.team-b-step {
+  background-color: #4a86e8; /* Team B Blue */
+}
+
+/* Empty step for layout */
+.empty-step {
+  background-color: transparent;
+  border: 1px solid transparent; /* Maintain space like other boxes if needed for alignment */
+  /* min-height and padding are inherited from .flowchart-step, which is good */
+  /* Ensure it does not appear as a colored box */
+  color: transparent; /* Hide any accidental text/whitespace */
+}
+
+.flowchart-instruction {
+  text-align: center;
+  padding-bottom: 18px;
+  font-size: 1.08rem;
+  color: #222;
+}
+
+/* Arrow Styles */
+.flowchart-arrow {
+  position: absolute;
+  background-color: #ff1493; /* Bright pink/magenta */
+  z-index: 10;
+}
+
+/* Starting dots for all arrows */
+.flowchart-arrow::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #ff1493;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 11;
+}
+
+/* Down arrows */
+.arrow-down {
+  width: 3px;
+  height: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow-down::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid #ff1493;
+}
+
+/* Right arrows */
+.arrow-right {
+  height: 3px;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Left arrows */
+.arrow-left {
+  height: 3px;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow-left::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid #ff1493;
+}
+
+.arrow-right::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #ff1493;
+}
+
+/* Specific arrow positions */
+.arrow-prepare-to-baseline {
+  top: 120px; /* Start from bottom of PREPARE box */
+  left: 50%; /* Start from center of PREPARE box */
+  width: 25%; /* Length of diagonal line */
+  height: 3px; /* Arrow line thickness */
+  transform: rotate(5deg); /* Shallow angle to reach top of baseline box */
+  transform-origin: left center; /* Rotate from starting point */
+  background-color: #ff69b4 !important; /* Pink color for line 1 */
+}
+
+.arrow-prepare-to-baseline::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 1 */
+}
+
+.arrow-prepare-to-baseline::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-5deg); /* Counter-rotate the arrowhead to match new angle */
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #ff69b4; /* Pink arrowhead for line 1 */
+}
+
+.arrow-baseline-to-generate {
+  top: 165px; /* Move up to exact middle of the boxes */
+  left: 48.7%; /* Move 2px to the left from 49% */
+  width: 25px; /* Span the gap between boxes */
+  background-color: #ff69b4 !important; /* Pink color for line 2 */
+}
+
+.arrow-baseline-to-generate::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 2 */
+  left: 100% !important; /* Move dot to right end for left arrow */
+  transform: translateY(-50%) translateX(-50%) !important; /* Center the dot at the right end */
+}
+
+.arrow-left.arrow-baseline-to-generate::after {
+  border-right: 8px solid #ff69b4 !important; /* Pink arrowhead for line 2 */
+}
+
+.arrow-syringes-to-habituate {
+  top: 228px; /* Move up 2px from 230px */
+  left: 48.25%; /* Fine-tune positioning to start at end of box */
+  width: 25px; /* Span the gap between boxes */
+  background-color: #ff69b4 !important; /* Pink color for line 3 */
+}
+
+.arrow-syringes-to-habituate::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 3 at beginning (left end) */
+}
+
+.arrow-right.arrow-syringes-to-habituate::after {
+  border-left: 8px solid #ff69b4 !important; /* Pink arrowhead for line 3 */
+}
+
+.arrow-generate-to-syringes {
+  top: 180px; /* Move up a little more */
+  left: 25%; /* Center of left column */
+  height: 20px; /* Vertical arrow length */
+  background-color: #ff69b4 !important; /* Pink color for line 4 */
+}
+
+.arrow-generate-to-syringes::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 4 at beginning (top) */
+  top: -3px !important; /* Position dot at the very top of the vertical line */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.arrow-down.arrow-generate-to-syringes::after {
+  border-top: 8px solid #ff69b4 !important; /* Pink arrowhead for line 4 */
+}
+
+/* Line 5 - Pink styling */
+.arrow-habituate-to-administer {
+  background-color: #ff69b4 !important; /* Pink color for line 5 */
+}
+
+.arrow-habituate-to-administer::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 5 at beginning (top) */
+  top: -3px !important; /* Position dot at the very top of the vertical line */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.arrow-down.arrow-habituate-to-administer::after {
+  border-top: 8px solid #ff69b4 !important; /* Pink arrowhead for line 5 */
+}
+
+/* Line 6 - Pink styling */
+.arrow-administer-to-record {
+  background-color: #ff69b4 !important; /* Pink color for line 6 */
+}
+
+.arrow-administer-to-record::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 6 at beginning (top) */
+  top: -3px !important; /* Position dot at the very top of the vertical line */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.arrow-down.arrow-administer-to-record::after {
+  border-top: 8px solid #ff69b4 !important; /* Pink arrowhead for line 6 */
+}
+
+/* Line 7 - Pink styling */
+.arrow-record-to-conceal {
+  background-color: #ff69b4 !important; /* Pink color for line 7 */
+}
+
+.arrow-record-to-conceal::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 7 at beginning (right) */
+  right: -3px !important; /* Position dot at the very right of the left arrow */
+  left: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.arrow-left.arrow-record-to-conceal::after {
+  border-right: 8px solid #ff69b4 !important; /* Pink arrowhead for line 7 */
+}
+
+/* Line 8 - Pink styling */
+.arrow-conceal-to-analyze {
+  background-color: #ff69b4 !important; /* Pink color for line 8 */
+}
+
+.arrow-conceal-to-analyze::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 8 at beginning (left) */
+  left: -3px !important; /* Position dot at the very left of the right arrow */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.arrow-right.arrow-conceal-to-analyze::after {
+  border-left: 8px solid #ff69b4 !important; /* Pink arrowhead for line 8 */
+}
+
+/* Line 9 - Pink styling */
+.arrow-analyze-to-reveal {
+  background-color: #ff69b4 !important; /* Pink color for line 9 */
+}
+
+.arrow-analyze-to-reveal::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 9 at beginning (top-right) */
+  right: -3px !important; /* Position dot at the very right of the diagonal line */
+  top: -3px !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+.arrow-analyze-to-reveal::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(2.5deg); /* Counter-rotate the arrowhead */
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid #ff69b4; /* Pink arrowhead for line 9 */
+}
+
+/* Line 10 - Pink styling */
+.arrow-reveal-to-manuscript {
+  background-color: #ff69b4 !important; /* Pink color for line 10 */
+}
+
+.arrow-reveal-to-manuscript::before {
+  background-color: #ff69b4 !important; /* Pink dot for line 10 at beginning (left) */
+  left: -3px !important; /* Position dot at the very left of the diagonal line */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.arrow-reveal-to-manuscript::after {
+  border-left: 8px solid #ff69b4 !important; /* Pink arrowhead for line 10 */
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large tablets and small desktops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .flowchart-container {
+    max-width: 100%;
+    padding: 25px 20px;
+  }
+  
+  .flowchart-step {
+    font-size: 0.9rem;
+    padding: 12px 10px;
+    min-height: 50px;
+  }
+}
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  .flowchart-container {
+    padding: 20px 15px;
+  }
+  
+  /* Hide all arrows on tablets and mobile - they won't position correctly */
+  .flowchart-arrow {
+    display: none !important;
+  }
+  
+  .programmatic-flowchart {
+    gap: 25px; /* Increase gap to replace visual arrows */
+  }
+  
+  .flowchart-row {
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .flowchart-step {
+    font-size: 0.95rem;
+    padding: 15px 12px;
+    min-height: 55px;
+    border: 2px solid #e0e0e0; /* Add border to make boxes more defined without arrows */
+  }
+  
+  /* Stack header elements vertically */
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .timer-display {
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  /* Stack action buttons vertically */
+  .action-buttons-container {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .save-ideas-button,
+  .continue-button {
+    width: 100%;
+    min-height: 50px; /* Touch-friendly size */
+    font-size: 1rem;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .flowchart-container {
+    padding: 15px 10px;
+  }
+  
+  .flowchart-instruction {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  
+  .programmatic-flowchart {
+    gap: 30px; /* Even more gap for mobile */
+  }
+  
+  /* Stack team columns vertically on mobile */
+  .flowchart-row {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .flowchart-step {
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem; /* Larger text for readability */
+    padding: 18px 15px;
+    min-height: 60px;
+    text-align: center;
+  }
+  
+  .team-a-header,
+  .team-b-header {
+    background: linear-gradient(135deg, #4CAF50, #45a049); /* Green gradient for headers */
+    color: white;
+    font-weight: bold;
+  }
+  
+  .team-a-step {
+    background: linear-gradient(135deg, #e8f5e8, #d4edda); /* Light green for team A */
+  }
+  
+  .team-b-step {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* Light blue for team B */
+  }
+  
+  .shared-step {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* Light orange for shared */
+  }
+  
+  /* Add visual flow indicators to replace arrows on mobile */
+  .flowchart-step:not(.team-a-header):not(.team-b-header):not(.empty-step)::after {
+    content: '↓';
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ff69b4;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  /* Don't show arrow after last step */
+  .manuscript-step::after {
+    display: none;
+  }
+  
+  /* Special arrows for horizontal flow steps */
+  .flowchart-row:nth-child(3) .team-a-step::after {
+    content: '→';
+  }
+  
+  .flowchart-row:nth-child(4) .team-a-step::after {
+    content: '→';
+  }
+  
+  .flowchart-row:nth-child(8) .team-b-step::after {
+    content: '←';
+  }
+  
+  .flowchart-row:nth-child(9) .team-a-step::after {
+    content: '←';
+  }
+  
+  /* Input section */
+  .input-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .input-container input[type="text"] {
+    width: 100%;
+    min-height: 50px; /* Touch-friendly */
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+  
+  .add-idea-button {
+    width: 100%;
+    min-height: 50px;
+    font-size: 1rem;
+  }
+  
+  /* Ideas list */
+  .ideas-list li {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  
+  .remove-button {
+    min-width: 35px;
+    min-height: 35px; /* Touch-friendly */
+    font-size: 1.2rem;
+  }
+}
+
+.arrow-habituate-to-administer {
+  top: 245px !important; /* Move down 9px from 236px */
+  left: 75% !important; /* Center of right column */
+  height: 18px !important; /* Try 18px height */
+}
+
+.arrow-administer-to-record {
+  top: 310px !important; /* Try 310px position */
+  left: 75% !important; /* Center of right column */
+  height: 18px !important; /* Vertical arrow length */
+}
+
+.arrow-record-to-conceal {
+  top: 375px !important; /* Start from Record maze box - DO NOT CHANGE */
+  left: 25% !important; /* Position to target Conceal allocations box on left */
+  width: 50% !important; /* Width to span from left to right */
+  height: 3px !important; /* Arrow line thickness */
+  transform: rotate(-2.5deg) !important; /* Fine-tuned slight downward angle */
+  transform-origin: right center !important; /* Rotate from right end */
+}
+
+.arrow-conceal-to-analyze {
+  top: 415px !important; /* Move down 2px more from 413px */
+  left: 48.3% !important; /* Move right 2px (approximately 0.3%) */
+  width: 25px !important; /* Horizontal arrow width */
+}
+
+.arrow-analyze-to-reveal {
+  top: 439px !important; /* Try 439px position */
+  left: 25% !important; /* Position to target Reveal identities box on left */
+  width: 50% !important; /* Width to span from left to right */
+  height: 3px !important; /* Arrow line thickness */
+  transform: rotate(-2.5deg) !important; /* Similar angle to line 7 */
+  transform-origin: right center !important; /* Rotate from right end */
+}
+
+
+.arrow-reveal-to-manuscript {
+  top: 503px !important; /* Move up 2px from 505px */
+  left: 25% !important; /* Start from center of left column */
+  width: 25% !important; /* Shorten line by 50% from 50% to 25% */
+  height: 3px !important; /* Arrow line thickness */
+  transform: rotate(5deg) !important; /* Slope down and to the right */
+  transform-origin: left center !important; /* Rotate from starting point */
+}
+
+.arrow-reveal-to-manuscript::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-5deg); /* Counter-rotate the arrowhead */
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #ff1493;
+}
+
+.arrow-record-to-conceal::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-5deg); /* Counter-rotate the arrowhead */
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid #ff1493;
+}
+
+.arrow-prepare-syringes-to-habituate {
+  top: 270px; /* Middle of row 4 */
+  left: calc(50% - 7.5px); /* Between left and right columns */
+}
+
+.arrow-habituate-to-administer {
+  top: 345px; /* After row 4 */
+  right: 25%; /* Position over right column */
+}
+
+.arrow-administer-to-record {
+  top: 420px; /* After row 5 */
+  right: 25%; /* Position over right column */
+}
+
+.arrow-conceal-to-analyze {
+  top: 570px; /* Middle of row 7 */
+  left: calc(50% - 7.5px); /* Between left and right columns */
+}
+
+.arrow-reveal-to-manuscript {
+  top: 645px; /* After row 8 */
+  left: 25%; /* Position over left column */
+}

@@ -1,0 +1,58 @@
+/* File: app/components/Legend.css */
+
+h1 {
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    font-size: 1.2rem;
+    margin: 6px;
+    font-weight: normal;
+}
+
+p {
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    margin: 0 0 0 5px; /* Adjust margin for side-by-side */
+    line-height: 20px; /* Align text vertically with box */
+}
+
+.legend-frame {
+    display: flex;
+    /* Default to horizontal layout */
+    flex-direction: row;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    /* width: auto; /* Allow width to adjust */
+    width: 100%; /* Take full width to center items */
+    border: none; /* Remove border or style as needed */
+    gap: 15px; /* Gap between legend items */
+    /* justify-self: flex-start; */ /* Remove or adjust */
+    margin-top: 5px; /* Adjust margin */
+    padding: 5px 0; /* Adjust padding */
+}
+
+.label {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align box and text */
+    /* justify-content: left; */ /* Not needed if centering frame */
+    gap: 5px; /* Reduced gap between box and text */
+    /* margin-left: 5px; */ /* Not needed if using gap */
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    flex-shrink: 0; /* Prevent box from shrinking */
+}
+
+
+/* Media query might not be needed anymore if default is row */
+/* @media (max-width: 768px) {
+    .legend-frame {
+        flex-direction: row;
+        width: 100%;
+        gap: 15px;
+    }
+    .label {
+        gap: 2px;
+    }
+} */

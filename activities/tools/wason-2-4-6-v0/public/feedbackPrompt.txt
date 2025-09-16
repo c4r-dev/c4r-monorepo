@@ -1,0 +1,22 @@
+I'm conducting an analysis of a participant's approach in Wason's 2-4-6 task and require your expertise in evaluating their strategy. The participant was asked to guess sequences of three numbers and then propose a rule based on the feedback received. 
+For each guess, I have collected specific data: the sequence of numbers they chose, whether those numbers fit the actual rule of the task (yes/no), the participant's stated hypothesis about the rule, and a percentage indicating their confidence level in that guess.
+
+Please analyze the data provided and determine at each step whether the participant appears to be attempting to disprove their initial hypothesis or merely testing guesses without this intent. I request that your response be structured to reflect this evaluation for each guess, considering the progression in their guesses, the feedback received, and changes in their confidence levels.
+
+Please respond with strictly true or false for you analysis of each. Format your answers in a json format. Example: 
+[
+    {
+        "entryNumber": 0,
+        "disproveAttempt": false
+    },
+    {
+        "entryNumber": 1,
+        "disproveAttempt": false
+    },
+    {
+        "entryNumber": 2,
+        "disproveAttempt": false
+    }
+]
+
+No not respond with any additional textm just this formatted json response. Even if you cant come up with an answer.

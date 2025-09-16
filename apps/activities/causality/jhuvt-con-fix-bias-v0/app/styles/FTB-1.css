@@ -1,0 +1,661 @@
+/* Override app-main padding for FTB pages */
+.app-main {
+  padding: 0 !important;
+  scroll-behavior: auto;
+}
+
+html, body {
+  scroll-behavior: auto !important;
+  overflow: auto !important;
+  overflow-y: scroll !important;
+}
+
+.ftb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 20px; /* Reduced top padding to minimize blank space */
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: calc(100vh - 80px); /* Ensure container fills viewport */
+}
+
+.ftb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 0;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.ftb-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.progress-indicator {
+  background: #f3f4f6;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  display: block;
+  visibility: visible;
+}
+
+.case-study-info {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px; /* Further reduced padding */
+  margin-bottom: 16px; /* Further reduced margin */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 0; /* Ensure no top margin */
+}
+
+.case-study-info .progress-indicator {
+  margin-bottom: 8px; /* Further reduced bottom margin */
+  margin-top: 0; /* No top margin */
+  text-align: center;
+}
+
+.case-study-info h2 {
+  margin: 0 0 12px 0; /* Reduced bottom margin */
+  font-size: 22px; /* Slightly smaller font */
+  font-weight: 600;
+  color: #1f2937;
+  display: block;
+  visibility: visible;
+}
+
+.research-details p {
+  margin: 4px 0; /* Reduced margin */
+  font-size: 14px;
+  line-height: 1.5; /* Tighter line height */
+  color: #374151;
+}
+
+.research-details strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.problem-phase, .solution-phase {
+  margin-bottom: 30px;
+}
+
+.instructions {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px; /* Reduced padding */
+  margin-bottom: 16px; /* Reduced margin */
+  margin-top: 0; /* No top margin */
+}
+
+.instructions p {
+  margin: 0;
+  font-size: 16px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.flowchart-container {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* iPad Air specific spacing (820x1180) - FORCE PAGE SCROLLING */
+@media (min-width: 769px) and (max-width: 900px) {
+  /* Override any height constraints that prevent page scrolling */
+  html, body {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  
+  .app-container, .app-main {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 100vh !important;
+    overflow-y: visible !important;
+  }
+  
+  .ftb-container {
+    height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 600px !important; /* Even more massive space to ensure Next Case Study button is clickable on iPad Air */
+  }
+  
+  .case-study-info {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .case-study-info h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .research-details p {
+    margin: 3px 0;
+    font-size: 13px;
+  }
+  
+  .instructions {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .instructions p {
+    font-size: 14px;
+  }
+  
+  .flowchart-container {
+    margin-bottom: 8px;
+  }
+  
+  .action-buttons {
+    margin-top: 8px;
+    margin-bottom: 200px !important; /* Even larger space for iPad Air button visibility */
+    padding-bottom: 100px !important; /* Additional padding for scrollable space */
+    background-color: transparent !important; /* Clean transparent background */
+    border: none !important; /* Remove green border */
+    border-radius: 8px !important;
+    padding: 20px !important;
+  }
+  
+  /* Force solution phase to be visible */
+  .solution-phase {
+    margin-top: 20px !important;
+    margin-bottom: 50px !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  
+  /* Make buttons consistent with mobile styling on iPad Air */
+  .confirm-btn, .no-concerns-btn {
+    background-color: #3b82f6 !important; /* Blue background to match mobile */
+    color: white !important;
+    border: none !important; /* No border to match mobile */
+    font-size: 16px !important; /* Match mobile font size */
+    padding: 12px 24px !important; /* Match mobile padding */
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    min-width: 140px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important; /* Remove shadow to match mobile */
+  }
+  
+  .confirm-btn.active {
+    background-color: #3b82f6 !important; /* Same blue when active */
+  }
+  
+  .no-concerns-btn {
+    background-color: #f3f4f6 !important; /* Match mobile no-concerns styling */
+    color: #374151 !important;
+    border: 2px solid #d1d5db !important;
+  }
+  
+  /* Ensure Next Case Study button has massive space for iPad Air */
+  .feedback-container .next-btn {
+    margin-top: 30px !important;
+    margin-bottom: 200px !important; /* Massive margin for Next Case Study button visibility on iPad Air */
+    background-color: #10b981 !important; /* Green background */
+    border: none !important; /* Clean border */
+    font-size: 16px !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    min-width: 140px !important;
+  }
+}
+
+/* iPad mini specific (768x1024) - ensure confirm selection button visibility */
+@media (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) {
+  /* Force page scrolling for iPad mini */
+  html, body {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  
+  .app-container, .app-main {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 100vh !important;
+    overflow-y: visible !important;
+  }
+  
+  .ftb-container {
+    height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 500px !important; /* Massive space for iPad mini to ensure Next Case Study button visibility */
+  }
+  
+  .flowchart-container {
+    margin-bottom: 20px !important;
+  }
+  
+  .action-buttons {
+    margin-top: 20px !important;
+    margin-bottom: 100px !important; /* Increased margin for iPad mini confirm selection button visibility */
+    padding: 16px !important;
+    background-color: transparent !important; /* Clean transparent background */
+    border: none !important; /* Remove border */
+    border-radius: 8px !important;
+  }
+  
+  .confirm-btn, .no-concerns-btn {
+    background-color: #3b82f6 !important; /* Blue background to match mobile */
+    color: white !important;
+    border: none !important; /* No border to match mobile */
+    font-size: 16px !important; /* Match mobile font size */
+    padding: 12px 24px !important; /* Match mobile padding */
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    min-width: 140px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important; /* Remove shadow to match mobile */
+  }
+  
+  .confirm-btn.active {
+    background-color: #3b82f6 !important; /* Same blue when active */
+  }
+  
+  .no-concerns-btn {
+    background-color: #f3f4f6 !important; /* Match mobile no-concerns styling */
+    color: #374151 !important;
+    border: 2px solid #d1d5db !important;
+  }
+  
+  /* Ensure solution phase and feedback containers have adequate spacing */
+  .solution-phase {
+    margin-bottom: 50px !important; /* Increased space for solution phase on iPad mini */
+  }
+  
+  .feedback-container {
+    margin-bottom: 80px !important; /* Increased margin for feedback containers on iPad mini */
+    padding-bottom: 40px !important; /* Increased padding for scroll space */
+  }
+  
+  .feedback-container .next-btn {
+    margin-top: 30px !important;
+    margin-bottom: 150px !important; /* Increased margin for Next Case Study button visibility on iPad mini */
+    background-color: #10b981 !important; /* Green background */
+    border: 3px solid #065f46 !important; /* Dark green border */
+    font-size: 18px !important;
+    padding: 16px 32px !important;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5) !important;
+  }
+}
+
+.confirm-btn, .no-concerns-btn, .next-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.confirm-btn {
+  background: #d1d5db;
+  color: #6b7280;
+}
+
+.confirm-btn.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.confirm-btn.active:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.no-concerns-btn {
+  background: #f3f4f6;
+  color: #374151;
+  border: 2px solid #d1d5db;
+}
+
+.no-concerns-btn:hover:not(:disabled) {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.no-concerns-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.next-btn {
+  background: #10b981;
+  color: white;
+}
+
+.next-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.feedback-container {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+.feedback-container.success {
+  background: #ecfdf5;
+  border: 2px solid #10b981;
+  color: #065f46;
+}
+
+.feedback-container.error {
+  background: #fef2f2;
+  border: 2px solid #ef4444;
+  color: #991b1b;
+}
+
+.feedback-container p {
+  margin: 0 0 16px 0;
+  font-weight: 500;
+}
+
+.feedback-container .next-btn {
+  margin-top: 0;
+}
+
+.loading-state, .error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+.loading-state p, .error-state p {
+  margin: 0;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll to Top Button */
+.scroll-to-top-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #3b82f6 !important;
+  color: white !important;
+  border: none !important;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer !important;
+  z-index: 1001; /* Higher than header z-index */
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto !important;
+  user-select: none;
+}
+
+.scroll-to-top-button:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.scroll-to-top-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile styles for scroll to top button */
+@media (max-width: 768px) {
+  .scroll-to-top-button {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ftb-container {
+    padding: 16px;
+  }
+  
+  .ftb-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .ftb-header h1 {
+    font-size: 24px;
+  }
+  
+  .case-study-info {
+    padding: 12px; /* Reduced padding */
+    margin-bottom: 16px; /* Reduced margin */
+  }
+  
+  .case-study-info h2 {
+    font-size: 18px; /* Smaller font */
+    margin-bottom: 12px; /* Reduced margin */
+  }
+  
+  .research-details p {
+    font-size: 12px; /* Smaller text */
+    margin: 4px 0; /* Tighter spacing */
+  }
+  
+  .instructions {
+    padding: 12px; /* Reduced padding */
+    margin-bottom: 12px; /* Reduced margin */
+  }
+  
+  .instructions p {
+    font-size: 14px; /* Smaller instructions */
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px; /* Minimal top margin */
+    margin-bottom: 8px; /* Minimal bottom margin */
+  }
+  
+  .confirm-btn, .no-concerns-btn, .next-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 8px 16px; /* Smaller buttons */
+    font-size: 13px;
+  }
+  
+  .flowchart-container {
+    height: 400px;
+    margin-bottom: 8px; /* Reduced bottom margin */
+  }
+  
+  /* Remove extra spacing between research methods and solution options */
+  .solution-phase .flowchart-container {
+    margin-bottom: 8px; /* Minimal margin after flowchart */
+  }
+  
+  .feedback-container.success {
+    margin: 8px 0; /* Minimal margins for feedback */
+    padding: 12px; /* Reduced padding */
+  }
+  
+  /* Aggressively remove spacing between research methods and solution options */
+  .solution-phase {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  .solution-phase .flowchart-container {
+    margin-bottom: 0 !important; /* No margin after research methods */
+  }
+  
+  .solution-phase .feedback-container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Override height constraints for mobile */
+  .app-container, .app-main {
+    height: auto !important;
+    min-height: 100vh;
+  }
+  
+  .ftb-container {
+    padding: 12px;
+    padding-bottom: 500px !important; /* Massive bottom padding for mobile complete scrollability */
+    min-height: auto; /* Allow content to determine height */
+  }
+  
+  .case-study-info {
+    padding: 12px;
+  }
+  
+  .instructions {
+    padding: 12px;
+  }
+  
+  .instructions p {
+    font-size: 14px;
+  }
+  
+  .feedback-container {
+    padding: 16px;
+    font-size: 14px;
+  }
+  
+  .flowchart-container {
+    height: 120px; /* Extremely small height to guarantee button visibility */
+    overflow-y: scroll; /* Force scroll bar to be visible */
+    overflow-x: hidden; /* Hide horizontal scrolling */
+  }
+}
+
+@media (max-width: 320px) {
+  /* Override height constraints for very small screens */
+  .app-container, .app-main {
+    height: auto !important;
+    min-height: 100vh;
+  }
+  
+  .ftb-container {
+    padding: 8px;
+    min-height: auto; /* Allow content to determine height */
+  }
+  
+  .case-study-info {
+    padding: 8px;
+  }
+  
+  .instructions {
+    padding: 8px;
+  }
+  
+  .instructions p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  
+  .flowchart-container {
+    height: 200px; /* Much smaller height to guarantee button visibility */
+    overflow-y: scroll; /* Force scroll bar to be visible */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  .feedback-container {
+    padding: 12px;
+    font-size: 12px;
+  }
+  
+  .action-buttons {
+    gap: 12px;
+    margin-top: 16px; /* Reduced space to fit on screen */
+    margin-bottom: 16px; /* Reduced space to fit on screen */
+    position: relative; /* Ensure buttons stay in view */
+    z-index: 10; /* Keep buttons above other content */
+    padding-bottom: 20px; /* Extra bottom padding for mobile safety */
+  }
+  
+  .confirm-btn, .no-concerns-btn, .next-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    min-width: 120px;
+  }
+}

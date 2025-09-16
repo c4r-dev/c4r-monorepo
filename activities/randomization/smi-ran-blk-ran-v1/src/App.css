@@ -1,0 +1,349 @@
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+  
+.code {
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+    padding: 10px;
+    background-color: black;
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        font-size: 11px;
+    }
+    @media (min-width: 768px) {
+        /* flex-direction: row; */
+        /* max-width: 50%; */
+        width: 50vw;
+    }
+}
+
+.spanY {
+    color: yellow;
+}
+
+.spanG {
+    color: rgb(31, 172, 31);
+}
+
+.spanO {
+    color: rgb(196, 140, 36);
+}
+
+.spanB {
+    color:rgb(104, 128, 198);
+}
+
+.spanP {
+    color: magenta;
+}
+
+.spanLG {
+    color:rgb(199, 235, 199);
+}
+
+.spanLB {
+    color: rgb(83, 174, 239)
+}
+
+.indent {
+    text-indent: 40px;
+}
+
+.block {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    transform: rotate(270deg);
+    align-items: center;
+    color: black;
+    font-size: 1.2em
+}
+
+.treat {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: black;
+    font-size: 1.2em;
+}
+
+.ments {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: black;
+    font-size: 1.2em;
+}
+
+.treatment {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    text-indent: 5px;
+    color: black;
+    font-size: 1.2em;
+}
+
+.Blo {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: black;
+    font-size: 1.2em;
+}
+
+.ck {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    /* text-indent: 5px; */
+    color: black;
+    font-size: 1.2em;
+}
+.order {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-indent: 5px;
+    color: black;
+    font-size: 1.2em;
+}
+
+.block0 {
+    background-color: white;
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 1.2em;
+}
+
+.block1 {
+    background-color: black;
+    border: 1px solid red;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+}
+
+.block2 {
+    background-color: rgb(235, 235, 152);
+    border: 1px solid red;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+}
+.block3 {
+    background-color: rgb(239, 204, 239);
+    border: 1px solid #333;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+}
+.block4 {
+    background-color: rgb(196, 127, 196);
+    border: 1px solid #333;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; /* Optional: space between items */
+    align-items: flex-start; /* Align items vertically center */
+    width: 100%; /* Container takes full width */
+    /* height: 500px; */
+    /* border: 1px solid #ccc; */
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.randomize-2-body-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; /* Optional: space between items */
+    align-items: flex-start; /* Align items vertically center */
+    width: 100%; /* Container takes full width */
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+
+
+.top {
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+    h2, h4 {
+        /* margin: 1em; */
+        margin-bottom: 0.8em;
+        margin-top: 0.1em;
+    }
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        h2, h4 {
+            margin: 1em;
+            margin-bottom: 0.4em;
+            margin-top: 0.4em;
+        }
+    }
+}
+
+.randomize-1-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 95vh;
+    margin: 0;
+    padding: 0;
+}
+.randomize-2-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 95vh;
+    margin: 0;
+    padding: 0;
+}
+
+.code-container {
+    flex: 1; /* Distribute equal space between the boxes */
+    /* background-color: #4CAF50; */
+    color: black;
+    display: flex;
+    justify-content: left; /* Center content horizontally */
+    align-items: flex-start; /* Center content vertically */
+    margin: 10px; /* Optional: space around the boxes */
+    height: 100%; /* Make the boxes take up the full height of the container */
+    width: 50%;
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.chart-container {
+    flex: 1; /* Distribute equal space between the boxes */
+    /* background-color: #4CAF50; */
+    color: black;
+    display: flex;
+    justify-content: left; /* Center content horizontally */
+    align-items: flex-start; /* Center content vertically */
+    margin: 10px; /* Optional: space around the boxes */
+    height: 100%; /* Make the boxes take up the full height of the container */
+
+    flex-direction: column;
+    width: 20%;
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.chartTitle {
+    font-family: sans-serif, Menlo, Monaco, 'Courier New', monospace;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.7em;
+}
+
+.block-chart2 {
+    display: grid;
+    /* grid-template-columns: repeat(6, 1fr); */
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(10, 1fr);  */
+    width: 500px; 
+    height: 500px; 
+    /* border: 1px solid red; */
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-width: 500px;
+    max-height: 500px;
+
+    /* Mobile device */
+    @media (max-width: 768px) {
+        width: 300px; 
+        height: 300px; 
+        /* max-width: 300px; */
+        /* max-height: 300px; */
+    }
+}
+
+.custom-input {
+    width: 16px;
+}
+
+.button {
+    margin-left: 20px;
+}
+
+.finalPage {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-image: url('assets/confetti-full.svg'); /* Path to your SVG file */
+    background-size: cover; /* Scale the background to cover the container */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-position: center; /* Center the background image */
+  }
+
+  .finalPageCenter {
+    color: black;
+    text-align: center;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+  }
+
+
+  .legend-container {
+    /* width: 13%; 
+    ,arg*/
+    /* margin-right: 50px; */
+    /* margin-right: 20px; */
+    margin-left: 20px;
+  }
+
+  .indentLarge {
+    text-indent: 244px;
+}

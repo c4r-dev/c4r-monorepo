@@ -1,0 +1,191 @@
+/* app/globals.css - No changes needed for this specific request */
+/* */
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Regular.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* */
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans/GeneralSans-Bold.woff2') format('woff2'),
+    url('/fonts/GeneralSans/GeneralSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+/* */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+/* */
+* {
+  text-wrap: balance;
+  box-sizing: border-box; /* Add box-sizing */
+}
+/* */
+html, body {
+  height: 100%; /* Ensure html and body take full height */
+}
+/* */
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: 'General Sans', sans-serif; /* Apply General Sans globally */
+  padding-top: 60px; /* Add padding to offset fixed header */
+}
+/* */
+/* Header Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Fixed header height */
+}
+/* */
+.favicon-button {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+/* */
+.favicon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  display: block;
+}
+/* */
+.title-container {
+  flex-grow: 1;
+  max-width: 80%;
+}
+/* */
+h1,
+.title {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+/* */
+h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 10%;
+}
+/* */
+/* --- Button styles --- */
+
+.button {
+    background-color: #020202; /* Initial color */
+    color: white; /* Text color */
+}
+/* */
+.button:hover {
+    background-color: #6F00FF; /* Hover color */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 8px;
+    height: 50px;
+  }
+  
+  body {
+    padding-top: 50px;
+  }
+  
+  .favicon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .title {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+  
+  .button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+  
+  h2 {
+    padding: 0 5%;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 5px;
+    height: 45px;
+  }
+  
+  body {
+    padding-top: 45px;
+  }
+  
+  .favicon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+  }
+  
+  .title {
+    font-size: clamp(0.9rem, 5vw, 1.2rem);
+  }
+  
+  .button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 90px;
+  }
+  
+  h2 {
+    padding: 0 2%;
+    font-size: 1rem;
+  }
+}
+
+/* Info boxes responsive styles */
+@media (min-width: 769px) {
+  .info-boxes {
+    flex-direction: row !important;
+    justify-content: space-between;
+  }
+}
+
+/* Table responsive improvements */
+@media (max-width: 768px) {
+  .table-container {
+    padding: 0 5px;
+  }
+  
+  table {
+    font-size: 0.8rem;
+  }
+  
+  th, td {
+    padding: 2px !important;
+  }
+}

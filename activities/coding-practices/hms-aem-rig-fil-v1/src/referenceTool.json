@@ -1,0 +1,37 @@
+[
+    {
+        "number": "1. Introduction:",
+        "rule1": "a. Briefly describe your experiment and its purpose.",
+        "rule2": "b. Identify any sensitive information or variables that need to remain blinded."
+    },
+    {
+        "number": "2. Participant Recruitment and Consent:",
+        "rule1": "a. How will you ensure that participants are unaware of the experimental conditions?",
+        "rule2": "b. Describe your informed consent process and how it maintains blinding."
+    },
+    {
+        "number": "3. Randomization and Allocation:",
+        "rule1": "a. How will you randomize participants into different groups or conditions?",
+        "rule2": "b. What steps will you take to prevent accidental unmasking during allocation?"
+    },
+    {
+        "number": "4. Data Collection and Measurement:",
+        "rule1": "a. Specify who collects data and how they remain blinded.",
+        "rule2": "b. Detail any precautions to prevent inadvertent unmasking during data collection."
+    },
+    {
+        "number": "5. Data Analysis and Interpretation:",
+        "rule1": "a. How will you analyze the data while maintaining blinding?",
+        "rule2": "b. Consider statistical methods or procedures that minimize unmasking."
+    },
+    {
+        "number": "6. Reporting and Communication:",
+        "rule1": "a. Describe how you will summarize and present results without revealing group assignments.",
+        "rule2": "b. Address any challenges related to unmasking during result dissemination."
+    },
+    {
+        "number": "7. Reflection and Self-Check:",
+        "rule1": "a. Regularly assess whether blinding procedures are being followed.",
+        "rule2": "b. Encourage team members to reflect on potential risks of unmasking."
+    }
+]

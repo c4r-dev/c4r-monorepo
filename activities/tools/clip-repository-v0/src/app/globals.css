@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.triangel-left{
+  width: 0;
+  height: 0;
+  border-bottom: 24px solid white;
+  border-left: 22px solid transparent;
+}
+.triangel-right{
+  width: 0;
+  height: 0;
+  border-bottom: 24px solid white;
+  border-right: 22px solid transparent;
+}
+.text-outline-white{
+  text-shadow:
+  2px 2px 0px #fff,
+  -2px 2px 0px #fff,
+  -2px -2px 0 #fff,
+  2px -2px 0 #fff;
+}
+.width-full-34px{
+  width: calc(100% - 34px);
+}
+
+
+/* sweet alert */
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  border: 0;
+  border-radius: 4px !important;
+  background: initial;
+  background-color: gray !important;
+  color: #fff;
+  font-size: 1em;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  border: 0;
+  border-radius: 4px !important;
+  background: initial;
+  background-color: gray !important;
+  color: #fff;
+  font-size: 1em;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus {
+  box-shadow: 0 0 0 3px gray !important;
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 100%);
+  width: 32em;
+  max-width: 100%;
+  padding: 0 0 1.25em;
+  border: 2px solid gray !important;
+  border-radius: 40px !important;
+  background: black !important;
+  color: white !important;
+  font-family: inherit;
+  font-size: 1rem;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{
+border: 0;
+border-radius: 4px !important;
+background: initial;
+background-color: red !important;
+color: #fff;
+font-size: 1em;
+}

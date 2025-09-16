@@ -1,0 +1,202 @@
+[
+    {
+      "fish_id": 1,
+      "sex": "female",
+      "family_id": "D",
+      "size": "long",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 2,
+      "aggression": 4.7
+    },
+    {
+      "fish_id": 2,
+      "sex": "female",
+      "family_id": "C",
+      "size": "long",
+      "swimming_speed": "fast",
+      "treatment": "Control",
+      "base_aggression": 3,
+      "aggression": 6.1
+    },
+    {
+      "fish_id": 3,
+      "sex": "male",
+      "family_id": "C",
+      "size": "long",
+      "swimming_speed": "fast",
+      "treatment": "Enrichment",
+      "base_aggression": 4,
+      "aggression": 10
+    },
+    {
+      "fish_id": 4,
+      "sex": "female",
+      "family_id": "B",
+      "size": "long",
+      "swimming_speed": "slow",
+      "treatment": "Control",
+      "base_aggression": 5,
+      "aggression": 5.8
+    },
+    {
+      "fish_id": 5,
+      "sex": "female",
+      "family_id": "B",
+      "size": "long",
+      "swimming_speed": "fast",
+      "treatment": "Control",
+      "base_aggression": 1,
+      "aggression": 1.8
+    },
+    {
+      "fish_id": 6,
+      "sex": "male",
+      "family_id": "D",
+      "size": "long",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 2,
+      "aggression": 7.9
+    },
+    {
+      "fish_id": 7,
+      "sex": "female",
+      "family_id": "D",
+      "size": "short",
+      "swimming_speed": "fast",
+      "treatment": "Control",
+      "base_aggression": 3,
+      "aggression": 3
+    },
+    {
+      "fish_id": 8,
+      "sex": "male",
+      "family_id": "C",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 4,
+      "aggression": 10
+    },
+    {
+      "fish_id": 9,
+      "sex": "male",
+      "family_id": "D",
+      "size": "long",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 5,
+      "aggression": 10
+    },
+    {
+      "fish_id": 10,
+      "sex": "male",
+      "family_id": "A",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 1,
+      "aggression": 8.9
+    },
+    {
+      "fish_id": 11,
+      "sex": "male",
+      "family_id": "C",
+      "size": "short",
+      "swimming_speed": "fast",
+      "treatment": "Control",
+      "base_aggression": 2,
+      "aggression": 7.5
+    },
+    {
+      "fish_id": 12,
+      "sex": "female",
+      "family_id": "D",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 3,
+      "aggression": 4.9
+    },
+    {
+      "fish_id": 13,
+      "sex": "female",
+      "family_id": "B",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Control",
+      "base_aggression": 4,
+      "aggression": 4
+    },
+    {
+      "fish_id": 14,
+      "sex": "female",
+      "family_id": "A",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Control",
+      "base_aggression": 5,
+      "aggression": 7.8
+    },
+    {
+      "fish_id": 15,
+      "sex": "male",
+      "family_id": "B",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Control",
+      "base_aggression": 1,
+      "aggression": 4.2
+    },
+    {
+      "fish_id": 16,
+      "sex": "male",
+      "family_id": "B",
+      "size": "long",
+      "swimming_speed": "fast",
+      "treatment": "Control",
+      "base_aggression": 2,
+      "aggression": 6
+    },
+    {
+      "fish_id": 17,
+      "sex": "male",
+      "family_id": "D",
+      "size": "short",
+      "swimming_speed": "fast",
+      "treatment": "Enrichment",
+      "base_aggression": 3,
+      "aggression": 8.1
+    },
+    {
+      "fish_id": 18,
+      "sex": "female",
+      "family_id": "C",
+      "size": "short",
+      "swimming_speed": "slow",
+      "treatment": "Enrichment",
+      "base_aggression": 4,
+      "aggression": 8.2
+    },
+    {
+      "fish_id": 19,
+      "sex": "male",
+      "family_id": "A",
+      "size": "long",
+      "swimming_speed": "fast",
+      "treatment": "Enrichment",
+      "base_aggression": 5,
+      "aggression": 10
+    },
+    {
+      "fish_id": 20,
+      "sex": "female",
+      "family_id": "A",
+      "size": "long",
+      "swimming_speed": "fast",
+      "treatment": "Control",
+      "base_aggression": 1,
+      "aggression": 4.6
+    }
+  ]

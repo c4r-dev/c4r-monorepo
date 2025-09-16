@@ -1,0 +1,6 @@
+.custom-box-style {
+    border: 3px dashed rgba(0, 128, 0, 0.544);
+    width: 85px;
+    height: 85px;
+    background-color: rgba(0, 128, 0, 0.182);
+}

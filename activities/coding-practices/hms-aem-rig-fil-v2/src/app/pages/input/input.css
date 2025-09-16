@@ -1,0 +1,90 @@
+
+.input-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.yellow-column-header {
+  background-color: #ffeb3b;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+}
+
+.yellow-column-header h2 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.yellow-header-row {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.yellow-header-row .yellow-column-header {
+  flex: 1;
+}
+
+.yellow-header-row .yellow-column-header-placeholder {
+  flex: 0.5;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+
+.input-row .info-area {
+  flex: 1;
+  background-color: #f5f5f5;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+}
+
+.input-row .input-area {
+  flex: 1;
+  background-color: #f5f5f5;
+  box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+  /* box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+  padding: 0.5rem;
+  border-radius: 8px;
+  vertical-align: top; */
+}
+/* .input-area-input {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+} */
+
+.input-area-input {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+/* hover*/
+.input-area-input:hover {
+  background-color: #e0e0e0b6;
+}
+
+
+.input-row .hint-area {
+  flex: 0.5;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20%;
+}

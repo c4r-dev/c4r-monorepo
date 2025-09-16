@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "variableName": "Sex"
+  },
+  {
+    "id": 1,
+    "variableName": "Age"
+  },
+
+  {
+    "id": 2,
+    "variableName": "BMI"
+  },
+  {
+    "id": 3,
+    "variableName": "Smoking history in years"
+  },
+  {
+    "id": 4,
+    "variableName": "Physical activity (daily hours)"
+  }
+]
