@@ -16,6 +16,7 @@ class SeamlessActivityServer {
         this.app = express();
         this.port = process.env.PORT || 3333;
         this.activities = new Map();
+        this.nextApps = new Map();
         this.baseDir = process.cwd();
         this.sharedDeps = new Map();
     }
@@ -126,6 +127,42 @@ class SeamlessActivityServer {
 
         // Serve static assets from shared location
         this.app.use('/assets', express.static(path.join(this.baseDir, 'assets')));
+
+        // Handle Next.js static assets for all activities
+        this.app.use('/_next/static', (req, res, next) => {
+            // Try to find the asset in any Next.js activity's .next directory
+            const assetPath = req.url;
+            
+            for (const [route, activity] of this.activities) {
+                if (activity.type === 'nextjs') {
+                    // Try different possible locations for the static asset
+                    const possiblePaths = [
+                        path.join(activity.path, '.next', 'static', assetPath.replace('/_next/static/', '')),
+                        path.join(activity.path, 'out', '_next', 'static', assetPath.replace('/_next/static/', '')),
+                        path.join(activity.path, '.next', assetPath.replace('/_next/', ''))
+                    ];
+                    
+                    for (const filePath of possiblePaths) {
+                        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                            // Set appropriate MIME type
+                            if (filePath.endsWith('.js')) {
+                                res.setHeader('Content-Type', 'application/javascript');
+                            } else if (filePath.endsWith('.css')) {
+                                res.setHeader('Content-Type', 'text/css');
+                            } else if (filePath.endsWith('.svg')) {
+                                res.setHeader('Content-Type', 'image/svg+xml');
+                            }
+                            
+                            res.sendFile(filePath);
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            // If not found, return 404
+            res.status(404).send(`Static asset not found: ${assetPath}`);
+        });
     }
 
     setupRoutes() {
@@ -209,16 +246,74 @@ class SeamlessActivityServer {
     }
 
     async serveNextJSSeamlessly(activity, req, res, next) {
-        // Look for common Next.js patterns and serve them
         const activityPath = activity.path;
         const url = req.url === '/' ? '' : req.url;
         
-        // Check for app directory (Next.js 13+ app router)
-        const appDir = path.join(activityPath, 'app');
-        const pagesDir = path.join(activityPath, 'pages');
-        const publicDir = path.join(activityPath, 'public');
+        // Handle _next/static assets specifically
+        if (url.startsWith('/_next/static/')) {
+            const staticAsset = url.replace('/_next/static/', '');
+            const possiblePaths = [
+                path.join(activityPath, '.next', 'static', staticAsset),
+                path.join(activityPath, 'out', '_next', 'static', staticAsset),
+                path.join(activityPath, '.next', url.replace('/_next/', ''))
+            ];
+            
+            for (const filePath of possiblePaths) {
+                if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                    // Set appropriate MIME type
+                    if (filePath.endsWith('.js')) {
+                        res.setHeader('Content-Type', 'application/javascript');
+                    } else if (filePath.endsWith('.css')) {
+                        res.setHeader('Content-Type', 'text/css');
+                    } else if (filePath.endsWith('.svg')) {
+                        res.setHeader('Content-Type', 'image/svg+xml');
+                    }
+                    
+                    res.sendFile(filePath);
+                    return;
+                }
+            }
+        }
         
-        // Serve public assets first
+        // Try to serve from built static export first
+        const outDir = path.join(activityPath, 'out');
+        const buildDir = path.join(activityPath, '.next');
+        
+        if (fs.existsSync(outDir)) {
+            // Serve from static export
+            const filePath = path.join(outDir, url === '' ? 'index.html' : url);
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                res.sendFile(filePath);
+                return;
+            }
+        }
+        
+        // Try to serve from Next.js build directory
+        if (fs.existsSync(buildDir)) {
+            // For root requests, try to serve the main page
+            if (url === '' || url === '/') {
+                const possibleIndexPaths = [
+                    path.join(buildDir, 'server', 'app', 'index.html'),
+                    path.join(buildDir, 'server', 'pages', 'index.html'),
+                    path.join(buildDir, 'static', 'index.html')
+                ];
+                
+                for (const indexPath of possibleIndexPaths) {
+                    if (fs.existsSync(indexPath)) {
+                        res.sendFile(indexPath);
+                        return;
+                    }
+                }
+                
+                // Try to create a basic Next.js runtime page
+                const basicNextPage = this.generateNextJSBootstrap(activity);
+                res.send(basicNextPage);
+                return;
+            }
+        }
+        
+        // Try to serve from public directory
+        const publicDir = path.join(activityPath, 'public');
         if (fs.existsSync(publicDir)) {
             const publicFile = path.join(publicDir, url);
             if (fs.existsSync(publicFile) && fs.statSync(publicFile).isFile()) {
@@ -227,9 +322,160 @@ class SeamlessActivityServer {
             }
         }
         
-        // Try to serve a basic HTML wrapper that loads the activity
-        const activityHTML = this.generateNextJSWrapper(activity);
-        res.send(activityHTML);
+        // If no static files found, try to build and serve
+        try {
+            await this.buildNextJSApp(activity);
+            
+            // Try serving built output again
+            if (fs.existsSync(outDir)) {
+                const filePath = path.join(outDir, url === '' ? 'index.html' : url);
+                if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                    res.sendFile(filePath);
+                    return;
+                }
+            }
+        } catch (buildError) {
+            console.error(`❌ Build failed for ${activity.name}:`, buildError.message);
+        }
+        
+        // Final fallback
+        this.serveStaticFallback(activity, req, res, next);
+    }
+
+    generateNextJSBootstrap(activity) {
+        // Generate a basic Next.js runtime page that loads the built app
+        return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>${activity.name} - C4R Activity</title>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="/_next/static/css/app/layout.css">
+                <link rel="stylesheet" href="/_next/static/css/app/page.css">
+            </head>
+            <body>
+                <div id="__next">
+                    <div style="padding: 2rem; text-align: center;">
+                        <h1>🚀 ${activity.name}</h1>
+                        <p>Loading Next.js application...</p>
+                    </div>
+                </div>
+                <script src="/_next/static/chunks/webpack.js"></script>
+                <script src="/_next/static/chunks/main-app.js"></script>
+                <script src="/_next/static/chunks/app-pages-internals.js"></script>
+                <script src="/_next/static/chunks/app/page.js"></script>
+            </body>
+            </html>
+        `;
+    }
+
+    serveStaticFallback(activity, req, res, next) {
+        const activityPath = activity.path;
+        const url = req.url === '/' ? 'index.html' : req.url;
+        
+        // Try common static file locations
+        const possiblePaths = [
+            path.join(activityPath, 'public', url),
+            path.join(activityPath, 'build', url), 
+            path.join(activityPath, url),
+            path.join(activityPath, 'dist', url)
+        ];
+        
+        for (const filePath of possiblePaths) {
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                res.sendFile(filePath);
+                return;
+            }
+        }
+        
+        // If no static files found, serve a basic page
+        const fallbackHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>${activity.name} - C4R Activity</title>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <style>
+                    body { font-family: sans-serif; padding: 2rem; text-align: center; }
+                    .container { max-width: 600px; margin: 0 auto; }
+                    .status { color: #f39c12; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>🏗️ ${activity.name}</h1>
+                    <div class="status">⚠️ This activity is being served in fallback mode</div>
+                    <p>The activity may need to be built or configured for the unified server.</p>
+                    <p><strong>Domain:</strong> ${activity.domain}</p>
+                    <p><strong>Path:</strong> <code>${activity.path}</code></p>
+                    <div style="margin-top: 2rem;">
+                        <a href="/" style="background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">← Dashboard</a>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+        res.send(fallbackHTML);
+    }
+
+    async buildNextJSApp(activity) {
+        const activityPath = activity.path;
+        console.log(`🔨 Building Next.js app: ${activity.name}`);
+        
+        try {
+            const { execSync } = require('child_process');
+            
+            // Try to build with static export first
+            const nextConfigPath = path.join(activityPath, 'next.config.mjs');
+            let buildCommand = 'npm run build';
+            
+            // Check if there's a build script in package.json
+            const packageJsonPath = path.join(activityPath, 'package.json');
+            if (fs.existsSync(packageJsonPath)) {
+                const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+                if (packageJson.scripts && packageJson.scripts.build) {
+                    buildCommand = 'npm run build';
+                } else {
+                    // Use next build directly
+                    buildCommand = 'npx next build';
+                }
+            }
+            
+            // Set environment to use shared node_modules
+            const env = {
+                ...process.env,
+                NODE_PATH: path.join(this.baseDir, 'node_modules'),
+                NODE_ENV: 'production'
+            };
+            
+            execSync(buildCommand, {
+                cwd: activityPath,
+                stdio: 'pipe',
+                timeout: 120000, // 2 minute timeout
+                env: env
+            });
+            
+            console.log(`✅ Built ${activity.name} successfully`);
+            
+            // Try to create static export if not already done
+            try {
+                execSync('npx next export', {
+                    cwd: activityPath,
+                    stdio: 'pipe',
+                    timeout: 60000,
+                    env: env
+                });
+                console.log(`✅ Exported ${activity.name} to static files`);
+            } catch (exportError) {
+                console.log(`⚠️  Static export failed for ${activity.name}, serving build output`);
+            }
+            
+        } catch (error) {
+            console.error(`❌ Build failed for ${activity.name}:`, error.message);
+            throw error;
+        }
     }
 
     async serveCRASeamlessly(activity, req, res, next) {
