@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4R Activity Browser - 91 Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .controls {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .activities-grid {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #e9ecef;
+            position: relative;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .activity-card.causality {
+            border-left-color: #e74c3c;
+        }
+
+        .activity-card.randomization {
+            border-left-color: #3498db;
+        }
+
+        .activity-card.coding-practices {
+            border-left-color: #2ecc71;
+        }
+
+        .activity-card.collaboration {
+            border-left-color: #f39c12;
+        }
+
+        .activity-card.tools {
+            border-left-color: #9b59b6;
+        }
+
+        .activity-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .activity-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .activity-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 15px;
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .tech-tag {
+            background: #3498db;
+            color: white;
+        }
+
+        .status-tag.active {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .status-tag.archive {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .status-tag.latest {
+            background: #f39c12;
+            color: white;
+        }
+
+        .activity-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #2c3e50;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .action-btn:hover {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .action-btn.primary {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .action-btn.primary:hover {
+            background: #2980b9;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+
+        .domain-header {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .domain-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .domain-count {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .activities-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .filters {
+                justify-content: center;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 C4R Activity Browser</h1>
+            <p>Easily navigate and test all educational research activities</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number" id="total-count">91</span>
+                    <span class="stat-label">Total Products</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="active-count">67</span>
+                    <span class="stat-label">Active</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="domain-count">5</span>
+                    <span class="stat-label">Domains</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="filtered-count">91</span>
+                    <span class="stat-label">Showing</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search activities... (e.g., 'randomization', 'DAG', 'wason')" id="search">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="causality">🧠 Causality (18)</button>
+                <button class="filter-btn" data-filter="randomization">🎲 Randomization (19)</button>
+                <button class="filter-btn" data-filter="coding-practices">💻 Coding (22)</button>
+                <button class="filter-btn" data-filter="collaboration">🤝 Collaboration (5)</button>
+                <button class="filter-btn" data-filter="tools">🛠️ Tools (15)</button>
+                <button class="filter-btn" data-filter="active">✅ Active Only</button>
+                <button class="filter-btn" data-filter="needs-consolidation">🔄 Needs Consolidation</button>
+            </div>
+        </div>
+
+        <div class="activities-grid" id="activities-grid">
+            <!-- Activities will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Activity data extracted from the monorepo analysis
+        const activities = [
+            // Causality Activities
+            {
+                name: "DAG Builder (Flu)",
+                description: "Interactive DAG construction for flu causality analysis",
+                domain: "causality",
+                tech: "Next.js + ReactFlow",
+                status: "active",
+                path: "activities/causality/jhu-flu-dag-v1",
+                port: 3001,
+                consolidation: false
+            },
+            {
+                name: "DAG Builder (Polio v1)",
+                description: "Polio-ice cream correlation exercise",
+                domain: "causality",
+                tech: "Next.js + ReactFlow",
+                status: "active",
+                path: "activities/causality/jhu-polio-ice-cream-v1",
+                port: 3002,
+                consolidation: false
+            },
+            {
+                name: "Polio Enhanced v2",
+                description: "Enhanced polio causality with FINER framework",
+                domain: "causality",
+                tech: "Next.js + TypeScript",
+                status: "latest",
+                path: "activities/causality/jhu-polio-ice-cream-v2",
+                port: 3003,
+                consolidation: false
+            },
+
+            // Randomization Activities (with consolidation opportunities)
+            {
+                name: "Why Randomize v4",
+                description: "Comprehensive randomization education (LATEST)",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "latest",
+                path: "activities/randomization/smi-ran-why-ran-v4",
+                port: 3010,
+                consolidation: true
+            },
+            {
+                name: "Why Randomize v3",
+                description: "Previous version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-why-ran-v3",
+                port: 3011,
+                consolidation: true
+            },
+            {
+                name: "Why Randomize v2",
+                description: "Historical version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-why-ran-v2",
+                port: 3012,
+                consolidation: true
+            },
+            {
+                name: "Why Randomize v1",
+                description: "Historical version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-why-ran-v1",
+                port: 3013,
+                consolidation: true
+            },
+            {
+                name: "Why Randomize v0",
+                description: "Original version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-why-ran-v0",
+                port: 3014,
+                consolidation: true
+            },
+            {
+                name: "Block Randomization v4",
+                description: "Advanced block randomization (LATEST)",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "latest",
+                path: "activities/randomization/smi-ran-blk-ran-v4",
+                port: 3015,
+                consolidation: true
+            },
+            {
+                name: "Block Randomization v3",
+                description: "Previous version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-blk-ran-v3",
+                port: 3016,
+                consolidation: true
+            },
+            {
+                name: "Block Randomization v2",
+                description: "Historical version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-blk-ran-v2",
+                port: 3017,
+                consolidation: true
+            },
+            {
+                name: "Block Randomization v1",
+                description: "Original version - CONSOLIDATE",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-blk-ran-v1",
+                port: 3018,
+                consolidation: true
+            },
+            {
+                name: "Random Flow v2",
+                description: "Randomization workflow visualization",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "latest",
+                path: "activities/randomization/smi-ran-ran-flo-v2",
+                port: 3019,
+                consolidation: false
+            },
+            {
+                name: "Random Flow v1",
+                description: "Previous flow version",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-ran-flo-v1",
+                port: 3020,
+                consolidation: false
+            },
+            {
+                name: "Lab Randomization",
+                description: "Laboratory randomization protocols",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/randomization/smi-ran-ran-lab-v0",
+                port: 3021,
+                consolidation: false
+            },
+            {
+                name: "Literature Randomization v1",
+                description: "Literature study randomization",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "latest",
+                path: "activities/randomization/smi-ran-ran-lit-v1",
+                port: 3022,
+                consolidation: false
+            },
+            {
+                name: "Literature Randomization v0",
+                description: "Original literature version",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "archive",
+                path: "activities/randomization/smi-ran-ran-lit-v0",
+                port: 3023,
+                consolidation: false
+            },
+            {
+                name: "Sequence A",
+                description: "Sequence pattern analysis A",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/randomization/smi-ran-all-seqa-v1",
+                port: 3024,
+                consolidation: false
+            },
+            {
+                name: "Sequence B",
+                description: "Sequence pattern analysis B",
+                domain: "randomization",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/randomization/smi-ran-all-seqb-v1",
+                port: 3025,
+                consolidation: false
+            },
+
+            // Coding Practices Activities
+            {
+                name: "File Organization v1",
+                description: "Research file management best practices",
+                domain: "coding-practices",
+                tech: "React",
+                status: "active",
+                path: "activities/coding-practices/hms-aem-rig-fil-v1",
+                port: 3030,
+                consolidation: true
+            },
+            {
+                name: "File Organization v2",
+                description: "Enhanced file organization",
+                domain: "coding-practices",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/coding-practices/hms-aem-rig-fil-v2",
+                port: 3031,
+                consolidation: true
+            },
+            {
+                name: "File Organization v3",
+                description: "Latest file management system",
+                domain: "coding-practices",
+                tech: "Next.js",
+                status: "latest",
+                path: "activities/coding-practices/hms-aem-rig-fil-v3",
+                port: 3032,
+                consolidation: true
+            },
+            {
+                name: "Clean Code Comments",
+                description: "Code commenting best practices",
+                domain: "coding-practices",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/coding-practices/hms-clean-code-comments-v0",
+                port: 3033,
+                consolidation: false
+            },
+            {
+                name: "Clean Code Organization",
+                description: "Code structure and organization",
+                domain: "coding-practices",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/coding-practices/hms-clean-code-org-v0",
+                port: 3034,
+                consolidation: false
+            },
+            {
+                name: "Wason 2-4-6 v2",
+                description: "Enhanced hypothesis testing task",
+                domain: "coding-practices",
+                tech: "Next.js",
+                status: "latest",
+                path: "activities/coding-practices/hms-wason-246-v2",
+                port: 3035,
+                consolidation: true
+            },
+            {
+                name: "Wason 2-4-6 v1",
+                description: "Classic hypothesis testing task",
+                domain: "coding-practices",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/coding-practices/hms-wason-246-v1",
+                port: 3036,
+                consolidation: true
+            },
+
+            // Collaboration Activities
+            {
+                name: "Whiteboard v1",
+                description: "Collaborative drawing workspace",
+                domain: "collaboration",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/collaboration/r2r-whiteboard-v1",
+                port: 3040,
+                consolidation: false
+            },
+            {
+                name: "Feedback Systems v1",
+                description: "Real-time feedback collection",
+                domain: "collaboration",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/collaboration/r2r-feed-back-v1",
+                port: 3041,
+                consolidation: false
+            },
+            {
+                name: "Statistics Wizard v1",
+                description: "Guided statistical analysis",
+                domain: "collaboration",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/collaboration/r2r-stats-wizard-v1",
+                port: 3042,
+                consolidation: false
+            },
+            {
+                name: "Sticky Notes v2",
+                description: "Digital brainstorming tool",
+                domain: "collaboration",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/collaboration/r2r-sticky-note-v2",
+                port: 3043,
+                consolidation: false
+            },
+            {
+                name: "Audience Prompting v1",
+                description: "Interactive audience engagement",
+                domain: "collaboration",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/collaboration/r2r-audience-prompting-v1",
+                port: 3044,
+                consolidation: false
+            },
+
+            // Tools
+            {
+                name: "Email API",
+                description: "Email service integration",
+                domain: "tools",
+                tech: "Node.js",
+                status: "active",
+                path: "activities/tools/c4r-email-api",
+                port: 3050,
+                consolidation: false
+            },
+            {
+                name: "QR Code Generator",
+                description: "Session QR code creation",
+                domain: "tools",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/tools/c4r-useqrcode",
+                port: 3051,
+                consolidation: false
+            },
+            {
+                name: "Claude Chat",
+                description: "AI-powered chat interface",
+                domain: "tools",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/tools/claude-chat",
+                port: 3052,
+                consolidation: false
+            },
+            {
+                name: "D3 Plots",
+                description: "Custom data visualization library",
+                domain: "tools",
+                tech: "D3.js",
+                status: "active",
+                path: "activities/tools/D3Plots",
+                port: 3053,
+                consolidation: false
+            },
+            {
+                name: "DAG Generator",
+                description: "Automated DAG creation utility",
+                domain: "tools",
+                tech: "React",
+                status: "active",
+                path: "activities/tools/DAG-generator",
+                port: 3054,
+                consolidation: false
+            },
+            {
+                name: "P-Hack Detector",
+                description: "P-hacking identification tool",
+                domain: "tools",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/tools/p-hack-v0",
+                port: 3055,
+                consolidation: false
+            },
+            {
+                name: "Publication Bias Demo",
+                description: "Publication bias simulation",
+                domain: "tools",
+                tech: "Next.js",
+                status: "active",
+                path: "activities/tools/publicationbias",
+                port: 3056,
+                consolidation: false
+            }
+            // Add more activities here...
+        ];
+
+        let filteredActivities = [...activities];
+        let currentFilter = 'all';
+
+        // DOM elements
+        const searchInput = document.getElementById('search');
+        const activitiesGrid = document.getElementById('activities-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const filteredCountEl = document.getElementById('filtered-count');
+
+        // Initialize
+        renderActivities();
+        updateStats();
+
+        // Event listeners
+        searchInput.addEventListener('input', handleSearch);
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', handleFilter);
+        });
+
+        function handleSearch() {
+            const query = searchInput.value.toLowerCase();
+            applyFilters(query, currentFilter);
+        }
+
+        function handleFilter(e) {
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            currentFilter = e.target.dataset.filter;
+            applyFilters(searchInput.value.toLowerCase(), currentFilter);
+        }
+
+        function applyFilters(searchQuery, filterType) {
+            filteredActivities = activities.filter(activity => {
+                const matchesSearch = !searchQuery || 
+                    activity.name.toLowerCase().includes(searchQuery) ||
+                    activity.description.toLowerCase().includes(searchQuery) ||
+                    activity.tech.toLowerCase().includes(searchQuery) ||
+                    activity.domain.toLowerCase().includes(searchQuery);
+
+                const matchesFilter = 
+                    filterType === 'all' ||
+                    filterType === activity.domain ||
+                    (filterType === 'active' && activity.status === 'active') ||
+                    (filterType === 'needs-consolidation' && activity.consolidation);
+
+                return matchesSearch && matchesFilter;
+            });
+
+            renderActivities();
+            updateStats();
+        }
+
+        function renderActivities() {
+            if (filteredActivities.length === 0) {
+                activitiesGrid.innerHTML = `
+                    <div class="no-results">
+                        <h3>No activities found</h3>
+                        <p>Try adjusting your search or filter criteria</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group by domain
+            const groupedActivities = groupByDomain(filteredActivities);
+            let html = '';
+
+            Object.entries(groupedActivities).forEach(([domain, domainActivities]) => {
+                const domainInfo = getDomainInfo(domain);
+                
+                html += `
+                    <div class="domain-header">
+                        <div class="domain-title">${domainInfo.icon} ${domainInfo.name}</div>
+                        <div class="domain-count">${domainActivities.length} activities</div>
+                    </div>
+                `;
+
+                domainActivities.forEach(activity => {
+                    html += createActivityCard(activity);
+                });
+            });
+
+            activitiesGrid.innerHTML = html;
+        }
+
+        function groupByDomain(activities) {
+            return activities.reduce((groups, activity) => {
+                const domain = activity.domain;
+                if (!groups[domain]) {
+                    groups[domain] = [];
+                }
+                groups[domain].push(activity);
+                return groups;
+            }, {});
+        }
+
+        function getDomainInfo(domain) {
+            const domainMap = {
+                'causality': { name: 'Causality & Reasoning', icon: '🧠' },
+                'randomization': { name: 'Randomization & Statistics', icon: '🎲' },
+                'coding-practices': { name: 'Coding Practices & Research Methods', icon: '💻' },
+                'collaboration': { name: 'Collaboration & Assessment', icon: '🤝' },
+                'tools': { name: 'Tools & Utilities', icon: '🛠️' }
+            };
+            return domainMap[domain] || { name: domain, icon: '📁' };
+        }
+
+        function createActivityCard(activity) {
+            const statusClass = activity.status;
+            const statusText = activity.status.charAt(0).toUpperCase() + activity.status.slice(1);
+            
+            return `
+                <div class="activity-card ${activity.domain}">
+                    <div class="activity-title">${activity.name}</div>
+                    <div class="activity-description">${activity.description}</div>
+                    <div class="activity-meta">
+                        <span class="meta-tag tech-tag">${activity.tech}</span>
+                        <span class="meta-tag status-tag ${statusClass}">${statusText}</span>
+                        ${activity.consolidation ? '<span class="meta-tag" style="background: #e74c3c; color: white;">Needs Consolidation</span>' : ''}
+                    </div>
+                    <div class="activity-actions">
+                        <button class="action-btn primary" onclick="startActivity('${activity.path}', ${activity.port})">
+                            🚀 Start Activity
+                        </button>
+                        <button class="action-btn" onclick="openFolder('${activity.path}')">
+                            📁 Open Folder
+                        </button>
+                        <button class="action-btn" onclick="viewCode('${activity.path}')">
+                            👀 View Code
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateStats() {
+            filteredCountEl.textContent = filteredActivities.length;
+        }
+
+        // Action functions
+        function startActivity(path, port) {
+            const url = `http://localhost:${port}`;
+            const instructions = `
+To start this activity:
+
+1. Open terminal and navigate to: ${path}
+2. Run: npm install (if first time)
+3. Run: npm run dev
+4. Visit: ${url}
+
+Alternatively, you can run all activities with:
+npm run dev
+
+Would you like me to copy the path to clipboard?
+            `;
+            
+            if (confirm(`${instructions}\n\nClick OK to copy path to clipboard, Cancel to just see instructions.`)) {
+                navigator.clipboard.writeText(path);
+                alert('Path copied to clipboard!');
+            }
+        }
+
+        function openFolder(path) {
+            alert(`Open this folder in your file explorer:\n\n${path}\n\nPath copied to clipboard!`);
+            navigator.clipboard.writeText(path);
+        }
+
+        function viewCode(path) {
+            alert(`Open this project in your code editor:\n\n${path}\n\nTip: Use 'code ${path}' in terminal if you have VS Code installed.\n\nPath copied to clipboard!`);
+            navigator.clipboard.writeText(path);
+        }
+    </script>
+</body>
+</html>
