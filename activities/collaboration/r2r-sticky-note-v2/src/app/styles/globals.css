@@ -1,40 +1,16 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
-/* background: var(--Neutrals-Background-Gray, #F3F3F3); */
-/* Set variable for later use */
+/* Using Tailwind design tokens */
 :root {
-  --Neutrals-Background-Gray: #F3F3F3;
-  --Neutrals-Black: #202020;
-  --Neutrals-White: #FFFFFF;
+  --Neutrals-Background-Gray: theme('colors.gray.100');
+  --Neutrals-Black: theme('colors.gray.800');
+  --Neutrals-White: theme('colors.white');
 }
 
 body {
-  /* Dark background */
-  /* 
-  color: white;
-  background-color: #373737; 
-  */
-  /* Light background */
-  background-color: var(--Neutrals-Background-Gray);
-  color: var(--Neutrals-Black);
-
-
-  font-family: var(--font-general-sans-semi-bold);
-  /* font-family: var(--font-general-sans-variable); */
-  /* font-weight: 100; */
-  /* font-style: normal; */
-  /* font-size: 36px; */
-  /* Remove bold */
-  /* font-weight: 100; */
-  /* Remove italic */
-  /* font-style: normal; */
-  /* lessen boldness */
-  /* font-weight: 100; */
-
-  /* Medium */
-  /* font-family: var(--font-general-sans-medium); */
+  @apply bg-gray-100 text-gray-800 font-sans-semibold;
 }
 
 /* Smaller CSS Reset */
@@ -71,22 +47,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   cursor: not-allowed;
 }
 
-/* Responsive adjustments using min-width for larger screens */
-@media (min-width: 480px) {
-  .responsive-button {
-    padding: 14px 20px;
-    font-size: 1.1rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .responsive-button {
-    padding: 16px 24px;
-    font-size: 1.2rem;
-  }
-}
-.responsive-button:hover:not(:disabled) {
-  background-color: #d3d3d3; /* Darker shade for hover */
+/* Responsive button using Tailwind utilities */
+.responsive-button {
+  @apply px-4 py-3 text-base bg-white hover:bg-gray-300 disabled:hover:bg-white;
+  @apply sm:px-5 sm:py-3.5 sm:text-lg;
+  @apply md:px-6 md:py-4 md:text-xl-plus;
 }
 
 
@@ -157,95 +122,43 @@ table {
 /* Content from globals.css in the old project */
 
 body {
-  @apply bg-gray-900;
-  /* color: white; */
-  /* background-color: #F3F3F3; */
-  background-color: #F2F2F2;
-  color: black;
+  @apply bg-gray-100 text-gray-900;
 }
 
 h1 {
-  color: #333132;
+  @apply text-gray-800;
 }
 
 
 .start-button {
-  background-color: #FFFFFF;
-  color: #232223;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; 
-  filter: drop-shadow(3px 3px 5px #b6b6b6);
-}
-.start-button:hover {
-  background-color: #F3F3F3;
+  @apply bg-white text-gray-800 px-5 py-2.5 border-none rounded cursor-pointer shadow-lg hover:bg-gray-100;
 }
 
 .whiteboard {
-  /* width: '500px',
-  height: '500px',
-  backgroundColor: 'white',
-  position: 'relative',
-  margin: '80px' */
-  width: 500px;
-  height: 500px;
-  background-color: #F3F3F3;
-  position: relative;
-  margin: 80px;
-
-  transition: background-color 0.4s ;
-}
-.whiteboard:hover {
-  /* background-color: #e7e7e7; */
-  /* Animated background color change */
-  /* animation: backgroundColorChange 2s infinite; */
-  /* transition: all 0.5s ease-in; */
+  @apply w-[500px] h-[500px] bg-gray-100 relative m-20 transition-colors duration-400;
 }
 .note-list-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  @apply flex flex-row items-center justify-center gap-2.5 my-2.5;
 }
 
 .note-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  @apply flex flex-col gap-1.5;
 }
 
 .note-list-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  /* text-wrap: balance; */
-  width: 250px;
+  @apply flex flex-row items-center gap-2.5 w-[250px] hover:bg-gray-200;
 }
-.note-list-item:hover {
-  background-color: #e7e7e7;
-}
-/* selected note */
+
 .selected-note {
-  background-color: #e7e7e7;
+  @apply bg-gray-200;
 }
 
 /* Show all sessions toggle */
 .sessions-toggle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0px;
-  margin-top: 15px;
-  color: #5A5A5A;
+  @apply flex justify-center items-center gap-0 mt-4 text-gray-500;
 }
 .sessions-toggle-buttons {
-  display: flex;
-  gap: 1px;
+  @apply flex gap-px;
   margin-right: 10px;
 }
 .session-toggle {

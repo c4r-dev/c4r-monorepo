@@ -4,10 +4,7 @@ body {
 }
 
 .outer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  @apply flex justify-center items-center h-screen;
 }
 
 .dashed-box {
@@ -24,9 +21,7 @@ body {
 }
 
 .button-row {
-  display: flex;
-  justify-content: space-between; /* Ensures buttons are pushed to left and right corners */
-  align-items: center;
+  @apply flex justify-between items-center;
 }
 
 .instructor-button {
@@ -105,10 +100,7 @@ body {
 }
 
 .bubble-text {
-    background-color: #6E00FF;
-    text-align: left;
-    border-radius: 10px;
-    padding: 10px;
+    @apply bg-brand-primary text-left rounded-lg p-2.5;
     /* margin-left: 100px; */
     h3 {
         margin: 5px;
@@ -549,8 +541,7 @@ padding: 10px;
 }
 
 .qr-code-text-heading {
-  /* margin-bottom: 90px; */
-  color: #6E00FF;
+  @apply text-brand-primary;
 }
 
 
@@ -620,8 +611,7 @@ text-align: left;
     padding: 8px 16px; /* Reduce button padding on mobile */
   }
   .qr-code-text-heading{
-    margin-bottom: 110px;
-    color: #6E00FF;
+    @apply mb-28 text-brand-primary;
   }
 }
 
@@ -635,8 +625,7 @@ text-align: left;
     justify-content: space-evenly;
   }
  .qr-code-text-heading {
-    margin-bottom: 110px;
-    color: #6E00FF;
+    @apply mb-28 text-brand-primary;
   }
   .copy-link-container {
     width: 55%; /* Adjust width on tablet screens */

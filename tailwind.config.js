@@ -100,7 +100,8 @@ module.exports = {
         
         // Custom Colors (from your codebase)
         'custom': {
-          'dark-bg': '#1a1a1a',
+          'dark-bg': '#333132',       // Used in DragAndDropGame
+          'black-bg': '#060606',      // Used in DragAndDropGame
           'card-bg': '#f4f7f6',
           'content-bg': '#ffffff',
           'section-bg': '#f0f0f0',

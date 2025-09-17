@@ -402,40 +402,28 @@ function DragAndDropGameContent({ reviewMode = false }) {
                     }}
                     className={myFont.className}
                 >
-                    <h1 style={{ color: "#333132", fontSize: "28px" }}>
+                    <h1 className="text-custom-dark-bg text-7xl">
                         {/* Whiteboard exercise */}
                     </h1>
 
                     {!reviewPhase && (
-                        <p style={{ color: "#060606", fontSize: "20px" }}>
+                        <p className="text-custom-black-bg text-xl">
                             Which issues have the biggest impact on yourself and
                             your research?
                         </p>
                     )}
                     {reviewPhase && (
-                        <p style={{ color: "#060606", fontSize: "20px" }}>
+                        <p className="text-custom-black-bg text-xl">
                             What solutions are your colleagues most interested in trying?
                         </p>
                     )}
                     {!reviewPhase && (
-                        <p
-                        style={{
-                            color: "#333132",
-                            opacity: "0.6",
-                            fontSize: "16px",
-                        }}
-                    >
+                        <p className="text-custom-dark-bg opacity-60 text-base">
                             Drag the sticky notes to the board
                         </p>
                     )}
                     {reviewPhase && (
-                        <p
-                            style={{
-                                color: "#333132",
-                                opacity: "0.6",
-                                fontSize: "16px",
-                            }}
-                        >
+                        <p className="text-custom-dark-bg opacity-60 text-base">
                            The sticky notes below are ordered from most high interest and impact to low interest and impact
                         </p>
                     )}
