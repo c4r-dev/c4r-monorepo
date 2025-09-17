@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Animation Test</title>
+    
+    <!-- Import Lottie library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        #animation-container {
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container"></div>
+
+    <script>
+        // Initialize the Lottie animation
+        let animation = lottie.loadAnimation({
+            container: document.getElementById('animation-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'eyes.json' // Make sure your Lottie file is named eyes.json and is in the same directory
+        });
+
+        let initialLeftEyePos = null;
+        let initialRightEyePos = null;
+
+        // Wait for the animation to load before getting initial positions
+        animation.addEventListener('DOMLoaded', () => {
+            const leftEye = document.getElementById('pupil-right');
+            const rightEye = document.getElementById('pupil-left');
+            
+            if (leftEye && rightEye) {
+                const leftRect = leftEye.getBoundingClientRect();
+                const rightRect = rightEye.getBoundingClientRect();
+                
+                initialLeftEyePos = {
+                    x: leftRect.left + leftRect.width / 2,
+                    y: leftRect.top + leftRect.height / 2
+                };
+                initialRightEyePos = {
+                    x: rightRect.left + rightRect.width / 2,
+                    y: rightRect.top + rightRect.height / 2
+                };
+            }
+        });
+
+        function updateEyeRotation(e) {
+            const container = document.getElementById('animation-container');
+            const rect = container.getBoundingClientRect();
+            
+            const leftEye = document.getElementById('pupil-right');
+            const rightEye = document.getElementById('pupil-left');
+            
+            if (leftEye && rightEye && initialLeftEyePos && initialRightEyePos) {
+                const maxDistance = 8; // Maximum pixel distance the pupils can move
+
+                // Left eye
+                const leftDx = e.clientX - initialLeftEyePos.x;
+                const leftDy = e.clientY - initialLeftEyePos.y;
+                const leftDistance = Math.sqrt(leftDx * leftDx + leftDy * leftDy);
+                const leftScale = Math.min(leftDistance / 150, 1); // Increased distance factor for smoother scaling
+
+                // Right eye
+                const rightDx = e.clientX - initialRightEyePos.x;
+                const rightDy = e.clientY - initialRightEyePos.y;
+                const rightDistance = Math.sqrt(rightDx * rightDx + rightDy * rightDy);
+                const rightScale = Math.min(rightDistance / 150, 1);
+
+                // Calculate normalized movement with easing
+                const leftMoveX = (leftDx / leftDistance) * maxDistance * leftScale;
+                const leftMoveY = (leftDy / leftDistance) * maxDistance * leftScale;
+                const rightMoveX = (rightDx / rightDistance) * maxDistance * rightScale;
+                const rightMoveY = (rightDy / rightDistance) * maxDistance * rightScale;
+
+                // Apply the transforms
+                leftEye.style.transform = `translate(${leftMoveX}px, ${leftMoveY}px)`;
+                rightEye.style.transform = `translate(${rightMoveX}px, ${rightMoveY}px)`;
+            }
+        }
+
+        // Add mouse move event listener
+        document.addEventListener('mousemove', updateEyeRotation);
+    </script>
+</body>
+</html>

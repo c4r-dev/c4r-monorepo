@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Scroll Animation Showcase</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 80px 20px;
+            margin: 0;
+            color: #2c3e50;
+            background-color: #ecf0f1;
+            font-size: 2.5rem;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 40px 20px 150px;
+            background-color: #ecf0f1;
+        }
+        
+        .intro p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        section {
+            padding: 120px 20px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .section-content {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h2 {
+            color: #3498db;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+        }
+        
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c;
+            margin: 20px;
+            display: inline-block;
+            border-radius: 8px;
+            opacity: 0;
+            position: relative;
+        }
+        
+        .big-box {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .tall-box {
+            width: 100px;
+            height: 300px;
+        }
+        
+        .wide-box {
+            width: 300px;
+            height: 100px;
+        }
+        
+        .parallax-section {
+            overflow: hidden;
+            position: relative;
+            height: 80vh;
+            background-color: #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .parallax-layer {
+            position: absolute;
+            display: block;
+            width: 120%;
+            left: -10%;
+            opacity: 0.2;
+        }
+        
+        .layer-1 {
+            top: 10%;
+        }
+        
+        .layer-2 {
+            top: 40%;
+        }
+        
+        .layer-3 {
+            top: 70%;
+        }
+        
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            opacity: 0;
+        }
+        
+        .sticky-section {
+            height: 300vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sticky-container {
+            height: 100vh;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .sticky-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #3498db;
+        }
+        
+        .sticky-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .panel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .panel-content {
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .panel h2, .panel p {
+            opacity: 1;
+            color: white;
+        }
+        
+        .staggered-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .stagger-item {
+            width: 150px;
+            height: 150px;
+            margin: 15px;
+            background-color: #9b59b6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        
+        .final-section {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+        
+        .final-section h2, 
+        .final-section p {
+            color: white;
+        }
+        
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #e74c3c;
+            margin: 30px auto;
+            opacity: 0;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+        }
+        
+        .shape {
+            opacity: 0;
+            margin: 10px;
+        }
+        
+        .diamond {
+            width: 100px;
+            height: 100px;
+            background-color: #2ecc71;
+            transform: rotate(45deg);
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 120px solid #f39c12;
+        }
+        
+        .wave-section {
+            background-color: #ecf0f1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .wave-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%233498db" fill-opacity="1" d="M0,192L48,176C96,160,192,128,288,117.3C384,107,480,117,576,138.7C672,160,768,192,864,192C960,192,1056,160,1152,138.7C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scroll Animation Showcase</h1>
+        
+        <div class="intro">
+            <p>Scroll down to discover different animation effects triggered by scrolling.</p>
+        </div>
+        
+        <section id="section1">
+            <div class="section-content">
+                <h2>Basic Fade In on Scroll</h2>
+                <p>Elements simply fade in as they enter the viewport.</p>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+        </section>
+        
+        <section id="section2">
+            <div class="section-content">
+                <h2>Directional Reveals</h2>
+                <p>Elements slide in from different directions while fading in.</p>
+                <div class="box" id="left-box"></div>
+                <div class="box" id="right-box"></div>
+                <div class="box" id="top-box"></div>
+                <div class="box" id="bottom-box"></div>
+            </div>
+        </section>
+        
+        <section id="section3">
+            <div class="section-content">
+                <h2>Scale and Rotation</h2>
+                <p>Elements scale up and rotate as they enter the viewport.</p>
+                <div class="box big-box" id="scale-box1"></div>
+                <div class="box" id="scale-box2"></div>
+                <div class="box tall-box" id="scale-box3"></div>
+            </div>
+        </section>
+        
+        <section id="section4" class="wave-section">
+            <div class="wave-content section-content">
+                <h2>Continuous Scroll-Linked Animation</h2>
+                <p>These elements continuously animate as you scroll, directly tied to scroll position.</p>
+                <div class="box" id="scroll-box1"></div>
+                <div class="box wide-box" id="scroll-box2"></div>
+                <div class="box" id="scroll-box3"></div>
+            </div>
+            <div class="wave"></div>
+        </section>
+        
+        <div class="parallax-section">
+            <div class="parallax-bg">
+                <div class="parallax-layer layer-1">
+                    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+                        <path d="M-8.17,75.50 C207.95,-129.75 329.85,202.60 500.84,5.45 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #3498db;"></path>
+                    </svg>
+                </div>
+                <div class="parallax-layer layer-2">
+                    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+                        <path d="M-13.36,90.21 C161.36,-49.05 404.65,197.41 501.98,40.89 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #9b59b6;"></path>
+                    </svg>
+                </div>
+                <div class="parallax-layer layer-3">
+                    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+                        <path d="M-23.42,125.83 C187.63,-64.01 299.38,202.33 500.00,30.77 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #e74c3c;"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="parallax-content">
+                <h2>Parallax Effect</h2>
+                <p>Background elements move at different speeds as you scroll, creating depth.</p>
+            </div>
+        </div>
+        
+        <div class="sticky-section">
+            <div class="sticky-container">
+                <div class="sticky-bg"></div>
+                <div class="sticky-content">
+                    <div class="panel" id="panel1">
+                        <div class="panel-content">
+                            <h2>Scroll Story: Panel 1</h2>
+                            <p>This is a scrollytelling section where content changes as you scroll down.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="panel2">
+                        <div class="panel-content">
+                            <h2>Scroll Story: Panel 2</h2>
+                            <p>The background stays fixed while the content changes with each scroll segment.</p>
+                        </div>
+                    </div>
+                    <div class="panel" id="panel3">
+                        <div class="panel-content">
+                            <h2>Scroll Story: Panel 3</h2>
+                            <p>This technique is perfect for storytelling and step-by-step explanations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section id="section5">
+            <div class="section-content">
+                <h2>Staggered Grid Animation</h2>
+                <p>Elements appear one after another in a grid pattern.</p>
+                <div class="staggered-section">
+                    <div class="stagger-item">1</div>
+                    <div class="stagger-item">2</div>
+                    <div class="stagger-item">3</div>
+                    <div class="stagger-item">4</div>
+                    <div class="stagger-item">5</div>
+                    <div class="stagger-item">6</div>
+                    <div class="stagger-item">7</div>
+                    <div class="stagger-item">8</div>
+                    <div class="stagger-item">9</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section6">
+            <div class="section-content">
+                <h2>Shape Morphing</h2>
+                <p>Elements transform their shape as you scroll.</p>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                    <div class="box shape"></div>
+                    <div class="diamond shape"></div>
+                    <div class="triangle shape"></div>
+                    <div class="box shape"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="final-section">
+            <div class="section-content">
+                <h2>Grand Finale</h2>
+                <p>Combining multiple effects for a spectacular ending.</p>
+                <div class="circle gradient-bg"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Import GSAP and ScrollTrigger from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Make sure GSAP is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof gsap === 'undefined') {
+                alert('GSAP library not loaded! Please check your internet connection.');
+                return;
+            }
+            
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // 1. Basic Fade In on Scroll
+            gsap.from("#section1 h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section1",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section1 p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: "#section1",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section1 .box", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                stagger: 0.2,
+                delay: 0.4,
+                scrollTrigger: {
+                    trigger: "#section1",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // 2. Directional Reveals
+            gsap.from("#section2 h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section2",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section2 p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: "#section2",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Left box slides in from left
+            gsap.from("#left-box", {
+                opacity: 0,
+                x: -100,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section2",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Right box slides in from right
+            gsap.from("#right-box", {
+                opacity: 0,
+                x: 100,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section2",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Top box slides in from top
+            gsap.from("#top-box", {
+                opacity: 0,
+                y: -100,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section2",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Bottom box slides in from bottom
+            gsap.from("#bottom-box", {
+                opacity: 0,
+                y: 100,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section2",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // 3. Scale and Rotation
+            gsap.from("#section3 h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section3",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section3 p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: "#section3",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#scale-box1", {
+                opacity: 0,
+                scale: 0,
+                rotation: 180,
+                duration: 1.5,
+                ease: "elastic.out(1, 0.3)",
+                scrollTrigger: {
+                    trigger: "#section3",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#scale-box2", {
+                opacity: 0,
+                scale: 0,
+                rotation: -180,
+                duration: 1.5,
+                delay: 0.3,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: "#section3",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#scale-box3", {
+                opacity: 0,
+                scale: 0,
+                duration: 1.5,
+                delay: 0.6,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: "#section3",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // 4. Continuous Scroll-Linked Animation
+            gsap.from("#section4 h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section4",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section4 p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: "#section4",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Box 1 rotates as you scroll
+            gsap.to("#scroll-box1", {
+                opacity: 1,
+                rotation: 360,
+                scrollTrigger: {
+                    trigger: "#section4",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    scrub: true
+                }
+            });
+            
+            // Box 2 scales as you scroll
+            gsap.to("#scroll-box2", {
+                opacity: 1,
+                scale: 1.5,
+                scrollTrigger: {
+                    trigger: "#section4",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    scrub: true
+                }
+            });
+            
+            // Box 3 moves in a circle as you scroll
+            gsap.to("#scroll-box3", {
+                opacity: 1,
+                motionPath: {
+                    path: [{x:0, y:0}, {x:100, y:-100}, {x:200, y:0}, {x:100, y:100}, {x:0, y:0}],
+                    autoRotate: true
+                },
+                scrollTrigger: {
+                    trigger: "#section4",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    scrub: true
+                }
+            });
+            
+            // Wave animation
+            gsap.to(".wave", {
+                opacity: 1,
+                y: -50,
+                scrollTrigger: {
+                    trigger: ".wave-section",
+                    start: "top 80%",
+                    end: "bottom 50%",
+                    scrub: true
+                }
+            });
+            
+            // 5. Parallax Section
+            gsap.to(".parallax-content", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".parallax-section",
+                    start: "top 80%",
+                    end: "top 30%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Parallax layers move at different speeds
+            gsap.to(".layer-1", {
+                y: -100,
+                scrollTrigger: {
+                    trigger: ".parallax-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+            
+            gsap.to(".layer-2", {
+                y: -200,
+                scrollTrigger: {
+                    trigger: ".parallax-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+            
+            gsap.to(".layer-3", {
+                y: -300,
+                scrollTrigger: {
+                    trigger: ".parallax-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+            
+            // 6. Sticky Section with Panels
+            // Pin the container
+            ScrollTrigger.create({
+                trigger: ".sticky-container",
+                start: "top top",
+                end: "bottom top",
+                endTrigger: ".sticky-section",
+                pin: true
+            });
+            
+            // Panel 1
+            gsap.to("#panel1", {
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".sticky-section",
+                    start: "top top",
+                    end: "33% top",
+                    scrub: true,
+                    onEnter: () => gsap.to("#panel1", {opacity: 1}),
+                    onLeave: () => gsap.to("#panel1", {opacity: 0})
+                }
+            });
+            
+            // Panel 2
+            gsap.to("#panel2", {
+                opacity: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".sticky-section",
+                    start: "33% top",
+                    end: "66% top",
+                    scrub: true,
+                    onEnter: () => gsap.to("#panel2", {opacity: 1}),
+                    onLeave: () => gsap.to("#panel2", {opacity: 0})
+                }
+            });
+            
+            // Panel 3
+            gsap.to("#panel3", {
+                opacity: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".sticky-section",
+                    start: "66% top",
+                    end: "bottom top",
+                    scrub: true,
+                    onEnter: () => gsap.to("#panel3", {opacity: 1}),
+                    onLeave: () => gsap.to("#panel3", {opacity: 0})
+                }
+            });
+            
+            // 7. Staggered Grid
+            gsap.from("#section5 h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section5",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section5 p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: "#section5",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.to(".stagger-item", {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                stagger: {
+                    each: 0.1,
+                    grid: [3, 3],
+                    from: "center"
+                },
+                scrollTrigger: {
+                    trigger: ".staggered-section",
+                    start: "top 80%",
+                    end: "top 30%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // 8. Shape Morphing Section
+            gsap.from("#section6 h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: "#section6",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from("#section6 p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: "#section6",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Animate shapes
+            gsap.to(".shape", {
+                opacity: 1,
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: "#section6",
+                    start: "top 70%",
+                    end: "top 40%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // 9. Final Section
+            gsap.from(".final-section h2", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".final-section",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            gsap.from(".final-section p", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: ".final-section",
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+            
+            // Circle grand finale
+            gsap.to(".circle", {
+                opacity: 1,
+                scale: 1.5,
+                rotation: 360,
+                duration: 2,
+                ease: "elastic.out(1, 0.3)",
+                scrollTrigger: {
+                    trigger: ".final-section",
+                    start: "top 60%",
+                    end: "top 30%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+    </script>
+</body>
+</html>

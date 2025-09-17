@@ -1,0 +1,33 @@
+<!-- <form id="myForm">
+    <input type="email" id="footer-email-field" placeholder="Enter email address" required>
+    <button type="submit">Submit</button>
+</form> -->
+
+<script>
+    document.getElementById("submit-email-btn").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent page reload
+
+        const email = document.getElementById("footer-email-field").value;
+
+        try {
+            const response = await fetch("https://c4r-email-api.vercel.app/api/c4rEmailApi", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Email submitted successfully!");
+                document.getElementById("footer-email-field").value = ""; // Clear the input
+            } else {
+                alert("Error: " + (data.error || "Failed to save email"));
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
+</script>

@@ -1,0 +1,16 @@
+{
+  "name": "webflow-animation-tests",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Static files - no build needed'",
+    "serve": "serve ."
+  },
+  "dependencies": {
+    "@c4r/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
