@@ -1,0 +1,9 @@
+{
+  "name": "c4r-template-test",
+  "domain": "tools",
+  "route": "/tools/c4r-template-test",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Next.js template test activity"
+}
+
