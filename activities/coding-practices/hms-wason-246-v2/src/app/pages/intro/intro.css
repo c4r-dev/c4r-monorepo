@@ -40,10 +40,10 @@
 
   
   .main-text{
-    @apply w-full rounded p-1 h-fit text-xl-plus md:text-2xl-plus;
+    @apply w-full rounded p-1 h-fit text-xl md:text-2xl;
   }
   .sub-text{
-    @apply w-full bg-brand-primary-hover rounded p-1 h-fit text-lg md:text-xl-plus;
+    @apply w-full bg-brand-primary-hover rounded p-1 h-fit text-base md:text-xl;
   }
 
   .continue-button{

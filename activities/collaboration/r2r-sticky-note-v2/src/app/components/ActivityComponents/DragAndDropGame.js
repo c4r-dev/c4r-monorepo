@@ -402,18 +402,18 @@ function DragAndDropGameContent({ reviewMode = false }) {
                     }}
                     className={myFont.className}
                 >
-                    <h1 className="text-custom-dark-bg text-7xl">
+                    <h1 className="text-custom-dark-bg text-3xl">
                         {/* Whiteboard exercise */}
                     </h1>
 
                     {!reviewPhase && (
-                        <p className="text-custom-black-bg text-xl">
+                        <p className="text-custom-black-bg text-lg">
                             Which issues have the biggest impact on yourself and
                             your research?
                         </p>
                     )}
                     {reviewPhase && (
-                        <p className="text-custom-black-bg text-xl">
+                        <p className="text-custom-black-bg text-lg">
                             What solutions are your colleagues most interested in trying?
                         </p>
                     )}
