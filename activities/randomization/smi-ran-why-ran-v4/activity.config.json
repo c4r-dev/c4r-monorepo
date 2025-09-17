@@ -1,9 +1,0 @@
-{
-  "name": "smi-ran-why-ran-v4",
-  "domain": "randomization",
-  "route": "/randomization/smi-ran-why-ran-v4",
-  "tech": "nextjs",
-  "status": "active",
-  "description": "Why randomize v4"
-}
-
