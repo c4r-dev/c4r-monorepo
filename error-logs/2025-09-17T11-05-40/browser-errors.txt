@@ -1,0 +1,404 @@
+🖥️  BROWSER ERRORS LOG - 2025-09-17T11:05:40.622Z
+============================================================
+[2025-09-17T11:05:42.389Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.390Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.391Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.391Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.392Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.392Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.416Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:42.416Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.654Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.654Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.655Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.656Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.657Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.657Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:45.682Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.844Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.845Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.845Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.846Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.846Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.846Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.847Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.847Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.848Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.848Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:48.848Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v2",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.035Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.036Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.038Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.039Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.039Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.040Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:52.040Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqa-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.214Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.214Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.216Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.217Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.218Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.218Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:55.219Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-all-seqb-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:58.400Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:58.400Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:05:58.401Z] CONSOLE_ERROR: Manifest: Line: 2, column: 13, Syntax error.
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:01.556Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v2",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:01.557Z] CONSOLE_ERROR: Manifest: Line: 2, column: 13, Syntax error.
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v2",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v2",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.802Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.803Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.805Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.807Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.808Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.822Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.824Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:04.825Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.027Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.028Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.028Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.029Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.029Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.030Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:08.031Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v4",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.203Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.203Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.204Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.206Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.216Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.216Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}
+[2025-09-17T11:06:11.217Z] CONSOLE_ERROR: Failed to load resource: the server responded with a status of 404 (Not Found)
+  Context: {
+  "activity": "/randomization/smi-ran-ran-flo-v1",
+  "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+  "source": "browser_console"
+}

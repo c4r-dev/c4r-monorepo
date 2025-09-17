@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-blk-ran-v1",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-blk-ran-v1",
+  "tech": "cra",
+  "status": "active",
+  "description": "Block randomization v1"
+}
+

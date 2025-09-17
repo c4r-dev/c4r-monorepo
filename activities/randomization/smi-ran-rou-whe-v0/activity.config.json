@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-rou-whe-v0",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-rou-whe-v0",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Roulette wheel randomization"
+}
+

@@ -1,0 +1,9 @@
+{
+  "name": "c4r-v0",
+  "domain": "tools",
+  "route": "/tools/c4r-v0",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Tool: c4r-v0"
+}
+

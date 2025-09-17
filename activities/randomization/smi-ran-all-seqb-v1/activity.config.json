@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-all-seqb-v1",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-all-seqb-v1",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "All sequences B - Randomization activity"
+}
+

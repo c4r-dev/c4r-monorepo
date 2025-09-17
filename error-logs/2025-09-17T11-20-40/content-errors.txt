@@ -1,0 +1,26 @@
+📄 CONTENT ERRORS LOG - 2025-09-17T11:20:40.039Z
+============================================================
+[2025-09-17T11:20:46.312Z] MISSING_ELEMENT: http://localhost:3333/_next/static/media/flu-raven-1.75c37a5d.svg
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "page_content"
+}
+[2025-09-17T11:20:46.313Z] MISSING_ELEMENT: http://localhost:3333/_next/static/media/flu-raven-3.e48cb01e.svg
+  Context: {
+  "activity": "/causality/jhu-flu-dag-v1",
+  "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+  "source": "page_content"
+}
+[2025-09-17T11:20:50.363Z] MISSING_ELEMENT: http://localhost:3333/_next/static/media/intro-icons.9e6dd41a.svg
+  Context: {
+  "activity": "/causality/jhu-polio-ice-cream-v1",
+  "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+  "source": "page_content"
+}
+[2025-09-17T11:21:15.078Z] MISSING_ELEMENT: http://localhost:3333/_next/image?url=%2Ffavicon.ico&w=96&q=75
+  Context: {
+  "activity": "/randomization/smi-ran-blk-ran-v3",
+  "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+  "source": "page_content"
+}

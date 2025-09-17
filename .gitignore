@@ -36,7 +36,6 @@ coverage/
 .nyc_output
 
 # Dependency directories
-node_modules/
 jspm_packages/
 
 # Optional npm cache directory
@@ -61,15 +60,11 @@ jspm_packages/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
-
-# next.js build output
-.next
 
 # nuxt.js build output
 .nuxt
@@ -100,4 +95,19 @@ jspm_packages/
 Thumbs.db
 
 # Turbo
-.turbo
+.turboactivities/**/package.json
+
+# Root-level generated files
+*.log
+debug-*.png
+activity-test-report.json
+activity-test-results.json
+dependency-analysis-report.json
+error-detection-report.json
+server-error-log.txt
+package-backup.json
+package-consolidated.json
+package-single.json
+.activity_roots.txt
+.next_candidates.txt
+.next_mjs_to_delete.txt

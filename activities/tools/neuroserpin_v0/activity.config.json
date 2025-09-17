@@ -1,0 +1,9 @@
+{
+  "name": "neuroserpin_v0",
+  "domain": "tools",
+  "route": "/tools/neuroserpin_v0",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Tool: neuroserpin_v0"
+}
+

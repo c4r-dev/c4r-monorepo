@@ -1,0 +1,9 @@
+{
+  "name": "p-hack-v0",
+  "domain": "tools",
+  "route": "/tools/p-hack-v0",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Tool: p-hack-v0"
+}
+

@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-ran-lab-v0",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-ran-lab-v0",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Lab randomization protocols"
+}
+

@@ -13,6 +13,7 @@ import noteIcon from "@/app/assets/note.svg";
 import NoteList from "./NoteList";
 import AllSessionsToggle from "./AllSessionsToggle";
 import CustomModal from "@/app/components/CustomModal/CustomModal";
+import { getBasePath } from "@/app/utils/basePath";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -159,7 +160,8 @@ function DragAndDropGameContent({ reviewMode = false }) {
 
         // Submit the data to the API
         try {
-            const res = await fetch("/api/stickyNoteApi", {
+            const base = getBasePath();
+            const res = await fetch(`${base}/api/stickyNoteApi`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
@@ -185,7 +187,8 @@ function DragAndDropGameContent({ reviewMode = false }) {
     const fetchNotesFromApi = useCallback(async () => {
         console.log("showAllSessions:", showAllSessions);
         console.log("hello world!:");
-        const res = await fetch(`/api/stickyNoteApi`);
+        const base = getBasePath();
+        const res = await fetch(`${base}/api/stickyNoteApi`);
         const data = await res.json();
 
         // Filter notesFromApi based on showAllSessions
@@ -349,14 +352,17 @@ function DragAndDropGameContent({ reviewMode = false }) {
 
     const openReviewPage = () => {
         if (sessionID) {
-            router.push(`/pages/review?sessionID=${sessionID}`);
+            const base2 = getBasePath();
+            router.push(`${base2}/pages/review?sessionID=${sessionID}`);
         } else {
-            router.push("/pages/review");
+            const base3 = getBasePath();
+            router.push(`${base3}/pages/review`);
         }
     };
 
     const openResourcePage = () => {
-        router.push("/pages/resources");
+        const base4 = getBasePath();
+        router.push(`${base4}/pages/resources`);
     };
 
     return (

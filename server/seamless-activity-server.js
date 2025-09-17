@@ -10,6 +10,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { exec } = require('child_process');
+const { promisify } = require('util');
+
+const execAsync = promisify(exec);
 
 class SeamlessActivityServer {
     constructor() {
@@ -19,6 +23,10 @@ class SeamlessActivityServer {
         this.nextApps = new Map();
         this.baseDir = process.cwd();
         this.sharedDeps = new Map();
+        
+        // Fix memory leak warnings
+        process.setMaxListeners(100);
+        require('events').EventEmitter.defaultMaxListeners = 100;
     }
 
     async initialize() {
@@ -67,20 +75,45 @@ class SeamlessActivityServer {
                 const subdirs = fs.readdirSync(fullPath);
                 for (const subdir of subdirs) {
                     const activityPath = path.join(fullPath, subdir);
-                    const packageJsonPath = path.join(activityPath, 'package.json');
                     
-                    if (fs.existsSync(packageJsonPath)) {
-                        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+                    // Check if this is a valid activity directory (skip hidden directories)
+                    if (subdir.startsWith('.') || !fs.statSync(activityPath).isDirectory()) {
+                        continue;
+                    }
+                    
+                    // Detect framework by file structure since we no longer have individual package.json files
+                    let type = this.detectFrameworkByStructure(activityPath);
+                    
+                    // Treat unknown structures as static so they still mount
+                    if (type === 'unknown') {
+                        type = 'static';
+                    }
+                    if (type) {
                         const domain = searchDir.split('/')[1] || 'tools';
                         const route = `/${domain}/${subdir}`;
                         
+                        // Optional per-activity metadata
+                        let meta = null;
+                        const metaPath = path.join(activityPath, 'activity.config.json');
+                        if (fs.existsSync(metaPath)) {
+                            try {
+                                meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+                            } catch (_) {
+                                meta = null;
+                            }
+                        }
+
+                        // Respect optional forced type (e.g., serve as static demo)
+                        const finalType = meta?.forceType || type;
+
                         this.activities.set(route, {
                             name: subdir,
                             path: activityPath,
                             domain: domain,
-                            packageJson: packageJson,
-                            type: this.detectFramework(packageJson),
-                            route: route
+                            packageJson: null, // No individual package.json in single-package architecture
+                            type: finalType,
+                            route: route,
+                            meta
                         });
                         count++;
                     }
@@ -99,6 +132,38 @@ class SeamlessActivityServer {
         if (deps.react) return 'react';
         if (deps.express) return 'express';
         return 'static';
+    }
+
+    detectFrameworkByStructure(activityPath) {
+        // Check for Next.js indicators
+        if (fs.existsSync(path.join(activityPath, 'next.config.mjs')) ||
+            fs.existsSync(path.join(activityPath, 'next.config.js')) ||
+            fs.existsSync(path.join(activityPath, 'pages')) ||
+            fs.existsSync(path.join(activityPath, 'app'))) {
+            return 'nextjs';
+        }
+        
+        // Check for Create React App indicators
+        if (fs.existsSync(path.join(activityPath, 'build/static')) ||
+            fs.existsSync(path.join(activityPath, 'public/manifest.json'))) {
+            return 'cra';
+        }
+        
+        // Check for React indicators
+        if (fs.existsSync(path.join(activityPath, 'src')) &&
+            (fs.existsSync(path.join(activityPath, 'src/App.js')) ||
+             fs.existsSync(path.join(activityPath, 'src/App.jsx')) ||
+             fs.existsSync(path.join(activityPath, 'src/index.js')))) {
+            return 'react';
+        }
+        
+        // Check for static site indicators
+        if (fs.existsSync(path.join(activityPath, 'index.html')) ||
+            fs.existsSync(path.join(activityPath, 'public/index.html'))) {
+            return 'static';
+        }
+        
+        return 'unknown';
     }
 
     setupSharedModules() {
@@ -127,41 +192,55 @@ class SeamlessActivityServer {
 
         // Serve static assets from shared location
         this.app.use('/assets', express.static(path.join(this.baseDir, 'assets')));
+        
+        // Serve favicon from public directory
+        this.app.get('/favicon.ico', (req, res) => {
+            const faviconPath = path.join(this.baseDir, 'public', 'favicon.ico');
+            if (fs.existsSync(faviconPath)) {
+                res.sendFile(faviconPath);
+            } else {
+                res.status(404).send('Favicon not found');
+            }
+        });
 
-        // Handle Next.js static assets for all activities
-        this.app.use('/_next/static', (req, res, next) => {
-            // Try to find the asset in any Next.js activity's .next directory
-            const assetPath = req.url;
-            
-            for (const [route, activity] of this.activities) {
+        // Global handler for root-level /_next requests in dev
+        // Use the request Referer to route to the correct Next app instance
+        this.app.use('/_next', async (req, res, next) => {
+            const referer = req.headers.referer || '';
+            try {
+                const urlObj = new URL(referer);
+                const m = urlObj.pathname.match(/^\/([^\/]+)\/([^\/]+)/);
+                if (m) {
+                    const route = `/${m[1]}/${m[2]}`;
+                    const activity = this.activities.get(route);
+                    if (activity && activity.type === 'nextjs') {
+                        const nextApp = await this.getOrCreateNextApp(activity);
+                        if (nextApp) {
+                            return nextApp.getRequestHandler()(req, res);
+                        }
+                    }
+                }
+            } catch (_) {
+                // ignore parse errors and fall back below
+            }
+            // Fallback: try to find a matching static asset among activities
+            const assetPath = req.url.split('?')[0];
+            for (const activity of this.activities.values()) {
                 if (activity.type === 'nextjs') {
-                    // Try different possible locations for the static asset
+                    const relativePath = assetPath.replace(/^\/static\//, '');
                     const possiblePaths = [
-                        path.join(activity.path, '.next', 'static', assetPath.replace('/_next/static/', '')),
-                        path.join(activity.path, 'out', '_next', 'static', assetPath.replace('/_next/static/', '')),
-                        path.join(activity.path, '.next', assetPath.replace('/_next/', ''))
+                        path.join(activity.path, '.next', 'static', relativePath),
+                        path.join(activity.path, 'out', '_next', 'static', relativePath),
+                        path.join(activity.path, 'build', '_next', 'static', relativePath)
                     ];
-                    
                     for (const filePath of possiblePaths) {
                         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                            // Set appropriate MIME type
-                            if (filePath.endsWith('.js')) {
-                                res.setHeader('Content-Type', 'application/javascript');
-                            } else if (filePath.endsWith('.css')) {
-                                res.setHeader('Content-Type', 'text/css');
-                            } else if (filePath.endsWith('.svg')) {
-                                res.setHeader('Content-Type', 'image/svg+xml');
-                            }
-                            
-                            res.sendFile(filePath);
-                            return;
+                            return res.sendFile(filePath);
                         }
                     }
                 }
             }
-            
-            // If not found, return 404
-            res.status(404).send(`Static asset not found: ${assetPath}`);
+            res.status(404).send('Asset not found');
         });
     }
 
@@ -184,10 +263,13 @@ class SeamlessActivityServer {
         // API for activity list
         this.app.get('/api/activities', (req, res) => {
             const activitiesList = Array.from(this.activities.values()).map(activity => ({
-                name: activity.name,
+                name: activity.meta?.name || activity.name,
                 domain: activity.domain,
                 route: activity.route,
                 type: activity.type,
+                tech: activity.meta?.tech,
+                status: activity.meta?.status,
+                description: activity.meta?.description,
                 url: `http://localhost:${this.port}${activity.route}`
             }));
             res.json(activitiesList);
@@ -206,10 +288,93 @@ class SeamlessActivityServer {
 
     setupSeamlessActivityRoute(route, activity) {
         console.log(`🔗 Setting up seamless route: ${route}`);
-        
+
+        if (activity.type === 'nextjs') {
+            // Dedicated Next.js sub-mount for this activity
+            this.app.use(`${route}/_next`, async (req, res) => {
+                try {
+                    const nextApp = await this.getOrCreateNextApp(activity);
+                    // At this mount, req.url begins with '/_next/...'
+                    return nextApp.getRequestHandler()(req, res);
+                } catch (e) {
+                    console.error(`❌ Next asset handler error for ${activity.name}:`, e.message);
+                    res.status(404).end();
+                }
+            });
+
+            this.app.use(route, async (req, res, next) => {
+                try {
+                    const nextApp = await this.getOrCreateNextApp(activity);
+                    // Mounted at route, so req.url is relative to the activity root already
+                    return nextApp.getRequestHandler()(req, res);
+                } catch (e) {
+                    console.error(`❌ Next request handler error for ${activity.name}:`, e.message);
+                    this.serveStaticFallback(activity, req, res, next);
+                }
+            });
+            return;
+        }
+
+        // Non-Next activities
         this.app.use(route, (req, res, next) => {
             this.serveActivitySeamlessly(activity, req, res, next);
         });
+    }
+
+    serveActivityStaticAsset(activity, req, res, next) {
+        // Clean the asset path (remove query parameters)
+        const assetPath = req.url.split('?')[0];
+        console.log(`🔍 Looking for static asset: ${assetPath} for activity: ${activity.name}`);
+        
+        // Extract the relative path after /_next/static/
+        const relativePath = assetPath.replace('/_next/static/', '');
+        
+        // Try different possible locations for the static asset in THIS activity only
+        const possiblePaths = [
+            // Standard Next.js static directory - correct path construction
+            path.join(activity.path, '.next', 'static', relativePath),
+            // Development mode paths - Next.js in dev mode uses /development/ subdirectory
+            path.join(activity.path, '.next', 'static', 'development', relativePath),
+            path.join(activity.path, '.next', 'static', 'production', relativePath),
+            // Alternative patterns for different build modes
+            path.join(activity.path, 'out', '_next', 'static', relativePath),
+            path.join(activity.path, 'build', '_next', 'static', relativePath),
+            // Development mode fallbacks
+            path.join(activity.path, '.next', assetPath.replace('/_next/', ''))
+        ];
+        
+        for (const filePath of possiblePaths) {
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                console.log(`✅ Found static asset: ${filePath} for activity: ${activity.name}`);
+                
+                // Set appropriate MIME type and cache headers
+                if (filePath.endsWith('.js')) {
+                    res.setHeader('Content-Type', 'application/javascript');
+                } else if (filePath.endsWith('.css')) {
+                    res.setHeader('Content-Type', 'text/css');
+                } else if (filePath.endsWith('.svg')) {
+                    res.setHeader('Content-Type', 'image/svg+xml');
+                } else if (filePath.endsWith('.woff') || filePath.endsWith('.woff2')) {
+                    res.setHeader('Content-Type', 'font/woff');
+                } else if (filePath.endsWith('.ttf')) {
+                    res.setHeader('Content-Type', 'font/ttf');
+                } else if (filePath.endsWith('.png')) {
+                    res.setHeader('Content-Type', 'image/png');
+                } else if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
+                    res.setHeader('Content-Type', 'image/jpeg');
+                }
+                
+                // Add cache headers for better performance
+                res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+                
+                res.sendFile(filePath);
+                return;
+            }
+        }
+        
+        console.log(`❌ Static asset not found: ${assetPath} for activity: ${activity.name}`);
+        // If not found, return 404
+        res.status(404).send(`Static asset not found: ${assetPath}`);
     }
 
     async serveActivitySeamlessly(activity, req, res, next) {
@@ -228,16 +393,19 @@ class SeamlessActivityServer {
                 // Static or unknown - serve files directly
                 const filePath = path.join(activityPath, url);
                 if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                    res.sendFile(filePath);
-                } else {
-                    // Try index.html
-                    const indexPath = path.join(activityPath, 'index.html');
-                    if (fs.existsSync(indexPath)) {
-                        res.sendFile(indexPath);
-                    } else {
-                        next();
-                    }
+                    return res.sendFile(filePath);
                 }
+                // Try public/index.html
+                const publicIndex = path.join(activityPath, 'public', 'index.html');
+                if (fs.existsSync(publicIndex)) {
+                    return res.sendFile(publicIndex);
+                }
+                // Try root index.html
+                const indexPath = path.join(activityPath, 'index.html');
+                if (fs.existsSync(indexPath)) {
+                    return res.sendFile(indexPath);
+                }
+                next();
             }
         } catch (error) {
             console.error(`❌ Error serving ${activity.name}:`, error.message);
@@ -246,100 +414,164 @@ class SeamlessActivityServer {
     }
 
     async serveNextJSSeamlessly(activity, req, res, next) {
-        const activityPath = activity.path;
-        const url = req.url === '/' ? '' : req.url;
-        
-        // Handle _next/static assets specifically
-        if (url.startsWith('/_next/static/')) {
-            const staticAsset = url.replace('/_next/static/', '');
-            const possiblePaths = [
-                path.join(activityPath, '.next', 'static', staticAsset),
-                path.join(activityPath, 'out', '_next', 'static', staticAsset),
-                path.join(activityPath, '.next', url.replace('/_next/', ''))
-            ];
-            
-            for (const filePath of possiblePaths) {
-                if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                    // Set appropriate MIME type
-                    if (filePath.endsWith('.js')) {
-                        res.setHeader('Content-Type', 'application/javascript');
-                    } else if (filePath.endsWith('.css')) {
-                        res.setHeader('Content-Type', 'text/css');
-                    } else if (filePath.endsWith('.svg')) {
-                        res.setHeader('Content-Type', 'image/svg+xml');
-                    }
-                    
-                    res.sendFile(filePath);
-                    return;
-                }
-            }
-        }
-        
-        // Try to serve from built static export first
-        const outDir = path.join(activityPath, 'out');
-        const buildDir = path.join(activityPath, '.next');
-        
-        if (fs.existsSync(outDir)) {
-            // Serve from static export
-            const filePath = path.join(outDir, url === '' ? 'index.html' : url);
-            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                res.sendFile(filePath);
-                return;
-            }
-        }
-        
-        // Try to serve from Next.js build directory
-        if (fs.existsSync(buildDir)) {
-            // For root requests, try to serve the main page
-            if (url === '' || url === '/') {
-                const possibleIndexPaths = [
-                    path.join(buildDir, 'server', 'app', 'index.html'),
-                    path.join(buildDir, 'server', 'pages', 'index.html'),
-                    path.join(buildDir, 'static', 'index.html')
-                ];
-                
-                for (const indexPath of possibleIndexPaths) {
-                    if (fs.existsSync(indexPath)) {
-                        res.sendFile(indexPath);
-                        return;
-                    }
-                }
-                
-                // Try to create a basic Next.js runtime page
-                const basicNextPage = this.generateNextJSBootstrap(activity);
-                res.send(basicNextPage);
-                return;
-            }
-        }
-        
-        // Try to serve from public directory
-        const publicDir = path.join(activityPath, 'public');
-        if (fs.existsSync(publicDir)) {
-            const publicFile = path.join(publicDir, url);
-            if (fs.existsSync(publicFile) && fs.statSync(publicFile).isFile()) {
-                res.sendFile(publicFile);
-                return;
-            }
-        }
-        
-        // If no static files found, try to build and serve
         try {
-            await this.buildNextJSApp(activity);
+            // Get or create Next.js app instance for this activity
+            const nextApp = await this.getOrCreateNextApp(activity);
             
-            // Try serving built output again
-            if (fs.existsSync(outDir)) {
-                const filePath = path.join(outDir, url === '' ? 'index.html' : url);
-                if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                    res.sendFile(filePath);
-                    return;
-                }
+            if (!nextApp) {
+                console.error(`❌ Failed to initialize Next.js app for ${activity.name}`);
+                this.serveStaticFallback(activity, req, res, next);
+                return;
             }
-        } catch (buildError) {
-            console.error(`❌ Build failed for ${activity.name}:`, buildError.message);
+            
+            // Rewrite URL so Next.js treats the activity route as its root
+            const originalUrl = req.url;
+            if (originalUrl.startsWith(activity.route)) {
+                req.url = originalUrl.slice(activity.route.length) || '/';
+            } else if (!originalUrl.startsWith('/_next')) {
+                // For direct hit to the route without trailing slash
+                req.url = '/';
+            }
+            // Mark forwarded prefix for awareness
+            req.headers['x-forwarded-prefix'] = activity.route;
+            
+            await nextApp.getRequestHandler()(req, res);
+            
+        } catch (error) {
+            console.error(`❌ Error serving Next.js app ${activity.name}:`, error.message);
+            this.serveStaticFallback(activity, req, res, next);
+        }
+    }
+
+    async getOrCreateNextApp(activity) {
+        const activityKey = activity.name;
+        
+        // Return cached app if already created
+        if (this.nextApps.has(activityKey)) {
+            return this.nextApps.get(activityKey);
         }
         
-        // Final fallback
-        this.serveStaticFallback(activity, req, res, next);
+        try {
+            console.log(`🚀 Initializing Next.js app: ${activity.name}`);
+            
+            // Change to activity directory to ensure correct workspace root inference
+            const originalCwd = process.cwd();
+            process.chdir(activity.path);
+            
+            try {
+                // Dynamically import Next.js
+                const next = require('next');
+                
+                // Create Next.js app instance with proper configuration
+                const nextApp = next({
+                    dev: true, // Enable development mode
+                    dir: activity.path, // Point to activity directory
+                    quiet: false,
+                    hostname: 'localhost',
+                    port: null, // Don't bind to a specific port since we're using custom server
+                    customServer: true,
+                    conf: {
+                        // Webpack configuration for shared dependencies
+                        webpack: (config, { isServer, dev }) => {
+                            // Set proper resolve paths for shared dependencies
+                            config.resolve.modules = [
+                                path.join(__dirname, '..', 'node_modules'),
+                                path.join(activity.path, 'node_modules'),
+                                'node_modules'
+                            ];
+                            
+                            // Ensure consistent module resolution
+                            config.resolve.symlinks = false;
+                            
+                            // Prevent webpack chunk conflicts between activities
+                            if (!isServer) {
+                                // Use activity-specific chunk names to prevent conflicts
+                                const activityName = path.basename(activity.path);
+                                config.output.chunkFilename = `static/chunks/${activityName}-[name]-[contenthash].js`;
+                                config.output.filename = `static/chunks/${activityName}-[name]-[contenthash].js`;
+                                
+                                // Use Next.js default publicPath (`/_next/`) to avoid route confusion
+                            }
+                            
+                            // Add fallbacks for Node.js modules in browser
+                            config.resolve.fallback = {
+                                ...config.resolve.fallback,
+                                fs: false,
+                                path: false,
+                                os: false,
+                                crypto: false,
+                                stream: false,
+                                http: false,
+                                https: false,
+                                zlib: false,
+                                url: false
+                            };
+                            
+                            return config;
+                        }
+                    }
+                });
+                
+                // Prepare the Next.js app
+                await nextApp.prepare();
+                
+                console.log(`✅ Next.js app ready: ${activity.name}`);
+                
+                // Cache the app instance
+                this.nextApps.set(activityKey, nextApp);
+                
+                return nextApp;
+                
+            } finally {
+                // Always restore original working directory
+                process.chdir(originalCwd);
+            }
+            
+        } catch (error) {
+            console.error(`❌ Failed to initialize Next.js app ${activity.name}:`, error.message);
+            
+            // If Next.js fails, try to serve as static export
+            const outDir = path.join(activity.path, 'out');
+            if (fs.existsSync(outDir)) {
+                console.log(`📁 Falling back to static export for ${activity.name}`);
+                return null; // Will trigger static fallback
+            }
+            
+            // Try to build static export
+            try {
+                console.log(`🔨 Building static export for ${activity.name}...`);
+                await this.buildStaticExport(activity);
+                return null; // Will serve from static export
+            } catch (buildError) {
+                console.error(`❌ Static export build failed for ${activity.name}:`, buildError.message);
+                return null;
+            }
+        }
+    }
+
+    async buildStaticExport(activity) {
+        const originalCwd = process.cwd();
+        
+        try {
+            // Change to activity directory
+            process.chdir(activity.path);
+            
+            // Build static export
+            await execAsync('npm run build && npm run export', {
+                timeout: 120000, // 2 minutes timeout
+                env: { 
+                    ...process.env,
+                    NODE_PATH: path.join(this.baseDir, 'node_modules'),
+                    NODE_ENV: 'production'
+                }
+            });
+            
+            console.log(`✅ Static export built for ${activity.name}`);
+            
+        } finally {
+            // Always restore original directory
+            process.chdir(originalCwd);
+        }
     }
 
     generateNextJSBootstrap(activity) {
@@ -394,7 +626,7 @@ class SeamlessActivityServer {
             <!DOCTYPE html>
             <html>
             <head>
-                <title>${activity.name} - C4R Activity</title>
+                <title>${activity.meta?.name || activity.name} - C4R Activity</title>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <style>
@@ -405,10 +637,11 @@ class SeamlessActivityServer {
             </head>
             <body>
                 <div class="container">
-                    <h1>🏗️ ${activity.name}</h1>
+                    <h1>🏗️ ${activity.meta?.name || activity.name}</h1>
                     <div class="status">⚠️ This activity is being served in fallback mode</div>
-                    <p>The activity may need to be built or configured for the unified server.</p>
+                    <p>${activity.meta?.description || 'The activity may need to be built or configured for the unified server.'}</p>
                     <p><strong>Domain:</strong> ${activity.domain}</p>
+                    <p><strong>Tech:</strong> ${activity.meta?.tech || activity.type}</p>
                     <p><strong>Path:</strong> <code>${activity.path}</code></p>
                     <div style="margin-top: 2rem;">
                         <a href="/" style="background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">← Dashboard</a>
@@ -431,17 +664,8 @@ class SeamlessActivityServer {
             const nextConfigPath = path.join(activityPath, 'next.config.mjs');
             let buildCommand = 'npm run build';
             
-            // Check if there's a build script in package.json
-            const packageJsonPath = path.join(activityPath, 'package.json');
-            if (fs.existsSync(packageJsonPath)) {
-                const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-                if (packageJson.scripts && packageJson.scripts.build) {
-                    buildCommand = 'npm run build';
-                } else {
-                    // Use next build directly
-                    buildCommand = 'npx next build';
-                }
-            }
+            // In single-package architecture, always use npx next build
+            buildCommand = 'npx next build';
             
             // Set environment to use shared node_modules
             const env = {
@@ -808,7 +1032,37 @@ class SeamlessActivityServer {
 
     async startServer() {
         return new Promise((resolve) => {
-            this.app.listen(this.port, () => {
+            const http = require('http');
+            this.server = http.createServer(this.app);
+            
+            // Set up WebSocket upgrade handling at the server level
+            this.server.on('upgrade', (request, socket, head) => {
+                // Extract activity name from request URL
+                const url = new URL(request.url, `http://${request.headers.host}`);
+                const routeMatch = url.pathname.match(/^\/([^\/]+)\/([^\/]+)/);
+                
+                if (routeMatch) {
+                    const [, category, activityName] = routeMatch;
+                    const activity = this.activities.get(`/${category}/${activityName}`);
+                    
+                    if (activity && this.nextApps.has(activity.name)) {
+                        const nextApp = this.nextApps.get(activity.name);
+                        if (nextApp && nextApp.getUpgradeHandler) {
+                            try {
+                                nextApp.getUpgradeHandler()(request, socket, head);
+                                return;
+                            } catch (error) {
+                                console.error(`❌ WebSocket upgrade error for ${activity.name}:`, error.message);
+                            }
+                        }
+                    }
+                }
+                
+                // Close socket if no handler found
+                socket.destroy();
+            });
+            
+            this.server.listen(this.port, () => {
                 resolve();
             });
         });

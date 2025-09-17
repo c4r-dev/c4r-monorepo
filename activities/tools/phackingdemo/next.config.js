@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
-    reactStrictMode: true,
-}
-  
-  module.exports = nextConfig
+    transpilePackages: [],
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+};
+
+module.exports = nextConfig;

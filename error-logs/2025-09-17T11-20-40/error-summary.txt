@@ -1,0 +1,74 @@
+📊 ERROR SUMMARY - 2025-09-17T11:20:40.039Z
+==================================================
+
+ACTIVITY: /causality/jhu-flu-dag-v1 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 2
+White Screen: false
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/causality-jhu-flu-dag-v1.png
+----------------------------------------
+
+ACTIVITY: /causality/jhu-polio-ice-cream-v1 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 1
+White Screen: false
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/causality-jhu-polio-ice-cream-v1.png
+----------------------------------------
+
+ACTIVITY: /causality/jhu-polio-ice-cream-v2 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 0
+White Screen: true
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/causality-jhu-polio-ice-cream-v2.png
+----------------------------------------
+
+ACTIVITY: /randomization/smi-ran-all-seqa-v1 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 0
+White Screen: true
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/randomization-smi-ran-all-seqa-v1.png
+----------------------------------------
+
+ACTIVITY: /randomization/smi-ran-all-seqb-v1 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 0
+White Screen: true
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/randomization-smi-ran-all-seqb-v1.png
+----------------------------------------
+
+ACTIVITY: /randomization/smi-ran-blk-ran-v1 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 0
+White Screen: true
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/randomization-smi-ran-blk-ran-v1.png
+----------------------------------------
+
+ACTIVITY: /randomization/smi-ran-blk-ran-v2 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 0
+White Screen: true
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/randomization-smi-ran-blk-ran-v2.png
+----------------------------------------
+
+ACTIVITY: /randomization/smi-ran-blk-ran-v3 (200)
+JS Errors: 0
+CSS Errors: 0
+Missing Elements: 1
+White Screen: false
+Error Overlay: false
+Screenshot: /Users/konrad_1/c4r-dev/c4r-dev/error-logs/2025-09-17T11-20-40/screenshots/randomization-smi-ran-blk-ran-v3.png
+----------------------------------------

@@ -3,6 +3,7 @@
 import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useQRCode } from "next-qrcode";
+import { getBasePath } from "@/app/utils/basePath";
 
 import "./newSession.css";
 
@@ -39,15 +40,16 @@ export function NewSessionContent() {
     // If sessionID is not in the URL, refresh the page with a randomly generated sessionID
     useEffect(() => {
         if (!sessionIDParam) {
-            router.push(`/pages/newSession?sessionID=${randomSessionID}`);
+            const base = getBasePath();
+            router.push(`${base}/pages/newSession?sessionID=${randomSessionID}`);
         }
     }, [sessionIDParam]);
 
     // URL construction
-    const productionBaseURL = "https://r2r-sticky-note-v2.vercel.app/pages/input";
-    const developmentBaseURL = "https://r2r-sticky-note-v2.vercel.app/pages/input";
-    const isDev = false;
-    let baseURL = isDev ? developmentBaseURL : productionBaseURL;
+    // Build a local base URL using the current origin + activity base path
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const activityBase = getBasePath();
+    const baseURL = `${origin}${activityBase}/pages/input`;
     const fullURL = `${baseURL}/?sessionID=${sessionID}`;
 
 
@@ -58,7 +60,8 @@ export function NewSessionContent() {
     };
     const onSkipToResults = () => {
         console.log("Skipping to results");
-        router.push(`/pages/review?sessionID=${sessionID}`);
+        const base = getBasePath();
+        router.push(`${base}/pages/review?sessionID=${sessionID}`);
     };
 
     return (

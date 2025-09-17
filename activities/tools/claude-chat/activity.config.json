@@ -1,0 +1,9 @@
+{
+  "name": "claude-chat",
+  "domain": "tools",
+  "route": "/tools/claude-chat",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Tool: claude-chat"
+}
+

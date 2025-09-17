@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-blk-ran-v3",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-blk-ran-v3",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Block randomization v3"
+}
+

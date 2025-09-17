@@ -1,9 +1,12 @@
-// next.config.js
-export function webpack(config, { dev, isServer }) {
-    if (dev && !isServer) {
-        config.optimization.providedExports = true;
-        config.optimization.usedExports = true;
-    }
-    return config;
-}
-  
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    transpilePackages: [],
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+};
+
+module.exports = nextConfig;

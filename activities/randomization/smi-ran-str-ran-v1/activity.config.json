@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-str-ran-v1",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-str-ran-v1",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Stratified randomization v1"
+}
+

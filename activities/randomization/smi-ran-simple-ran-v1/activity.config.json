@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-simple-ran-v1",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-simple-ran-v1",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Simple randomization v1"
+}
+

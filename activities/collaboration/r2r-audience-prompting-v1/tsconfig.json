@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,9 +22,25 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", ".next/types/**/*.ts", "app/studentInput/page.jsx", "app/layout.jsx", "app/page.jsx", "components/AnswerList.jsx", "app/showQRCode/page.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    ".next/types/**/*.ts",
+    "app/studentInput/page.jsx",
+    "app/layout.jsx",
+    "app/page.jsx",
+    "components/AnswerList.jsx",
+    "app/showQRCode/page.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

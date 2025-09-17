@@ -1,0 +1,9 @@
+{
+  "name": "hms-cbi-pub-bia-v0",
+  "domain": "coding-practices",
+  "route": "/coding-practices/hms-cbi-pub-bia-v0",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Coding practices activity: hms-cbi-pub-bia-v0"
+}
+

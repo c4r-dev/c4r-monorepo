@@ -1,15 +1,7 @@
-/* Mobile First Styles   */
+/* Mobile First Styles using Tailwind */
 .full-page {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: space-between;
-    /* padding: 16px; */
-    min-height: 90vh;
-    max-height: 100vh;
-    overflow: hidden;
-    /* background-color: #f8f8f8; */
-  }
+    @apply flex flex-col justify-between min-h-[90vh] max-h-screen overflow-hidden;
+}
 
   /*
   .bottom-container{
@@ -27,100 +19,35 @@
   */
 
   .bottom-container{
-    display: flex;
-    /* flex-direction: column; */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* overflow: hidden; */
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      /* margin-left: 10em; */
-      align-items: flex-start;
-      margin-left: 5em;
-      flex-direction: column;
-    }
+    @apply flex flex-col justify-center items-center md:items-start md:ml-20;
   }
   
   .speech-bubble-container{
-    width: 95%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    /* margin-bottom: 15em; */
-    z-index: 100;
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      width: 50%;
-    }
+    @apply w-[95%] h-full flex flex-col justify-center items-center z-[100] md:w-1/2;
   }
 
   .speech-bubble-body{
-    width: 100%;
-    /* height: 100%; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #6E00FF;
-    padding: 10px;
-    
+    @apply w-full flex flex-col justify-center items-center bg-brand-primary p-2.5;
 }
 
   /* Triangle flat against the left side and bottom side */
   .speech-bubble-tail{
-    width: 0;
-    height: 0;
-    border-top: 25px solid #6E00FF;
+    @apply w-0 h-0 self-baseline;
+    border-top: 25px solid theme('colors.brand.primary');
     border-bottom: 25px solid transparent;
     border-right: 25px solid transparent;
-    /* border-radius: 4px; */
-    align-self: baseline;
   }
 
   
   .main-text{
-    width: 100%;
-    /* height: 100%; */
-    border-radius: 4px;
-    padding: 4px;
-    height: fit-content;
-    font-size: 1.2em;
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      font-size: 1.4em;
-    }
+    @apply w-full rounded p-1 h-fit text-xl-plus md:text-2xl-plus;
   }
   .sub-text{
-    width: 100%;
-    /* height: 100%; */
-    background-color: #6200E4;
-    border-radius: 4px;
-    padding: 4px;
-    height: fit-content;
-    font-size: 1.0em;
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      font-size:  1.2em;
-    }
+    @apply w-full bg-brand-primary-hover rounded p-1 h-fit text-lg md:text-xl-plus;
   }
 
   .continue-button{
-    align-self: flex-end;
-    margin-right: 1rem;
-
-    /* Fixed to bottom left of screen */
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
-    z-index: 100;
+    @apply self-end mr-4 fixed bottom-4 right-4 z-[100];
   }
 
   /* .board-raven{
@@ -132,68 +59,22 @@
   } */
 
   .board-raven-outer-container{
-    /* width: 100%;
-    height: 30vh;
-    display: flex; */
-
-
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
-
-    width: 100%;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    @apply w-full overflow-hidden fixed bottom-0 left-0;
   }
 
   .board-raven-inner-container{
-    width: 150%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-left: -10%;
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      width: 60%;
-      margin-left: 0;
-    }
+    @apply w-[150%] h-full flex justify-center items-center -ml-[10%] md:w-3/5 md:ml-0;
   }
 
   .board-raven{
-    /* width: 100%;
-    height: 100%; */
-    width: 150%;
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      width: 100%;
-    }
+    @apply w-[150%] md:w-full;
   }
 
   .board-raven-image{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* Larger screens */
-    @media (min-width: 768px) {
-      width: 70%;
-    }
+    @apply w-full h-full flex justify-center items-center md:w-[70%];
   }
 
   .board-raven-image-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    flex-direction: column;
+    @apply w-full h-full flex justify-center items-baseline flex-col;
   }
 

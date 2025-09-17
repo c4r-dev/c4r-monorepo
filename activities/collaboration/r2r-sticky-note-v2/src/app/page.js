@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { getBasePath } from "@/app/utils/basePath";
 
 import Header from "@/app/components/Header/Header";
 import CustomModal from "@/app/components/CustomModal/CustomModal";
@@ -20,7 +21,8 @@ export function InitPage() {
 
     // Upon load, redirect user to the newSession page
     useEffect(() => {
-        router.push(`/pages/newSession`);
+        const base = getBasePath();
+        router.push(`${base}/pages/newSession`);
     }, []);
 
     return (

@@ -1,0 +1,9 @@
+{
+  "name": "smi-ran-ran-lit-v1",
+  "domain": "randomization",
+  "route": "/randomization/smi-ran-ran-lit-v1",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Literature randomization v1"
+}
+

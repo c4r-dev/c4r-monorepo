@@ -47,24 +47,27 @@ export default function RootLayout({ children }) {
                 <body
                     className={`${generalSansSemiBold.variable} ${generalSansVariable.variable} ${generalSansMedium.variable}`}
                 >
-                    {/* Google Analytics Script */}
-                    <Script
-                        async
-                        src="https://www.googletagmanager.com/gtag/js?id=G-93H3LHNDSN"
-                        strategy="afterInteractive"
-                    />
-                    <Script
-                        id="google-analytics"
-                        strategy="afterInteractive"
-                        dangerouslySetInnerHTML={{
-                            __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-93H3LHNDSN');
-              `,
-                        }}
-                    />
+                    {process.env.NEXT_PUBLIC_ENABLE_GA === 'true' && (
+                        <>
+                            <Script
+                                async
+                                src="https://www.googletagmanager.com/gtag/js?id=G-93H3LHNDSN"
+                                strategy="afterInteractive"
+                            />
+                            <Script
+                                id="google-analytics"
+                                strategy="afterInteractive"
+                                dangerouslySetInnerHTML={{
+                                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);} 
+                        gtag('js', new Date());
+                        gtag('config', 'G-93H3LHNDSN');
+                      `,
+                                }}
+                            />
+                        </>
+                    )}
                     {children}
                 </body>
             </AppRouterCacheProvider>

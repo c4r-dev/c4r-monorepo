@@ -1,0 +1,9 @@
+{
+  "name": "C4R Team Next.js Template",
+  "domain": "tools",
+  "route": "/tools/c4r-team-nextjs-template",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Baseline Next.js activity template aligned with the unified server."
+}
+

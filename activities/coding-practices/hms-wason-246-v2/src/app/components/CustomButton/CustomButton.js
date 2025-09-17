@@ -1,185 +1,54 @@
 "use client";
 
-import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
-
-// import localFont from "next/font/local";
-// const myFont = localFont({ src: '@/app/fonts/GeneralSans-Variable.woff' });
+import { cn } from "@/lib/utils"; // Utility for className merging
 
 export default function CustomButton({
     onClick = () => {},
     disabled = false,
     children,
     ariaLabel,
-    customStyles,
-    variant,
-    type,
-    className
+    variant = 'primary',
+    type = 'button',
+    className,
+    size = 'default'
 }) {
-
-
-    /* Color Lookup Table 
-    Neutrals
-        Black: #202020
-        Dark Gray: #F3F3F3
-        Int Dark Gray (Simply "Gray"): #E0E0E0
-        Int Light Gray (Simply "Light Gray"): #A2A2A2
-        Light Gray (Simply "Background Gray"): #333132
-        White: #FFFFFF
-
-    Opacities
-        White: #FFFFFF
-        Opacity 90: #FFFFFF90
-        Opacity 70: #FFFFFF70
-        Opacity 50: #FFFFFF50
-        Opacity 20: #FFFFFF20
-
-    Primary Colors:
-        DarkPink: '#F031DD',
-        Purple: '#6F00FF',
-        Blue: '#00A3FF',
-        Green: '#00C802',
-        Yellow: '#FFC800',
-        BrightOrange: '#FF5A00',
+    // Tailwind class variants
+    const baseClasses = "font-sans-semibold w-fit rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
     
-    Secondary Colors:
-        LightPink: '#FF7EF2',
-        LightPurple: '#E8D7FF',
-        DarkPurple: '#5700CA',
-        DarkBlue: '#1859D7',
-        LightBlue: '#39E1F8',
-        BlueOpacity40: 'rgba(0, 163, 255, 0.4)',
-        GreenOpacity80: 'rgba(0, 200, 2, 0.8)',
-        ElectricGreen: '#A0FF00',
-        LightYellow: '#F4F734',
-        LightOrange: '#FFA800',
-        Orange: '#FF7A00',
-    */
-
-    // Actual implementation of color lookup tables here
-    const neutralVariants = {
-        black: '#202020',
-        darkGray: '#F3F3F3',
-        gray: '#E0E0E0',
-        lightGray: '#A2A2A2',
-        backgroundGray: '#333132',
-        white: '#FFFFFF',
-    }
-
-    const opacityVariants = {
-        white: '#FFFFFF',
-        opacity90: '#FFFFFF90',
-        opacity70: '#FFFFFF70',
-        opacity50: '#FFFFFF50',
-        opacity20: '#FFFFFF20',
-    }
-
-    const primaryVariants = {
-        darkPink: '#F031DD',
-        purple: '#6F00FF',
-        blue: '#00A3FF',
-        green: '#00C802',
-        yellow: '#FFC800',
-        brightOrange: '#FF5A00',
-    }
-
-    const secondaryVariants = {
-        lightPink: '#FF7EF2',
-        lightPurple: '#E8D7FF',
-        darkPurple: '#5700CA',
-        darkBlue: '#1859D7',
-        lightBlue: '#39E1F8',
-        blueOpacity40: 'rgba(0, 163, 255, 0.4)',
-        greenOpacity80: 'rgba(0, 200, 2, 0.8)',
-        electricGreen: '#A0FF00',
-        lightYellow: '#F4F734',
-        lightOrange: '#FFA800',
-        orange: '#FF7A00',
-    }
-
-    const baseStyles = {
-        fontFamily: 'var(--font-general-sans-semi-bold)',
-        width: 'fit-content',
-        padding: { xs: '8px 16px', sm: '10px 20px' },
-        fontSize: { xs: '0.875rem', sm: '1rem' },
-        backgroundColor: 'purple', // Purple background
-        color: 'white', // White text
-        borderRadius: '8px', // Rounded edges
-        '&:hover': {
-            backgroundColor: 'darkviolet', // Darker shade on hover
-        },
-        '&:disabled': {
-            backgroundColor: 'lightgray', // Light gray when disabled
-        },
-    };   
-
-    const greyVariant = {
-        backgroundColor: '#676767',
-        color: 'white',
-        '&:hover': {
-            backgroundColor: '#4a4a4a', // Darker shade on hover
-        },
-        '&:disabled': {
-            backgroundColor: '#4a4a4a', // Light gray when disabled
-            color: 'grey',
-        },
-    }
-
-    const blueVariant = {
-        backgroundColor: '#6e00ff',
-        color: 'white',
-        '&:hover': {
-            backgroundColor: '#5801d0', // Darker shade on hover
-        },
-        '&:disabled': {
-            backgroundColor: '#4a4a4a', // Light gray when disabled
-            color: 'grey',
-        },
-    }
-
-    const tertiaryVariant = {
-        backgroundColor: neutralVariants.white,
-        color: neutralVariants.black,
-        '&:hover': {
-            backgroundColor: neutralVariants.lightGray,
-        },
-        '&:disabled': {
-            backgroundColor: opacityVariants.opacity20,
-            color: 'grey',
-        },
-    }
-
-
-
-    const styleVariants = {
-        grey: greyVariant,
-        blue: blueVariant,
-        tertiary: tertiaryVariant,
-        // Add more variants here as needed
+    const variantClasses = {
+        primary: "bg-brand-primary text-white hover:bg-brand-primary-hover focus:ring-brand-primary disabled:bg-gray-400 disabled:text-gray-600",
+        grey: "bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500 disabled:bg-gray-400 disabled:text-gray-600", 
+        blue: "bg-brand-primary text-white hover:bg-brand-primary-hover focus:ring-brand-primary disabled:bg-gray-400 disabled:text-gray-600",
+        tertiary: "bg-white text-gray-800 hover:bg-gray-100 focus:ring-gray-300 border border-gray-300 disabled:bg-gray-50 disabled:text-gray-400",
+        success: "bg-success text-white hover:bg-success-light focus:ring-success",
+        warning: "bg-warning text-white hover:bg-yellow-500 focus:ring-warning",
+        error: "bg-error text-white hover:bg-red-600 focus:ring-error"
     };
 
-    const combinedStyles = {
-        ...baseStyles,
-        ...(styleVariants[variant] || {}),
+    const sizeClasses = {
+        sm: "px-3 py-1.5 text-sm",
+        default: "px-4 py-2 text-sm sm:text-lg",
+        lg: "px-6 py-3 text-lg"
     };
 
-    const combinedCustomStyles = {
-        ...combinedStyles,
-        ...customStyles,
-    };
-
-
+    const combinedClassName = cn(
+        baseClasses,
+        variantClasses[variant],
+        sizeClasses[size],
+        className
+    );
 
     return (
-        <Button 
+        <button 
+            type={type}
             onClick={onClick} 
             disabled={disabled} 
             aria-label={ariaLabel}
-            sx={combinedCustomStyles}
-            className={className}
+            className={combinedClassName}
         >
             {children}
-        </Button>
+        </button>
     );
 }
 

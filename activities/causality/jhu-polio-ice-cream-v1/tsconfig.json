@@ -20,14 +20,16 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/startRaven/page.js"  ],
+    "**/*.tsx",
+    "app/startRaven/page.js"
+  ],
   "exclude": [
     "node_modules"
   ]

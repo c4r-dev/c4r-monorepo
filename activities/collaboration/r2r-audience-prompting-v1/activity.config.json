@@ -1,0 +1,9 @@
+{
+  "name": "r2r-audience-prompting-v1",
+  "domain": "collaboration",
+  "route": "/collaboration/r2r-audience-prompting-v1",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Collaboration activity: r2r-audience-prompting-v1"
+}
+

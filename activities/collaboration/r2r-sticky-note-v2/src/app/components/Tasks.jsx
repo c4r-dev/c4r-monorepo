@@ -6,7 +6,9 @@ const Tasks = () => {
     const [tasks, setTasks] = React.useState([])
     React.useEffect(() => {
         const loadTasks = async () => {
-            const res = await fetch(`/api/tasks`, {
+            const { getBasePath } = await import("@/app/utils/basePath");
+            const base = getBasePath();
+            const res = await fetch(`${base}/api/tasks`, {
                 cache: 'no-store'
             })
             if (!res.ok) {

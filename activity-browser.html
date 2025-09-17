@@ -357,19 +357,33 @@
     </div>
 
     <script>
-        // Activity data extracted from the monorepo analysis
-        const activities = [
-            // Causality Activities
-            {
-                name: "DAG Builder (Flu)",
-                description: "Interactive DAG construction for flu causality analysis",
-                domain: "causality",
-                tech: "Next.js + ReactFlow",
-                status: "active",
-                path: "activities/causality/jhu-flu-dag-v1",
-                port: 3001,
-                consolidation: false
-            },
+        // Activities are loaded dynamically from the unified server API
+        let activities = [];
+
+        async function init() {
+            try {
+                const res = await fetch('/api/activities');
+                const data = await res.json();
+                activities = data.map(a => ({
+                    name: a.name,
+                    description: a.description || '',
+                    domain: a.domain,
+                    tech: a.tech || a.type || 'app',
+                    status: a.status || 'active',
+                    route: a.route,
+                    url: a.url,
+                    consolidation: false
+                }));
+                filteredActivities = [...activities];
+                renderActivities();
+                updateStats(true);
+            } catch (e) {
+                console.error('Failed to load activities from API', e);
+                filteredActivities = [];
+                renderActivities();
+                updateStats(true);
+            }
+        }
             {
                 name: "DAG Builder (Polio v1)",
                 description: "Polio-ice cream correlation exercise",
@@ -738,18 +752,7 @@
                 port: 3055,
                 consolidation: false
             },
-            {
-                name: "Publication Bias Demo",
-                description: "Publication bias simulation",
-                domain: "tools",
-                tech: "Next.js",
-                status: "active",
-                path: "activities/tools/publicationbias",
-                port: 3056,
-                consolidation: false
-            }
-            // Add more activities here...
-        ];
+        // Static list removed in favor of API-driven data
 
         let filteredActivities = [...activities];
         let currentFilter = 'all';
@@ -761,8 +764,7 @@
         const filteredCountEl = document.getElementById('filtered-count');
 
         // Initialize
-        renderActivities();
-        updateStats();
+        init();
 
         // Event listeners
         searchInput.addEventListener('input', handleSearch);
@@ -872,55 +874,42 @@
                         ${activity.consolidation ? '<span class="meta-tag" style="background: #e74c3c; color: white;">Needs Consolidation</span>' : ''}
                     </div>
                     <div class="activity-actions">
-                        <button class="action-btn primary" onclick="startActivity('${activity.path}', ${activity.port})">
-                            🚀 Start Activity
+                        <a class="action-btn primary" href="${activity.url}" target="_blank" rel="noopener">
+                            🚀 Open Activity
+                        </a>
+                        <button class="action-btn" onclick="copyToClipboard('${activity.url}', 'URL copied to clipboard!')">
+                            🔗 Copy URL
                         </button>
-                        <button class="action-btn" onclick="openFolder('${activity.path}')">
-                            📁 Open Folder
-                        </button>
-                        <button class="action-btn" onclick="viewCode('${activity.path}')">
-                            👀 View Code
+                        <button class="action-btn" onclick="showDetails('${activity.name}', '${activity.domain}', '${activity.route}', '${activity.tech}')">
+                            📄 Details
                         </button>
                     </div>
                 </div>
             `;
         }
 
-        function updateStats() {
+        function updateStats(fromApi = false) {
             filteredCountEl.textContent = filteredActivities.length;
-        }
-
-        // Action functions
-        function startActivity(path, port) {
-            const url = `http://localhost:${port}`;
-            const instructions = `
-To start this activity:
-
-1. Open terminal and navigate to: ${path}
-2. Run: npm install (if first time)
-3. Run: npm run dev
-4. Visit: ${url}
-
-Alternatively, you can run all activities with:
-npm run dev
-
-Would you like me to copy the path to clipboard?
-            `;
-            
-            if (confirm(`${instructions}\n\nClick OK to copy path to clipboard, Cancel to just see instructions.`)) {
-                navigator.clipboard.writeText(path);
-                alert('Path copied to clipboard!');
+            if (fromApi) {
+                // Update header stats based on loaded activities
+                const totalCountEl = document.getElementById('total-count');
+                const activeCountEl = document.getElementById('active-count');
+                const domainCountEl = document.getElementById('domain-count');
+                if (totalCountEl && activeCountEl && domainCountEl) {
+                    totalCountEl.textContent = activities.length;
+                    activeCountEl.textContent = activities.filter(a => (a.status || 'active') === 'active').length;
+                    domainCountEl.textContent = new Set(activities.map(a => a.domain)).size;
+                }
             }
         }
 
-        function openFolder(path) {
-            alert(`Open this folder in your file explorer:\n\n${path}\n\nPath copied to clipboard!`);
-            navigator.clipboard.writeText(path);
+        // Action helpers
+        function copyToClipboard(text, message = 'Copied!') {
+            navigator.clipboard.writeText(text).then(() => alert(message));
         }
 
-        function viewCode(path) {
-            alert(`Open this project in your code editor:\n\n${path}\n\nTip: Use 'code ${path}' in terminal if you have VS Code installed.\n\nPath copied to clipboard!`);
-            navigator.clipboard.writeText(path);
+        function showDetails(name, domain, route, tech) {
+            alert(`${name}\n\nDomain: ${domain}\nRoute: ${route}\nTech: ${tech}`);
         }
     </script>
 </body>

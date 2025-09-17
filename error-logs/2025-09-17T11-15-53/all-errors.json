@@ -1,0 +1,1923 @@
+{
+  "serverErrors": [],
+  "browserErrors": [
+    {
+      "timestamp": "2025-09-17T11:15:55.211Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.218Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.246Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.248Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.248Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.249Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.251Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.251Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.367Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.369Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.369Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.388Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.389Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.389Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.390Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.501Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.502Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.504Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.504Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.663Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.664Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.666Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.792Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.796Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.813Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:10.904Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:10.905Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Manifest: Line: 2, column: 13, Syntax error.",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:10.907Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:14.024Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v2",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:14.026Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Manifest: Line: 2, column: 13, Syntax error.",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v2",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v2",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.088Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.088Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.089Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.098Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.099Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.099Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.100Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.968Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.970Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.977Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "browser_console"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "browserErrors",
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "browser_console"
+      }
+    }
+  ],
+  "networkErrors": [
+    {
+      "timestamp": "2025-09-17T11:15:55.211Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.218Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/page.css?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.247Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.248Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.248Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.249Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.368Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.369Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/page.css?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.370Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.389Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.389Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.390Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.502Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/463dafcda517f24f-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/585130ff465f2527-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/5a0d6dea0c6f6a5b-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.504Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/b9031fabb78447d4-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.504Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/page.css?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.663Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107764636",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.664Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107764636",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107764636",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.666Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.792Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107767764",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107767764",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107767764",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.795Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.796Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.814Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:17.320Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v3",
+        "requestUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:17.327Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v3",
+        "requestUrl": "chrome://blankis/",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.089Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107779044",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.089Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107779044",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.098Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107779044",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.099Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.100Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.100Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.969Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107783930",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.970Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107783930",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107783930",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "network_request"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.979Z",
+      "category": "networkErrors",
+      "type": "request_failed",
+      "message": "net::ERR_ABORTED",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "network_request"
+      }
+    }
+  ],
+  "jsErrors": [],
+  "cssErrors": [],
+  "pageErrors": [
+    {
+      "timestamp": "2025-09-17T11:16:17.321Z",
+      "category": "pageErrors",
+      "type": "navigation_error",
+      "message": "net::ERR_ABORTED at http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v3",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v3",
+        "stack": "Error: net::ERR_ABORTED at http://localhost:3333/randomization/smi-ran-blk-ran-v3\n    at navigate (/Users/konrad_1/c4r-dev/c4r-dev/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:170:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Deferred.race (/Users/konrad_1/c4r-dev/c4r-dev/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:31:20)\n    at async CdpFrame.goto (/Users/konrad_1/c4r-dev/c4r-dev/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:136:25)\n    at async CdpPage.goto (/Users/konrad_1/c4r-dev/c4r-dev/node_modules/puppeteer-core/lib/cjs/puppeteer/api/Page.js:603:20)\n    at async ComprehensiveErrorLogger.testActivityWithFullLogging (/Users/konrad_1/c4r-dev/c4r-dev/comprehensive-error-logger.js:196:30)\n    at async runComprehensiveErrorLogging (/Users/konrad_1/c4r-dev/c4r-dev/comprehensive-error-logger.js:417:13)",
+        "source": "page_navigation"
+      }
+    }
+  ],
+  "httpErrors": [
+    {
+      "timestamp": "2025-09-17T11:15:55.210Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.217Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/page.css?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.246Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.247Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107755149",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.248Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.249Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.250Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/media/flu-raven-1.75c37a5d.svg",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:55.251Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "requestUrl": "http://localhost:3333/_next/static/media/flu-raven-3.e48cb01e.svg",
+        "activityUrl": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.366Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.369Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/page.css?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.369Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.388Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107758344",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.389Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.389Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.390Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "requestUrl": "http://localhost:3333/_next/static/media/intro-icons.9e6dd41a.svg",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.499Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/463dafcda517f24f-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.502Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/585130ff465f2527-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/5a0d6dea0c6f6a5b-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.503Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/media/b9031fabb78447d4-s.p.woff",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.504Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/page.css?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107761473",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.508Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.509Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v2",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/causality/jhu-polio-ice-cream-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.663Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107764636",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.664Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107764636",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107764636",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:04.665Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqa-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqa-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.790Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107767764",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107767764",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107767764",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.793Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.795Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:07.812Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-all-seqb-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-all-seqb-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:10.905Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v1",
+        "requestUrl": "http://localhost:3333/randomization/%PUBLIC_URL%/manifest.json",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:10.907Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v1",
+        "requestUrl": "http://localhost:3333/randomization/%PUBLIC_URL%/favicon.ico",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:14.023Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v2",
+        "requestUrl": "http://localhost:3333/randomization/%PUBLIC_URL%/manifest.json",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v2",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.088Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/image?url=%2Ffavicon.ico&w=48&q=75",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.088Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107779044",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.089Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107779044",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.098Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107779044",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.099Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.099Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:19.100Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.968Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/css/app/layout.css?v=1758107783930",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.970Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/webpack.js?v=1758107783930",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.977Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/main-app.js?v=1758107783930",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app-pages-internals.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/page.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "http_response"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:23.978Z",
+      "category": "httpErrors",
+      "type": "http_404",
+      "message": "404 Not Found",
+      "context": {
+        "activity": "/randomization/smi-ran-ran-flo-v1",
+        "requestUrl": "http://localhost:3333/_next/static/chunks/app/layout.js",
+        "activityUrl": "http://localhost:3333/randomization/smi-ran-ran-flo-v1",
+        "source": "http_response"
+      }
+    }
+  ],
+  "contentErrors": [
+    {
+      "timestamp": "2025-09-17T11:15:58.308Z",
+      "category": "contentErrors",
+      "type": "missing_element",
+      "message": "http://localhost:3333/_next/static/media/flu-raven-1.75c37a5d.svg",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "page_content"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:15:58.308Z",
+      "category": "contentErrors",
+      "type": "missing_element",
+      "message": "http://localhost:3333/_next/static/media/flu-raven-3.e48cb01e.svg",
+      "context": {
+        "activity": "/causality/jhu-flu-dag-v1",
+        "url": "http://localhost:3333/causality/jhu-flu-dag-v1",
+        "source": "page_content"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:01.437Z",
+      "category": "contentErrors",
+      "type": "missing_element",
+      "message": "http://localhost:3333/_next/static/media/intro-icons.9e6dd41a.svg",
+      "context": {
+        "activity": "/causality/jhu-polio-ice-cream-v1",
+        "url": "http://localhost:3333/causality/jhu-polio-ice-cream-v1",
+        "source": "page_content"
+      }
+    },
+    {
+      "timestamp": "2025-09-17T11:16:22.169Z",
+      "category": "contentErrors",
+      "type": "missing_element",
+      "message": "http://localhost:3333/_next/image?url=%2Ffavicon.ico&w=96&q=75",
+      "context": {
+        "activity": "/randomization/smi-ran-blk-ran-v4",
+        "url": "http://localhost:3333/randomization/smi-ran-blk-ran-v4",
+        "source": "page_content"
+      }
+    }
+  ]
+}
