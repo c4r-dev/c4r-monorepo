@@ -1,0 +1,125 @@
+/* Styles specific to Congratulations page extracted from globals.css */
+
+.congratulations-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+
+    @media (max-width: 768px) {
+        height: 100vh;
+    }
+}
+
+.congratulations-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    /* text-align: center; */
+    /* text-wrap: balance; */
+    h1 {
+        font-size: 4em;
+        font-weight: bold;
+        color: #000000;
+        margin-top: 5px;
+        margin-bottom: 25px;
+    }
+    h2 {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #000000;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2em;
+        }
+        h2 {
+            font-size: 1em;
+        }
+    }
+}
+
+.congratulations-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    z-index: 99;
+}
+
+.try-again-button {
+    background-color: #e3e3e3;
+    color: #515151;
+}
+
+.exit-activity-button {
+    /* Add specific styles if needed */
+}
+
+.confetti-whole-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confetti-whole {
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    height: 100%;
+}
+
+/* General styles that might be used across different elements */
+button {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "GeneralSans-Regular", sans-serif;
+    font-weight: 800;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: "GeneralSans-Regular", sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+.congratulations-raven-footer-1-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.congratulations-raven-footer-1 {
+    position: absolute;
+    bottom: -20%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    overflow: hidden;
+}
