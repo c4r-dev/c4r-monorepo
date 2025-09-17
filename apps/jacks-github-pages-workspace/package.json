@@ -1,0 +1,16 @@
+{
+  "name": "jacks-github-pages-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "npx http-server . -p 3000",
+    "build": "echo 'Static site - no build required'",
+    "dev": "npx http-server . -p 3000"
+  },
+  "dependencies": {
+    "@c4r/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

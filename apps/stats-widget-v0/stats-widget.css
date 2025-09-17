@@ -4,7 +4,7 @@ html {
     padding: 0;
     font-family: "Inter";
     background-color: rgba(0, 0, 0, 0);
-    font-size: 14px;
+    @apply text-sm;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -51,7 +51,7 @@ html {
 }
 
 .header-text h3 {
-    font-size: 26px;
+    @apply text-2xl;
     color: black;
     font-weight: bold;
     margin: 2px;
@@ -101,7 +101,7 @@ html {
     border: none;
     text-align: center;
     outline: none;
-    font-size: 14px;
+    @apply text-sm;
     border-radius: 0 0 5px 5px;
     display: flex;
     align-items: center;
@@ -154,7 +154,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    @apply text-3xl;
     flex-direction: column;
 }
 
@@ -189,7 +189,7 @@ html {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 18px;
+    @apply text-lg;
     color: white;
     padding: 10px;
 }
@@ -210,7 +210,7 @@ html {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 18px;
+    @apply text-lg;
     color: white;
     padding: 10px;
 }
@@ -224,7 +224,7 @@ html {
 }
 
 label {
-    font-size: 12px;
+    @apply text-xs;
     color: white;
 }
 
@@ -245,28 +245,28 @@ polyline {
 }
 
 .donut-percent {
-    font-size: 66px;
+    @apply text-3xl;
     font-weight: bold;
     color: white;
     fill: white;
 }
 
 .donut-percent2 {
-    font-size: 66px;
+    @apply text-3xl;
     font-weight: bold;
     color: white;
     fill: rgb(133 74 190);
 }
 
 .donut-percent3 {
-    font-size: 66px;
+    @apply text-3xl;
     font-weight: bold;
     color: white;
     fill: #e15456;
 }
 
 .donut-percent4 {
-    font-size: 66px;
+    @apply text-3xl;
     font-weight: bold;
     color: white;
     fill: white;
@@ -354,11 +354,11 @@ polyline {
 }
 
 .feedback-heading {
-    font-size: 32px;
+    @apply text-3xl;
 }
 
 .feedback-text {
-    font-size: 18px;
+    @apply text-lg;
     text-align: center;
 }
 
@@ -367,9 +367,9 @@ polyline {
 .feedback-btn-containers button {
     width: 150px;
     height: 38px;
-    font-size: 17px;
-    background-color: #dd8b3c;
-    color: #6e2e14;
+    @apply text-lg;
+    @apply bg-orange-500;
+    @apply text-orange-900;
     font-weight: 800;
     border: none;
     border-radius: 5px;
@@ -378,9 +378,9 @@ polyline {
 .next-button {
     width: 150px;
     height: 38px;
-    font-size: 17px;
-    background-color: #dd8b3c;
-    color: #6e2e14;
+    @apply text-lg;
+    @apply bg-orange-500;
+    @apply text-orange-900;
     font-weight: 800;
     border: none;
     border-radius: 5px;
@@ -399,9 +399,9 @@ polyline {
 .section3-buttons-container button {
     width: 150px;
     height: 38px;
-    font-size: 17px;
-    background-color: #dd8b3c;
-    color: #6e2e14;
+    @apply text-lg;
+    @apply bg-orange-500;
+    @apply text-orange-900;
     font-weight: 800;
     border: none;
     border-radius: 5px;
@@ -410,9 +410,9 @@ polyline {
 .section-4-back {
     width: 150px;
     height: 38px;
-    font-size: 17px;
-    background-color: #dd8b3c;
-    color: #6e2e14;
+    @apply text-lg;
+    @apply bg-orange-500;
+    @apply text-orange-900;
     font-weight: 800;
     border: none;
     border-radius: 5px;

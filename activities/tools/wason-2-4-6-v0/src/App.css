@@ -48,11 +48,11 @@
 } */
 
 button {
-  background-color: #6D39A8;
-  color: #FFFFFF;
+  @apply bg-purple-700;
+  @apply text-white;
   border: none;
-  padding: 10px 30px;
-  font-size: 1em;
+  @apply py-2.5 px-7.5;
+  @apply text-base;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -63,8 +63,8 @@ button {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #000000;
-  color: #FFFFFF;
+  @apply bg-black;
+  @apply text-white;
   text-align: center;
 }
 .initial-screen-body {
@@ -80,12 +80,12 @@ button {
 }
 
 .instructions h1 {
-  font-size: 2em;
+  @apply text-3xl;
   margin-bottom: 10px;
 }
 
 .instructions p, .instructions ol {
-  font-size: 1.2em;
+  @apply text-xl;
 }
 
 .instructions ol {
@@ -107,11 +107,11 @@ button {
 }
 
 .next-button {
-  background-color: #6D39A8;
-  color: #FFFFFF;
+  @apply bg-purple-700;
+  @apply text-white;
   border: none;
-  padding: 10px 30px;
-  font-size: 1em;
+  @apply py-2.5 px-7.5;
+  @apply text-base;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -138,8 +138,8 @@ button {
   justify-content: flex-start; 
   height: 90vh;
   padding-top: 10px;
-  background-color: #000000;
-  color: #FFFFFF;
+  @apply bg-black;
+  @apply text-white;
   text-align: center;
 }
 .input-screen-body {
@@ -149,8 +149,8 @@ button {
   justify-content: center;
   gap: 20px;
   /* height: 100vh;
-  background-color: #000000;
-  color: #FFFFFF;
+  @apply bg-black;
+  @apply text-white;
   text-align: center; */
 }
 .input-screen-footer {
@@ -185,8 +185,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
-  color: #000000;
+  @apply bg-white;
+  @apply text-black;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -211,7 +211,7 @@ button {
 }
 
 .instructions-text-container {
-  font-size: 1.2em;
+  @apply text-xl;
   text-align: left;
   z-index: 2;
   text-align: center;
@@ -227,8 +227,8 @@ button {
 .integer-input-panel {
   text-align: center;
   margin-top: 20px;
-  background-color: #FFFFFF;
-  color: #000000;
+  @apply bg-white;
+  @apply text-black;
   /* margin-bottom: 5px; */
   display: flex;
   flex-direction: column;
@@ -250,8 +250,8 @@ button {
 .integer-input-container {
   display: inline-flex;
   align-items: center;
-  font-size: 30px;
-  background-color: #6D39A8;
+  @apply text-3xl;
+  @apply bg-purple-700;
   color: white;
   padding: 10px;
   margin-bottom: 20px;
@@ -268,9 +268,9 @@ button {
   width: 60px;
   height: 50px;
   text-align: center;
-  font-size: 28px;
+  @apply text-3xl;
   margin: 0 5px;
-  /* background-color: #6D39A8;
+  /* @apply bg-purple-700;
   color: white; */
   /* transparent background */
   background-color: transparent;
@@ -286,8 +286,8 @@ button {
 .hypothesis-panel {
   text-align: center;
   margin-top: 20px;
-  background-color: #FFFFFF;
-  color: #000000;
+  @apply bg-white;
+  @apply text-black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -298,8 +298,8 @@ button {
 .hypothesis-textarea {
   /* width: 100%; */
   /* height: 100px; */
-  font-size: 1.2em;
-  background-color: #6D39A8;
+  @apply text-xl;
+  @apply bg-purple-700;
   color: white;
   width: 80%;
   display: flex;
@@ -338,7 +338,7 @@ button {
 
 .test-table {
   background-color: #DD8C3D;
-  color: #000000;
+  @apply text-black;
   padding: 20px;
   border-radius: 8px;
   text-align: left;
@@ -374,8 +374,8 @@ button {
   align-items: center;
   justify-content: flex-start;
   height: 100vh;
-  background-color: #000000;
-  color: #FFFFFF;
+  @apply bg-black;
+  @apply text-white;
   text-align: center;
 }
 
@@ -383,8 +383,8 @@ button {
   display: flex;
   flex-direction: column;
   height: 50vh;
-  background-color: #FFFFFF;
-  color: #000000;
+  @apply bg-white;
+  @apply text-black;
   text-align: center;
   height: fit-content;
   padding-bottom: 20px;
@@ -392,11 +392,11 @@ button {
 
 .rule-header {
   margin-bottom: 0px;
-  background-color: #FFFFFF;
-  color: #000000;
+  @apply bg-white;
+  @apply text-black;
   padding: 10px;
   margin-top: 10px;
-  padding: 0px 40px;
+  @apply px-10;
 }
 
 .feedback-screen-body-header {
@@ -414,8 +414,8 @@ button {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
-  color: #000000;
+  @apply bg-white;
+  @apply text-black;
   text-align: center;
   gap: 20px;
 }
@@ -432,7 +432,7 @@ button {
 
 .feedback-panel {
   background-color: #DD8C3D;
-  color: #000000;
+  @apply text-black;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -581,7 +581,7 @@ button {
 
 
 .hypothesis-autotype-container {
-  background-color: #6D39A8;
+  @apply bg-purple-700;
   width: 80%;
   height: 60px;
   text-align: center;
@@ -593,11 +593,11 @@ button {
 
 /* Typing animation CSS */
 .css-typing p {
-  color: #FFFFFF;
+  @apply text-white;
   border-right: .15em solid orange;
   font-weight: bold;
   font-family: "Inter";
-  font-size: 24px;
+  @apply text-2xl;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -919,7 +919,7 @@ animation-delay: 0s;
 /* comparison-panel */
 
 .comparison-page {
-  background-color: #000000;
+  @apply bg-black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -931,7 +931,7 @@ animation-delay: 0s;
   /* height: 100%; */
 }
 .comparison-panel {
-  background-color: #FFFFFF;
+  @apply bg-white;
   /* width: 100%; */
   height: 100%;
   display: flex;
@@ -974,5 +974,5 @@ animation-delay: 0s;
 /* deactivated button */
 .hypothesis-autotype-button:disabled {
   background-color: #5d4b71;
-  color: #FFFFFF;
+  @apply text-white;
 }
