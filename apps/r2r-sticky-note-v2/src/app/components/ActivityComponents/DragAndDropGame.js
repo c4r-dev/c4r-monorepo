@@ -457,10 +457,10 @@ function DragAndDropGameContent({ reviewMode = false }) {
                                 margin: "20px",
                             }}
                         >
-                            <h2 style={{ color: "#333132", fontSize: "20px" }}>
+                            <h2 className="text-gray-800 text-xl">
                                 You&apos;ve placed all the sticky notes!
                             </h2>
-                            <p style={{ color: "#333132", fontSize: "16px" }}>
+                            <p className="text-gray-800 text-base">
                                 Review their position on the white board one
                                 last time by dragging them around and when
                                 finished submit them.

@@ -23,18 +23,18 @@ import Raven1 from './assets/raven-1.svg';
        
         <Grid container spacing={0} sx={{marginLeft:"1px"}}>
            <Grid item xs={8} sx={{marginLeft:"1px"}}>
-                <div style={{textAlign: 'left', marginLeft: "20px"}}>
+                <div className="text-left ml-5">
                    <h1>Identification of the parts in a research question</h1> <br></br>
-                   <h2 style={{marginTop:'-40px'}}> Decide Strategies for certain objects in your research process.</h2>
+                   <h2 className="-mt-10"> Decide Strategies for certain objects in your research process.</h2>
                 </div>
-                <img src={Raven1} alt="Background" style={{ position: 'absolute', left: '-192px',top:'181px'}} />
+                <img src={Raven1} alt="Background" className="absolute left-[-192px] top-[181px]" />
             </Grid>
         <Grid  sx={{backgroundImage:`url(${backgroundImage})`,
              alignItems: 'block-end',
         }} item xs={12} >
                 <Link to="/IdentifyResearchQues">
                 {/* <img src="./ground-1.svg"></img> */}
-                <button style={{marginTop:"170px", marginLeft:"300px"}} type="submit">
+                <button className="mt-[170px] ml-[300px]" type="submit">
                      Start Activity
                 </button>
                 </Link>

@@ -23,7 +23,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 2em;
+  @apply gap-8;
   /* gap: 10; */
   color: black;
   /* margin-top: 1em; */
@@ -42,7 +42,7 @@ body {
   justify-content: center;
   /* top: 30px; */
   position: relative;
-  font-size: 1.5em;
+  @apply text-2xl;
   padding: 1px;
 
   /* margin: 0;
@@ -52,7 +52,7 @@ body {
     align-items: center;
     top: 30px;
     position: relative;
-    font-size: 1.5em; */
+    @apply text-2xl; */
 }
 
 .slider-container {
@@ -69,7 +69,7 @@ body {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 0.5em;
+  @apply h-2;
   outline: none;
   border-radius: 3px;
   @apply bg-gray-400;
@@ -85,7 +85,7 @@ body {
 
 .progress {
   width: 0;
-  height: 0.4em;
+  @apply h-1.5;
   border-radius: 3px;
   background: linear-gradient(90deg,
       theme('colors.black'),
@@ -107,14 +107,14 @@ body {
 
 .slider-thumb {
   position: absolute;
-  width: 2em;
-  height: 2em;
+  @apply w-8;
+  @apply h-8;
   @apply bg-black;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   /* right: 50%; */
-  left: -0.5em;
+  @apply -left-2;
   /* transform: translateY(-50%); */
   /* transform: translateX(-20px); */
   /* combine */
@@ -133,19 +133,19 @@ body {
   align-items: center;
   top: 30px;
   position: relative;
-  font-size: 1.5em;
+  @apply text-2xl;
 }
 
 .number-input {
   background: none;
   color: black;
-  width: 4em;
+  @apply w-16;
   border: 1px #909090 solid;
   border-radius: 4px;
 }
 
 .range-slider:hover .progress {
-  box-shadow: 0 0 0.5em #000000;
+  @apply shadow-lg shadow-black;
 }
 
 
