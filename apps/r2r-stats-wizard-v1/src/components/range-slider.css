@@ -50,7 +50,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 30px;
+    @apply top-7;
     position: relative;
     @apply text-2xl; */
 }
@@ -73,7 +73,7 @@ body {
   outline: none;
   border-radius: 3px;
   @apply bg-gray-400;
-  cursor: pointer;
+  @apply cursor-pointer;
 }
 
 .slider::-webkit-slider-thumb {
@@ -131,7 +131,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  top: 30px;
+  @apply top-7;
   position: relative;
   @apply text-2xl;
 }
@@ -211,7 +211,7 @@ body {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  @apply cursor-pointer;
   align-self: center;
   justify-self: center;
   padding: 10px 20px;

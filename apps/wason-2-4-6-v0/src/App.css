@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  @apply text-center;
   /* font inter */
   font-family: 'Inter', sans-serif;
 }
@@ -65,7 +65,7 @@ button {
   height: 100vh;
   @apply bg-black;
   @apply text-white;
-  text-align: center;
+  @apply text-center;
 }
 .initial-screen-body {
   display: flex;
@@ -89,7 +89,7 @@ button {
 }
 
 .instructions ol {
-  text-align: center;
+  @apply text-center;
   margin: 0 auto;
   display: inline-block;
 }
@@ -140,7 +140,7 @@ button {
   padding-top: 10px;
   @apply bg-black;
   @apply text-white;
-  text-align: center;
+  @apply text-center;
 }
 .input-screen-body {
   display: flex;
@@ -151,7 +151,7 @@ button {
   /* height: 100vh;
   @apply bg-black;
   @apply text-white;
-  text-align: center; */
+  @apply text-center; */
 }
 .input-screen-footer {
   margin-top: 20px;
@@ -214,7 +214,7 @@ button {
   @apply text-xl;
   text-align: left;
   z-index: 2;
-  text-align: center;
+  @apply text-center;
   /* bold */
   font-weight: bold;
 }
@@ -225,7 +225,7 @@ button {
 }
 
 .integer-input-panel {
-  text-align: center;
+  @apply text-center;
   margin-top: 20px;
   @apply bg-white;
   @apply text-black;
@@ -266,7 +266,7 @@ button {
 
 .integer-input {
   @apply w-16 h-12;
-  text-align: center;
+  @apply text-center;
   @apply text-3xl;
   margin: 0 5px;
   /* @apply bg-purple-700;
@@ -283,7 +283,7 @@ button {
 
 /* HypothesisPanel */
 .hypothesis-panel {
-  text-align: center;
+  @apply text-center;
   margin-top: 20px;
   @apply bg-white;
   @apply text-black;
@@ -311,7 +311,7 @@ button {
 }
 .hypothesis-textarea {
   /* center text */
-  text-align: center;
+  @apply text-center;
   white-space: normal;
   text-align: justify;
   -moz-text-align-last: center; /* Firefox 12+ */
@@ -322,7 +322,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  @apply text-center;
   height: 200px;
   width: 400px;
   padding: 0;
@@ -331,7 +331,7 @@ button {
 }
  
 /* .centered-textarea::placeholder {
-  text-align: center; 
+  @apply text-center; 
 } */
 
 
@@ -344,7 +344,7 @@ button {
 }
 
 .test-table h1 {
-  text-align: center;
+  @apply text-center;
   margin-bottom: 20px;
 }
 
@@ -356,7 +356,7 @@ button {
 .test-table th, .test-table td {
   border: 1px solid #000000;
   padding: 8px;
-  text-align: center;
+  @apply text-center;
 }
 .test-table tr {
   height: 30px;
@@ -375,7 +375,7 @@ button {
   height: 100vh;
   @apply bg-black;
   @apply text-white;
-  text-align: center;
+  @apply text-center;
 }
 
 .feedback-screen-body {
@@ -384,7 +384,7 @@ button {
   height: 50vh;
   @apply bg-white;
   @apply text-black;
-  text-align: center;
+  @apply text-center;
   height: fit-content;
   padding-bottom: 20px;
 }
@@ -415,7 +415,7 @@ button {
   justify-content: center;
   @apply bg-white;
   @apply text-black;
-  text-align: center;
+  @apply text-center;
   gap: 20px;
 }
 .feedback-screen-footer {
@@ -453,7 +453,7 @@ button {
   width: 220px;
   background-color: #d8893b;
   color: #000;
-  text-align: center;
+  @apply text-center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
@@ -471,7 +471,7 @@ button {
   width: 350px;
   background-color: #d8893b;
   color: #000;
-  text-align: center;
+  @apply text-center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
@@ -490,7 +490,7 @@ button {
   width: 350px;
   background-color: #d8893b;
   color: #000;
-  text-align: center;
+  @apply text-center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
@@ -507,7 +507,7 @@ button {
   width: 350px;
   background-color: #d8893b;
   color: #000;
-  text-align: center;
+  @apply text-center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
@@ -524,7 +524,7 @@ button {
   width: 350px;
   background-color: #d8893b;
   color: #000;
-  text-align: center;
+  @apply text-center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
@@ -540,7 +540,7 @@ button {
   width: 270px;
   background-color: #d8893b;
   color: #000;
-  text-align: center;
+  @apply text-center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
@@ -583,7 +583,7 @@ button {
   @apply bg-purple-700;
   width: 80%;
   height: 60px;
-  text-align: center;
+  @apply text-center;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -751,8 +751,8 @@ button {
 .tooltip-text {
   /* color: #FFFFFF; */
   /* font-size: 1.2em; */
-  text-align: center;
-  text-align: center;
+  @apply text-center;
+  @apply text-center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -956,7 +956,7 @@ animation-delay: 0s;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  text-align: center; 
+  @apply text-center; 
 }
 .comparison-body {
   /* background-color: #ffffff; */
