@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Using Tailwind design tokens */
+:root {
+  --Neutrals-Background-Gray: theme('colors.gray.100');
+  --Neutrals-Black: theme('colors.gray.800');
+  --Neutrals-White: theme('colors.white');
+}
+
+body {
+  @apply bg-gray-100 text-gray-800 font-sans-semibold;
+}
+
+/* Smaller CSS Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font-size: 100%; */
+  /* font: inherit; */
+  /* vertical-align: baseline; */
+}
+
+
+/* Button Light */
+.responsive-button {
+  padding: 12px 16px; /* Adjust padding for a comfortable touch target */
+  font-size: 1rem; /* Use relative units for font size */
+  border: none;
+  border-radius: 4px; /* Rounded corners for a modern look */
+  background-color: #FFFFFF; /* Primary color */
+  color: #292929; /* Text color */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.responsive-button:active {
+  transform: scale(0.98); /* Adds a "pressed" effect */
+}
+
+.responsive-button:disabled {
+  background-color: #cccccc; /* Gray color for disabled state */
+  cursor: not-allowed;
+}
+
+/* Responsive button using Tailwind utilities */
+.responsive-button {
+  @apply px-4 py-3 text-base bg-white hover:bg-gray-300 disabled:hover:bg-white;
+  @apply sm:px-5 sm:py-3.5 sm:text-lg;
+  @apply md:px-6 md:py-4 md:text-xl-plus;
+}
+
+
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* prettier-ignore */
+/*
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+  */
+/* HTML5 display-role reset for older browsers */
+/* prettier-ignore */
+
+/*
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+  */
+
+/**
+  ****************
+  * END CSS RESET
+  ****************
+**/
+
+
+
+
+
+/* Content from globals.css in the old project */
+
+body {
+  @apply bg-gray-100 text-gray-900;
+}
+
+h1 {
+  @apply text-gray-800;
+}
+
+
+.start-button {
+  @apply bg-white text-gray-800 px-5 py-2.5 border-none rounded cursor-pointer shadow-lg hover:bg-gray-100;
+}
+
+.whiteboard {
+  @apply w-[500px] h-[500px] bg-gray-100 relative m-20 transition-colors duration-400;
+}
+.note-list-container {
+  @apply flex flex-row items-center justify-center gap-2.5 my-2.5;
+}
+
+.note-list {
+  @apply flex flex-col gap-1.5;
+}
+
+.note-list-item {
+  @apply flex flex-row items-center gap-2.5 w-[250px] hover:bg-gray-200;
+}
+
+.selected-note {
+  @apply bg-gray-200;
+}
+
+/* Show all sessions toggle */
+.sessions-toggle-container {
+  @apply flex justify-center items-center gap-0 mt-4 text-gray-500;
+}
+.sessions-toggle-buttons {
+  @apply flex gap-px;
+  margin-right: 10px;
+}
+.session-toggle {
+  background-color: #e3e3e3;
+  padding: 10px 25px;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
+  /* transform: scale(1); */
+  transition: all 0.2s ease-in-out; 
+  color: #acacac;
+}
+.session-toggle-unselected {
+
+}
+.session-toggle-selected {
+  background-color: #E3E3E3;
+  color: #5A5A5A;
+  /* padding: 10px 20px; */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  /* transform: scale(1.1); */
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+}
+
+
+.arrow-container {
+  display: flex;
+  flex-direction: column;
+  align-self: normal;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-up {
+  border: solid #919191;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 10px;
+  transform: rotate(-135deg);
+  margin-bottom: -23px;
+}
+
+.line {
+  width: 3px;
+  height: 100%;
+  background-color: #919191;
+  flex-grow: 1;
+}
+
+.arrow-down {
+  border: solid #919191;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 10px;
+  transform: rotate(45deg);
+  margin-top: -25px;
+}
+
+.arrow-text-container {
+  display: flex;
+  flex-direction: column;
+  align-self: normal;
+  justify-content: space-between;
+}
+.arrow-text {
+  text-wrap: nowrap;
+  color: #5A5A5A;
+}
+
+
+.exit-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.continue-button {
+  /* position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #e7e7e7; */
+
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  z-index: 1000;
+  align-self: center;
+  justify-self: center;
+  margin-top: 10px;
+  margin-right: 20px;
+
+}
+.exit-button:hover {
+  background-color: #e7e7e7;
+  /* padding: 10px 20px; */
+}
+.continue-button:hover {
+  background-color: #c0c0c0;
+}
+
+.review-phase-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+
+
+
+
+/* Resource phase */
+
+.resource-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  align-self: center;
+  padding: 20px;
+}
+
+.resource-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #E8E8E8;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.resource-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.resource-header {
+
+}
+
+.resource-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #D0D0D0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 100%;
+  gap: 10px;
+}
+.resource-link:hover {
+  background-color: #C0C0C0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.focus-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #686868;
+}
+
+.resource-text {
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center; */
+}
+.resource-text h1 {
+  font-size: 16px;
+  /* color: #343434; */
+  color: #6f00ff;
+  text-decoration: underline;
+}
+.resource-text p {
+  font-size: 14px;
+  /* color: #686868; */
+}
