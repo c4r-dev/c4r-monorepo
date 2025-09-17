@@ -1,0 +1,9 @@
+{
+  "name": "duq-finer-v1",
+  "domain": "tools",
+  "route": "/tools/duq-finer-v1",
+  "tech": "nextjs",
+  "status": "active",
+  "description": "Tool: duq-finer-v1"
+}
+

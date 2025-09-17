@@ -1,0 +1,131 @@
+/* .full-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+} */
+
+.fullPage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* font-family: Arial, sans-serif; */
+    min-height: 100vh;
+}
+.contentContainer {
+    /* flex: 1; */
+    /* display: flex; */
+    padding: 20px;
+    max-width: 800px;
+    /* gap: 40px; */
+    /* overflow-y: auto; */
+    /* flex-direction: row; */
+}
+
+/* h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+} */
+
+.criteriaLinks {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.criteriaLinks span {
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.selectedCriteria {
+    color: black;
+}
+
+.unselectedCriteria {
+    color: grey;
+}
+
+.areaOptions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.areaOptions button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.evaluationButtons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.evaluationButtons button {
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.elaborationTextarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    /* border: 1px solid #ccc; */
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+
+    max-width: 500px;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.actionButtons button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.actionButtons button:first-child {
+    background-color: #6200ea;
+    color: white;
+}
+
+.actionButtons button:last-child {
+    background-color: #000;
+    color: white;
+}
+
+
+.feedbackButtonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 550px;
+    margin-bottom: 15px;
+}
