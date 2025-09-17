@@ -69,7 +69,7 @@ function ShowResults() {
 
             <div className="content-container-footer">
                 <div className="footer-left">
-                    <RavenIcon style={{ width: "100%", margin: "0 auto" }} />
+                    <RavenIcon className="w-full mx-auto" />
                 </div>
                 <div className="footer-right">
                     <h2>{feedbackText.header}</h2>

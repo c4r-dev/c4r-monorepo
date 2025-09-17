@@ -136,12 +136,12 @@ export default function DragAndDropGame({showResource}) {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }} className={myFont.className}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }} className={myFont.className}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', margin: '20px', width: '30%', gap: '10px' }} className={myFont.className}>
-                    <h1 style={{ color: '#333132', fontSize: '28px' }}>Whiteboard exercise</h1>
-                    <p style={{ color: '#060606', fontSize: '20px' }}>Which issues have the biggest impact on yourself and your research?</p>
-                    <p style={{ color: '#333132', opacity: '0.6', fontSize: '16px' }}>Drag the sticky notes to the board</p>
+        <div className={`flex flex-col justify-between items-start ${myFont.className}`}>
+            <div className={`flex justify-between items-start ${myFont.className}`}>
+                <div className={`flex flex-col items-start m-5 w-3/10 gap-2.5 ${myFont.className}`}>
+                    <h1 className="text-gray-800 text-3xl">Whiteboard exercise</h1>
+                    <p className="text-gray-900 text-xl">Which issues have the biggest impact on yourself and your research?</p>
+                    <p className="text-gray-800 opacity-60 text-base">Drag the sticky notes to the board</p>
 
                     {reviewPhase &&
 

@@ -34,7 +34,7 @@ html {
     text-align: center;
     border-color: white;
     border-width: 3px;
-    border-radius: 10px;
+    @apply rounded-lg;
     border-style: solid;
     box-shadow: 0px 4px 0px 0 rgb(145 123 154),
         0px 7px 0px 0 rgb(83 38 136);
@@ -77,7 +77,7 @@ html {
     height: 445px;
     overflow: hidden;
     margin-top: 0px;
-    border-radius: 10px;
+    @apply rounded-lg;
 }
 
 .citation-pane {
@@ -325,7 +325,7 @@ polyline {
     background-color: white;
     width: 85%;
     height: 100%;
-    border-radius: 2px;
+    @apply rounded-sm;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -372,7 +372,7 @@ polyline {
     @apply text-orange-900;
     font-weight: 800;
     border: none;
-    border-radius: 5px;
+    @apply rounded;
 }
 
 .next-button {
@@ -383,7 +383,7 @@ polyline {
     @apply text-orange-900;
     font-weight: 800;
     border: none;
-    border-radius: 5px;
+    @apply rounded;
     position: relative;
     left: 231px;
     bottom: 10px;
@@ -404,7 +404,7 @@ polyline {
     @apply text-orange-900;
     font-weight: 800;
     border: none;
-    border-radius: 5px;
+    @apply rounded;
 }
 
 .section-4-back {
@@ -415,5 +415,5 @@ polyline {
     @apply text-orange-900;
     font-weight: 800;
     border: none;
-    border-radius: 5px;
+    @apply rounded;
 }

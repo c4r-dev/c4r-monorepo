@@ -25,19 +25,19 @@ function RangeSlider({ min, max, value, step }) {
         /*
       // Non-animated version
       if (inputValue < 25) {
-        return <Raven1 style={{ width: "100%", margin: "0 auto" }} />;
+        return <Raven1 className="w-full mx-auto" />;
       }
       else if (inputValue < 50 && inputValue >= 25) {
-        return <Raven2 style={{ width: "100%", margin: "0 auto" }} />;
+        return <Raven2 className="w-full mx-auto" />;
       }
       else if (inputValue < 75 && inputValue >= 50) {
-        return <Raven3 style={{ width: "100%", margin: "0 auto" }} />;
+        return <Raven3 className="w-full mx-auto" />;
       }
       else if (inputValue < 90 && inputValue >= 75) {
-        return <Raven4 style={{ width: "100%", margin: "0 auto" }} />;
+        return <Raven4 className="w-full mx-auto" />;
       }
       else {
-        return <Raven5 style={{ width: "100%", margin: "0 auto" }} />;
+        return <Raven5 className="w-full mx-auto" />;
       }
      */
     const ravenStyle = {
@@ -97,7 +97,7 @@ function RangeSlider({ min, max, value, step }) {
 
         return (
             <div
-                style={{ position: "relative", width: "100%", height: "100%" }}
+                className="relative w-full h-full"
             >
                 {images.map((image, index) => {
                     const isVisible =

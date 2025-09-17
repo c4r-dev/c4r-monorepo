@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 80vh;
+  @apply min-h-screen;
   /* padding: 1em; */
   /* margin: 1em; */
   margin: 0;
@@ -13,7 +13,7 @@ body {
 
   /* max-height: 85vh; */
   /* max-height: 80%; */
-  height: 100vh;
+  @apply h-screen;
 
 }
 
@@ -151,12 +151,12 @@ body {
 
 .content-container {
   max-width: 1000px;
-  max-height: 90vh;
+  @apply max-h-screen;
   margin: 0 auto;
   @apply bg-gray-100;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  @apply shadow-lg;
   display: flex;
   flex-direction: column;
   /* gap: 0.5em; */
@@ -168,17 +168,17 @@ body {
   margin: auto;
   /* padding: 0; */
 
-  max-height: 75vh;
+  @apply max-h-screen;
 
   /* max-width: 75vh; */
   h1 {
     margin: 0;
-    font-size: 4vh;
+    @apply text-2xl;
   }
 }
 
 .results-screen {
-  max-height: 90vh;
+  @apply max-h-screen;
 }
 
 
@@ -254,13 +254,13 @@ body {
 .percent-raven-container-right h2 {
   margin: 0;
   font-size: 50px;
-  font-size: 8vh;
+  @apply text-3xl;
 }
 
 .percent-raven-container-left h2 {
   margin: 0;
   font-size: 50px;
-  font-size: 8vh;
+  @apply text-3xl;
 }
 
 .percent-raven-container h1 {
@@ -282,7 +282,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   @apply bg-white;
-  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  @apply shadow-lg;
   border-radius: 3px;
   align-self: center;
   justify-self: center;
@@ -343,5 +343,5 @@ body {
   justify-content: center;
   align-items: flex-start;
   /* height: 250px; */
-  height: 25vw;
+  @apply h-64;
 }
