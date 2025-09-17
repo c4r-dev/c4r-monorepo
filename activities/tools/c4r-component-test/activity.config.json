@@ -1,9 +1,0 @@
-{
-  "name": "c4r-component-test",
-  "domain": "tools",
-  "route": "/tools/c4r-component-test",
-  "tech": "nextjs",
-  "status": "active",
-  "description": "Component testing playground"
-}
-

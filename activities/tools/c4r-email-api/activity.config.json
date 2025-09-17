@@ -1,9 +1,0 @@
-{
-  "name": "c4r-email-api",
-  "domain": "tools",
-  "route": "/tools/c4r-email-api",
-  "tech": "nextjs",
-  "status": "active",
-  "description": "Tool: c4r-email-api"
-}
-

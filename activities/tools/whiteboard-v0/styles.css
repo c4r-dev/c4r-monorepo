@@ -96,7 +96,7 @@ html {
 .header-text {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    @apply p-2.5;
     justify-content: flex-start;
     font-family: "Inter", sans-serif;
     font-weight: 400;
@@ -227,7 +227,7 @@ html {
     position: absolute;
     /* Absolute position within the relative parent */
     background-color: #fff06d;
-    padding: 10px;
+    @apply p-2.5;
     transform: rotate(-2deg);
     /* Rotate slightly for effect */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -251,7 +251,7 @@ html {
     height: auto;
     text-align: center;
     word-wrap: break-word;
-    padding: 5px;
+    @apply p-1.25;
     cursor: inherit;
     /* Ensure the cursor style of .note is inherited */
 }
@@ -297,8 +297,8 @@ html {
     /* border: 2px dashed #ccc; */
     min-height: 300px;
     /* You can set this to the height you prefer */
-    margin: 20px;
-    padding: 10px;
+    @apply m-5;
+    @apply p-2.5;
     /* Give some space for dropping */
     aspect-ratio: 1/1;
     display: flex;
@@ -401,7 +401,7 @@ html {
 
 #phase2 {
     display: none;
-    margin: 10px;
+    @apply m-2.5;
 }
 
 .phase2-body-content {
@@ -429,7 +429,7 @@ html {
 }
 
 .phase2-left-arrow-labels {
-    margin: 20px;
+    @apply m-5;
     /* font-size: 2.5vw; */
     color: #854abe;
     font-weight: bold;
@@ -595,7 +595,7 @@ html {
     position: static;
     /* Absolute position within the relative parent */
     background-color: #fff06d;
-    padding: 10px;
+    @apply p-2.5;
     transform: rotate(-2deg);
     /* Rotate slightly for effect */
 
@@ -649,7 +649,7 @@ html {
     position: static;
     /* Absolute position within the relative parent */
     background-color: #fff06d;
-    padding: 10px;
+    @apply p-2.5;
     transform: rotate(-2deg);
     /* Rotate slightly for effect */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -688,7 +688,7 @@ html {
 .whiteboard-note {
     /* cursor: grab; Change to 'grab' to indicate draggability */
     background-color: #fff06d;
-    padding: 10px;
+    @apply p-2.5;
     transform: rotate(-2deg);
     /* Rotate slightly for effect */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -709,7 +709,7 @@ html {
 
 #phase3 {
     display: none;
-    margin: 10px;
+    @apply m-2.5;
 }
 
 .phase3-body-content {
@@ -786,7 +786,7 @@ html {
     /* color: #fff; */
     /* gap: 10px; */
     width: 20%;
-    margin: 10px;
+    @apply m-2.5;
 
     span {
         font-size: calc(8px + 0.8vw);
@@ -906,7 +906,7 @@ input:checked+.slider:before {
 
     width: 10px;
     height: 10px;
-    padding: 5px;
+    @apply p-1.25;
 
     /* background-color: #ff0000; */
 

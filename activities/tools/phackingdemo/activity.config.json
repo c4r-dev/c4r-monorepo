@@ -1,9 +1,0 @@
-{
-  "name": "phackingdemo",
-  "domain": "tools",
-  "route": "/tools/phackingdemo",
-  "tech": "nextjs",
-  "status": "active",
-  "description": "Tool: phackingdemo"
-}
-

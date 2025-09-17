@@ -65,7 +65,8 @@ class SeamlessActivityServer {
             'activities/coding-practices',
             'activities/collaboration',
             'activities/tools',
-            'templates'
+            'templates',
+            'apps'
         ];
 
         let count = 0;
@@ -89,8 +90,15 @@ class SeamlessActivityServer {
                         type = 'static';
                     }
                     if (type) {
-                        const domain = searchDir.split('/')[1] || 'tools';
-                        const route = `/${domain}/${subdir}`;
+                        // Handle domain differently for apps vs activities
+                        let domain, route;
+                        if (searchDir === 'apps') {
+                            domain = 'apps';
+                            route = `/apps/${subdir}`;
+                        } else {
+                            domain = searchDir.split('/')[1] || 'tools';
+                            route = `/${domain}/${subdir}`;
+                        }
                         
                         // Optional per-activity metadata
                         let meta = null;

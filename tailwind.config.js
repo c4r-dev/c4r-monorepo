@@ -26,23 +26,15 @@ module.exports = {
         'system': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       fontSize: {
-        'xs': '0.75rem',    // 12px
-        'sm': '0.8rem',     // ~13px
-        'sm-plus': '0.85rem', // ~14px
-        'base': '0.9rem',   // ~14px (your most common)
-        'base-plus': '0.95rem', // ~15px
-        'lg': '1rem',       // 16px (your second most common)
-        'lg-plus': '1.08rem', // ~17px
-        'xl': '1.125rem',   // 18px
-        'xl-plus': '1.2rem', // ~19px (your third most common)
-        '2xl': '1.3rem',    // ~21px
-        '2xl-plus': '1.4rem', // ~22px
-        '3xl': '1.5rem',    // 24px
-        '4xl': '1.6rem',    // ~26px
-        '5xl': '1.8rem',    // ~29px
-        '6xl': '2rem',      // 32px
-        '7xl': '2.5rem',    // 40px
-        '8xl': '3rem',      // 48px
+        // ONLY these 7 sizes are allowed - no other font sizes should be used
+        'xs': '0.75rem',    // 12px - Small text, captions
+        'sm': '0.875rem',   // 14px - Small body text  
+        'base': '1rem',     // 16px - Primary body text (default)
+        'lg': '1.125rem',   // 18px - Large body text
+        'xl': '1.25rem',    // 20px - Subheadings
+        '2xl': '1.5rem',    // 24px - Section headers
+        '3xl': '2rem',      // 32px - Page titles
+        // All other Tailwind font sizes are disabled
       },
       colors: {
         // Brand Colors (from your codebase analysis)

@@ -104,16 +104,16 @@ function TreatmentPlot({
       .attr('opacity', 0.8)
       .on('mouseover', (event, d) => {
         tooltip.style('display', 'block').html(`
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-spacing: 8px;">
-              <div style="font-weight: normal;">Patient ID</div><div style="font-weight: bold;">${d.patientID}</div>
-              <div style="font-weight: normal;">Age</div><div style="font-weight: bold;">${d.age}</div>
-              <div style="font-weight: normal;">Sex</div><div style="font-weight: bold;">${d.sex}</div>
-              <div style="font-weight: normal;">Treatment Type</div><div style="font-weight: bold;">${d.treatmentType}</div>
-              <div style="font-weight: normal;">Income</div><div style="font-weight: bold;">${d.income}</div>
-              <div style="font-weight: normal;">Education Years</div><div style="font-weight: bold;">${d.educationYears}</div>
-              <div style="font-weight: normal;">BMI</div><div style="font-weight: bold;">${d.bmi}</div>
-              <div style="font-weight: normal;">Smoking History</div><div style="font-weight: bold;">${d.smokingYears} years</div>
-              <div style="font-weight: normal;">Physical Activity</div><div style="font-weight: bold;">${d.physicalActivity} hours/day</div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="font-normal">Patient ID</div><div class="font-bold">${d.patientID}</div>
+              <div class="font-normal">Age</div><div class="font-bold">${d.age}</div>
+              <div class="font-normal">Sex</div><div class="font-bold">${d.sex}</div>
+              <div class="font-normal">Treatment Type</div><div class="font-bold">${d.treatmentType}</div>
+              <div class="font-normal">Income</div><div class="font-bold">${d.income}</div>
+              <div class="font-normal">Education Years</div><div class="font-bold">${d.educationYears}</div>
+              <div class="font-normal">BMI</div><div class="font-bold">${d.bmi}</div>
+              <div class="font-normal">Smoking History</div><div class="font-bold">${d.smokingYears} years</div>
+              <div class="font-normal">Physical Activity</div><div class="font-bold">${d.physicalActivity} hours/day</div>
             </div>
           `);
       })

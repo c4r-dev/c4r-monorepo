@@ -379,7 +379,7 @@
 }
 
 .bubble-text {
-    background-color: #6E00FF;
+    @apply bg-brand-primary;
     text-align: left;
     border-radius: 10px;
     padding: 10px;
@@ -387,13 +387,13 @@
     h3 {
         margin: 5px;
         font-weight: bold;
-        color: #FFFFFF;
+        @apply text-white;
     }
     p {
         margin: 5px;
         /* font-size: 18px; */
         font-weight: bold;
-        color: #FFFFFF;
+        @apply text-white;
     }
 }
   
@@ -464,7 +464,7 @@ h2 {
 
 /* h3{
   margin-bottom: "40px";
-  color: #6E00FF;
+  @apply text-brand-primary;
 } */
 
 h1, h2, h4, h5, h6, input, button , body, html,textarea{
@@ -815,7 +815,7 @@ padding: 10px;
 
 .qr-code-text-heading {
   margin-bottom: 50px;
-  color: #6E00FF;
+  @apply text-brand-primary;
 }
 
 
@@ -886,7 +886,7 @@ text-align: left;
   }
   .qr-code-text-heading{
     margin-bottom: 110px;
-    color: #6E00FF;
+    @apply text-brand-primary;
   }
 }
 
@@ -901,7 +901,7 @@ text-align: left;
   }
  .qr-code-text-heading {
     margin-bottom: 110px;
-    color: #6E00FF;
+    @apply text-brand-primary;
   }
   .copy-link-container {
     width: 55%; /* Adjust width on tablet screens */

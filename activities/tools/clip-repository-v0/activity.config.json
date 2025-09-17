@@ -1,9 +1,0 @@
-{
-  "name": "clip-repository-v0",
-  "domain": "tools",
-  "route": "/tools/clip-repository-v0",
-  "tech": "nextjs",
-  "status": "active",
-  "description": "Tool: clip-repository-v0"
-}
-

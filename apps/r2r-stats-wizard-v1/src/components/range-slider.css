@@ -72,7 +72,7 @@ body {
   height: 0.5em;
   outline: none;
   border-radius: 3px;
-  background: #929292;
+  @apply bg-gray-400;
   cursor: pointer;
 }
 
@@ -88,8 +88,8 @@ body {
   height: 0.4em;
   border-radius: 3px;
   background: linear-gradient(90deg,
-      #000000,
-      #000000);
+      theme('colors.black'),
+      theme('colors.black'));
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -109,7 +109,7 @@ body {
   position: absolute;
   width: 2em;
   height: 2em;
-  background: black;
+  @apply bg-black;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -153,7 +153,7 @@ body {
   max-width: 1000px;
   max-height: 90vh;
   margin: 0 auto;
-  background-color: #F3F3F3;
+  @apply bg-gray-100;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
@@ -206,8 +206,8 @@ body {
 }
 
 .submit-button {
-  background-color: #000;
-  color: #fff;
+  @apply bg-black;
+  @apply text-white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -281,7 +281,7 @@ body {
   align-items: center;
   justify-content: center;
   align-items: flex-start;
-  background-color: #FFFFFF;
+  @apply bg-white;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   align-self: center;

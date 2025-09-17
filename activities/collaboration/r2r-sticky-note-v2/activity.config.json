@@ -1,9 +1,0 @@
-{
-  "name": "r2r-sticky-note-v2",
-  "domain": "collaboration",
-  "route": "/collaboration/r2r-sticky-note-v2",
-  "tech": "nextjs",
-  "status": "active",
-  "description": "Collaboration activity: r2r-sticky-note-v2",
-  "forceType": "static"
-}
