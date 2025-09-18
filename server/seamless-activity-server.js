@@ -73,57 +73,21 @@ class SeamlessActivityServer {
         for (const searchDir of searchDirs) {
             const fullPath = path.join(this.baseDir, searchDir);
             if (fs.existsSync(fullPath)) {
-                const subdirs = fs.readdirSync(fullPath);
-                for (const subdir of subdirs) {
-                    const activityPath = path.join(fullPath, subdir);
-                    
-                    // Check if this is a valid activity directory (skip hidden directories)
-                    if (subdir.startsWith('.') || !fs.statSync(activityPath).isDirectory()) {
-                        continue;
-                    }
-                    
-                    // Detect framework by file structure since we no longer have individual package.json files
-                    let type = this.detectFrameworkByStructure(activityPath);
-                    
-                    // Treat unknown structures as static so they still mount
-                    if (type === 'unknown') {
-                        type = 'static';
-                    }
-                    if (type) {
-                        // Handle domain differently for apps vs activities
-                        let domain, route;
-                        if (searchDir === 'apps') {
-                            domain = 'apps';
-                            route = `/apps/${subdir}`;
-                        } else {
-                            domain = searchDir.split('/')[1] || 'tools';
-                            route = `/${domain}/${subdir}`;
+                if (searchDir === 'apps') {
+                    // Special handling for apps directory - search recursively but carefully
+                    count += this.discoverNestedApps(fullPath);
+                } else {
+                    // Regular search for other directories
+                    const subdirs = fs.readdirSync(fullPath);
+                    for (const subdir of subdirs) {
+                        const activityPath = path.join(fullPath, subdir);
+                        
+                        // Check if this is a valid activity directory (skip hidden directories)
+                        if (subdir.startsWith('.') || !fs.statSync(activityPath).isDirectory()) {
+                            continue;
                         }
                         
-                        // Optional per-activity metadata
-                        let meta = null;
-                        const metaPath = path.join(activityPath, 'activity.config.json');
-                        if (fs.existsSync(metaPath)) {
-                            try {
-                                meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
-                            } catch (_) {
-                                meta = null;
-                            }
-                        }
-
-                        // Respect optional forced type (e.g., serve as static demo)
-                        const finalType = meta?.forceType || type;
-
-                        this.activities.set(route, {
-                            name: subdir,
-                            path: activityPath,
-                            domain: domain,
-                            packageJson: null, // No individual package.json in single-package architecture
-                            type: finalType,
-                            route: route,
-                            meta
-                        });
-                        count++;
+                        count += this.processActivityDirectory(activityPath, subdir, searchDir);
                     }
                 }
             }
@@ -172,6 +136,144 @@ class SeamlessActivityServer {
         }
         
         return 'unknown';
+    }
+
+    discoverNestedApps(appsPath) {
+        let count = 0;
+        const items = fs.readdirSync(appsPath);
+        
+        for (const item of items) {
+            const itemPath = path.join(appsPath, item);
+            
+            // Skip hidden directories and files
+            if (item.startsWith('.') || !fs.statSync(itemPath).isDirectory()) {
+                continue;
+            }
+            
+            // First check if this directory itself is an activity
+            let type = this.detectFrameworkByStructure(itemPath);
+            if (type !== 'unknown') {
+                // This is a direct app activity
+                count += this.processActivityDirectory(itemPath, item, 'apps', 'apps');
+            } else {
+                // This might be a domain directory, search one level deeper
+                const nestedItems = fs.readdirSync(itemPath);
+                for (const nestedItem of nestedItems) {
+                    const nestedPath = path.join(itemPath, nestedItem);
+                    
+                    // Skip hidden directories and files
+                    if (nestedItem.startsWith('.') || !fs.statSync(nestedPath).isDirectory()) {
+                        continue;
+                    }
+                    
+                    // Check if this nested directory is an activity
+                    let nestedType = this.detectFrameworkByStructure(nestedPath);
+                    if (nestedType !== 'unknown') {
+                        // This is a nested app activity
+                        if (item === 'activities') {
+                            // For apps/activities/domain/activity, we need to go one level deeper
+                            // nestedItem is the domain (causality, randomization, etc.)
+                            // We need to look inside this domain for actual activities
+                            const domainItems = fs.readdirSync(nestedPath);
+                            for (const activityItem of domainItems) {
+                                const activityPath = path.join(nestedPath, activityItem);
+                                
+                                // Skip hidden directories and files
+                                if (activityItem.startsWith('.') || !fs.statSync(activityPath).isDirectory()) {
+                                    continue;
+                                }
+                                
+                                // Check if this is an activity
+                                let activityType = this.detectFrameworkByStructure(activityPath);
+                                if (activityType !== 'unknown') {
+                                    // Use the domain (nestedItem) as the final domain
+                                    count += this.processActivityDirectory(activityPath, activityItem, `apps/${item}/${nestedItem}`, nestedItem);
+                                }
+                            }
+                        } else {
+                            // For other nested apps, use the parent directory as domain
+                            count += this.processActivityDirectory(nestedPath, nestedItem, `apps/${item}`, item);
+                        }
+                    } else if (item === 'activities') {
+                        // This is a domain directory under apps/activities/, search for activities inside
+                        const domainItems = fs.readdirSync(nestedPath);
+                        for (const activityItem of domainItems) {
+                            const activityPath = path.join(nestedPath, activityItem);
+                            
+                            // Skip hidden directories and files
+                            if (activityItem.startsWith('.') || !fs.statSync(activityPath).isDirectory()) {
+                                continue;
+                            }
+                            
+                            // Check if this is an activity
+                            let activityType = this.detectFrameworkByStructure(activityPath);
+                            if (activityType !== 'unknown') {
+                                // Use the domain (nestedItem) as the final domain
+                                count += this.processActivityDirectory(activityPath, activityItem, `apps/${item}/${nestedItem}`, nestedItem);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return count;
+    }
+
+    processActivityDirectory(activityPath, activityName, searchDir, domain = null) {
+        // Detect framework by file structure
+        let type = this.detectFrameworkByStructure(activityPath);
+        
+        // Treat unknown structures as static so they still mount
+        if (type === 'unknown') {
+            type = 'static';
+        }
+        
+        if (!type) {
+            return 0;
+        }
+        
+        // Handle domain and route
+        let finalDomain, route;
+        if (domain) {
+            // Use provided domain (for nested apps)
+            finalDomain = domain;
+            route = `/${domain}/${activityName}`;
+        } else if (searchDir === 'apps') {
+            // Direct app
+            finalDomain = 'apps';
+            route = `/apps/${activityName}`;
+        } else {
+            // Regular activity
+            finalDomain = searchDir.split('/')[1] || 'tools';
+            route = `/${finalDomain}/${activityName}`;
+        }
+        
+        // Optional per-activity metadata
+        let meta = null;
+        const metaPath = path.join(activityPath, 'activity.config.json');
+        if (fs.existsSync(metaPath)) {
+            try {
+                meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+            } catch (_) {
+                meta = null;
+            }
+        }
+
+        // Respect optional forced type (e.g., serve as static demo)
+        const finalType = meta?.forceType || type;
+
+        this.activities.set(route, {
+            name: activityName,
+            path: activityPath,
+            domain: finalDomain,
+            packageJson: null, // No individual package.json in single-package architecture
+            type: finalType,
+            route: route,
+            meta
+        });
+        
+        return 1;
     }
 
     setupSharedModules() {
