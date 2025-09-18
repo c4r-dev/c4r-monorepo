@@ -1,0 +1,26 @@
+{"directory":"activities/causality","fullPath":"/Users/konrad_1/c4r-dev/activities/causality","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.852"}
+{"directory":"activities/randomization","fullPath":"/Users/konrad_1/c4r-dev/activities/randomization","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.852"}
+{"directory":"activities/coding-practices","fullPath":"/Users/konrad_1/c4r-dev/activities/coding-practices","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.856"}
+{"directory":"activities/collaboration","fullPath":"/Users/konrad_1/c4r-dev/activities/collaboration","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.857"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/activities/collaboration/r2r-feed-back-v1","service":"dev","timestamp":"2025-09-18 13:14:37.857"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/activities/collaboration/r2r-sticky-note-v2","service":"dev","timestamp":"2025-09-18 13:14:37.857"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/activities/collaboration/r2r-whiteboard-v1","service":"dev","timestamp":"2025-09-18 13:14:37.857"}
+{"directory":"activities/tools","fullPath":"/Users/konrad_1/c4r-dev/activities/tools","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.858"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/activities/tools/c4r-team-nextjs-template","service":"dev","timestamp":"2025-09-18 13:14:37.858"}
+{"directory":"templates","fullPath":"/Users/konrad_1/c4r-dev/templates","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.858"}
+{"directory":"apps","fullPath":"/Users/konrad_1/c4r-dev/apps","level":"debug","message":"Searching directory","service":"dev","timestamp":"2025-09-18 13:14:37.858"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/activities","service":"dev","timestamp":"2025-09-18 13:14:37.859"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/activities/causality","service":"dev","timestamp":"2025-09-18 13:14:37.859"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/activities/coding-practices","service":"dev","timestamp":"2025-09-18 13:14:37.859"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/activities/collaboration","service":"dev","timestamp":"2025-09-18 13:14:37.859"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/activities/core","service":"dev","timestamp":"2025-09-18 13:14:37.859"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/activities/randomization","service":"dev","timestamp":"2025-09-18 13:14:37.859"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/hms-int-exe-v0","service":"dev","timestamp":"2025-09-18 13:14:37.870"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/hms-int-exe-v0/node_modules","service":"dev","timestamp":"2025-09-18 13:14:37.871"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/hms-int-exe-v0/out","service":"dev","timestamp":"2025-09-18 13:14:37.872"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/minimal-next-app","service":"dev","timestamp":"2025-09-18 13:14:37.873"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/minimal-next-app/node_modules","service":"dev","timestamp":"2025-09-18 13:14:37.874"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/stats-widget-v0","service":"dev","timestamp":"2025-09-18 13:14:37.879"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/stats-widget-v0/assets","service":"dev","timestamp":"2025-09-18 13:14:37.880"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/templates","service":"dev","timestamp":"2025-09-18 13:14:37.880"}
+{"event":"framework_unknown","level":"debug","message":"Framework detection failed","path":"/Users/konrad_1/c4r-dev/apps/tools","service":"dev","timestamp":"2025-09-18 13:14:37.880"}

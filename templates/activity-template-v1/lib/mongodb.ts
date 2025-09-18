@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // lib/mongodb.ts
 import mongoose from 'mongoose';
@@ -6,7 +7,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI && process.env.NODE_ENV !== 'development') {
   // Only throw error in production if MONGODB_URI is actually needed
-  console.warn('MONGODB_URI environment variable is not defined');
+  logger.app.warn('MONGODB_URI environment variable is not defined');
 }
 
 /**

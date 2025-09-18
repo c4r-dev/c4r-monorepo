@@ -1,9 +1,10 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 async function testActivitiesWithErrorDetection() {
-    console.log('🔍 Testing activities with comprehensive error detection...');
+    logger.app.info('🔍 Testing activities with comprehensive error detection...');
     
     // Create error screenshots directory
     const errorScreenshotsDir = path.join(__dirname, 'error-screenshots');
@@ -24,12 +25,12 @@ async function testActivitiesWithErrorDetection() {
         const type = msg.type();
         const text = msg.text();
         const icon = type === 'error' ? '🔴' : type === 'warn' ? '🟡' : '🔵';
-        console.log(`   ${icon} [BROWSER ${type.toUpperCase()}]: ${text}`);
+        logger.app.info(`   ${icon} [BROWSER ${type.toUpperCase()}]: ${text}`);
     });
     
     // Enable error detection
     page.on('pageerror', error => {
-        console.log(`   💥 [PAGE ERROR]: ${error.message}`);
+        logger.app.info(`   💥 [PAGE ERROR]: ${error.message}`);
     });
     
     // Enable response monitoring
@@ -37,22 +38,22 @@ async function testActivitiesWithErrorDetection() {
         const status = response.status();
         const url = response.url();
         if (status >= 400) {
-            console.log(`   ⚠️  [HTTP ${status}]: ${url}`);
+            logger.app.info(`   ⚠️  [HTTP ${status}]: ${url}`);
         }
     });
     
     // Enable request failure monitoring
     page.on('requestfailed', request => {
-        console.log(`   ❌ [REQUEST FAILED]: ${request.url()} - ${request.failure().errorText}`);
+        logger.app.info(`   ❌ [REQUEST FAILED]: ${request.url()} - ${request.failure().errorText}`);
     });
     
     try {
         // Get activities from API
-        console.log('📋 Fetching activity list...');
+        logger.app.info('📋 Fetching activity list...');
         await page.goto('http://localhost:3333/api/activities', { waitUntil: 'networkidle0' });
         const activitiesJson = await page.evaluate(() => document.body.innerText);
         const activities = JSON.parse(activitiesJson);
-        console.log(`📦 Testing ${activities.length} activities with error detection\n`);
+        logger.app.info(`📦 Testing ${activities.length} activities with error detection\n`);
         
         let results = {
             working: [],
@@ -65,8 +66,8 @@ async function testActivitiesWithErrorDetection() {
             const url = activity.url;
             const activityName = `${activity.domain}-${activity.name}`;
             
-            console.log(`\n🔗 [${i+1}/10] Testing: ${activity.route}`);
-            console.log(`   URL: ${url}`);
+            logger.app.info(`\n🔗 [${i+1}/10] Testing: ${activity.route}`);
+            logger.app.info(`   URL: ${url}`);
             
             try {
                 // Clear console and error logs
@@ -205,7 +206,7 @@ async function testActivitiesWithErrorDetection() {
                 const status = response?.status() || 0;
                 
                 if (hasAnyErrors || status >= 400) {
-                    console.log(`   ❌ ERRORS DETECTED`);
+                    logger.app.info(`   ❌ ERRORS DETECTED`);
                     
                     const errorDetails = {
                         activity,
@@ -223,23 +224,23 @@ async function testActivitiesWithErrorDetection() {
                     
                     // Log detailed error information
                     if (pageErrors.length > 0) {
-                        console.log(`   📄 Page Errors (${pageErrors.length}):`);
-                        pageErrors.forEach(err => console.log(`     • ${err}`));
+                        logger.app.info(`   📄 Page Errors (${pageErrors.length}):`);
+                        pageErrors.forEach(err => logger.app.info(`     • ${err}`));
                     }
                     
                     if (consoleErrors.length > 0) {
-                        console.log(`   🖥️  Console Errors (${consoleErrors.length}):`);
-                        consoleErrors.forEach(err => console.log(`     • ${err}`));
+                        logger.app.info(`   🖥️  Console Errors (${consoleErrors.length}):`);
+                        consoleErrors.forEach(err => logger.app.info(`     • ${err}`));
                     }
                     
                     if (httpErrors.length > 0) {
-                        console.log(`   🌐 HTTP Errors (${httpErrors.length}):`);
-                        httpErrors.forEach(err => console.log(`     • ${err}`));
+                        logger.app.info(`   🌐 HTTP Errors (${httpErrors.length}):`);
+                        httpErrors.forEach(err => logger.app.info(`     • ${err}`));
                     }
                     
                     if (errorAnalysis.visibleErrors.length > 0) {
-                        console.log(`   👁️  Visible Errors (${errorAnalysis.visibleErrors.length}):`);
-                        errorAnalysis.visibleErrors.forEach(err => console.log(`     • ${err.substring(0, 100)}...`));
+                        logger.app.info(`   👁️  Visible Errors (${errorAnalysis.visibleErrors.length}):`);
+                        errorAnalysis.visibleErrors.forEach(err => logger.app.info(`     • ${err.substring(0, 100)}...`));
                     }
                     
                     // Log detected error indicators
@@ -248,18 +249,18 @@ async function testActivitiesWithErrorDetection() {
                         .map(([key]) => key);
                     
                     if (activeIndicators.length > 0) {
-                        console.log(`   🚨 Error Indicators: ${activeIndicators.join(', ')}`);
+                        logger.app.info(`   🚨 Error Indicators: ${activeIndicators.join(', ')}`);
                     }
                     
                 } else if (status === 200 && errorAnalysis.textLength > 50) {
-                    console.log(`   ✅ Working properly`);
+                    logger.app.info(`   ✅ Working properly`);
                     results.working.push({
                         activity,
                         screenshotPath,
                         errorAnalysis
                     });
                 } else {
-                    console.log(`   ⚠️  Status ${status}, minimal content`);
+                    logger.app.info(`   ⚠️  Status ${status}, minimal content`);
                     results.failed.push({
                         activity,
                         screenshotPath,
@@ -268,10 +269,10 @@ async function testActivitiesWithErrorDetection() {
                     });
                 }
                 
-                console.log(`   📸 Screenshot saved: ${screenshotPath}`);
+                logger.app.info(`   📸 Screenshot saved: ${screenshotPath}`);
                 
             } catch (error) {
-                console.log(`   💥 Test failed: ${error.message}`);
+                logger.app.info(`   💥 Test failed: ${error.message}`);
                 results.failed.push({
                     activity,
                     error: error.message,
@@ -281,28 +282,28 @@ async function testActivitiesWithErrorDetection() {
         }
         
         // Generate detailed error report
-        console.log('\n' + '='.repeat(80));
-        console.log('📊 ERROR DETECTION SUMMARY');
-        console.log('='.repeat(80));
-        console.log(`✅ Working properly: ${results.working.length}/10`);
-        console.log(`❌ Errors detected: ${results.errorsDetected.length}/10`);
-        console.log(`⚠️  Failed to test: ${results.failed.length}/10`);
+        logger.app.info('\n' + '='.repeat(80));
+        logger.app.info('📊 ERROR DETECTION SUMMARY');
+        logger.app.info('='.repeat(80));
+        logger.app.info(`✅ Working properly: ${results.working.length}/10`);
+        logger.app.info(`❌ Errors detected: ${results.errorsDetected.length}/10`);
+        logger.app.info(`⚠️  Failed to test: ${results.failed.length}/10`);
         
         if (results.errorsDetected.length > 0) {
-            console.log('\n🔍 DETAILED ERROR ANALYSIS:');
+            logger.app.info('\n🔍 DETAILED ERROR ANALYSIS:');
             results.errorsDetected.forEach((result, index) => {
-                console.log(`\n${index + 1}. ${result.activity.route}:`);
-                console.log(`   Status: ${result.status}`);
-                console.log(`   Page Errors: ${result.pageErrors.length}`);
-                console.log(`   Console Errors: ${result.consoleErrors.length}`);
-                console.log(`   HTTP Errors: ${result.httpErrors.length}`);
-                console.log(`   Screenshot: ${result.screenshotPath}`);
+                logger.app.info(`\n${index + 1}. ${result.activity.route}:`);
+                logger.app.info(`   Status: ${result.status}`);
+                logger.app.info(`   Page Errors: ${result.pageErrors.length}`);
+                logger.app.info(`   Console Errors: ${result.consoleErrors.length}`);
+                logger.app.info(`   HTTP Errors: ${result.httpErrors.length}`);
+                logger.app.info(`   Screenshot: ${result.screenshotPath}`);
                 
                 const indicators = Object.entries(result.errorAnalysis.errorIndicators)
                     .filter(([key, value]) => value)
                     .map(([key]) => key);
                 if (indicators.length > 0) {
-                    console.log(`   Error Types: ${indicators.join(', ')}`);
+                    logger.app.info(`   Error Types: ${indicators.join(', ')}`);
                 }
             });
         }
@@ -320,15 +321,15 @@ async function testActivitiesWithErrorDetection() {
             results
         }, null, 2));
         
-        console.log(`\n📄 Detailed error report saved: ${reportPath}`);
-        console.log(`📁 Error screenshots directory: ${errorScreenshotsDir}`);
-        console.log('\n🎯 Use the screenshots to visually inspect any errors detected!');
+        logger.app.info(`\n📄 Detailed error report saved: ${reportPath}`);
+        logger.app.info(`📁 Error screenshots directory: ${errorScreenshotsDir}`);
+        logger.app.info('\n🎯 Use the screenshots to visually inspect any errors detected!');
         
     } catch (error) {
-        console.error('❌ Failed to run error detection:', error);
+        logger.app.error('❌ Failed to run error detection:', error);
     } finally {
         // Keep browser open for manual inspection
-        console.log('\n🔍 Browser left open for manual inspection. Close when done.');
+        logger.app.info('\n🔍 Browser left open for manual inspection. Close when done.');
         // await browser.close();
     }
 }

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const logger = require('../../../../../packages/logging/logger.js');
 
 function csvToJson(csvFilePath, jsonFilePath) {
     try {
@@ -40,11 +41,11 @@ function csvToJson(csvFilePath, jsonFilePath) {
         }
         
         fs.writeFileSync(jsonFilePath, JSON.stringify(jsonArray, null, 2));
-        console.log(`✅ Successfully converted ${csvFilePath} to ${jsonFilePath}`);
-        console.log(`📊 Converted ${jsonArray.length} records`);
+        logger.app.info(`✅ Successfully converted ${csvFilePath} to ${jsonFilePath}`);
+        logger.app.info(`📊 Converted ${jsonArray.length} records`);
         
     } catch (error) {
-        console.error(`❌ Error converting CSV to JSON: ${error.message}`);
+        logger.app.error(`❌ Error converting CSV to JSON: ${error.message}`);
     }
 }
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -30,9 +31,9 @@ export default function SummaryCalc() {
 
     const prepareUserInput = () => {
         // const userInput = searchParams.get("allResponses");
-        console.log("userInput:", userInput);
+        logger.app.info("userInput:", userInput);
         // const userInputArray = JSON.parse(userInput);
-        console.log("userInputArray:", userInputArray);
+        logger.app.info("userInputArray:", userInputArray);
 
         userInputArray.forEach((input) => {
             if (input.number === 1) {
@@ -51,12 +52,12 @@ export default function SummaryCalc() {
                 setHasUserInput(true);
             })
             .catch((error) => {
-                console.log("Error preparing user input: ", error);
+                logger.app.info("Error preparing user input: ", error);
                 setHasUserInput(false);
             });
         // setHasUserInput(true);
     } catch (error) {
-        console.log("Error preparing user input: ", error);
+        logger.app.info("Error preparing user input: ", error);
         // setHasUserInput(false);
     }
 
@@ -91,12 +92,12 @@ export default function SummaryCalc() {
         const fetchData = async () => {
             try {
                 const response = await fetch("/api/studentInput");
-                console.log("response:", response);
+                logger.app.info("response:", response);
                 const result = await response.json();
-                console.log("result:", result);
+                logger.app.info("result:", result);
                 setOutputs(result);
             } catch (error) {
-                console.log("Error loading student answers: ", error);
+                logger.app.info("Error loading student answers: ", error);
             }
         };
 
@@ -206,9 +207,9 @@ export default function SummaryCalc() {
         (answer) => answer.answer !== q3UserInput.comment
     );
 
-    // console.log("q1UserInput:", q1UserInput);
-    // console.log("q2UserInput:", q2UserInput);
-    // console.log("q3UserInput:", q3UserInput);
+    // logger.app.info("q1UserInput:", q1UserInput);
+    // logger.app.info("q2UserInput:", q2UserInput);
+    // logger.app.info("q3UserInput:", q3UserInput);
 
     q1.goodpct = Math.round((q1.goodcnt / q1.totalcnt) * 100);
     q1.betterpct = Math.round((q1.bettercnt / q1.totalcnt) * 100);
@@ -223,14 +224,14 @@ export default function SummaryCalc() {
     q3.greatpct = Math.round((q3.greatcnt / q3.totalcnt) * 100);
 
     // Log the counts
-    console.log("q1.goodcnt:", q1.goodcnt);
-    console.log("q1.bettercnt:", q1.bettercnt);
-    console.log("q1.greatcnt:", q1.greatcnt);
+    logger.app.info("q1.goodcnt:", q1.goodcnt);
+    logger.app.info("q1.bettercnt:", q1.bettercnt);
+    logger.app.info("q1.greatcnt:", q1.greatcnt);
 
     // Log q1 goodpct, betterpct, greatpct
-    console.log("q1.goodpct:", q1.goodpct);
-    console.log("q1.betterpct:", q1.betterpct);
-    console.log("q1.greatpct:", q1.greatpct);
+    logger.app.info("q1.goodpct:", q1.goodpct);
+    logger.app.info("q1.betterpct:", q1.betterpct);
+    logger.app.info("q1.greatpct:", q1.greatpct);
 
     function getWinner(goodPct, betterPct, greatPct) {
         // return "q1";
@@ -284,13 +285,13 @@ export default function SummaryCalc() {
             great: "great-color",
         };
         const getColorClass = (feedback) => {
-            // console.log(feedback);
-            // console.log(colorClassMap[feedback]);
+            // logger.app.info(feedback);
+            // logger.app.info(colorClassMap[feedback]);
             return colorClassMap[feedback];
         };
         const getColor = (feedback) => {
-            // console.log(feedback);
-            // console.log(colorMap[feedback]);
+            // logger.app.info(feedback);
+            // logger.app.info(colorMap[feedback]);
             return colorMap[feedback];
         };
 
@@ -326,7 +327,7 @@ export default function SummaryCalc() {
         const toggleAnswersVisibility = () => {
             // Calculate pixle height of answers
             const answersHeight = answers.length * 100;
-            // console.log(answersHeight);
+            // logger.app.info(answersHeight);
 
             setShowAnswers(!showAnswers);
 

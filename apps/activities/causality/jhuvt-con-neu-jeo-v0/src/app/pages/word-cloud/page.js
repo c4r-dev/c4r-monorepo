@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 /*
 word cloud page
 
@@ -104,7 +105,7 @@ function WordCloudContent({ initialFlowId }) {
         setErrorMessage('Failed to load concerns. Please try again.');
       }
     } catch (error) {
-      console.error('Error loading concerns:', error);
+      logger.app.error('Error loading concerns:', error);
       setConcerns([]);
       setErrorMessage('Failed to load concerns. Please try again.');
     } finally {
@@ -160,7 +161,7 @@ function WordCloudContent({ initialFlowId }) {
           }
         }
       } catch (error) {
-        console.error('Error loading database flows:', error);
+        logger.app.error('Error loading database flows:', error);
         setErrorMessage('Failed to load flowcharts. Please try again.');
       }
       setIsLoading(false);
@@ -353,7 +354,7 @@ function WordCloudContent({ initialFlowId }) {
       const data = await response.json();
       setThemedConcerns(data);
     } catch (error) {
-      console.error('Error processing concerns:', error);
+      logger.app.error('Error processing concerns:', error);
       setErrorMessage('Failed to process concerns. Please try again.');
     } finally {
       setProcessingConcerns(false);

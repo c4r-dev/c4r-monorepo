@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, Suspense } from 'react'
@@ -65,7 +66,7 @@ function RandomizeActivityVariables(props) {
           throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        // console.log(JSON.stringify(data) + ' this is the response')
+        // logger.app.info(JSON.stringify(data) + ' this is the response')
         setUsers(data)
       } catch (error) {
         setError(error.message)

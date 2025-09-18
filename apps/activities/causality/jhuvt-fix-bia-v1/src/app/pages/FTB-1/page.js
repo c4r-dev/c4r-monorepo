@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -70,7 +71,7 @@ function FixThatBiasContent() {
       await loadCaseStudy(1);
       setLoading(false);
     } catch (error) {
-      console.error('Failed to initialize session:', error);
+      logger.app.error('Failed to initialize session:', error);
       setLoading(false);
     }
   };
@@ -90,7 +91,7 @@ function FixThatBiasContent() {
       setSelectedSolution(null);
       setIncorrectSelectionId(null);
     } catch (error) {
-      console.error('Failed to load case study:', error);
+      logger.app.error('Failed to load case study:', error);
     }
   };
 
@@ -139,7 +140,7 @@ function FixThatBiasContent() {
         setSelectedNodeId(null);
       }
     } catch (error) {
-      console.error('Failed to submit selection:', error);
+      logger.app.error('Failed to submit selection:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
       setSelectedNodeId(null);
@@ -173,7 +174,7 @@ function FixThatBiasContent() {
       // Clear selection after "No Concerns" confirmation
       setSelectedNodeId(null);
     } catch (error) {
-      console.error('Failed to submit no concerns:', error);
+      logger.app.error('Failed to submit no concerns:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
     }
@@ -210,7 +211,7 @@ function FixThatBiasContent() {
         setSelectedSolution(null);
       }
     } catch (error) {
-      console.error('Failed to submit solution:', error);
+      logger.app.error('Failed to submit solution:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
     }

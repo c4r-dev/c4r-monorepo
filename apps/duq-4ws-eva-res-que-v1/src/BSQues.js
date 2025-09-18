@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -14,22 +15,22 @@ export default function BSQues() {
   const [isCorrectAnswer, setCorrectAnswer] = useState(false);
 
   const handleReady = () => {
-    console.log(isUserReady + "isUserReady","hi");
+    logger.app.info(isUserReady + "isUserReady","hi");
     setIsUserReady(true)
   }
 
   const handleNextQuestion = () => {
-    console.log(questionNumber + "questionNumber");
+    logger.app.info(questionNumber + "questionNumber");
     setQuestionNumber(prevQuestionNumber => (questionNumber + 1) % 4 );
   }
 
   const handlePrevQuestion = () => {
-    console.log(questionNumber + "questionNumber");
+    logger.app.info(questionNumber + "questionNumber");
     setQuestionNumber(prevQuestionNumber => (questionNumber-1) % 4 );
   }
 
   const handleWhyAnswer = () => {
-    console.log();
+    logger.app.info();
     setCorrectAnswer(true);
   }
 

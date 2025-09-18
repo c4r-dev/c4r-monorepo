@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import hljs from 'highlight.js/lib/core';
@@ -307,7 +308,7 @@ export const TextareaHighlight = ({
       const result = hljs.highlight(value, { language: 'python' });
       return result.value;
     } catch (error) {
-      console.warn('Syntax highlighting failed:', error);
+      logger.app.warn('Syntax highlighting failed:', error);
       return value; // Fallback to plain text
     }
   }, [value]);
@@ -466,15 +467,15 @@ export const TextareaHighlight = ({
       
       // Only log mismatches with detailed info
       if (clickedLineNumber !== cursorLine) {
-        console.log('🚨 MISMATCH DETECTED:');
-        console.log('Mouse Y:', mouseY);
-        console.log('Line Height:', textareaLineHeight);
-        console.log('Padding Top:', textareaPaddingTop);
-        console.log('Calculation: (' + mouseY + ' + ' + scrollTop + ' - ' + textareaPaddingTop + ') / ' + textareaLineHeight + ' + 1');
-        console.log('Calculated Line:', clickedLineNumber);
-        console.log('Actual Cursor Line:', cursorLine);
-        console.log('Difference:', clickedLineNumber - cursorLine);
-        console.log('Text at cursor position:', value.substring(Math.max(0, cursorPosition - 20), cursorPosition + 20));
+        logger.app.info('🚨 MISMATCH DETECTED:');
+        logger.app.info('Mouse Y:', mouseY);
+        logger.app.info('Line Height:', textareaLineHeight);
+        logger.app.info('Padding Top:', textareaPaddingTop);
+        logger.app.info('Calculation: (' + mouseY + ' + ' + scrollTop + ' - ' + textareaPaddingTop + ') / ' + textareaLineHeight + ' + 1');
+        logger.app.info('Calculated Line:', clickedLineNumber);
+        logger.app.info('Actual Cursor Line:', cursorLine);
+        logger.app.info('Difference:', clickedLineNumber - cursorLine);
+        logger.app.info('Text at cursor position:', value.substring(Math.max(0, cursorPosition - 20), cursorPosition + 20));
       }
     }, 10); // Small delay to let cursor position update
   };
@@ -539,11 +540,11 @@ export const TextareaHighlight = ({
     const startLine = getLineFromPosition(selectionStart, value);
     const endLine = getLineFromPosition(adjustedSelectionEnd, value);
     
-    console.log('🔍 SELECTION DEBUG:');
-    console.log('Original Selection:', selectionStart, 'to', selectionEnd);
-    console.log('Adjusted Selection:', selectionStart, 'to', adjustedSelectionEnd);
-    console.log('Start Line:', startLine, 'End Line:', endLine);
-    console.log('Selected text (trimmed):', JSON.stringify(selectedText));
+    logger.app.info('🔍 SELECTION DEBUG:');
+    logger.app.info('Original Selection:', selectionStart, 'to', selectionEnd);
+    logger.app.info('Adjusted Selection:', selectionStart, 'to', adjustedSelectionEnd);
+    logger.app.info('Start Line:', startLine, 'End Line:', endLine);
+    logger.app.info('Selected text (trimmed):', JSON.stringify(selectedText));
     
     // Calculate character positions for sub-line selections
     const lines = value.split('\n');
@@ -648,7 +649,7 @@ export const TextareaHighlight = ({
       const leftPx = startChar * charWidth;
       const widthPx = (endChar - startChar) * charWidth;
       
-      console.log(`Character highlight debug:
+      logger.app.info(`Character highlight debug:
         Line: ${lineNumber} (text: "${line}")
         Chars: ${startChar}-${endChar} (text: "${highlightText}")
         Position: top=${topPx}px, left=${leftPx}px, width=${widthPx}px
@@ -905,10 +906,10 @@ export const TextareaHighlight = ({
     
   //   const lineNumber = Math.floor((mouseY + scrollTop - paddingTop) / lineHeight) + 1;
     
-  //   // console.log('Textarea mouse move - Line:', lineNumber, 'Is hardcoded:', isLineInHardcodedRegion(lineNumber));
+  //   // logger.app.info('Textarea mouse move - Line:', lineNumber, 'Is hardcoded:', isLineInHardcodedRegion(lineNumber));
 
   //   if (isLineInHardcodedRegion(lineNumber) && hardcodedRegion?.tooltipText) {
-  //     // console.log('Showing tooltip for hardcoded region from textarea');
+  //     // logger.app.info('Showing tooltip for hardcoded region from textarea');
       
   //     // Calculate position above the highlighted region
   //     const regionStartY = (hardcodedRegion.startLine - 1) * lineHeight + paddingTop - scrollTop;
@@ -927,7 +928,7 @@ export const TextareaHighlight = ({
   // };
 
   // const handleTextareaMouseLeave = () => {
-  //   // console.log('Textarea mouse leave');
+  //   // logger.app.info('Textarea mouse leave');
   //   setTooltip({ visible: false, x: 0, y: 0, text: '' });
   // };
 

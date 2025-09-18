@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 /*
@@ -43,7 +44,7 @@ function DagUtility() {
     const [nodeInCreation, setNodeInCreation] = useState(null);
 
     const onNodesChange = useCallback((changes) => {
-        console.log("nodes changed", changes);
+        logger.app.info("nodes changed", changes);
         setNodes((nds) => applyNodeChanges(changes, nds));
     }, []);
     const onEdgesChange = useCallback(

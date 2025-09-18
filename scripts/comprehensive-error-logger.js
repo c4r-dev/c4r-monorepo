@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class ComprehensiveErrorLogger {
     constructor() {
@@ -103,9 +104,9 @@ class ComprehensiveErrorLogger {
         }
         
         // Console output with colors
-        console.log(this.colorizeMessage(category, type, displayMessage));
+        logger.app.info(this.colorizeMessage(category, type, displayMessage));
         if (contextStr) {
-            console.log(`  📋 ${JSON.stringify(context)}`);
+            logger.app.info(`  📋 ${JSON.stringify(context)}`);
         }
     }
     
@@ -130,11 +131,11 @@ class ComprehensiveErrorLogger {
         const activityName = `${activity.domain}-${activity.name}`;
         const url = activity.url;
         
-        console.log(`\n${'='.repeat(60)}`);
-        console.log(`🧪 TESTING: ${activity.route}`);
-        console.log(`📍 URL: ${url}`);
-        console.log(`📂 Type: ${activity.type} | Domain: ${activity.domain}`);
-        console.log(`${'='.repeat(60)}`);
+        logger.app.info(`\n${'='.repeat(60)}`);
+        logger.app.info(`🧪 TESTING: ${activity.route}`);
+        logger.app.info(`📍 URL: ${url}`);
+        logger.app.info(`📂 Type: ${activity.type} | Domain: ${activity.domain}`);
+        logger.app.info(`${'='.repeat(60)}`);
         
         // Set up error listeners
         page.on('console', msg => {
@@ -308,7 +309,7 @@ class ComprehensiveErrorLogger {
                              analysis.indicators.hasErrorOverlay;
             
             if (hasErrors) {
-                console.log(`❌ Activity has errors - Screenshot: ${screenshotPath}`);
+                logger.app.info(`❌ Activity has errors - Screenshot: ${screenshotPath}`);
                 
                 // Log summary for this activity
                 const errorSummary = `\nACTIVITY: ${activity.route} (${status})\n` +
@@ -322,7 +323,7 @@ class ComprehensiveErrorLogger {
                 
                 this.writeToFile(this.logFiles.summary, errorSummary);
             } else {
-                console.log(`✅ Activity working properly`);
+                logger.app.info(`✅ Activity working properly`);
             }
             
         } catch (error) {
@@ -338,9 +339,9 @@ class ComprehensiveErrorLogger {
     }
     
     async generateFinalReport() {
-        console.log(`\n${'='.repeat(80)}`);
-        console.log('📊 GENERATING COMPREHENSIVE ERROR REPORT');
-        console.log(`${'='.repeat(80)}`);
+        logger.app.info(`\n${'='.repeat(80)}`);
+        logger.app.info('📊 GENERATING COMPREHENSIVE ERROR REPORT');
+        logger.app.info(`${'='.repeat(80)}`);
         
         // Save JSON data
         fs.writeFileSync(this.logFiles.json, JSON.stringify(this.allErrors, null, 2));
@@ -368,7 +369,7 @@ class ComprehensiveErrorLogger {
             `${'='.repeat(60)}\n`;
         
         this.writeToFile(this.logFiles.summary, reportSummary);
-        console.log(reportSummary);
+        logger.app.info(reportSummary);
         
         // Create latest symlink
         const latestLink = path.join(this.logDir, 'latest');
@@ -387,7 +388,7 @@ class ComprehensiveErrorLogger {
 }
 
 async function runComprehensiveErrorLogging() {
-    console.log('🚀 Starting Comprehensive Error Logging System...');
+    logger.app.info('🚀 Starting Comprehensive Error Logging System...');
     
     const logger = new ComprehensiveErrorLogger();
     
@@ -405,27 +406,27 @@ async function runComprehensiveErrorLogging() {
         const activities = JSON.parse(activitiesJson);
         await page.close();
         
-        console.log(`📦 Found ${activities.length} activities to test with comprehensive logging`);
+        logger.app.info(`📦 Found ${activities.length} activities to test with comprehensive logging`);
         
         // Test first 10 activities for demonstration (you can change this)
         const testCount = Math.min(10, activities.length);
-        console.log(`🧪 Testing first ${testCount} activities...`);
+        logger.app.info(`🧪 Testing first ${testCount} activities...`);
         
         for (let i = 0; i < testCount; i++) {
             const activity = activities[i];
-            console.log(`\n[${i+1}/${testCount}] Testing: ${activity.route}`);
+            logger.app.info(`\n[${i+1}/${testCount}] Testing: ${activity.route}`);
             await logger.testActivityWithFullLogging(activity, browser);
         }
         
         // Generate final report
         const report = await logger.generateFinalReport();
         
-        console.log(`\n🎉 Comprehensive error logging complete!`);
-        console.log(`📁 All error logs saved to: ${report.logDir}`);
-        console.log(`📊 Total errors detected: ${report.totalErrors}`);
+        logger.app.info(`\n🎉 Comprehensive error logging complete!`);
+        logger.app.info(`📁 All error logs saved to: ${report.logDir}`);
+        logger.app.info(`📊 Total errors detected: ${report.totalErrors}`);
         
     } catch (error) {
-        console.error('❌ Error during comprehensive logging:', error);
+        logger.app.error('❌ Error during comprehensive logging:', error);
         logger.logError('serverErrors', 'system_error', error.message, { 
             stack: error.stack,
             source: 'logging_system' 

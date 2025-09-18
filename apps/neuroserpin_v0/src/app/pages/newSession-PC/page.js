@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { Suspense, useState, useEffect } from "react";
@@ -54,11 +55,11 @@ export function NewSessionContent() {
 
     // On Start button handler
     const onStartActivity = () => {
-        console.log("Starting activity");
+        logger.app.info("Starting activity");
         router.push(fullURL);
     };
     // const onSkipToResults = () => {
-    //     console.log("Skipping to results");
+    //     logger.app.info("Skipping to results");
     //     router.push(`/pages/review?sessionID=${sessionID}`);
     // };
 

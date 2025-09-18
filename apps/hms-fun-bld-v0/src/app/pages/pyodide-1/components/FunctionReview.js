@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 import { useState, useRef, useEffect } from 'react';
 import { 
   getFunctionContent, 
@@ -162,7 +163,7 @@ const FunctionReview = ({
       return result;
 
     } catch (error) {
-      console.error('Validation error:', error);
+      logger.app.error('Validation error:', error);
       const messageKey = validationType === 'sideEffects' ? 'sideEffects' : 'singlePurpose';
       setFeedbackMessages(prev => ({
         ...prev,
@@ -288,17 +289,17 @@ print(f"Final result: {execution_result}")
 `;
 
       // Debug: Log the exact code being executed
-      console.log('=== PYODIDE EXECUTION DEBUG ===');
-      console.log('Function ID:', functionId);
-      console.log('Function Name:', functionName);
-      console.log('Function Inputs:', functionInputs);
-      console.log('Function Output:', functionOutput);
-      console.log('Raw Function Body:', rawFunctionBody);
-      console.log('Min Indentation Found:', minIndentation);
-      console.log('Normalized & Indented Body:', indentedBody);
-      console.log('Constructed Function Definition:', functionDefinition);
-      console.log('Complete Code to Execute:', codeToRun);
-      console.log('================================');
+      logger.app.info('=== PYODIDE EXECUTION DEBUG ===');
+      logger.app.info('Function ID:', functionId);
+      logger.app.info('Function Name:', functionName);
+      logger.app.info('Function Inputs:', functionInputs);
+      logger.app.info('Function Output:', functionOutput);
+      logger.app.info('Raw Function Body:', rawFunctionBody);
+      logger.app.info('Min Indentation Found:', minIndentation);
+      logger.app.info('Normalized & Indented Body:', indentedBody);
+      logger.app.info('Constructed Function Definition:', functionDefinition);
+      logger.app.info('Complete Code to Execute:', codeToRun);
+      logger.app.info('================================');
 
       // Run the code in Pyodide
       const output = await pyodide.runPythonAsync(codeToRun);
@@ -343,7 +344,7 @@ print(f"Final result: {execution_result}")
       return { passes, explanation };
 
     } catch (error) {
-      console.error('Pyodide validation error:', error);
+      logger.app.error('Pyodide validation error:', error);
       const explanation = '❌ **Validation Error**: Unable to validate the function. There might be an issue with the code execution environment.';
       
       setFeedbackMessages(prev => ({

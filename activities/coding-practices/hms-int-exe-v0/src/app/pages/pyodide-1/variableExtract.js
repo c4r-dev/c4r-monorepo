@@ -21,6 +21,6 @@ function findPythonVariableDeclarations(pythonCode) {
   `;
   
   const variables = findPythonVariableDeclarations(pythonCode);
-  console.log(variables);
+  window.c4rLogger ? window.c4rLogger.info('app_log', variables);
 
-  
+   : console.$1(

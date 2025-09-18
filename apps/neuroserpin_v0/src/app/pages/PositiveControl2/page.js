@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useCallback, Suspense, useRef, useMemo } from 'react';
@@ -230,7 +231,7 @@ function PositiveControl2Content() {
     setError(null);
 
     try {
-      console.log(`[PositiveControl2] Loading session data for: ${sessionID}`);
+      logger.app.info(`[PositiveControl2] Loading session data for: ${sessionID}`);
       const result = await loadSessionFlow(sessionID);
       
       if (result.success && result.data) {
@@ -262,12 +263,12 @@ function PositiveControl2Content() {
           setEdges(result.data.modifiedFlowData.edges || []);
         }
         
-        console.log(`[PositiveControl2] Session data loaded successfully`);
+        logger.app.info(`[PositiveControl2] Session data loaded successfully`);
       } else {
         throw new Error(result.message || 'Failed to load session data');
       }
     } catch (err) {
-      console.error('Error loading session data:', err);
+      logger.app.error('Error loading session data:', err);
       setError(err.message || 'An error occurred while loading session data.');
       setSessionData(null);
     } finally {
@@ -282,23 +283,23 @@ function PositiveControl2Content() {
     setIsLoadingSubmissions(true);
     
     try {
-      console.log(`[PositiveControl2] Loading submissions for session: ${sessionID}`);
-      console.log(`[PositiveControl2] API URL: /api/positive-control-submissions/session/${sessionID}`);
+      logger.app.info(`[PositiveControl2] Loading submissions for session: ${sessionID}`);
+      logger.app.info(`[PositiveControl2] API URL: /api/positive-control-submissions/session/${sessionID}`);
       
       const result = await loadSubmissionsForSession(sessionID);
       
-      console.log(`[PositiveControl2] API response:`, result);
+      logger.app.info(`[PositiveControl2] API response:`, result);
       
       if (result.success) {
         setSubmissions(result.data || []);
-        console.log(`[PositiveControl2] Found ${result.data?.length || 0} submissions`);
-        console.log(`[PositiveControl2] Submissions data:`, result.data);
+        logger.app.info(`[PositiveControl2] Found ${result.data?.length || 0} submissions`);
+        logger.app.info(`[PositiveControl2] Submissions data:`, result.data);
       } else {
-        console.error('Failed to load submissions:', result.message);
+        logger.app.error('Failed to load submissions:', result.message);
         setSubmissions([]);
       }
     } catch (error) {
-      console.error('Error loading submissions:', error);
+      logger.app.error('Error loading submissions:', error);
       setSubmissions([]);
     } finally {
       setIsLoadingSubmissions(false);
@@ -328,10 +329,10 @@ function PositiveControl2Content() {
   const validatedSteps = extractValidatedSteps();
 
   // Debug logging to check data availability
-  console.log('[PositiveControl2] Control Groups count:', controlGroups.length);
-  console.log('[PositiveControl2] Control Groups data:', controlGroups);
-  console.log('[PositiveControl2] Submissions count:', submissions.length);
-  console.log('[PositiveControl2] Submissions data:', submissions);
+  logger.app.info('[PositiveControl2] Control Groups count:', controlGroups.length);
+  logger.app.info('[PositiveControl2] Control Groups data:', controlGroups);
+  logger.app.info('[PositiveControl2] Submissions count:', submissions.length);
+  logger.app.info('[PositiveControl2] Submissions data:', submissions);
 
   if (isLoading) {
     return <div className="loading-indicator">Loading session data...</div>;

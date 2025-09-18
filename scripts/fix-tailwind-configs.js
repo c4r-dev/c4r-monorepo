@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class TailwindConfigFixer {
     constructor() {
@@ -138,42 +139,42 @@ class TailwindConfigFixer {
         const configPath = activity.tailwindConfigPath;
         
         try {
-            console.log(`🔧 Fixing Tailwind config: ${activity.route}`);
+            logger.app.info(`🔧 Fixing Tailwind config: ${activity.route}`);
             
             const newConfig = `/** @type {import('tailwindcss').Config} */
 module.exports = ${JSON.stringify(this.shadcnConfig, null, 2)}
 `;
             
             fs.writeFileSync(configPath, newConfig);
-            console.log(`   ✅ Fixed: ${configPath}`);
+            logger.app.info(`   ✅ Fixed: ${configPath}`);
             this.fixedCount++;
             
         } catch (error) {
-            console.error(`   ❌ Error fixing ${activity.route}:`, error.message);
+            logger.app.error(`   ❌ Error fixing ${activity.route}:`, error.message);
         }
     }
 
     async fixAllConfigs() {
-        console.log('🔍 Finding activities with Tailwind CSS issues...');
+        logger.app.info('🔍 Finding activities with Tailwind CSS issues...');
         
         const activities = this.findActivitiesWithTailwindIssues();
-        console.log(`📦 Found ${activities.length} activities with Tailwind issues\n`);
+        logger.app.info(`📦 Found ${activities.length} activities with Tailwind issues\n`);
         
         if (activities.length === 0) {
-            console.log('✅ No Tailwind configuration issues found!');
+            logger.app.info('✅ No Tailwind configuration issues found!');
             return;
         }
 
-        console.log('🔧 Fixing Tailwind configurations...\n');
+        logger.app.info('🔧 Fixing Tailwind configurations...\n');
         
         for (const activity of activities) {
             this.fixTailwindConfig(activity);
         }
         
-        console.log(`\n🎉 Fixed ${this.fixedCount} Tailwind configurations!`);
-        console.log('\n📋 Summary of fixed activities:');
+        logger.app.info(`\n🎉 Fixed ${this.fixedCount} Tailwind configurations!`);
+        logger.app.info('\n📋 Summary of fixed activities:');
         activities.forEach(activity => {
-            console.log(`   • ${activity.route}`);
+            logger.app.info(`   • ${activity.route}`);
         });
     }
 }

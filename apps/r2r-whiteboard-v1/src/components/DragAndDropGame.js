@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/globals.css';
@@ -45,11 +46,11 @@ export default function DragAndDropGame({showResource}) {
     const [showAllSessions, setShowAllSessions] = useState(false);
 
     useEffect(() => {
-        console.log('selectedNote:', selectedNote);
+        logger.app.info('selectedNote:', selectedNote);
     }, [selectedNote]);
 
     useEffect(() => {
-        console.log('noteScores:', noteScores);
+        logger.app.info('noteScores:', noteScores);
     }, [noteScores]);
 
     // Upon change of noteScores, update combinedNoteScores
@@ -63,7 +64,7 @@ export default function DragAndDropGame({showResource}) {
     useEffect(() => {
         if (squares.length === 0) {
             // setHasNotesRemaining(false);
-            console.log('No notes remaining');
+            logger.app.info('No notes remaining');
             setHasNotesRemaining(false);
         }
     }, [squares]);
@@ -73,7 +74,7 @@ export default function DragAndDropGame({showResource}) {
     };
 
     useEffect(() => {
-        console.log(noteScores);
+        logger.app.info(noteScores);
     }, [noteScores]);
 
     const handleDrop = (e) => {
@@ -123,7 +124,7 @@ export default function DragAndDropGame({showResource}) {
     };
 
     const submitNotes = () => {
-        console.log('Submitting notes');
+        logger.app.info('Submitting notes');
         clearWhiteboard();
     };
 

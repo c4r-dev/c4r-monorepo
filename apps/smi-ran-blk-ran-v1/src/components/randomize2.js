@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +44,7 @@ export default function Randomize1() {
                     blockRandomization = blockRandomization.concat(block);
                 }
 
-                // console.log(blockRandomization)
+                // logger.app.info(blockRandomization)
 
                 // let outArray = [" ", " ", " ", "Treatme", "nts", " "];
                 let outArray = []
@@ -100,7 +101,7 @@ export default function Randomize1() {
     };
 
     function arrayOutput(item) {
-        // console.log(item)
+        // logger.app.info(item)
         if (item === "purple1") {
             return <div className="block1"></div>;
         } else if (item === "purple2") {

@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class PackageBackup {
     constructor() {
@@ -10,7 +11,7 @@ class PackageBackup {
     }
 
     backup() {
-        console.log('🔄 Creating comprehensive backup of all individual package.json files...');
+        logger.app.info('🔄 Creating comprehensive backup of all individual package.json files...');
         
         if (!fs.existsSync(this.backupDir)) {
             fs.mkdirSync(this.backupDir, { recursive: true });
@@ -39,7 +40,7 @@ class PackageBackup {
             }
         }
         
-        console.log(`✅ Backed up ${backupCount} individual package.json files to ${this.backupDir}`);
+        logger.app.info(`✅ Backed up ${backupCount} individual package.json files to ${this.backupDir}`);
     }
 }
 

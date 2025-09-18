@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 /*
@@ -74,7 +75,7 @@ export function Finer1Content() {
         setIsGuideModalVisible(true);
     };
     const handleGuideBtn = () => {
-        console.log("Guide button clicked");
+        logger.app.info("Guide button clicked");
         openModal(true);
     };
     const handleErrorSnackbarClose = () => {
@@ -138,7 +139,7 @@ export function Finer1Content() {
     };
 
     useEffect(() => {
-        console.log("Evaluation:", evaluation);
+        logger.app.info("Evaluation:", evaluation);
     }, [evaluation]);
 
     const handleSubmitToApi = async () => {
@@ -165,17 +166,17 @@ export function Finer1Content() {
             });
 
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
                 // loadReviewPage(guessID);
             } else {
                 // TODO: Add error handling
-                console.log("Response not ok.");
+                logger.app.info("Response not ok.");
                 throw new Error("Response not ok.");
             }
         } catch (error) {
             // TODO: Add error handling
-            console.log("Error in fetch");
-            console.log(error);
+            logger.app.info("Error in fetch");
+            logger.app.info(error);
         }
     }
 
@@ -183,10 +184,10 @@ export function Finer1Content() {
 
     // Function to handle submit button click
     const handleSubmit = () => {
-        console.log("Submit clicked");
-        console.log("Selected Area Option:", selectedAreaOption);
-        console.log("Evaluation:", evaluation);
-        console.log("Elaboration:", elaboration);
+        logger.app.info("Submit clicked");
+        logger.app.info("Selected Area Option:", selectedAreaOption);
+        logger.app.info("Evaluation:", evaluation);
+        logger.app.info("Elaboration:", elaboration);
 
         // TODO: Add error alerts
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../../packages/logging/logger.js');
 /**
  * ConcernForm Component
  * 
@@ -100,7 +101,7 @@ const ConcernForm = forwardRef(({ flowName, sessionId, availableNodes, onConcern
         setError('Failed to save concern: ' + result.error);
       }
     } catch (error) {
-      console.error('Error submitting concern:', error);
+      logger.app.error('Error submitting concern:', error);
       setError('An unexpected error occurred while saving the concern');
     } finally {
       setIsSubmitting(false);

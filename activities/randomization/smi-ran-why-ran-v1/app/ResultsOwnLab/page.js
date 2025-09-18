@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 import React, { useEffect, Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -113,7 +114,7 @@ function ResultsMultipleLabs() {
         const data = await response.json()
         data.map((grp) => {
           if (grp.students.length > 0 && grp.grp_id === selectedGroup) {
-            // console.log('in group aaAAAAA', grp, selectedGroup)
+            // logger.app.info('in group aaAAAAA', grp, selectedGroup)
             const newVariables = [...exploredVariables] // Create a copy of the current variables
             setGroupDetails(grp)
 
@@ -123,10 +124,10 @@ function ResultsMultipleLabs() {
                 setSelectedOption(student.selectedOption)
                 setSelectedSecondOption(student.selectedSecondOption)
               }
-              // console.log(student, 'this is student data', newVariables)
+              // logger.app.info(student, 'this is student data', newVariables)
               // Use forEach instead of map since you're not returning anything
               if (!newVariables.includes(student.assignedVariable)) {
-                // console.log('in new variables')
+                // logger.app.info('in new variables')
                 // setSelectedVariableValue(student.assignedVariable)
                 newVariables.push(student.assignedVariable)
               }
@@ -188,7 +189,7 @@ function ResultsMultipleLabs() {
   }, [selectedOption, selectedSecondOption, selectedVariableValue])
 
   const handleStudent = (variable) => {
-    // console.log(variable, 'is variable')
+    // logger.app.info(variable, 'is variable')
     groupDetails.students.map((student) => {
       if (student.assignedVariable === variable) {
         setStudentData(student)
@@ -485,7 +486,7 @@ function ResultsMultipleLabs() {
                 }}
               >
                 <div className="box-container">
-                  {/* {console.log(variables + "this is in return variables of HELLOOOOOO") } */}
+                  {/* {logger.app.info(variables + "this is in return variables of HELLOOOOOO") } */}
                   {!loading ? (
                     exploredVariables.length > 0 &&
                     exploredVariables.map((variable, index) => {

@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 /* eslint-disable react-hooks/rules-of-hooks */
 
@@ -114,7 +115,7 @@ function Relationship(props) {
   }
 
   const handleGuideBtn = () => {
-    console.log('Guide button clicked')
+    logger.app.info('Guide button clicked')
     openModal(true)
   }
 

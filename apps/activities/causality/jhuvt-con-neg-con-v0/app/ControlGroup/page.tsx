@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 // app/page.tsx
 'use client';
 
@@ -92,7 +93,7 @@ function ControlGroupContent() {
       const result = await response.json();
       setLastSubmissions(result.data);
     } catch (error: unknown) {
-      console.error('Error fetching last submissions:', error);
+      logger.app.error('Error fetching last submissions:', error);
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred while fetching last submissions.';
       // Set empty array so the table still shows with no data message
       setLastSubmissions([]);
@@ -151,11 +152,11 @@ function ControlGroupContent() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          console.error('Failed to delete submissions:', errorData.error || 'Unknown error');
+          logger.app.error('Failed to delete submissions:', errorData.error || 'Unknown error');
           alert('Error deleting submissions. They may still appear in the database.');
         }
       } catch (error: unknown) {
-        console.error('Error deleting submissions:', error);
+        logger.app.error('Error deleting submissions:', error);
         const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred while deleting submissions.';
         alert(`Error deleting submissions: ${errorMessage}`);
       }
@@ -341,7 +342,7 @@ function ControlGroupContent() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          console.error('Failed to submit a control column:', errorData.error || 'Unknown error');
+          logger.app.error('Failed to submit a control column:', errorData.error || 'Unknown error');
         } else {
           const result = await response.json();
           // Store the submission ID for potential deletion
@@ -350,7 +351,7 @@ function ControlGroupContent() {
           }
         }
       } catch (error: unknown) {
-        console.error('Error submitting a control column:', error);
+        logger.app.error('Error submitting a control column:', error);
         const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred during column submission.';
         alert(`Error submitting a control column: ${errorMessage}`);
       }

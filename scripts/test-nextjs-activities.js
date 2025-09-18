@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function testNextJSActivities() {
-    console.log('🧪 Testing Next.js activities after fixes...');
+    logger.app.info('🧪 Testing Next.js activities after fixes...');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -30,7 +31,7 @@ async function testNextJSActivities() {
     
     for (const url of nextjsUrls) {
         try {
-            console.log(`\n🔗 Testing Next.js: ${url}`);
+            logger.app.info(`\n🔗 Testing Next.js: ${url}`);
             
             const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
             
@@ -62,42 +63,42 @@ async function testNextJSActivities() {
                 });
                 
                 if (hasNextJSContent && hasGoodContent && hasStaticAssets) {
-                    console.log(`   ✅ Next.js app fully working (200 OK)`);
+                    logger.app.info(`   ✅ Next.js app fully working (200 OK)`);
                     workingCount++;
                 } else if (hasGoodContent) {
-                    console.log(`   ⚠️  Next.js app partially working (200 OK)`);
+                    logger.app.info(`   ⚠️  Next.js app partially working (200 OK)`);
                     partialCount++;
                 } else {
-                    console.log(`   🔄 Next.js app loading but minimal content (200 OK)`);
+                    logger.app.info(`   🔄 Next.js app loading but minimal content (200 OK)`);
                     partialCount++;
                 }
             } else {
-                console.log(`   ❌ Failed with status: ${response?.status() || 'Unknown'}`);
+                logger.app.info(`   ❌ Failed with status: ${response?.status() || 'Unknown'}`);
                 failedCount++;
             }
             
         } catch (error) {
-            console.log(`   ❌ Error: ${error.message}`);
+            logger.app.info(`   ❌ Error: ${error.message}`);
             failedCount++;
         }
     }
     
     await browser.close();
     
-    console.log('\n📊 Next.js Activity Test Results:');
-    console.log(`✅ Fully Working: ${workingCount}/${nextjsUrls.length}`);
-    console.log(`⚠️  Partially Working: ${partialCount}/${nextjsUrls.length}`);
-    console.log(`❌ Failed: ${failedCount}/${nextjsUrls.length}`);
+    logger.app.info('\n📊 Next.js Activity Test Results:');
+    logger.app.info(`✅ Fully Working: ${workingCount}/${nextjsUrls.length}`);
+    logger.app.info(`⚠️  Partially Working: ${partialCount}/${nextjsUrls.length}`);
+    logger.app.info(`❌ Failed: ${failedCount}/${nextjsUrls.length}`);
     
     const totalWorking = workingCount + partialCount;
-    console.log(`\n🎯 Success Rate: ${totalWorking}/${nextjsUrls.length} (${Math.round(totalWorking/nextjsUrls.length*100)}%)`);
+    logger.app.info(`\n🎯 Success Rate: ${totalWorking}/${nextjsUrls.length} (${Math.round(totalWorking/nextjsUrls.length*100)}%)`);
     
     if (totalWorking === nextjsUrls.length) {
-        console.log('🎉 All Next.js activities are working!');
+        logger.app.info('🎉 All Next.js activities are working!');
     } else if (totalWorking > nextjsUrls.length * 0.8) {
-        console.log('👍 Most Next.js activities are working - good progress!');
+        logger.app.info('👍 Most Next.js activities are working - good progress!');
     } else {
-        console.log('⚠️  Some Next.js activities need attention');
+        logger.app.info('⚠️  Some Next.js activities need attention');
     }
 }
 

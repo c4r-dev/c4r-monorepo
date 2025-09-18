@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 /*
@@ -50,16 +51,16 @@ export default function CustomModal({ isOpen, closeModal }) {
 
   // useEffect(() => {
   //   setOpen(visible);
-  //   console.log("visible changed", visible);
+  //   logger.app.info("visible changed", visible);
   // }, [visible]);
 
   // useEffect(() => {
-  //   console.log("open changed", open);
+  //   logger.app.info("open changed", open);
   // }, [open]);
 
   // const handleClose = () => {
   //   setOpen(false);
-  //   console.log("closed");
+  //   logger.app.info("closed");
   // };
 
   return (

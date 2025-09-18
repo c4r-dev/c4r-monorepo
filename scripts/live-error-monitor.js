@@ -1,11 +1,12 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 async function liveErrorMonitor() {
-    console.log('🔍 Starting Live Error Monitor...');
-    console.log('This will open a browser window to visually inspect activities');
-    console.log('Press Ctrl+C to stop monitoring\n');
+    logger.app.info('🔍 Starting Live Error Monitor...');
+    logger.app.info('This will open a browser window to visually inspect activities');
+    logger.app.info('Press Ctrl+C to stop monitoring\n');
     
     const browser = await puppeteer.launch({ 
         headless: false,  // Show browser for visual debugging
@@ -23,7 +24,7 @@ async function liveErrorMonitor() {
     function logError(type, message, activityUrl = '') {
         const timestamp = new Date().toISOString();
         const logEntry = `[${timestamp}] ${type}: ${message} ${activityUrl ? `(${activityUrl})` : ''}\n`;
-        console.log(`🔴 ${logEntry.trim()}`);
+        logger.app.info(`🔴 ${logEntry.trim()}`);
         logStream.write(logEntry);
     }
     
@@ -65,17 +66,17 @@ async function liveErrorMonitor() {
         const activitiesJson = await page.evaluate(() => document.body.innerText);
         const activities = JSON.parse(activitiesJson);
         
-        console.log(`📋 Found ${activities.length} activities to monitor`);
-        console.log('🔍 Starting activity monitoring...\n');
+        logger.app.info(`📋 Found ${activities.length} activities to monitor`);
+        logger.app.info('🔍 Starting activity monitoring...\n');
         
         // Test activities one by one with detailed monitoring
         for (let i = 0; i < activities.length; i++) {
             const activity = activities[i];
             const url = activity.url;
             
-            console.log(`\n🔗 [${i+1}/${activities.length}] Monitoring: ${activity.route}`);
-            console.log(`   Type: ${activity.type} | Domain: ${activity.domain}`);
-            console.log(`   URL: ${url}`);
+            logger.app.info(`\n🔗 [${i+1}/${activities.length}] Monitoring: ${activity.route}`);
+            logger.app.info(`   Type: ${activity.type} | Domain: ${activity.domain}`);
+            logger.app.info(`   URL: ${url}`);
             
             try {
                 const response = await page.goto(url, { 
@@ -88,7 +89,7 @@ async function liveErrorMonitor() {
                 
                 // Check page status
                 const status = response?.status() || 0;
-                console.log(`   📊 HTTP Status: ${status}`);
+                logger.app.info(`   📊 HTTP Status: ${status}`);
                 
                 // Analyze page content for error indicators
                 const errorAnalysis = await page.evaluate(() => {
@@ -133,12 +134,12 @@ async function liveErrorMonitor() {
                 
                 // Determine status and log accordingly
                 if (status >= 400) {
-                    console.log(`   ❌ HTTP Error: ${status}`);
+                    logger.app.info(`   ❌ HTTP Error: ${status}`);
                     logError('ACTIVITY_HTTP_ERROR', `Status ${status}`, url);
                 } else if (errorAnalysis.visibleErrors.length > 0) {
-                    console.log(`   ⚠️  Visible Errors Found:`);
+                    logger.app.info(`   ⚠️  Visible Errors Found:`);
                     errorAnalysis.visibleErrors.forEach(err => {
-                        console.log(`      • ${err.substring(0, 100)}...`);
+                        logger.app.info(`      • ${err.substring(0, 100)}...`);
                         logError('VISIBLE_ERROR', err, url);
                     });
                 } else if (Object.values(errorAnalysis.indicators).some(Boolean)) {
@@ -147,23 +148,23 @@ async function liveErrorMonitor() {
                         .map(([key]) => key);
                     
                     if (activeIndicators.length > 0) {
-                        console.log(`   ⚠️  Error Indicators: ${activeIndicators.join(', ')}`);
+                        logger.app.info(`   ⚠️  Error Indicators: ${activeIndicators.join(', ')}`);
                         logError('ERROR_INDICATORS', activeIndicators.join(', '), url);
                     }
                 } else if (errorAnalysis.indicators.hasContent) {
-                    console.log(`   ✅ Working (${errorAnalysis.contentLength} chars)`);
+                    logger.app.info(`   ✅ Working (${errorAnalysis.contentLength} chars)`);
                 } else {
-                    console.log(`   ⚠️  Minimal content (${errorAnalysis.contentLength} chars)`);
+                    logger.app.info(`   ⚠️  Minimal content (${errorAnalysis.contentLength} chars)`);
                     logError('MINIMAL_CONTENT', `Only ${errorAnalysis.contentLength} characters`, url);
                 }
                 
                 // Show first bit of content for context
                 if (errorAnalysis.firstContent) {
-                    console.log(`   📄 Preview: ${errorAnalysis.firstContent.substring(0, 80).replace(/\n/g, ' ')}...`);
+                    logger.app.info(`   📄 Preview: ${errorAnalysis.firstContent.substring(0, 80).replace(/\n/g, ' ')}...`);
                 }
                 
             } catch (error) {
-                console.log(`   💥 Test Error: ${error.message}`);
+                logger.app.info(`   💥 Test Error: ${error.message}`);
                 logError('TEST_ERROR', error.message, url);
             }
             
@@ -171,24 +172,24 @@ async function liveErrorMonitor() {
             await page.waitForTimeout(1000);
         }
         
-        console.log('\n✅ Monitoring complete!');
-        console.log(`📄 Error log saved to: ${errorLogPath}`);
+        logger.app.info('\n✅ Monitoring complete!');
+        logger.app.info(`📄 Error log saved to: ${errorLogPath}`);
         
     } catch (error) {
-        console.error('❌ Failed to start monitoring:', error);
+        logger.app.error('❌ Failed to start monitoring:', error);
         logError('MONITOR_ERROR', error.message);
     } finally {
         logStream.end();
-        console.log('\n🔍 Browser window left open for manual inspection.');
-        console.log('🔴 Check the DevTools console for additional error details.');
-        console.log('📄 Check live-error-log.txt for complete error history.');
+        logger.app.info('\n🔍 Browser window left open for manual inspection.');
+        logger.app.info('🔴 Check the DevTools console for additional error details.');
+        logger.app.info('📄 Check live-error-log.txt for complete error history.');
         // Don't close browser automatically - let user inspect
     }
 }
 
 // Handle graceful shutdown
 process.on('SIGINT', () => {
-    console.log('\n👋 Shutting down monitor...');
+    logger.app.info('\n👋 Shutting down monitor...');
     process.exit(0);
 });
 

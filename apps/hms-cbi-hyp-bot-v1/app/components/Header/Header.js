@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React, {useState} from "react";
 import Image from "next/image";
 import "./header.css";
@@ -13,19 +14,19 @@ const Header = ({ onLogoClick, onHelpClick, text="Develop an alternative hypothe
      const [isGuideModalVisible, setIsGuideModalVisible] = useState(false)
     const handleLogoClick = () => {
         if (onLogoClick) {
-            console.log("Logo clicked, calling onLogoClick");
+            logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();
         } else {
-            console.log("No onLogoClick function provided");
+            logger.app.info("No onLogoClick function provided");
         }
     };
 
     const handleHelpClick = () => {
         if (onHelpClick) {
-            console.log("Help clicked, calling onHelpClick");
+            logger.app.info("Help clicked, calling onHelpClick");
             onHelpClick();
         } else {
-            console.log("No onHelpClick function provided");
+            logger.app.info("No onHelpClick function provided");
         }
     };
 
@@ -38,7 +39,7 @@ const Header = ({ onLogoClick, onHelpClick, text="Develop an alternative hypothe
       }
     
       const handleGuideBtn = () => {
-        console.log('Guide button clicked')
+        logger.app.info('Guide button clicked')
         openModal(true)
       }
 

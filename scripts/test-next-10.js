@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { ActivityTester } = require('./test-all-activities.js');
+const logger = require('../packages/logging/logger.js');
 
 // Next 10 random activities to test
 const NEXT_10_ROUTES = [
@@ -24,7 +25,7 @@ class Next10ActivityTester extends ActivityTester {
     }
 
     async testNext10() {
-        console.log(`🎯 Testing next 10 activities...\\n`);
+        logger.app.info(`🎯 Testing next 10 activities...\\n`);
         
         for (const route of NEXT_10_ROUTES) {
             const result = await this.testActivity(route);
@@ -38,9 +39,9 @@ class Next10ActivityTester extends ActivityTester {
     }
 
     generateNext10Report() {
-        console.log('\\n' + '='.repeat(60));
-        console.log('📊 NEXT 10 TEST RESULTS');
-        console.log('='.repeat(60));
+        logger.app.info('\\n' + '='.repeat(60));
+        logger.app.info('📊 NEXT 10 TEST RESULTS');
+        logger.app.info('='.repeat(60));
 
         // Group by status
         const grouped = {};
@@ -50,19 +51,19 @@ class Next10ActivityTester extends ActivityTester {
         });
 
         // Summary stats
-        console.log('\\n📈 SUMMARY:');
+        logger.app.info('\\n📈 SUMMARY:');
         Object.keys(grouped).forEach(status => {
             const count = grouped[status].length;
             const emoji = this.getStatusEmoji(status);
-            console.log(`   ${emoji} ${status.toUpperCase()}: ${count} activities`);
+            logger.app.info(`   ${emoji} ${status.toUpperCase()}: ${count} activities`);
         });
 
         // Working activities
         const workingResults = this.results.filter(r => r.status === 'working');
         if (workingResults.length > 0) {
-            console.log('\\n✅ Working activities:');
+            logger.app.info('\\n✅ Working activities:');
             workingResults.forEach(result => {
-                console.log(`   ✅ ${result.route} - ${result.type}`);
+                logger.app.info(`   ✅ ${result.route} - ${result.type}`);
             });
         }
 
@@ -72,11 +73,11 @@ class Next10ActivityTester extends ActivityTester {
         );
         
         if (problemResults.length === 0) {
-            console.log('\\n✅ All activities working!');
+            logger.app.info('\\n✅ All activities working!');
         } else {
-            console.log(`\\n🔧 ${problemResults.length} activities need attention:`);
+            logger.app.info(`\\n🔧 ${problemResults.length} activities need attention:`);
             problemResults.forEach(result => {
-                console.log(`   ❌ ${result.route} - ${result.status}`);
+                logger.app.info(`   ❌ ${result.route} - ${result.status}`);
             });
         }
 
@@ -94,10 +95,10 @@ async function main() {
         
         const issues = results.filter(r => r.status === 'error' || r.status === 'broken').length;
         const working = results.filter(r => r.status === 'working').length;
-        console.log(`\\n🏁 Next 10 test complete: ${working}/${results.length} working (${Math.round(working/results.length*100)}%)`);
+        logger.app.info(`\\n🏁 Next 10 test complete: ${working}/${results.length} working (${Math.round(working/results.length*100)}%)`);
         
     } catch (error) {
-        console.error('💥 Next 10 test failed:', error);
+        logger.app.error('💥 Next 10 test failed:', error);
     } finally {
         await tester.cleanup();
     }

@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -51,8 +52,8 @@ function AddressControlConstraint() {
       setStudentId(studentIdFromUrl);
     }
     
-    console.log('Session ID from URL:', sessionIdFromUrl);
-    console.log('Student ID from URL:', studentIdFromUrl);
+    logger.app.info('Session ID from URL:', sessionIdFromUrl);
+    logger.app.info('Student ID from URL:', studentIdFromUrl);
   }, [searchParams]);
 
   const handleConfigClose = () => {
@@ -202,9 +203,9 @@ export default function AddressControlConstraintScreen() {
 //   const handleCopyLink = async () => {
 //     try {
 //       await navigator.clipboard.writeText(shareableLink);
-//       console.log('Link copied to clipboard');
+//       logger.app.info('Link copied to clipboard');
 //     } catch (err) {
-//       console.error('Failed to copy link:', err);
+//       logger.app.error('Failed to copy link:', err);
 //     }
 //   };
 
@@ -648,7 +649,7 @@ export default function AddressControlConstraintScreen() {
 //     if (studentId) queryParams.append('studentId', studentId);
     
 //     // In a real Next.js app, you would use router.push here
-//     console.log(`Would navigate to: /review-controls?${queryParams.toString()}`);
+//     logger.app.info(`Would navigate to: /review-controls?${queryParams.toString()}`);
 //     alert(`Would navigate to: /review-controls?${queryParams.toString()}`);
 //   };
 

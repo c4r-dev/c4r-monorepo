@@ -6,8 +6,8 @@ export function isDecreasingByOne(a, b, c) {
     return b === a - 1 && c === b - 1;
 }
 export function isIncreasingByTwo(a, b, c) {
-    console.log("checking if increasing by 2");
-    console.log(
+    window.c4rLogger ? window.c4rLogger.info('app_log', "checking if increasing by 2");
+    window.c4rLogger ? window.c4rLogger.info('app_log', 
         "numbers(post type conversation): " +
         a +
         ", " +
@@ -17,7 +17,7 @@ export function isIncreasingByTwo(a, b, c) {
     );
 
     let isTrue = b === a + 2 && c === b + 2;
-    console.log("is true: " + isTrue);
+    window.c4rLogger ? window.c4rLogger.info('app_log', "is true: " + isTrue);
     return isTrue;
     // return b === a + 2 && c === b + 2;
 }
@@ -52,3 +52,4 @@ export function areAllNumbersPrime(num1, num2, num3) {
 export function sqareOfPrevious(num1, num2, num3) {
     return num1 * num1 === num2 && num2 * num2 === num3;
 }
+ : console.$1(

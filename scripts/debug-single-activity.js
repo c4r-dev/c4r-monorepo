@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 class SingleActivityDebugger {
     constructor() {
@@ -9,7 +10,7 @@ class SingleActivityDebugger {
     }
 
     async initialize() {
-        console.log('🚀 Initializing single activity debugger...');
+        logger.app.info('🚀 Initializing single activity debugger...');
         this.browser = await puppeteer.launch({
             headless: "new",
             args: [
@@ -27,33 +28,33 @@ class SingleActivityDebugger {
             const type = msg.type();
             const text = msg.text();
             if (type === 'error') {
-                console.log(`   🔴 Console Error: ${text}`);
+                logger.app.info(`   🔴 Console Error: ${text}`);
             } else if (type === 'warn') {
-                console.log(`   🟡 Console Warning: ${text}`);
+                logger.app.info(`   🟡 Console Warning: ${text}`);
             } else if (type === 'log' && text.includes('Error')) {
-                console.log(`   📋 Console Log: ${text}`);
+                logger.app.info(`   📋 Console Log: ${text}`);
             }
         });
 
         // Listen to network failures
         this.page.on('requestfailed', request => {
-            console.log(`   ❌ Request Failed: ${request.url()} - ${request.failure().errorText}`);
+            logger.app.info(`   ❌ Request Failed: ${request.url()} - ${request.failure().errorText}`);
         });
 
         // Listen to response issues
         this.page.on('response', response => {
             if (!response.ok() && response.status() !== 304) {
-                console.log(`   ⚠️  Response Issue: ${response.url()} - ${response.status()} ${response.statusText()}`);
+                logger.app.info(`   ⚠️  Response Issue: ${response.url()} - ${response.status()} ${response.statusText()}`);
             }
         });
 
-        console.log('✅ Browser initialized');
+        logger.app.info('✅ Browser initialized');
     }
 
     async debugActivity(route) {
         const url = `http://localhost:3333${route}`;
-        console.log(`\n🔍 Debugging: ${route}`);
-        console.log(`   URL: ${url}`);
+        logger.app.info(`\n🔍 Debugging: ${route}`);
+        logger.app.info(`   URL: ${url}`);
         
         try {
             const startTime = Date.now();
@@ -65,14 +66,14 @@ class SingleActivityDebugger {
             });
             
             const loadTime = Date.now() - startTime;
-            console.log(`   ⏱️  Load Time: ${loadTime}ms`);
+            logger.app.info(`   ⏱️  Load Time: ${loadTime}ms`);
             
             // Wait a bit for dynamic content
             await this.page.waitForTimeout(2000);
             
             // Check for specific elements or errors
             const title = await this.page.title();
-            console.log(`   📄 Title: "${title}"`);
+            logger.app.info(`   📄 Title: "${title}"`);
             
             // Check if React errors are present
             const reactErrors = await this.page.evaluate(() => {
@@ -97,8 +98,8 @@ class SingleActivityDebugger {
             });
             
             if (reactErrors.length > 0) {
-                console.log(`   🚨 React Errors Found:`);
-                reactErrors.forEach(error => console.log(`      - ${error}`));
+                logger.app.info(`   🚨 React Errors Found:`);
+                reactErrors.forEach(error => logger.app.info(`      - ${error}`));
             }
             
             // Get page content snippets
@@ -107,20 +108,20 @@ class SingleActivityDebugger {
             });
             
             if (bodyText.includes('Error') || bodyText.includes('Failed') || bodyText.includes('Cannot')) {
-                console.log(`   📝 Page Content Preview: ${bodyText.substring(0, 200)}...`);
+                logger.app.info(`   📝 Page Content Preview: ${bodyText.substring(0, 200)}...`);
             }
             
-            console.log(`   ✅ Successfully debugged ${route}`);
+            logger.app.info(`   ✅ Successfully debugged ${route}`);
             
         } catch (error) {
-            console.log(`   ❌ Error debugging ${route}: ${error.message}`);
+            logger.app.info(`   ❌ Error debugging ${route}: ${error.message}`);
         }
     }
 
     async cleanup() {
         if (this.browser) {
             await this.browser.close();
-            console.log('🧹 Browser closed');
+            logger.app.info('🧹 Browser closed');
         }
     }
 }
@@ -129,8 +130,8 @@ async function main() {
     const activityRoute = process.argv[2];
     
     if (!activityRoute) {
-        console.log('Usage: node debug-single-activity.js <activity-route>');
-        console.log('Example: node debug-single-activity.js /causality/jhu-polio-ice-cream-v2');
+        logger.app.info('Usage: node debug-single-activity.js <activity-route>');
+        logger.app.info('Example: node debug-single-activity.js /causality/jhu-polio-ice-cream-v2');
         process.exit(1);
     }
     
@@ -140,7 +141,7 @@ async function main() {
         await activityDebugger.initialize();
         await activityDebugger.debugActivity(activityRoute);
     } catch (error) {
-        console.error('💥 Debugger failed:', error);
+        logger.app.error('💥 Debugger failed:', error);
     } finally {
         await activityDebugger.cleanup();
     }

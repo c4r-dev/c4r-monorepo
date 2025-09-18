@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 /* eslint-disable react-hooks/rules-of-hooks */
 
@@ -127,7 +128,7 @@ function RelationshipSecond(props) {
   }
 
   const handleGuideBtn = () => {
-    console.log('Guide button clicked')
+    logger.app.info('Guide button clicked')
     openModal(true)
   }
 
@@ -315,8 +316,8 @@ function RelationshipSecond(props) {
       }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error('Error:', error))
+      .then((data) => logger.app.info(data))
+      .catch((error) => logger.app.error('Error:', error))
     router.push(`/ResultsOwnLab?selectedGroup=${selectedGroup}&selectedVariable=${selectedVariable}`)
   }
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 // "use client";
 
 // import { useState, useEffect } from 'react';
@@ -75,7 +76,7 @@
 //       const sharingURL = `${window.location.origin}/ResearchSelection?sessionID=${sessionID}`;
 //       await navigator.clipboard.writeText(sharingURL);
 //     } catch (err) {
-//       console.error('Failed to copy:', err);
+//       logger.app.error('Failed to copy:', err);
 //     }
 //   };
 
@@ -305,7 +306,7 @@ const SessionConfigPopup = ({
       const sharingURL = `${window.location.origin}/Concerns?sessionID=${sessionID}`;
       await navigator.clipboard.writeText(sharingURL);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.app.error('Failed to copy:', err);
     }
   };
 

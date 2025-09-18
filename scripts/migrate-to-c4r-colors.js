@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const logger = require('../packages/logging/logger.js');
 
 // Color mappings from hardcoded to C4R Tailwind classes
 const COLOR_MIGRATIONS = {
@@ -101,7 +102,7 @@ class C4RColorMigrator {
   }
 
   findFilesWithTargetColors() {
-    console.log('🔍 Finding files with target colors...');
+    logger.app.info('🔍 Finding files with target colors...');
     
     const targetColors = Object.keys(COLOR_MIGRATIONS).map(color => 
       color.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -113,10 +114,10 @@ class C4RColorMigrator {
       const result = execSync(grepCommand, { encoding: 'utf8' });
       const files = result.trim().split('\n').filter(f => f);
       
-      console.log(`Found ${files.length} files with target colors`);
+      logger.app.info(`Found ${files.length} files with target colors`);
       return files;
     } catch (error) {
-      console.log('Using fallback file discovery...');
+      logger.app.info('Using fallback file discovery...');
       return this.findFilesRecursively(this.activitiesDir);
     }
   }
@@ -167,13 +168,13 @@ class C4RColorMigrator {
           changes: [...new Set(fileChanges)] // Remove duplicates
         });
 
-        console.log(`✅ Migrated ${fileMigrations} colors in: ${filePath}`);
+        logger.app.info(`✅ Migrated ${fileMigrations} colors in: ${filePath}`);
         return true;
       }
       
       return false;
     } catch (error) {
-      console.error(`❌ Error processing ${filePath}:`, error.message);
+      logger.app.error(`❌ Error processing ${filePath}:`, error.message);
       return false;
     }
   }
@@ -286,21 +287,21 @@ background-color: var(--c4r-secondary);
 `;
 
     fs.writeFileSync('c4r-color-migration-report.md', reportContent);
-    console.log('📝 Migration report saved to: c4r-color-migration-report.md');
+    logger.app.info('📝 Migration report saved to: c4r-color-migration-report.md');
   }
 
   run() {
-    console.log('🎨 Starting C4R color migration...');
+    logger.app.info('🎨 Starting C4R color migration...');
     
     const files = this.findFilesWithTargetColors();
-    console.log(`Processing ${files.length} files...`);
+    logger.app.info(`Processing ${files.length} files...`);
     
     files.forEach(file => {
       this.migrateFile(file);
     });
 
-    console.log('\n📊 C4R color migration completed!');
-    console.log(`🔄 Applied ${this.migrationsApplied} migrations across ${this.filesProcessed} files`);
+    logger.app.info('\n📊 C4R color migration completed!');
+    logger.app.info(`🔄 Applied ${this.migrationsApplied} migrations across ${this.filesProcessed} files`);
     
     this.generateReport();
   }

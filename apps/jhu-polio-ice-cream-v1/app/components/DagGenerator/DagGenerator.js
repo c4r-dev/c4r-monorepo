@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React, { useCallback, useEffect } from "react";
 
 import {
@@ -58,13 +59,13 @@ export default function DagGenerator({
     };
 
     useEffect(() => {
-        console.log("Detected DagGenerator props change");
-        console.log("labelA", labelA);
-        console.log("labelB", labelB);
-        console.log("labelC", labelC);
-        console.log("lineA", lineA);
-        console.log("lineB", lineB);
-        console.log("lineC", lineC);
+        logger.app.info("Detected DagGenerator props change");
+        logger.app.info("labelA", labelA);
+        logger.app.info("labelB", labelB);
+        logger.app.info("labelC", labelC);
+        logger.app.info("lineA", lineA);
+        logger.app.info("lineB", lineB);
+        logger.app.info("lineC", lineC);
     }, [labelA, labelB, labelC, lineA, lineB, lineC]);
 
     const initialNodes = [

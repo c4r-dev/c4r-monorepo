@@ -49,6 +49,7 @@ function Loading() {
 function ClientContent() {
   // Import here to ensure it's only used in client component
   const { useSearchParams } = require('next/navigation');
+const logger = require('../../../../../packages/logging/logger.js');
   const searchParams = useSearchParams();
   const [sessionID, setSessionID] = useState('');
   const [selectedPaper, setSelectedPaper] = useState(null);
@@ -80,13 +81,13 @@ function ClientContent() {
 
   const handleContinue = () => {
     if (selectedPaper) {
-      console.log(`Proceeding with paper ${selectedPaper} and session ${sessionID}`);
+      logger.app.info(`Proceeding with paper ${selectedPaper} and session ${sessionID}`);
       
       // Include both sessionID and selectedSection in the URL
       const url = `/StudyQuestion?sessionID=${sessionID}&selectedSection=${selectedPaper}`;
       
       // For debugging - log the URL we're navigating to
-      console.log(`Navigating to: ${url}`);
+      logger.app.info(`Navigating to: ${url}`);
       
       // Use router to navigate
       router.push(url);

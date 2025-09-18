@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../../packages/logging/logger.js');
 /**
  * Utilities for saving and loading flow data
  */
@@ -30,7 +31,7 @@ export const saveFlowToDatabase = async (flowName, flowDescription, nodes, edges
     const result = await response.json();
     return { success: true, data: result };
   } catch (error) {
-    console.error('Error saving flow to database:', error);
+    logger.app.error('Error saving flow to database:', error);
     return { success: false, error: error.message };
   }
 };
@@ -62,7 +63,7 @@ export const getFlowsFromDatabase = async () => {
       };
     });
   } catch (error) {
-    console.error('Error fetching flows from database:', error);
+    logger.app.error('Error fetching flows from database:', error);
     return [];
   }
 };
@@ -104,7 +105,7 @@ export const exportFlowToJson = (nodes, edges, filename = 'flow-export', addTime
     URL.revokeObjectURL(url);
     return true;
   } catch (error) {
-    console.error('Error exporting flow:', error);
+    logger.app.error('Error exporting flow:', error);
     return false;
   }
 };

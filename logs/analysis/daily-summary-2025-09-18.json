@@ -1,0 +1,61 @@
+{
+  "date": "2025-09-18",
+  "generated_at": "2025-09-18T17:17:00.538Z",
+  "overview": {
+    "total_requests": 1,
+    "total_errors": 0,
+    "activities_accessed": 76,
+    "server_restarts": 2
+  },
+  "error_analysis": {
+    "total_errors": 0,
+    "errors_by_type": {},
+    "errors_by_context": {},
+    "recent_errors": [],
+    "critical_patterns": []
+  },
+  "performance_analysis": {
+    "slow_requests_count": 0,
+    "average_response_time_ms": 1,
+    "slowest_request": 1,
+    "fastest_request": 0,
+    "slow_endpoints": [],
+    "performance_trends": {
+      "13": {
+        "avg_response_time": 1,
+        "request_count": 1
+      }
+    }
+  },
+  "activity_analysis": {
+    "activities_by_type": {
+      "nextjs": 62,
+      "cra": 7,
+      "static": 9,
+      "react": 2
+    },
+    "activities_by_domain": {
+      "randomization": 11,
+      "coding-practices": 6,
+      "collaboration": 3,
+      "tools": 3,
+      "apps": 56,
+      "hms-int-exe-v0": 1
+    },
+    "nextjs_init_times": {},
+    "average_init_time_ms": 0,
+    "slowest_init": 0
+  },
+  "framework_issues": {
+    "framework_related_errors": 0,
+    "unknown_framework_detections": 0,
+    "common_framework_issues": {
+      "nextjs_init_failures": 0,
+      "asset_loading_issues": 0,
+      "detection_failures": 0,
+      "configuration_issues": 0
+    },
+    "detection_failures": []
+  },
+  "recommendations": []
+}

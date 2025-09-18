@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
@@ -476,12 +477,12 @@ const PythonCodeViewer = ({ code, onFunctionSelect }) => {
   const [selectedFunction, setSelectedFunction] = useState(null);
   const [showPrompt, setShowPrompt] = useState(false);
 
-  console.log('PythonCodeViewer rendered with code:', code ? code.substring(0, 200) : 'NO CODE');
-  console.log('Code contains triple quotes:', code ? code.includes('"""') : 'NO CODE');
+  logger.app.info('PythonCodeViewer rendered with code:', code ? code.substring(0, 200) : 'NO CODE');
+  logger.app.info('Code contains triple quotes:', code ? code.includes('"""') : 'NO CODE');
 
   const processTripleQuotedStrings = (highlightedHtml) => {
-    console.log('processTripleQuotedStrings called!');
-    console.log('Input HTML:', highlightedHtml.substring(0, 500)); // Show first 500 chars
+    logger.app.info('processTripleQuotedStrings called!');
+    logger.app.info('Input HTML:', highlightedHtml.substring(0, 500)); // Show first 500 chars
     
     // Very simple approach: just replace any occurrence of """ with orange version
     let result = highlightedHtml;
@@ -497,7 +498,7 @@ const PythonCodeViewer = ({ code, onFunctionSelect }) => {
     result = result.replace(/&quot;&quot;&quot;/g, '<span style="color: #ff8c00 !important; font-weight: bold; background-color: yellow;">&quot;&quot;&quot;</span>');
     result = result.replace(/&#x27;&#x27;&#x27;/g, '<span style="color: #ff8c00 !important; font-weight: bold; background-color: yellow;">&#x27;&#x27;&#x27;</span>');
     
-    console.log('Output HTML:', result.substring(0, 500)); // Show first 500 chars of result
+    logger.app.info('Output HTML:', result.substring(0, 500)); // Show first 500 chars of result
     return result;
   };
 
@@ -889,7 +890,7 @@ const ExampleSolutionViewer = ({ code }) => {
           
           setHighlightedCode(processedCode);
         } catch (error) {
-          console.error('Highlighting error:', error);
+          logger.app.error('Highlighting error:', error);
           setHighlightedCode('');
         }
       }
@@ -1134,7 +1135,7 @@ Utility functions for basic preprocessing of microscopy data.
 
   // Debug: Log when showValidation changes and scroll to questions
   useEffect(() => {
-    console.log('showValidation state changed to:', showValidation);
+    logger.app.info('showValidation state changed to:', showValidation);
     if (showValidation) {
       // Scroll to validation questions after they appear
       setTimeout(() => {
@@ -1247,12 +1248,12 @@ Utility functions for basic preprocessing of microscopy data.
 
 
   const handleContinueToNextStep = () => {
-    console.log('handleContinueToNextStep called');
-    console.log('docstring:', docstring.trim());
-    console.log('showValidation before:', showValidation);
+    logger.app.info('handleContinueToNextStep called');
+    logger.app.info('docstring:', docstring.trim());
+    logger.app.info('showValidation before:', showValidation);
     
     if (docstring.trim()) {
-      console.log('Conditions met, proceeding...');
+      logger.app.info('Conditions met, proceeding...');
       
       // Save the docstring
       const docstringData = {
@@ -1271,14 +1272,14 @@ Utility functions for basic preprocessing of microscopy data.
         return [...filtered, docstringData];
       });
       
-      console.log('Saved docstring:', docstringData);
+      logger.app.info('Saved docstring:', docstringData);
       
       // Show validation immediately
       setShowValidation(true);
-      console.log('Validation set to true');
+      logger.app.info('Validation set to true');
       
     } else {
-      console.log('No docstring found');
+      logger.app.info('No docstring found');
     }
   };
 
@@ -2239,7 +2240,7 @@ Utility functions for basic preprocessing of microscopy data.
                             my: 0.5
                           }}
                           onMouseEnter={(e) => {
-                            console.log('Hovering over comment line:', lineNumber);
+                            logger.app.info('Hovering over comment line:', lineNumber);
                             // Clear any pending hide timeout
                             if (hideTooltipTimeoutRef.current) {
                               clearTimeout(hideTooltipTimeoutRef.current);
@@ -2250,7 +2251,7 @@ Utility functions for basic preprocessing of microscopy data.
                               x: rect.left + rect.width / 2,
                               y: rect.bottom + 10  // Position below the comment line
                             };
-                            console.log('Setting tooltip position:', tooltipPos);
+                            logger.app.info('Setting tooltip position:', tooltipPos);
                             setTooltipPosition(tooltipPos);
                           }}
                           onMouseLeave={() => {
@@ -2339,7 +2340,7 @@ Utility functions for basic preprocessing of microscopy data.
                           if (isClickableLine) {
                             // Capture the content of the clicked line
                             setPresentLineContent(line.trim());
-                            console.log('Present line content:', line.trim());
+                            logger.app.info('Present line content:', line.trim());
                             
                             if (hasComment) {
                               // Remove comment if already exists
@@ -2425,7 +2426,7 @@ Utility functions for basic preprocessing of microscopy data.
                   
                   if (selectedCommentLines.size >= 1 && allCommentsComplete) {
                     // Save the complete function with comments
-                    console.log('Saving function with inline comments:', inlineComments);
+                    logger.app.info('Saving function with inline comments:', inlineComments);
                     setShowComparison(true);
                   }
                 }}
@@ -3315,7 +3316,7 @@ Utility functions for basic preprocessing of microscopy data.
     {/* Interactive comment selection tooltip */}
       {/* Interactive comment selection tooltip */}
         {hoveredCommentLine && (
-          console.log('Rendering tooltip for line:', hoveredCommentLine, 'at position:', tooltipPosition),
+          logger.app.info('Rendering tooltip for line:', hoveredCommentLine, 'at position:', tooltipPosition),
           <Box
             data-tooltip-menu
             onMouseEnter={() => {

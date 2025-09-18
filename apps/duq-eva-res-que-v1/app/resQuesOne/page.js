@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, Suspense } from "react";
@@ -80,7 +81,7 @@ export default function ResQuesOne() {
         throw new Error("Failed to create an answer.");
       }
     } catch (error) {
-      console.log(error);
+      logger.app.info(error);
     }
   };
 

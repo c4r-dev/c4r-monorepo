@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 /**
  * FlowToolbar Component
  * 
@@ -81,7 +82,7 @@ const FlowToolbar = ({ nodes, edges, setNodes, setEdges, onSave, onLoad, setIsTr
         }
       })
       .catch((error) => {
-        console.error('Error importing flow:', error);
+        logger.app.error('Error importing flow:', error);
         alert('Failed to import flow. Please check the file format.');
       });
     
@@ -186,7 +187,7 @@ const FlowToolbar = ({ nodes, edges, setNodes, setEdges, onSave, onLoad, setIsTr
       setTransformInstructions('');
       
     } catch (error) {
-      console.error('Error transforming flowchart:', error);
+      logger.app.error('Error transforming flowchart:', error);
       alert(`Failed to transform flowchart: ${error.message}`);
     } finally {
       setIsLoading(false);

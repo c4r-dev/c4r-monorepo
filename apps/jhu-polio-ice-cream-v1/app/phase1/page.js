@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import { Suspense, useState } from "react";
@@ -32,7 +33,7 @@ const PhaseOneComponent = () => {
 
     const searchParams = useSearchParams();
     const labGroupId = searchParams.get("labGroupId");
-    console.log("labGroupId", labGroupId);
+    logger.app.info("labGroupId", labGroupId);
 
     const handleSubmit = () => {
         // Alert if no selection
@@ -61,12 +62,12 @@ const PhaseOneComponent = () => {
             }
         }
 
-        console.log("selectedPlausibility", selectedPlausibility);
+        logger.app.info("selectedPlausibility", selectedPlausibility);
     };
 
     // const searchParams = useSearchParams()
     // const labGroupId = searchParams.get('labGroupId')
-    // console.log('labGroupId', labGroupId);
+    // logger.app.info('labGroupId', labGroupId);
 
     const router = useRouter();
 
@@ -74,10 +75,10 @@ const PhaseOneComponent = () => {
         // router.push('/review');
 
         if (labGroupId) {
-            console.log("with labGroupId", labGroupId);
+            logger.app.info("with labGroupId", labGroupId);
             router.push(`/review?labGroupId=${labGroupId}`);
         } else {
-            console.log("without labGroupId", labGroupId);
+            logger.app.info("without labGroupId", labGroupId);
             router.push("/review");
         }
 

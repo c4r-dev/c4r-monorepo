@@ -33,7 +33,7 @@ class ActivityLoader {
                     return await this.loadGenericActivity(activityPath, name);
             }
         } catch (error) {
-            console.error(`❌ Error loading ${name}:`, error.message);
+            logger.app.error(`❌ Error loading ${name}:`, error.message);
             return this.createErrorHandler(name, error);
         }
     }
@@ -46,12 +46,12 @@ class ActivityLoader {
         const buildPath = path.join(activityPath, '.next');
         
         if (!fs.existsSync(buildPath)) {
-            console.log(`🔨 Building Next.js app: ${name}`);
+            logger.app.info(`🔨 Building Next.js app: ${name}`);
             try {
                 // Build the app using our shared dependencies
                 await this.buildNextJSApp(activityPath);
             } catch (buildError) {
-                console.warn(`⚠️  Build failed for ${name}, serving development version`);
+                logger.app.warn(`⚠️  Build failed for ${name}, serving development version`);
             }
         }
 
@@ -71,7 +71,7 @@ class ActivityLoader {
                 this.serveNextJSPage(activityPath, req, res, next);
                 
             } catch (error) {
-                console.error(`Error serving ${name}:`, error.message);
+                logger.app.error(`Error serving ${name}:`, error.message);
                 res.status(500).send(this.generateErrorPage(name, error));
             }
         };
@@ -81,11 +81,11 @@ class ActivityLoader {
         const buildPath = path.join(activityPath, 'build');
         
         if (!fs.existsSync(buildPath)) {
-            console.log(`🔨 Building Create React App: ${name}`);
+            logger.app.info(`🔨 Building Create React App: ${name}`);
             try {
                 await this.buildCRAApp(activityPath);
             } catch (buildError) {
-                console.warn(`⚠️  Build failed for ${name}, serving source files`);
+                logger.app.warn(`⚠️  Build failed for ${name}, serving source files`);
                 return this.loadReactActivity(activityPath, name);
             }
         }
@@ -134,6 +134,7 @@ class ActivityLoader {
 
     async loadStaticActivity(activityPath, name) {
         const express = require('express');
+const logger = require('../packages/logging/logger.js');
         return express.static(activityPath, {
             index: ['index.html', 'index.htm', 'default.html'],
             fallthrough: true
@@ -195,7 +196,7 @@ class ActivityLoader {
                     timeout: 60000 // 1 minute timeout
                 });
                 
-                console.log(`✅ Built ${path.basename(activityPath)}`);
+                logger.app.info(`✅ Built ${path.basename(activityPath)}`);
             } finally {
                 // Restore original package.json
                 fs.writeFileSync(packageJsonPath, originalContent);
@@ -211,7 +212,7 @@ class ActivityLoader {
             timeout: 60000
         });
         
-        console.log(`✅ Built CRA app: ${path.basename(activityPath)}`);
+        logger.app.info(`✅ Built CRA app: ${path.basename(activityPath)}`);
     }
 
     serveNextJSPage(activityPath, req, res, next) {

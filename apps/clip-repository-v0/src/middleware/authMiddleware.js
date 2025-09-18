@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import connectMongoDB from '@/config/connectMongodb.js';
@@ -12,7 +13,7 @@ const protect = async (req) => {
             req.user = await User.findById(decoded.id).select('-password')
             return true
         } catch (error) {
-            // console.log(req.user)
+            // logger.app.info(req.user)
             return false
         }
     }

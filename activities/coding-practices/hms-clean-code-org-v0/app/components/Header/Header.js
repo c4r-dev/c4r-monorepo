@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 import React from "react";
 import Image from "next/image";
 import "./Header.css";
@@ -9,19 +10,19 @@ import helpTooltip from "@/public/help-tooltip-fix.svg";
 const Header = ({ onLogoClick, onHelpClick, text="Randomization in the literature" }) => {
     const handleLogoClick = () => {
         if (onLogoClick) {
-            console.log("Logo clicked, calling onLogoClick");
+            logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();
         } else {
-            console.log("No onLogoClick function provided");
+            logger.app.info("No onLogoClick function provided");
         }
     };
 
     const handleHelpClick = () => {
         if (onHelpClick) {
-            console.log("Help clicked, calling onHelpClick");
+            logger.app.info("Help clicked, calling onHelpClick");
             onHelpClick();
         } else {
-            console.log("No onHelpClick function provided");
+            logger.app.info("No onHelpClick function provided");
         }
     };
 

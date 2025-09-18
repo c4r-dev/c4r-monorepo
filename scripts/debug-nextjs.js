@@ -5,9 +5,10 @@
  */
 
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function debugNextJSActivity(url) {
-    console.log(`🔍 Debugging: ${url}`);
+    logger.app.info(`🔍 Debugging: ${url}`);
     
     const browser = await puppeteer.launch({ 
         headless: false, // Run visibly for debugging
@@ -24,7 +25,7 @@ async function debugNextJSActivity(url) {
     // Enable console logging
     page.on('console', msg => {
         const message = `[BROWSER CONSOLE] ${msg.type()}: ${msg.text()}`;
-        console.log(message);
+        logger.app.info(message);
         if (msg.type() === 'error') {
             consoleErrors.push(msg.text());
         }
@@ -32,28 +33,28 @@ async function debugNextJSActivity(url) {
     
     // Enable error logging
     page.on('pageerror', error => {
-        console.log(`[PAGE ERROR] ${error.message}`);
+        logger.app.info(`[PAGE ERROR] ${error.message}`);
         consoleErrors.push(error.message);
     });
     
     // Enable request/response logging
     page.on('request', request => {
-        console.log(`[REQUEST] ${request.method()} ${request.url()}`);
+        logger.app.info(`[REQUEST] ${request.method()} ${request.url()}`);
     });
     
     page.on('response', response => {
         const status = response.status();
         const url = response.url();
         if (status >= 400) {
-            console.log(`[RESPONSE ERROR] ${status} ${url}`);
+            logger.app.info(`[RESPONSE ERROR] ${status} ${url}`);
             failedRequests.push({ status, url });
         } else {
-            console.log(`[RESPONSE OK] ${status} ${url}`);
+            logger.app.info(`[RESPONSE OK] ${status} ${url}`);
         }
     });
     
     try {
-        console.log(`Navigating to ${url}...`);
+        logger.app.info(`Navigating to ${url}...`);
         await page.goto(url, { 
             waitUntil: 'domcontentloaded',
             timeout: 30000 
@@ -64,7 +65,7 @@ async function debugNextJSActivity(url) {
         
         // Check if page loaded successfully
         const title = await page.title();
-        console.log(`Page title: ${title}`);
+        logger.app.info(`Page title: ${title}`);
         
         // Check if we have actual content (not just error pages)
         const hasRealContent = await page.evaluate(() => {
@@ -83,11 +84,11 @@ async function debugNextJSActivity(url) {
             };
         });
         
-        console.log('Content analysis:', hasRealContent);
+        logger.app.info('Content analysis:', hasRealContent);
         
         // Wait longer if we see loading indicators
         if (hasRealContent.hasLoadingIndicator) {
-            console.log('Found loading indicator, waiting longer...');
+            logger.app.info('Found loading indicator, waiting longer...');
             await page.waitForTimeout(5000);
         }
         
@@ -117,19 +118,19 @@ async function debugNextJSActivity(url) {
         });
         
         if (errorElements.length > 0) {
-            console.log('Found error messages in DOM:', errorElements);
+            logger.app.info('Found error messages in DOM:', errorElements);
         }
         
         // Final assessment
         const success = failedRequests.length === 0 && consoleErrors.length === 0 && !hasRealContent.hasError;
-        console.log(`\n🎯 ASSESSMENT for ${url}:`);
-        console.log(`  ✅ Success: ${success}`);
-        console.log(`  📊 Failed requests: ${failedRequests.length}`);
-        console.log(`  🚨 Console errors: ${consoleErrors.length}`);
-        console.log(`  📄 Has real content: ${hasRealContent.hasActivityContent}`);
+        logger.app.info(`\n🎯 ASSESSMENT for ${url}:`);
+        logger.app.info(`  ✅ Success: ${success}`);
+        logger.app.info(`  📊 Failed requests: ${failedRequests.length}`);
+        logger.app.info(`  🚨 Console errors: ${consoleErrors.length}`);
+        logger.app.info(`  📄 Has real content: ${hasRealContent.hasActivityContent}`);
         
         if (failedRequests.length > 0) {
-            console.log('  🔴 Failed requests:', failedRequests);
+            logger.app.info('  🔴 Failed requests:', failedRequests);
         }
         
         // Take a screenshot
@@ -138,7 +139,7 @@ async function debugNextJSActivity(url) {
             path: screenshotName,
             fullPage: true 
         });
-        console.log(`📸 Screenshot saved: ${screenshotName}`);
+        logger.app.info(`📸 Screenshot saved: ${screenshotName}`);
         
         return {
             url,
@@ -150,7 +151,7 @@ async function debugNextJSActivity(url) {
         };
         
     } catch (error) {
-        console.error(`❌ Error debugging ${url}:`, error.message);
+        logger.app.error(`❌ Error debugging ${url}:`, error.message);
         return {
             url,
             success: false,
@@ -162,7 +163,7 @@ async function debugNextJSActivity(url) {
 }
 
 async function main() {
-    console.log('🧪 Starting limited C4R activity testing (3 random activities)...\n');
+    logger.app.info('🧪 Starting limited C4R activity testing (3 random activities)...\n');
     
     const allTestUrls = [
         'http://localhost:3333/',
@@ -180,56 +181,56 @@ async function main() {
     const shuffled = allTestUrls.sort(() => 0.5 - Math.random());
     const testUrls = shuffled.slice(0, 3);
     
-    console.log(`📋 Selected URLs for testing:`);
-    testUrls.forEach((url, i) => console.log(`  ${i + 1}. ${url}`));
-    console.log('\n');
+    logger.app.info(`📋 Selected URLs for testing:`);
+    testUrls.forEach((url, i) => logger.app.info(`  ${i + 1}. ${url}`));
+    logger.app.info('\n');
     
     const results = [];
     
     for (const url of testUrls) {
         const result = await debugNextJSActivity(url);
         results.push(result);
-        console.log('=' .repeat(80) + '\n');
+        logger.app.info('=' .repeat(80) + '\n');
         
         // Brief pause between tests
         await new Promise(resolve => setTimeout(resolve, 2000));
     }
     
     // Generate summary report
-    console.log('\n📊 COMPREHENSIVE TEST REPORT');
-    console.log('=' .repeat(80));
+    logger.app.info('\n📊 COMPREHENSIVE TEST REPORT');
+    logger.app.info('=' .repeat(80));
     
     const successful = results.filter(r => r.success);
     const failed = results.filter(r => !r.success);
     
-    console.log(`\n✅ Successful: ${successful.length}/${results.length}`);
-    console.log(`❌ Failed: ${failed.length}/${results.length}`);
+    logger.app.info(`\n✅ Successful: ${successful.length}/${results.length}`);
+    logger.app.info(`❌ Failed: ${failed.length}/${results.length}`);
     
     if (successful.length > 0) {
-        console.log('\n🎉 WORKING ACTIVITIES:');
+        logger.app.info('\n🎉 WORKING ACTIVITIES:');
         successful.forEach(r => {
-            console.log(`  ✅ ${r.url} - "${r.title}"`);
+            logger.app.info(`  ✅ ${r.url} - "${r.title}"`);
         });
     }
     
     if (failed.length > 0) {
-        console.log('\n🚨 FAILING ACTIVITIES:');
+        logger.app.info('\n🚨 FAILING ACTIVITIES:');
         failed.forEach(r => {
-            console.log(`  ❌ ${r.url}`);
+            logger.app.info(`  ❌ ${r.url}`);
             if (r.error) {
-                console.log(`     Error: ${r.error}`);
+                logger.app.info(`     Error: ${r.error}`);
             }
             if (r.failedRequests && r.failedRequests.length > 0) {
-                console.log(`     Failed requests: ${r.failedRequests.length}`);
+                logger.app.info(`     Failed requests: ${r.failedRequests.length}`);
                 r.failedRequests.slice(0, 3).forEach(req => {
-                    console.log(`       ${req.status} ${req.url}`);
+                    logger.app.info(`       ${req.status} ${req.url}`);
                 });
             }
         });
     }
     
     // Specific recommendations
-    console.log('\n💡 RECOMMENDATIONS:');
+    logger.app.info('\n💡 RECOMMENDATIONS:');
     
     const hasAssetFailures = failed.some(r => 
         r.failedRequests && r.failedRequests.some(req => 
@@ -238,7 +239,7 @@ async function main() {
     );
     
     if (hasAssetFailures) {
-        console.log('  🔧 Fix static asset serving for Next.js apps');
+        logger.app.info('  🔧 Fix static asset serving for Next.js apps');
     }
     
     const hasNextJSErrors = failed.some(r => 
@@ -248,8 +249,8 @@ async function main() {
     );
     
     if (hasNextJSErrors) {
-        console.log('  🔧 Resolve Next.js runtime conflicts');
-        console.log('  💡 Consider switching to static build approach');
+        logger.app.info('  🔧 Resolve Next.js runtime conflicts');
+        logger.app.info('  💡 Consider switching to static build approach');
     }
     
     const serverErrorCount = failed.filter(r => 
@@ -257,10 +258,10 @@ async function main() {
     ).length;
     
     if (serverErrorCount > 0) {
-        console.log(`  🔧 Fix ${serverErrorCount} server errors (5xx responses)`);
+        logger.app.info(`  🔧 Fix ${serverErrorCount} server errors (5xx responses)`);
     }
     
-    console.log('\n🏁 Testing complete!');
+    logger.app.info('\n🏁 Testing complete!');
     
     return {
         total: results.length,

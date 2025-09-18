@@ -50,6 +50,7 @@ function LoadingFallback() {
 function StudySelectionContent() {
   // All the imports and state here
   const { useSearchParams } = require('next/navigation');
+const logger = require('../../../../packages/logging/logger.js');
   const searchParams = useSearchParams();
   const [sessionID, setSessionID] = useState('');
   const [selectedPaper, setSelectedPaper] = useState(null);
@@ -81,7 +82,7 @@ function StudySelectionContent() {
 
   const handleContinue = () => {
     if (selectedPaper) {
-      console.log(`Proceeding with paper ${selectedPaper}`);
+      logger.app.info(`Proceeding with paper ${selectedPaper}`);
       
       // Include sessionID in the URL if it exists
       const queryParams = new URLSearchParams();

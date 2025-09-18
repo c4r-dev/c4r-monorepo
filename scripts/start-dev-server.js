@@ -8,6 +8,7 @@
 const { exec, spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const logger = require('../packages/logging/logger.js');
 
 class C4RDevManager {
     constructor() {
@@ -51,7 +52,7 @@ class C4RDevManager {
 
     async startActivity(activityPath, activityName, port) {
         return new Promise((resolve, reject) => {
-            console.log(`🚀 Starting ${activityName} on port ${port}...`);
+            logger.app.info(`🚀 Starting ${activityName} on port ${port}...`);
             
             // First install dependencies if needed
             const installProcess = spawn('npm', ['install'], {
@@ -75,18 +76,18 @@ class C4RDevManager {
                     });
 
                     devProcess.stdout.on('data', (data) => {
-                        console.log(`[${activityName}:${port}] ${data.toString().trim()}`);
+                        logger.app.info(`[${activityName}:${port}] ${data.toString().trim()}`);
                     });
 
                     devProcess.stderr.on('data', (data) => {
                         const output = data.toString().trim();
                         if (!output.includes('warn') && !output.includes('ready')) {
-                            console.error(`[${activityName}:${port}] ${output}`);
+                            logger.app.error(`[${activityName}:${port}] ${output}`);
                         }
                     });
 
                     devProcess.on('close', (code) => {
-                        console.log(`❌ ${activityName} stopped (code ${code})`);
+                        logger.app.info(`❌ ${activityName} stopped (code ${code})`);
                         this.runningServers.delete(activityName);
                     });
 
@@ -102,7 +103,7 @@ class C4RDevManager {
 
     async startAllActivities() {
         const activities = await this.findActivityDirs();
-        console.log(`📦 Found ${activities.length} activities to start`);
+        logger.app.info(`📦 Found ${activities.length} activities to start`);
         
         const startPromises = activities.map(async (activity) => {
             const port = this.portCounter++;
@@ -116,7 +117,7 @@ class C4RDevManager {
                     status: 'running'
                 };
             } catch (error) {
-                console.error(`❌ Failed to start ${activity.name}: ${error.message}`);
+                logger.app.error(`❌ Failed to start ${activity.name}: ${error.message}`);
                 return {
                     name: activity.name,
                     domain: activity.domain,
@@ -129,8 +130,8 @@ class C4RDevManager {
 
         const results = await Promise.all(startPromises);
         
-        console.log('\n🎉 C4R Development Environment Ready!');
-        console.log('=' .repeat(60));
+        logger.app.info('\n🎉 C4R Development Environment Ready!');
+        logger.app.info('=' .repeat(60));
         
         const byDomain = results.reduce((acc, activity) => {
             if (!acc[activity.domain]) acc[activity.domain] = [];
@@ -139,32 +140,32 @@ class C4RDevManager {
         }, {});
 
         Object.entries(byDomain).forEach(([domain, activities]) => {
-            console.log(`\n📁 ${domain.toUpperCase()}`);
+            logger.app.info(`\n📁 ${domain.toUpperCase()}`);
             activities.forEach(activity => {
                 if (activity.status === 'running') {
-                    console.log(`  ✅ ${activity.name.padEnd(30)} → ${activity.url}`);
+                    logger.app.info(`  ✅ ${activity.name.padEnd(30)} → ${activity.url}`);
                 } else {
-                    console.log(`  ❌ ${activity.name.padEnd(30)} → Failed: ${activity.error}`);
+                    logger.app.info(`  ❌ ${activity.name.padEnd(30)} → Failed: ${activity.error}`);
                 }
             });
         });
 
-        console.log(`\n🌐 Activity Browser: file://${path.join(this.baseDir, 'activity-browser.html')}`);
-        console.log('\n💡 Press Ctrl+C to stop all servers');
+        logger.app.info(`\n🌐 Activity Browser: file://${path.join(this.baseDir, 'activity-browser.html')}`);
+        logger.app.info('\n💡 Press Ctrl+C to stop all servers');
 
         return results;
     }
 
     async stopAllActivities() {
-        console.log('\n🛑 Stopping all activities...');
+        logger.app.info('\n🛑 Stopping all activities...');
         
         for (const [name, server] of this.runningServers) {
-            console.log(`  ⏹️  Stopping ${name}...`);
+            logger.app.info(`  ⏹️  Stopping ${name}...`);
             server.process.kill();
         }
         
         this.runningServers.clear();
-        console.log('✅ All activities stopped');
+        logger.app.info('✅ All activities stopped');
     }
 }
 
@@ -186,15 +187,15 @@ if (require.main === module) {
             
         case 'list':
             manager.findActivityDirs().then(activities => {
-                console.log('\n📦 Available Activities:');
+                logger.app.info('\n📦 Available Activities:');
                 activities.forEach((activity, index) => {
-                    console.log(`  ${index + 1}. ${activity.name} (${activity.domain})`);
+                    logger.app.info(`  ${index + 1}. ${activity.name} (${activity.domain})`);
                 });
             });
             break;
             
         default:
-            console.log(`
+            logger.app.info(`
 🎓 C4R Development Server Manager
 
 Usage:
@@ -215,7 +216,7 @@ Examples:
     // Handle graceful shutdown
     process.on('SIGINT', () => {
         manager.stopAllActivities().then(() => {
-            console.log('\n👋 Goodbye!');
+            logger.app.info('\n👋 Goodbye!');
             process.exit(0);
         });
     });

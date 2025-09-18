@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 // Updated ResultsScreen.js with black buttons
 'use client';
 
@@ -150,11 +151,11 @@ function ResultsContent() {
   };
 
   const debugData = () => {
-    console.log("-------- DEBUG DATA --------");
-    console.log("SessionId from URL:", sessionId);
-    console.log("StudentId from URL:", studentId);
-    console.log("Current Concern:", currentConcern);
-    console.log("Active Bin:", activeBin);
+    logger.app.info("-------- DEBUG DATA --------");
+    logger.app.info("SessionId from URL:", sessionId);
+    logger.app.info("StudentId from URL:", studentId);
+    logger.app.info("Current Concern:", currentConcern);
+    logger.app.info("Active Bin:", activeBin);
     
     if (sessionData && sessionData.session) {
       let foundStudent = false;
@@ -163,16 +164,16 @@ function ResultsContent() {
       sessionData.session.sections.forEach(section => {
         section.students.forEach(student => {
           if (student.studentId === studentId) {
-            console.log("Found student in data:", student.studentId);
+            logger.app.info("Found student in data:", student.studentId);
             foundStudent = true;
             
             if (student.concernResponses) {
               student.concernResponses.forEach(response => {
-                console.log(`Response for ${response.cardText} in bin ${response.binAssignment}:`, response);
+                logger.app.info(`Response for ${response.cardText} in bin ${response.binAssignment}:`, response);
                 
                 if (response.cardText === currentConcern.cardText && 
                     response.binAssignment === activeBin) {
-                  console.log("MATCH FOUND! Implementation:", response.implementation?.implementationText);
+                  logger.app.info("MATCH FOUND! Implementation:", response.implementation?.implementationText);
                   foundResponse = true;
                 }
               });
@@ -181,11 +182,11 @@ function ResultsContent() {
         });
       });
       
-      console.log("Found student in data:", foundStudent);
-      console.log("Found matching response:", foundResponse);
+      logger.app.info("Found student in data:", foundStudent);
+      logger.app.info("Found matching response:", foundResponse);
     }
     
-    console.log("-------- END DEBUG --------");
+    logger.app.info("-------- END DEBUG --------");
   };
 
   useEffect(() => {
@@ -199,7 +200,7 @@ function ResultsContent() {
     const fetchSessionData = async () => {
       try {
         setLoading(true);
-        console.log("Fetching data for sessionId:", sessionId);
+        logger.app.info("Fetching data for sessionId:", sessionId);
         
         let data = null;
         
@@ -211,9 +212,9 @@ function ResultsContent() {
           const response = await apiCall(`/api/concerns/${sessionId}`);
           if (response.ok) {
             data = await response.json();
-            console.log("Data fetched from API:", data);
+            logger.app.info("Data fetched from API:", data);
           } else {
-            console.error("API error - Status:", response.status);
+            logger.app.error("API error - Status:", response.status);
             setError(`Failed to fetch data from API: ${response.status}`);
             setLoading(false);
             return;
@@ -223,22 +224,22 @@ function ResultsContent() {
           const allSessionsResponse = await apiCall(`/api/concerns`);
           if (allSessionsResponse.ok) {
             const allSessionsData = await allSessionsResponse.json();
-            console.log("All sessions data fetched");
+            logger.app.info("All sessions data fetched");
             // Set to global state for use in EVERYONE tab
             setAllSessionsData(allSessionsData);
           } else {
-            console.error("All sessions API error:", allSessionsResponse.status);
+            logger.app.error("All sessions API error:", allSessionsResponse.status);
             setError(`Failed to fetch all sessions data: ${allSessionsResponse.status}`);
           }
         } catch (err) {
-          console.error("Network error during fetch:", err);
+          logger.app.error("Network error during fetch:", err);
           setError('Network error while fetching data. Please check your connection.');
           setLoading(false);
           return;
         }
         
         if (!data || !data.session) {
-          console.error("No valid session data returned from API");
+          logger.app.error("No valid session data returned from API");
           setError('No valid session data returned from API');
           setLoading(false);
           return;
@@ -271,10 +272,10 @@ function ResultsContent() {
           
           // Sort by cardId
           uniqueConcerns.sort((a, b) => a.cardId - b.cardId);
-          console.log("Extracted concerns:", uniqueConcerns);
+          logger.app.info("Extracted concerns:", uniqueConcerns);
           
           if (uniqueConcerns.length === 0) {
-            console.warn("No concerns found in the data");
+            logger.app.warn("No concerns found in the data");
           }
           
           setConcerns(uniqueConcerns);
@@ -288,7 +289,7 @@ function ResultsContent() {
             
             // Find responses for this initial combination
             const initialResponses = findFilteredResponses(uniqueConcerns[0].cardText, 'constrain', data);
-            console.log("Initial responses:", initialResponses);
+            logger.app.info("Initial responses:", initialResponses);
             setResponses(initialResponses);
           }
         }
@@ -301,7 +302,7 @@ function ResultsContent() {
         }, 1000);
         
       } catch (error) {
-        console.error('Error:', error);
+        logger.app.error('Error:', error);
         setError('Failed to load data. Please try again.');
         setLoading(false);
       }
@@ -312,18 +313,18 @@ function ResultsContent() {
 
   // Function to find responses filtered by sessionId, studentId, concernText and binType
   const findFilteredResponses = (concernText, binType, data = null) => {
-    console.log(`Finding responses for concern "${concernText}" and bin "${binType}" for student "${studentId}" in session "${sessionId}"`);
+    logger.app.info(`Finding responses for concern "${concernText}" and bin "${binType}" for student "${studentId}" in session "${sessionId}"`);
     
     const matchingResponses = [];
     const dataToUse = data || sessionData;
     
     if (!dataToUse || !dataToUse.session) {
-      console.error("No session data available to filter");
+      logger.app.error("No session data available to filter");
       return [];
     }
     
     if (viewMode === 'YOUR LAB') {
-      console.log("Filtering in YOUR LAB mode");
+      logger.app.info("Filtering in YOUR LAB mode");
       
       // Filter responses by sessionId, studentId, concernText, and binType
       dataToUse.session.sections.forEach((section) => {
@@ -342,7 +343,7 @@ function ResultsContent() {
             if (response.cardText === concernText && 
                 response.binAssignment === binType) {
               
-              console.log(`Found match for student ${student.studentId}:`, response);
+              logger.app.info(`Found match for student ${student.studentId}:`, response);
               
               matchingResponses.push({
                 studentId: student.studentId,
@@ -355,7 +356,7 @@ function ResultsContent() {
       });
     } else {
       // EVERYONE mode: Find responses from all sessions
-      console.log("Filtering in EVERYONE mode");
+      logger.app.info("Filtering in EVERYONE mode");
       const allData = allSessionsData || { sessions: [] };
       
       allData.sessions?.forEach(session => {
@@ -384,13 +385,13 @@ function ResultsContent() {
       });
     }
     
-    console.log(`Found ${matchingResponses.length} responses`, matchingResponses);
+    logger.app.info(`Found ${matchingResponses.length} responses`, matchingResponses);
     return matchingResponses;
   };
 
   // Handler for bin change
   const handleBinChange = (newBin) => {
-    console.log("Changing bin to:", newBin);
+    logger.app.info("Changing bin to:", newBin);
     setActiveBin(newBin);
     
     // Update responses for the new bin
@@ -403,7 +404,7 @@ function ResultsContent() {
   // Handler for view mode change
   const handleViewModeChange = (event, newMode) => {
     if (newMode !== null) {
-      console.log("Changing view mode to:", newMode);
+      logger.app.info("Changing view mode to:", newMode);
       setViewMode(newMode);
       
       // Update responses for the new mode
@@ -418,7 +419,7 @@ function ResultsContent() {
   const navigateToPreviousConcern = () => {
     if (currentConcernIndex > 0) {
       const newIndex = currentConcernIndex - 1;
-      console.log("Navigating to previous concern, index:", newIndex);
+      logger.app.info("Navigating to previous concern, index:", newIndex);
       setCurrentConcernIndex(newIndex);
       
       // Update responses for the new concern
@@ -435,7 +436,7 @@ function ResultsContent() {
   const navigateToNextConcern = () => {
     if (currentConcernIndex < concerns.length - 1) {
       const newIndex = currentConcernIndex + 1;
-      console.log("Navigating to next concern, index:", newIndex);
+      logger.app.info("Navigating to next concern, index:", newIndex);
       setCurrentConcernIndex(newIndex);
       
       // Update responses for the new concern
@@ -465,7 +466,7 @@ const isNextButtonDisabled = () => {
   // When current concern or bin changes, update responses
   useEffect(() => {
     if (currentConcern && currentConcern.cardText && sessionData) {
-      console.log("Updating responses due to concern/bin/data change");
+      logger.app.info("Updating responses due to concern/bin/data change");
       const newResponses = findFilteredResponses(currentConcern.cardText, activeBin);
       setResponses(newResponses);
     }

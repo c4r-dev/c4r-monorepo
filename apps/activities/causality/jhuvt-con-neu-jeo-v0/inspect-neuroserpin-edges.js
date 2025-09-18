@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 #!/usr/bin/env node
 
 /**
@@ -27,20 +28,20 @@ const CustomFlowchart = mongoose.models.CustomFlowchart || mongoose.model("Custo
 
 async function inspectNeuroserpin6Edges() {
   try {
-    console.log('Connecting to MongoDB...');
+    logger.app.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Connected to MongoDB');
+    logger.app.info('✅ Connected to MongoDB');
 
     // Find the Neuroserpin6 document by exact ID
-    console.log('Fetching Neuroserpin6 document...');
+    logger.app.info('Fetching Neuroserpin6 document...');
     const flowchartDoc = await CustomFlowchart.findById("682f33b87a6b41356cee7202");
 
     if (!flowchartDoc) {
-      console.log('❌ Neuroserpin6 document not found with ID: 682f33b87a6b41356cee7202');
+      logger.app.info('❌ Neuroserpin6 document not found with ID: 682f33b87a6b41356cee7202');
       return;
     }
 
-    console.log('✅ Found document:', flowchartDoc.name);
+    logger.app.info('✅ Found document:', flowchartDoc.name);
 
     // Parse and display flowchart structure
     const flowchartData = JSON.parse(flowchartDoc.flowchart);
@@ -52,11 +53,11 @@ async function inspectNeuroserpin6Edges() {
       nodeLabels[node.id] = label;
     });
 
-    console.log('\n🔗 Current Edge Connections:');
-    console.log('=' .repeat(80));
+    logger.app.info('\n🔗 Current Edge Connections:');
+    logger.app.info('=' .repeat(80));
     
     if (!flowchartData.edges || flowchartData.edges.length === 0) {
-      console.log('❌ No edges found in the flowchart');
+      logger.app.info('❌ No edges found in the flowchart');
       return;
     }
 
@@ -64,67 +65,67 @@ async function inspectNeuroserpin6Edges() {
       const sourceLabel = nodeLabels[edge.source] || edge.source;
       const targetLabel = nodeLabels[edge.target] || edge.target;
       
-      console.log(`${index + 1}. Edge ID: "${edge.id}"`);
-      console.log(`   From: "${edge.source}" (${sourceLabel})`);
-      console.log(`   To:   "${edge.target}" (${targetLabel})`);
-      console.log(`   Source Handle: ${edge.sourceHandle || 'default'}`);
-      console.log(`   Target Handle: ${edge.targetHandle || 'default'}`);
+      logger.app.info(`${index + 1}. Edge ID: "${edge.id}"`);
+      logger.app.info(`   From: "${edge.source}" (${sourceLabel})`);
+      logger.app.info(`   To:   "${edge.target}" (${targetLabel})`);
+      logger.app.info(`   Source Handle: ${edge.sourceHandle || 'default'}`);
+      logger.app.info(`   Target Handle: ${edge.targetHandle || 'default'}`);
       
       // Show additional edge properties if they exist
-      console.log(`   Type: ${edge.type || 'default'}`);
-      if (edge.label) console.log(`   Label: ${edge.label}`);
+      logger.app.info(`   Type: ${edge.type || 'default'}`);
+      if (edge.label) logger.app.info(`   Label: ${edge.label}`);
       
       // Always show style information (even if empty/default)
-      console.log(`   Style:`, edge.style ? JSON.stringify(edge.style) : 'default');
+      logger.app.info(`   Style:`, edge.style ? JSON.stringify(edge.style) : 'default');
       if (edge.style) {
-        if (edge.style.stroke) console.log(`     - Stroke Color: ${edge.style.stroke}`);
-        if (edge.style.strokeWidth) console.log(`     - Stroke Width: ${edge.style.strokeWidth}`);
-        if (edge.style.strokeDasharray) console.log(`     - Dash Pattern: ${edge.style.strokeDasharray}`);
-        if (edge.style.opacity) console.log(`     - Opacity: ${edge.style.opacity}`);
+        if (edge.style.stroke) logger.app.info(`     - Stroke Color: ${edge.style.stroke}`);
+        if (edge.style.strokeWidth) logger.app.info(`     - Stroke Width: ${edge.style.strokeWidth}`);
+        if (edge.style.strokeDasharray) logger.app.info(`     - Dash Pattern: ${edge.style.strokeDasharray}`);
+        if (edge.style.opacity) logger.app.info(`     - Opacity: ${edge.style.opacity}`);
       }
       
       // Always show marker end information (even if empty/default)
-      console.log(`   Marker End:`, edge.markerEnd ? JSON.stringify(edge.markerEnd) : 'none');
+      logger.app.info(`   Marker End:`, edge.markerEnd ? JSON.stringify(edge.markerEnd) : 'none');
       if (edge.markerEnd) {
-        if (edge.markerEnd.type) console.log(`     - Type: ${edge.markerEnd.type}`);
-        if (edge.markerEnd.width) console.log(`     - Width: ${edge.markerEnd.width}`);
-        if (edge.markerEnd.height) console.log(`     - Height: ${edge.markerEnd.height}`);
-        if (edge.markerEnd.color) console.log(`     - Color: ${edge.markerEnd.color}`);
+        if (edge.markerEnd.type) logger.app.info(`     - Type: ${edge.markerEnd.type}`);
+        if (edge.markerEnd.width) logger.app.info(`     - Width: ${edge.markerEnd.width}`);
+        if (edge.markerEnd.height) logger.app.info(`     - Height: ${edge.markerEnd.height}`);
+        if (edge.markerEnd.color) logger.app.info(`     - Color: ${edge.markerEnd.color}`);
       }
       
-      console.log('');
+      logger.app.info('');
     });
 
-    console.log('\n📝 Template for edge updates:');
-    console.log('const edgeUpdates = [');
+    logger.app.info('\n📝 Template for edge updates:');
+    logger.app.info('const edgeUpdates = [');
     flowchartData.edges.forEach(edge => {
-      console.log(`  {`);
-      console.log(`    id: '${edge.id}',`);
-      console.log(`    source: '${edge.source}',`);
-      console.log(`    target: '${edge.target}',`);
-      console.log(`    sourceHandle: '${edge.sourceHandle || 'output'}',`);
-      console.log(`    targetHandle: '${edge.targetHandle || 'input'}',`);
-      console.log(`    type: '${edge.type || 'default'}',`);
-      console.log(`    style: ${edge.style ? JSON.stringify(edge.style) : '{ stroke: "#333", strokeWidth: 2 }'},`);
-      console.log(`    markerEnd: ${edge.markerEnd ? JSON.stringify(edge.markerEnd) : '{ type: "arrowclosed" }'},`);
-      if (edge.label) console.log(`    label: '${edge.label}',`);
-      console.log(`    // Common types: 'default', 'straight', 'step', 'smoothstep', 'bezier'`);
-      console.log(`    // Common markers: 'arrowclosed', 'arrow', 'arrowopen'`);
-      console.log(`  },`);
+      logger.app.info(`  {`);
+      logger.app.info(`    id: '${edge.id}',`);
+      logger.app.info(`    source: '${edge.source}',`);
+      logger.app.info(`    target: '${edge.target}',`);
+      logger.app.info(`    sourceHandle: '${edge.sourceHandle || 'output'}',`);
+      logger.app.info(`    targetHandle: '${edge.targetHandle || 'input'}',`);
+      logger.app.info(`    type: '${edge.type || 'default'}',`);
+      logger.app.info(`    style: ${edge.style ? JSON.stringify(edge.style) : '{ stroke: "#333", strokeWidth: 2 }'},`);
+      logger.app.info(`    markerEnd: ${edge.markerEnd ? JSON.stringify(edge.markerEnd) : '{ type: "arrowclosed" }'},`);
+      if (edge.label) logger.app.info(`    label: '${edge.label}',`);
+      logger.app.info(`    // Common types: 'default', 'straight', 'step', 'smoothstep', 'bezier'`);
+      logger.app.info(`    // Common markers: 'arrowclosed', 'arrow', 'arrowopen'`);
+      logger.app.info(`  },`);
     });
-    console.log('];');
+    logger.app.info('];');
 
-    console.log('\n📊 Node Reference:');
-    console.log('Available Node IDs and Labels:');
+    logger.app.info('\n📊 Node Reference:');
+    logger.app.info('Available Node IDs and Labels:');
     flowchartData.nodes.forEach(node => {
-      console.log(`  - "${node.id}" → "${nodeLabels[node.id]}"`);
+      logger.app.info(`  - "${node.id}" → "${nodeLabels[node.id]}"`);
     });
 
   } catch (error) {
-    console.error('❌ Error inspecting edges:', error);
+    logger.app.error('❌ Error inspecting edges:', error);
   } finally {
     await mongoose.disconnect();
-    console.log('\n🔌 Disconnected from MongoDB');
+    logger.app.info('\n🔌 Disconnected from MongoDB');
   }
 }
 

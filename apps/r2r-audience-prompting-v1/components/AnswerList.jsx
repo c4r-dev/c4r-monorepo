@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 import React, { Fragment, useEffect, useState } from "react";
 
 import Image from 'next/image';
@@ -23,7 +24,7 @@ const AnswerList = () => {
         output = data.r2rstudentinput
         setLoading(false)
       } catch (error) {
-        console.log("Error loading student answers: ", error);
+        logger.app.info("Error loading student answers: ", error);
         setLoading(false)
       }
     };

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 /**
  * FlowViewer Component
  * 
@@ -92,7 +93,7 @@ const FlowViewer = ({ flowData, flowName }) => {
         setNodeComments(nodeCommentCounts);
       }
     } catch (error) {
-      console.error('Error loading comments for flow:', error);
+      logger.app.error('Error loading comments for flow:', error);
     } finally {
       setIsLoading(false);
     }

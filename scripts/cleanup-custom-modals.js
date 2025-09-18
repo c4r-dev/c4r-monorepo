@@ -13,8 +13,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
-console.log('🧹 Starting CustomModal Cleanup...\n');
+logger.app.info('🧹 Starting CustomModal Cleanup...\n');
 
 const results = {
   filesFound: 0,
@@ -61,7 +62,7 @@ function safelyRemoveFile(filePath) {
     const fullPath = path.resolve(filePath);
     
     if (!fs.existsSync(fullPath)) {
-      console.log(`⚠️  File already removed: ${filePath}`);
+      logger.app.info(`⚠️  File already removed: ${filePath}`);
       return { removed: false, reason: 'already-removed' };
     }
 
@@ -70,17 +71,17 @@ function safelyRemoveFile(filePath) {
     const isCustomModal = /export.*CustomModal|function.*CustomModal|class.*CustomModal/i.test(content);
     
     if (!isCustomModal) {
-      console.log(`⚠️  Skipping non-CustomModal file: ${filePath}`);
+      logger.app.info(`⚠️  Skipping non-CustomModal file: ${filePath}`);
       return { removed: false, reason: 'not-custom-modal' };
     }
 
     fs.unlinkSync(fullPath);
-    console.log(`✅ Removed: ${filePath}`);
+    logger.app.info(`✅ Removed: ${filePath}`);
     
     return { removed: true };
     
   } catch (error) {
-    console.error(`❌ Error removing ${filePath}: ${error.message}`);
+    logger.app.error(`❌ Error removing ${filePath}: ${error.message}`);
     return { removed: false, error: error.message };
   }
 }
@@ -97,20 +98,20 @@ function removeEmptyDirectory(dirPath) {
     
     if (entries.length === 0) {
       fs.rmdirSync(fullPath);
-      console.log(`🗂️  Removed empty directory: ${dirPath}`);
+      logger.app.info(`🗂️  Removed empty directory: ${dirPath}`);
       return { removed: true };
     }
     
     return { removed: false, reason: 'not-empty' };
     
   } catch (error) {
-    console.error(`❌ Error removing directory ${dirPath}: ${error.message}`);
+    logger.app.error(`❌ Error removing directory ${dirPath}: ${error.message}`);
     return { removed: false, error: error.message };
   }
 }
 
 // Process each file
-console.log('🔍 Removing CustomModal files...\n');
+logger.app.info('🔍 Removing CustomModal files...\n');
 
 customModalFiles.forEach(filePath => {
   results.filesFound++;
@@ -143,34 +144,34 @@ customModalFiles.forEach(filePath => {
 });
 
 // Generate summary report
-console.log(`\n🎉 CUSTOMMODAL CLEANUP COMPLETE!`);
-console.log(`================================`);
-console.log(`📄 Files found: ${results.filesFound}`);
-console.log(`✅ Files removed: ${results.filesRemoved}`);
-console.log(`🗂️  Directories removed: ${results.directoriesRemoved}`);
-console.log(`❌ Errors: ${results.errors.length}`);
+logger.app.info(`\n🎉 CUSTOMMODAL CLEANUP COMPLETE!`);
+logger.app.info(`================================`);
+logger.app.info(`📄 Files found: ${results.filesFound}`);
+logger.app.info(`✅ Files removed: ${results.filesRemoved}`);
+logger.app.info(`🗂️  Directories removed: ${results.directoriesRemoved}`);
+logger.app.info(`❌ Errors: ${results.errors.length}`);
 
 if (results.errors.length > 0) {
-  console.log(`\n❌ ERRORS:`);
-  console.log(`=========`);
+  logger.app.info(`\n❌ ERRORS:`);
+  logger.app.info(`=========`);
   results.errors.forEach(({ file, error }) => {
-    console.log(`- ${file}: ${error}`);
+    logger.app.info(`- ${file}: ${error}`);
   });
 }
 
 if (results.removedFiles.length > 0) {
-  console.log(`\n📋 REMOVED FILES:`);
-  console.log(`===============`);
+  logger.app.info(`\n📋 REMOVED FILES:`);
+  logger.app.info(`===============`);
   results.removedFiles.forEach(file => {
-    console.log(`✅ ${file}`);
+    logger.app.info(`✅ ${file}`);
   });
 }
 
 if (results.removedDirectories.length > 0) {
-  console.log(`\n📁 REMOVED DIRECTORIES:`);
-  console.log(`=====================`);
+  logger.app.info(`\n📁 REMOVED DIRECTORIES:`);
+  logger.app.info(`=====================`);
   results.removedDirectories.forEach(dir => {
-    console.log(`🗂️  ${dir}`);
+    logger.app.info(`🗂️  ${dir}`);
   });
 }
 
@@ -190,12 +191,12 @@ const cleanupReport = {
 
 fs.writeFileSync('modal-cleanup-report.json', JSON.stringify(cleanupReport, null, 2));
 
-console.log(`\n💡 CLEANUP IMPACT:`);
-console.log(`================`);
-console.log(`🗑️  Eliminated ${results.filesRemoved} redundant CustomModal files`);
-console.log(`📦 Reduced codebase clutter and maintenance burden`);
-console.log(`✨ Completed consolidation to shared HelpModal component`);
-console.log(`🎯 Improved code consistency across all activities`);
+logger.app.info(`\n💡 CLEANUP IMPACT:`);
+logger.app.info(`================`);
+logger.app.info(`🗑️  Eliminated ${results.filesRemoved} redundant CustomModal files`);
+logger.app.info(`📦 Reduced codebase clutter and maintenance burden`);
+logger.app.info(`✨ Completed consolidation to shared HelpModal component`);
+logger.app.info(`🎯 Improved code consistency across all activities`);
 
-console.log(`\n💾 Cleanup report saved to modal-cleanup-report.json`);
-console.log(`✨ CustomModal cleanup complete!`);
+logger.app.info(`\n💾 Cleanup report saved to modal-cleanup-report.json`);
+logger.app.info(`✨ CustomModal cleanup complete!`);

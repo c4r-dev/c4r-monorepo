@@ -796,6 +796,7 @@ function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [sessionID, setSessionID] = useState('')
   const { useSearchParams } = require('next/navigation')
+const logger = require('../../../../../packages/logging/logger.js');
   const searchParams = useSearchParams()
   const [showConfigPopup, setShowConfigPopup] = useState(true)
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -890,7 +891,7 @@ function Home() {
   //         setShowConfigPopup(true);
   //       }
   //     } catch (error) {
-  //       console.error("Error getting search params:", error);
+  //       logger.app.error("Error getting search params:", error);
   //       // If there's an error, ensure the config popup shows
   //       setShowConfigPopup(true);
   //     }
@@ -1027,12 +1028,12 @@ function Home() {
   const handleSubmit = () => {
     // Generate a unique student ID for this submission
     const uniqueStudentId = generateUniqueStudentId()
-    console.log('Generated unique student ID:', uniqueStudentId)
+    logger.app.info('Generated unique student ID:', uniqueStudentId)
     
     // Implement your submission logic here
-    console.log('Form submitted with placements:', placedCards)
-    console.log('Implementations:', implementations)
-    console.log('Unique Student ID:', uniqueStudentId)
+    logger.app.info('Form submitted with placements:', placedCards)
+    logger.app.info('Implementations:', implementations)
+    logger.app.info('Unique Student ID:', uniqueStudentId)
 
     // Form submitted successfully - could add redirect or other logic here
   }

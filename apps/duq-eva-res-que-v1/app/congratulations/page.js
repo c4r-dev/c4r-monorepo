@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState } from "react";
@@ -19,7 +20,7 @@ export default function Congratulations() {
     }
     const exitActivity = () => {
         // router.push(`/`);
-        console.log("Exit button clicked");
+        logger.app.info("Exit button clicked");
     }
 
     return (

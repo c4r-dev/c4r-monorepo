@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 import { useEffect, useState } from 'react';
 import styles from './pyodide-1.css';
@@ -34,7 +35,7 @@ export default function PyodidePage() {
   };
 
   const handleFinish = () => {
-    console.log('Function building process completed!');
+    logger.app.info('Function building process completed!');
     // You can add logic here to save the final code or proceed to the next step
   };
 
@@ -56,14 +57,14 @@ export default function PyodidePage() {
 
     async function initPyodide() {
       try {
-        console.log('Loading Pyodide...');
+        logger.app.info('Loading Pyodide...');
         await loadPyodideScript();
         const loadPyodide = window.loadPyodide;
         const pyodideInstance = await loadPyodide({
           indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/"
         });
         
-        console.log('Loading Python packages...');
+        logger.app.info('Loading Python packages...');
         
         // Load required packages
         await pyodideInstance.loadPackage([
@@ -81,7 +82,7 @@ export default function PyodidePage() {
             print("Successfully installed tifffile")
           `);
         } catch (e) {
-          console.log("Could not install tifffile:", e.message);
+          logger.app.info("Could not install tifffile:", e.message);
         }
         
         try {
@@ -91,13 +92,13 @@ export default function PyodidePage() {
             print("Successfully installed nd2reader")
           `);
         } catch (e) {
-          console.log("Could not install nd2reader:", e.message);
+          logger.app.info("Could not install nd2reader:", e.message);
         }
         
         setPyodide(pyodideInstance);
-        console.log('Pyodide and packages loaded successfully!');
+        logger.app.info('Pyodide and packages loaded successfully!');
       } catch (error) {
-        console.error('Error initializing Pyodide:', error);
+        logger.app.error('Error initializing Pyodide:', error);
       }
     }
     initPyodide();

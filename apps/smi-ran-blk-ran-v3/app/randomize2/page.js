@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 // File: app/randomize2/page.js
 "use client"; // Needed for useState and useRouter
 
@@ -49,14 +50,14 @@ export default function Randomize2Page() {
         // // Rule 1: numBlocks divisibility by numTreatments
         // if (currentNumBlocks % currentNumTreatments !== 0) {
         //     errorMsg = `Balanced assignment requires numBlocks (<span class="math-inline">\{currentNumBlocks\}\) to be perfectly divisible by numTreatments \(</span>{currentNumTreatments}).`;
-        //     console.error(errorMsg);
+        //     logger.app.error(errorMsg);
         //     isValid = false;
         // }
 
         // Rule 1: numBlocks divisibility by product (for grid layout)
         if (isValid && (currentNumBlocks % product !== 0)) {
             errorMsg = `Grid layout requires numBlocks (${currentNumBlocks}) to be perfectly divisible by (blockSize * numTreatments = ${product}).`;
-            // console.error(errorMsg);
+            // logger.app.error(errorMsg);
             isValid = false;
         }
 
@@ -94,13 +95,13 @@ export default function Randomize2Page() {
 
         // Use the validation result stored in state
         if (numBlockColumns === 0 || validationError) {
-             console.error("Attempted to create block assignments when validation failed.");
+             logger.app.error("Attempted to create block assignments when validation failed.");
              return [];
         }
         // Redundant check (already covered by useEffect validation), but safe
         if (currentNumBlocks % currentNumTreatments !== 0) {
             const internalErrorMsg = `Internal Error: numBlocks (<span class="math-inline">\{currentNumBlocks\}\) is not divisible by numTreatments \(</span>{currentNumTreatments}).`;
-            console.error(internalErrorMsg);
+            logger.app.error(internalErrorMsg);
             setValidationError(internalErrorMsg); // Already set by useEffect
             return [];
         }
@@ -139,7 +140,7 @@ export default function Randomize2Page() {
             setRandomization(result);
         } else {
             // Validation failed, message is already set by useEffect
-            console.log(`Submit clicked but validation failed: ${validationError}`);
+            logger.app.info(`Submit clicked but validation failed: ${validationError}`);
             alert(`Submit clicked but validation failed: ${validationError}`);
             setRandomization([]); // Ensure results are cleared
         }

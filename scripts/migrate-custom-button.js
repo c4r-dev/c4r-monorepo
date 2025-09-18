@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const logger = require('../packages/logging/logger.js');
 
 // Colors for console output
 const colors = {
@@ -23,7 +24,7 @@ const colors = {
 };
 
 function log(color, message) {
-  console.log(`${colors[color]}${message}${colors.reset}`);
+  logger.app.info(`${colors[color]}${message}${colors.reset}`);
 }
 
 // Find all CustomButton component files
@@ -243,7 +244,7 @@ async function migrateCustomButtons() {
   
   log('blue', `Found ${customButtonFiles.length} CustomButton components to migrate:`);
   customButtonFiles.forEach(file => log('yellow', `  - ${file}`));
-  console.log();
+  logger.app.info();
   
   let migrationStats = {
     filesUpdated: 0,
@@ -296,7 +297,7 @@ async function migrateCustomButtons() {
   }
   
   // Print migration summary
-  console.log('\n' + '='.repeat(60));
+  logger.app.info('\n' + '='.repeat(60));
   log('bold', '📊 Migration Summary:');
   log('green', `  ✅ Activities processed: ${migrationStats.filesUpdated}`);
   log('green', `  ✅ Import statements updated: ${migrationStats.importsUpdated}`);
@@ -307,7 +308,7 @@ async function migrateCustomButtons() {
     log('red', `  ❌ Errors encountered: ${migrationStats.errors}`);
   }
   
-  console.log('\n' + '='.repeat(60));
+  logger.app.info('\n' + '='.repeat(60));
   
   if (migrationStats.errors === 0) {
     log('green', '🎉 CustomButton migration completed successfully!');

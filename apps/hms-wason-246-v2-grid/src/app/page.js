@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -62,7 +63,7 @@ export function InputContent() {
                 previousRuleNumbers = storedRuleNumbers ? JSON.parse(storedRuleNumbers) : [];
             }
         } catch (error) {
-            console.log("Error reading from session storage:", error);
+            logger.app.info("Error reading from session storage:", error);
             previousRuleNumbers = [];
         }
         return previousRuleNumbers;
@@ -82,7 +83,7 @@ export function InputContent() {
                 }
                 return Math.floor(Math.random() * numberOfRules) + 1;
             } catch (error) {
-                console.log("Error clearing session storage:", error);
+                logger.app.info("Error clearing session storage:", error);
                 return Math.floor(Math.random() * numberOfRules) + 1;
             }
         }
@@ -152,9 +153,9 @@ export function InputContent() {
 
     // Initialize sessionID based on URL parameter or generate new one
     useEffect(() => {
-        console.log('SessionID from URL:', sessionIdFromUrl);
-        console.log('Current sessionID:', sessionID);
-        console.log('Show popup:', showSessionConfigPopup);
+        logger.app.info('SessionID from URL:', sessionIdFromUrl);
+        logger.app.info('Current sessionID:', sessionID);
+        logger.app.info('Show popup:', showSessionConfigPopup);
         
         if (sessionIdFromUrl) {
             setSessionID(sessionIdFromUrl);
@@ -171,10 +172,10 @@ export function InputContent() {
         // Only update URL if popup is not showing (user has made a choice)
         // Don't override if sessionID is already "individual1" (individual mode)
         if (sessionID && !sessionIdFromUrl && !showSessionConfigPopup && sessionID !== 'individual1' && !ruleID) {
-            console.log("sessionID determined:", sessionID);
+            logger.app.info("sessionID determined:", sessionID);
             router.push(`/?sessionID=${sessionID}`);
         } else if (sessionID && !sessionIdFromUrl && !showSessionConfigPopup && sessionID !== 'individual1' && ruleID) {
-            console.log("sessionID determined:", sessionID);
+            logger.app.info("sessionID determined:", sessionID);
             router.push(`/?ruleID=${ruleID}&sessionID=${sessionID}`);
         }
     }, [sessionID, showSessionConfigPopup]);
@@ -192,7 +193,7 @@ export function InputContent() {
     };
 
     const handleGuideBtn = () => {
-        console.log("Guide button clicked");
+        logger.app.info("Guide button clicked");
         openModal(true);
     };
 
@@ -217,18 +218,18 @@ export function InputContent() {
             : ruleID
             ? parseInt(ruleID)
             : initialRandomNumber; // Changed from 1 to initialRandomNumber, so default rule is random
-    // console.log("ruleNumber:", ruleNumber);
+    // logger.app.info("ruleNumber:", ruleNumber);
 
     // BUG FIX: If ruleID is greater than the number of rules, set ruleNumber to initialRandomNumber
-    // console.log("Number of rules:", Object.keys(ruleFunctions).length);
+    // logger.app.info("Number of rules:", Object.keys(ruleFunctions).length);
     if (ruleNumber > Object.keys(ruleFunctions).length) {
         ruleNumber = initialRandomNumber;
     }
 
     // Map the imports from sequenceChecks.js to a mapping, such that the key is the rule number and the value is the function
     const ruleFunction = ruleFunctions[ruleNumber];
-    console.log("ruleFunction:", ruleFunction);
-    console.log("ruleNumber:", ruleNumber);
+    logger.app.info("ruleFunction:", ruleFunction);
+    logger.app.info("ruleNumber:", ruleNumber);
 
     // Map each rule function to a string that describes the rule
     const ruleDescriptions = {
@@ -259,8 +260,8 @@ export function InputContent() {
     };
 
     const handleTest = () => {
-        console.log("Test button clicked!!!!1!");
-        console.log("sequence:", sequence);
+        logger.app.info("Test button clicked!!!!1!");
+        logger.app.info("sequence:", sequence);
         if (
             sequence.some((num) => num.trim() === "" && currentTestNumber > 1)
         ) {
@@ -289,7 +290,7 @@ export function InputContent() {
     const submitTest = (testSequence, testHypothesis) => {
         // Convert all elements of testSequence to integers
         const testSequenceInt = testSequence.map(Number);
-        console.log("testSequenceInt:", testSequenceInt);
+        logger.app.info("testSequenceInt:", testSequenceInt);
 
         // Sequence matching logic
         const isMatch = ruleFunction(
@@ -297,7 +298,7 @@ export function InputContent() {
             testSequenceInt[1],
             testSequenceInt[2]
         );
-        console.log("isMatch", isMatch);
+        logger.app.info("isMatch", isMatch);
 
         const newTest = {
             number: currentTestNumber.toString().padStart(2, "0"),
@@ -337,7 +338,7 @@ export function InputContent() {
     }, [tests]);
 
     const handleCancelFinalGuess = () => {
-        console.log("Cancel final guess clicked");
+        logger.app.info("Cancel final guess clicked");
         setFinalGuess("");
         setIsFinalGuessActive(false);
     };
@@ -407,7 +408,7 @@ export function InputContent() {
             });
 
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
 
                 // Maintain an array of ruleNumbers in session storage from previous guesses
                 // Dont save the ruleNumber of this round until the user has submitted the final guess
@@ -426,7 +427,7 @@ export function InputContent() {
                         previousRuleNumbers = storedRuleNumbers ? JSON.parse(storedRuleNumbers) : [];
                     }
                 } catch (error) {
-                    console.log("Error reading from session storage:", error);
+                    logger.app.info("Error reading from session storage:", error);
                     previousRuleNumbers = [];
                 }
                 
@@ -447,18 +448,18 @@ export function InputContent() {
                         sessionStorage.setItem('previousRuleNumbers', JSON.stringify(previousRuleNumbers));
                     }
                 } catch (error) {
-                    console.log("Error writing to session storage:", error);
+                    logger.app.info("Error writing to session storage:", error);
                 }
                 
                 // Load the review page
                 loadReviewPage(guessID);
             } else {
-                console.log("Response not ok.");
+                logger.app.info("Response not ok.");
                 throw new Error("Response not ok.");
             }
         } catch (error) {
-            console.log("Error in fetch");
-            console.log(error);
+            logger.app.info("Error in fetch");
+            logger.app.info(error);
         }
     };
 
@@ -468,7 +469,7 @@ export function InputContent() {
 
         // Check if at least one test has been created
         if (tests.length === 1) {
-            console.log("No tests created");
+            logger.app.info("No tests created");
             setErrorSnackbarMessage(
                 "Please create at least one test before submitting your final guess."
             );
@@ -498,13 +499,13 @@ export function InputContent() {
 
     const handleSequenceFormEvent = (e) => {
         e.preventDefault();
-        console.log("sequence form submitted");
+        logger.app.info("sequence form submitted");
         handleTest();
     };
 
     const onFinalGuessFormEvent = (e) => {
         e.preventDefault();
-        console.log("Final guess submitted");
+        logger.app.info("Final guess submitted");
         handleSubmitFinalGuess();
     };
 

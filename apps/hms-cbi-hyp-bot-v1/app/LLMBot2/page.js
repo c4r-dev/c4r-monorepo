@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { Textarea } from '../components/ui/textarea'
@@ -574,7 +575,7 @@ export default function Page() {
   }
 
   const handleGuideBtn = () => {
-    console.log('Guide button clicked')
+    logger.app.info('Guide button clicked')
     openModal(true)
   }
 

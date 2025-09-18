@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 import React, { useState, useEffect, Suspense, useCallback } from "react";
 
@@ -31,7 +32,7 @@ There are two modes for this component:
 function DragAndDropGameContent({ reviewMode = false }) {
     const searchParams = useSearchParams();
     const sessionID = searchParams.get("sessionID");
-    console.log("sessionID:", sessionID);
+    logger.app.info("sessionID:", sessionID);
 
     const initialNotes = [
         "Missed mistakes",
@@ -73,15 +74,15 @@ function DragAndDropGameContent({ reviewMode = false }) {
 
     // console log note text
     useEffect(() => {
-        console.log("noteText:", noteText);
+        logger.app.info("noteText:", noteText);
     }, [noteText]);
 
     useEffect(() => {
-        console.log("selectedNote:", selectedNote);
+        logger.app.info("selectedNote:", selectedNote);
     }, [selectedNote]);
 
     useEffect(() => {
-        console.log("noteScores:", noteScores);
+        logger.app.info("noteScores:", noteScores);
     }, [noteScores]);
 
 
@@ -109,7 +110,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
             setLinearNoteScores(tempLinearNoteScores);
 
             // TODO: Sort the order of the notes based on the linear score 
-            console.log("linearNoteScores:", linearNoteScores);
+            logger.app.info("linearNoteScores:", linearNoteScores);
         }
 
     }, [combinedNoteScores]);
@@ -118,7 +119,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
 
     // UseEffect for linearNoteScores
     useEffect(() => {
-        console.log("linearNoteScores:", linearNoteScores);
+        logger.app.info("linearNoteScores:", linearNoteScores);
 
         // If review mode is true, and linearNoteScores is not empty, sort the linearNoteScores by value in descending order
         if (reviewMode && Object.keys(linearNoteScores).length > 0) {
@@ -142,7 +143,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
     useEffect(() => {
         if (squares.length === 0) {
             // setHasNotesRemaining(false);
-            console.log("No notes remaining");
+            logger.app.info("No notes remaining");
             setHasNotesRemaining(false);
         }
     }, [squares]);
@@ -170,23 +171,23 @@ function DragAndDropGameContent({ reviewMode = false }) {
             });
 
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
                 openReviewPage();
             } else {
                 // TODO: Add additionalerror handling
-                console.log("Response not ok.");
+                logger.app.info("Response not ok.");
                 throw new Error("Response not ok.");
             }
         } catch (error) {
             // TODO: Add additional error handling
-            console.log("Error in fetch");
-            console.log(error);
+            logger.app.info("Error in fetch");
+            logger.app.info(error);
         }
     };
 
     const fetchNotesFromApi = useCallback(async () => {
-        console.log("showAllSessions:", showAllSessions);
-        console.log("hello world!:");
+        logger.app.info("showAllSessions:", showAllSessions);
+        logger.app.info("hello world!:");
         const base = getBasePath();
         const res = await fetch(`${base}/api/stickyNoteApi`);
         const data = await res.json();
@@ -197,7 +198,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
             : data.filter((note) => note.sessionID === sessionID);
 
         setNotesFromApi(filteredNotesFromApi);
-        console.log("notesFromApi:", filteredNotesFromApi);
+        logger.app.info("notesFromApi:", filteredNotesFromApi);
     }, [sessionID, showAllSessions]);
 
     // Fetch notes from api if review mode is true and there are no notes from api
@@ -211,7 +212,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
     }, [reviewMode, fetchNotesFromApi, showAllSessions]);
 
     useEffect(() => {
-        console.log("showAllSessions toggled:", showAllSessions);
+        logger.app.info("showAllSessions toggled:", showAllSessions);
 
         // Clear whiteboard
         setNotesFromApi([]);
@@ -224,17 +225,17 @@ function DragAndDropGameContent({ reviewMode = false }) {
 
     // Use effect to update combinedNoteScores after notesFromApi is updated
     useEffect(() => {
-        console.log("notesFromApi:", notesFromApi);
+        logger.app.info("notesFromApi:", notesFromApi);
         if (notesFromApi.length > 0) {
-            console.log("setting combinedNoteScores");
-            console.log("notesFromApi:", notesFromApi);
+            logger.app.info("setting combinedNoteScores");
+            logger.app.info("notesFromApi:", notesFromApi);
 
             // Build an object with the noteScores of each entry in notesFromApi
             let combinedNoteData = [];
             notesFromApi.forEach((entry) => {
                 combinedNoteData.push(entry.noteScores[0]);
             });
-            console.log("combinedNoteData:", combinedNoteData);
+            logger.app.info("combinedNoteData:", combinedNoteData);
             setCombinedNoteScores(combinedNoteData);
 
             /*
@@ -266,7 +267,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
                 );
             });
 
-            console.log("Compiled group data:", groupData);
+            logger.app.info("Compiled group data:", groupData);
             setCompiledGroupData(groupData);
             setCombinedNoteScores(groupData);
 
@@ -276,7 +277,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
 
     // Useeffect to print combinedNoteScores
     useEffect(() => {
-        console.log("combinedNoteScores:", combinedNoteScores);
+        logger.app.info("combinedNoteScores:", combinedNoteScores);
     }, [combinedNoteScores]);
 
     const handleDragStart = (e, id) => {
@@ -287,7 +288,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
     };
 
     useEffect(() => {
-        console.log(noteScores);
+        logger.app.info(noteScores);
     }, [noteScores]);
 
     const handleDrop = (e) => {
@@ -337,7 +338,7 @@ function DragAndDropGameContent({ reviewMode = false }) {
     };
 
     const submitNotes = () => {
-        console.log("Submitting notes");
+        logger.app.info("Submitting notes");
         clearWhiteboard();
     };
 

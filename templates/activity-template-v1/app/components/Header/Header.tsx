@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 "use client";
 import React from "react";
 import Image from "next/image";
@@ -20,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ Title = "C4R Activity Title", onLogoCli
             // Implement logo click functionality here
             onLogoClick();
         } else {
-            // console.log("No onLogoClick function provided");
+            // logger.app.info("No onLogoClick function provided");
         }
     };
 
@@ -29,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ Title = "C4R Activity Title", onLogoCli
             // Implement help click functionality here
             onHelpClick();
         } else {
-            // console.log("No onHelpClick function provided");
+            // logger.app.info("No onHelpClick function provided");
         }
     };
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { useState } from "react";
@@ -32,12 +33,12 @@ export default function R2rStudentInput() {
 
       if (res.ok) {
         // router.push("/closeWindow");
-        console.log("Answer created successfully");
+        logger.app.info("Answer created successfully");
       } else {
         throw new Error("Failed to create an answer.");
       }
     } catch (error) {
-      console.log(error);
+      logger.app.info(error);
     }
   };
 

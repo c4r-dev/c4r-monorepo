@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect } from "react";
@@ -52,7 +53,7 @@ export default function SummaryCalc() {
         setOutput(result);
 
       } catch (error) {
-        console.log("Error loading student answers: ", error);
+        logger.app.info("Error loading student answers: ", error);
 
       }
     };

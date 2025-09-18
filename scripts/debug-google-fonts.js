@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function debugGoogleFonts() {
-    console.log('🔍 Debugging Google Fonts loading in seamless server...\n');
+    logger.app.info('🔍 Debugging Google Fonts loading in seamless server...\n');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -21,11 +22,11 @@ async function debugGoogleFonts() {
     
     page.on('response', (response) => {
         if (response.url().includes('fonts.googleapis.com') || response.url().includes('fonts.gstatic.com')) {
-            console.log(`📡 Font Request: ${response.url()} - Status: ${response.status()}`);
+            logger.app.info(`📡 Font Request: ${response.url()} - Status: ${response.status()}`);
         }
     });
     
-    console.log('Testing: /tools/open-ai-testing (Updated to use Inter)');
+    logger.app.info('Testing: /tools/open-ai-testing (Updated to use Inter)');
     
     try {
         const url = 'http://localhost:3333/tools/open-ai-testing';
@@ -48,12 +49,12 @@ async function debugGoogleFonts() {
             return document.fonts ? Array.from(document.fonts).map(f => f.family) : 'FontFaceSet not available';
         });
         
-        console.log(`\n📊 Results for ${url}:`);
-        console.log(`Status: ${response.status()}`);
-        console.log(`Body font: ${bodyFont}`);
-        console.log(`Google Fonts links found: ${googleFontsLinks.length}`);
-        googleFontsLinks.forEach(link => console.log(`  - ${link}`));
-        console.log(`Available fonts:`, availableFonts);
+        logger.app.info(`\n📊 Results for ${url}:`);
+        logger.app.info(`Status: ${response.status()}`);
+        logger.app.info(`Body font: ${bodyFont}`);
+        logger.app.info(`Google Fonts links found: ${googleFontsLinks.length}`);
+        googleFontsLinks.forEach(link => logger.app.info(`  - ${link}`));
+        logger.app.info(`Available fonts:`, availableFonts);
         
         // Check network requests for fonts
         const fontRequests = requests.filter(req => 
@@ -62,19 +63,19 @@ async function debugGoogleFonts() {
             req.resourceType === 'font'
         );
         
-        console.log(`\n🌐 Font-related network requests: ${fontRequests.length}`);
+        logger.app.info(`\n🌐 Font-related network requests: ${fontRequests.length}`);
         fontRequests.forEach(req => {
-            console.log(`  - ${req.method} ${req.url} (${req.resourceType})`);
+            logger.app.info(`  - ${req.method} ${req.url} (${req.resourceType})`);
         });
         
         // Check if the layout.js file is properly imported
         const nextData = await page.evaluate(() => {
             return window.__NEXT_DATA__ ? 'Next.js loaded' : 'Next.js not detected';
         });
-        console.log(`\n⚛️ Next.js status: ${nextData}`);
+        logger.app.info(`\n⚛️ Next.js status: ${nextData}`);
         
     } catch (error) {
-        console.log(`❌ Error: ${error.message}`);
+        logger.app.info(`❌ Error: ${error.message}`);
     }
     
     await browser.close();

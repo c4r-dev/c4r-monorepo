@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import { Suspense, useState, useEffect } from "react";
@@ -21,7 +22,7 @@ const DagModal = ({ closeDagModal, flowObject, flowDescription }) => {
         setFlowObjectLoaded(true);
     }, [flowObject]);
 
-    console.log("DagModal open:");
+    logger.app.info("DagModal open:");
     return (
         <div className="dag-modal-screen">
             <div className="dag-modal-container">
@@ -57,7 +58,7 @@ export default function LoadDagGroup() {
 
     const searchParams = useSearchParams()
     const labGroupId = searchParams.get('labGroupId')
-    console.log('labGroupId from LoadDagGroup', labGroupId);
+    logger.app.info('labGroupId from LoadDagGroup', labGroupId);
 
 
     // const [flowData, setFlowData] = useState([]);
@@ -84,7 +85,7 @@ export default function LoadDagGroup() {
     const [labGroupFlowDescriptions, setLabGroupFlowDescriptions] = useState([]);
 
     const openDagModal = (flowObject, flowDescription) => {
-        console.log("openDagModal called with flowObject:", flowObject);
+        logger.app.info("openDagModal called with flowObject:", flowObject);
         setDagModalFlowObject(flowObject);
         setDagModalFlowDescription(flowDescription);
         setDagModalOpen(true);
@@ -105,7 +106,7 @@ export default function LoadDagGroup() {
     }
 
     useEffect(() => {
-        console.log("dagResults from useEffect:", dagResults);
+        logger.app.info("dagResults from useEffect:", dagResults);
 
         if (dagResults.length > 0) {
             // Sort the contents of dagResults by the "createdAt" field in descending order
@@ -114,21 +115,21 @@ export default function LoadDagGroup() {
             );
 
             const dagResultsForLabGroup = sortedDagResults.filter(dag => dag.groupId === labGroupId);
-            console.log("dagResultsForLabGroup:", dagResultsForLabGroup);
+            logger.app.info("dagResultsForLabGroup:", dagResultsForLabGroup);
 
             setDagResultsForLabGroup(dagResultsForLabGroup);
 
             const labGroupFlows= dagResultsForLabGroup.map(dag => JSON.parse(dag.flow));
-            console.log("labGroupFlows:", labGroupFlows);
+            logger.app.info("labGroupFlows:", labGroupFlows);
             setLabGroupFlowObjects(labGroupFlows);
 
             const labGroupDescriptions = dagResultsForLabGroup.map(dag => dag.description);
-            console.log("labGroupDescriptions:", labGroupDescriptions);
+            logger.app.info("labGroupDescriptions:", labGroupDescriptions);
             setLabGroupFlowDescriptions(labGroupDescriptions);
 
 
-            console.log("sortedDagResults:", sortedDagResults);
-            console.log(
+            logger.app.info("sortedDagResults:", sortedDagResults);
+            logger.app.info(
                 "dagResults has non-zero length, setting flowString and resultsLoaded to true"
             );
 
@@ -175,12 +176,12 @@ export default function LoadDagGroup() {
             const fetchAllDags = async () => {
                 try {
                     const response = await fetch("/api/fluDagApi");
-                    console.log("response:", response);
+                    logger.app.info("response:", response);
                     const result = await response.json();
-                    console.log("result:", result);
+                    logger.app.info("result:", result);
                     setDagResults(result);
                 } catch (error) {
-                    console.log("Error loading results: ", error);
+                    logger.app.info("Error loading results: ", error);
                 }
             };
 

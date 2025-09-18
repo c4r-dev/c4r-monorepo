@@ -1,4 +1,5 @@
 const { createContext, useReducer } = require("react");
+const logger = require('../../../../packages/logging/logger.js');
 
 import { useRouter } from "next/navigation";
 export const UserContext = createContext();
@@ -15,7 +16,7 @@ export const UserContextProvider = ({ children }) => {
       }
       case "checkLogin": {
         const authuser = localStorage.getItem("auth-user");
-        console.log("Checking", JSON.parse(authuser), state);
+        logger.app.info("Checking", JSON.parse(authuser), state);
         if (authuser) {
           return {
             ...state,

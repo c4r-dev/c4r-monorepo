@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 import React from "react";
 import Image from "next/image";
 import "./header.css";
@@ -6,10 +7,10 @@ import logo from "@/app/assets/logo-sideways.svg";
 const Header = ({ onLogoClick, title="Default Title" }) => {
     const handleLogoClick = () => {
         if (onLogoClick) {
-            console.log("Logo clicked, calling onLogoClick");
+            logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();
         } else {
-            console.log("No onLogoClick function provided");
+            logger.app.info("No onLogoClick function provided");
         }
     };
 

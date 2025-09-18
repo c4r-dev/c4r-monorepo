@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 import React, { useState } from 'react';
 import './App.css';
 
@@ -40,13 +41,13 @@ export default function App() {
       })
       setX(x + 1)
     }
-    console.log(colors)
+    logger.app.info(colors)
   }
 
   // Function to render grid items
   const renderGridItems = () => {
 
-    console.log(colors)
+    logger.app.info(colors)
     return colors.map((color, index) => (
       <div
         key={index}

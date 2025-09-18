@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, Suspense } from 'react'
@@ -495,10 +496,10 @@ const ResultsTable = ({ data, taskList, onRestart }) => {
   const getCurrentTaskData = () => {
     const taskKey = `task${tabValue + 1}`
     const taskData = data.moveHistory[taskKey] || []
-    console.log(`Task ${tabValue + 1} data:`, taskData)
+    logger.app.info(`Task ${tabValue + 1} data:`, taskData)
     if (taskData.length > 0) {
-      console.log('First move structure:', taskData[0])
-      console.log('Keys in first move:', Object.keys(taskData[0]))
+      logger.app.info('First move structure:', taskData[0])
+      logger.app.info('Keys in first move:', Object.keys(taskData[0]))
     }
     return taskData
   }
@@ -740,7 +741,7 @@ function App() {
         // Use existing sessionID from URL and skip popup (user is joining a group)
         setSessionId(existingSessionId)
         setShowConfigPopup(false)
-        console.log('Using existing session ID from URL:', existingSessionId)
+        logger.app.info('Using existing session ID from URL:', existingSessionId)
       } else {
         // No sessionID in URL, generate new one and show popup
         const newSessionId = generateSessionId()
@@ -750,7 +751,7 @@ function App() {
         // Update the URL with the new session ID
         url.searchParams.set('sessionId', newSessionId)
         window.history.pushState({}, '', url.toString())
-        console.log('New session ID generated and added to URL:', newSessionId)
+        logger.app.info('New session ID generated and added to URL:', newSessionId)
       }
     }
   }, []) // Empty dependency array means this runs once on component mount
@@ -856,7 +857,7 @@ function App() {
       window.history.pushState({}, '', url.toString())
     }
     
-    console.log('Application restarted with new session ID:', newSessionId)
+    logger.app.info('Application restarted with new session ID:', newSessionId)
   }
 
   // New state for flowchart view
@@ -984,7 +985,7 @@ function App() {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching session data:', error);
+      logger.app.error('Error fetching session data:', error);
       alert(`Failed to load results: ${error.message}`);
       return null;
     }
@@ -1005,10 +1006,10 @@ function App() {
       }
 
       const data = await response.json();
-      console.log('Aggregated data received:', data);
+      logger.app.info('Aggregated data received:', data);
       return data;
     } catch (error) {
-      console.error('Error fetching aggregated data:', error);
+      logger.app.error('Error fetching aggregated data:', error);
       alert(`Failed to load aggregated results: ${error.message}`);
       return null;
     }
@@ -1043,7 +1044,7 @@ function App() {
         timestamp: new Date()
       };
   
-      console.log(`Creating move data for task ${taskNumber}, move ${moveNumber}:`, moveData);
+      logger.app.info(`Creating move data for task ${taskNumber}, move ${moveNumber}:`, moveData);
   
       // Create the updated moveHistory object with existing data
       const moveHistory = {
@@ -1077,7 +1078,7 @@ function App() {
         timestamp: new Date()
       };
   
-      console.log('Sending data to API:', JSON.stringify(payload, null, 2));
+      logger.app.info('Sending data to API:', JSON.stringify(payload, null, 2));
   
       // Make the API call
       const apiResponse = await fetch('/api/nmda-sessions', {
@@ -1088,32 +1089,32 @@ function App() {
         body: JSON.stringify(payload),
       });
   
-      console.log('API response status:', apiResponse.status);
+      logger.app.info('API response status:', apiResponse.status);
       
       const responseText = await apiResponse.text();
-      console.log('API response text:', responseText);
+      logger.app.info('API response text:', responseText);
       
       let result;
       try {
         // Check if response is HTML (likely an error page)
         if (responseText.includes('<!DOCTYPE') || responseText.includes('<html')) {
-          console.warn('Received HTML response instead of JSON. API may not be available.');
+          logger.app.warn('Received HTML response instead of JSON. API may not be available.');
           result = { error: 'API not available', raw: responseText };
         } else {
           // Try to parse the response as JSON
           result = JSON.parse(responseText);
-          console.log('API response parsed:', result);
+          logger.app.info('API response parsed:', result);
         }
       } catch (e) {
-        console.error('Failed to parse API response as JSON:', e);
+        logger.app.error('Failed to parse API response as JSON:', e);
         result = { error: 'Invalid JSON response', raw: responseText };
       }
   
       if (!apiResponse.ok) {
-        console.error(`API error: ${apiResponse.status}`, result);
+        logger.app.error(`API error: ${apiResponse.status}`, result);
         // If we get HTML response (like 404 page), handle it gracefully
         if (responseText.includes('<!DOCTYPE') || responseText.includes('<html')) {
-          console.warn('API endpoint not found or misconfigured. Running in offline mode.');
+          logger.app.warn('API endpoint not found or misconfigured. Running in offline mode.');
           return { success: false, offline: true };
         }
         throw new Error(`API error: ${apiResponse.status} - ${result.error || 'Unknown error'}`);
@@ -1128,10 +1129,10 @@ function App() {
   
       return result;
     } catch (error) {
-      console.error('Error saving session data:', error);
+      logger.app.error('Error saving session data:', error);
       // Only show alert for unexpected errors, not API unavailability
       if (!error.message.includes('API not available')) {
-        console.warn('Running in offline mode - your progress will not be saved to the database.');
+        logger.app.warn('Running in offline mode - your progress will not be saved to the database.');
       }
     }
   };
@@ -1260,7 +1261,7 @@ function App() {
       alert(`Task "${task}" assigned to Team ${team}`);
       
       // Log error for debugging
-      console.error(`Missing feedback for task "${task}" and team "${team}"`);
+      logger.app.error(`Missing feedback for task "${task}" and team "${team}"`);
     }
   };
 

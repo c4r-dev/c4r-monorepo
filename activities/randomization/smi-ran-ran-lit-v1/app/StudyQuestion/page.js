@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'; 
 
 import React, { Suspense, useEffect, useState } from 'react';
@@ -69,23 +70,23 @@ function StudyPageContent() {
     if (sectionParam && studyDetailsMap[sectionParam]) {
       setStudyDetails(studyDetailsMap[sectionParam]);
       setSelectedSection(sectionParam);
-      console.log(`Loaded study details for section: ${sectionParam}`);
+      logger.app.info(`Loaded study details for section: ${sectionParam}`);
     } else {
       setStudyDetails(studyDetailsMap.default);
       setSelectedSection(null);
-      console.log('Using default study details (no valid selectedSection found)');
+      logger.app.info('Using default study details (no valid selectedSection found)');
     }
   }, [searchParams]);
 
 // Updated handler function to receive data when user clicks "Continue"
 const handleQuestionsContinue = (submittedQuestions, userId, sectionParam) => {
-  console.log("Continuing from questions screen...");
-  console.log("User ID:", userId);
-  console.log("Submitted Questions:", submittedQuestions);
+  logger.app.info("Continuing from questions screen...");
+  logger.app.info("User ID:", userId);
+  logger.app.info("Submitted Questions:", submittedQuestions);
   
   // Use the passed selectedSection parameter first, then fall back to state
   const finalSelectedSection = sectionParam || selectedSection;
-  console.log("Selected Section:", finalSelectedSection);
+  logger.app.info("Selected Section:", finalSelectedSection);
   
   // Create new URLSearchParams object
   const params = new URLSearchParams();
@@ -98,7 +99,7 @@ const handleQuestionsContinue = (submittedQuestions, userId, sectionParam) => {
   // IMPORTANT: Add selectedSection to the navigation params
   if (finalSelectedSection) {
     params.set('selectedSection', finalSelectedSection);
-    console.log(`Adding selectedSection=${finalSelectedSection} to navigation params`);
+    logger.app.info(`Adding selectedSection=${finalSelectedSection} to navigation params`);
   }
   
   // Add submittedQuestions count
@@ -108,12 +109,12 @@ const handleQuestionsContinue = (submittedQuestions, userId, sectionParam) => {
   const sessionId = searchParams.get('sessionID');
   if (sessionId) {
     params.set('sessionId', sessionId);
-    console.log(`Adding sessionId=${sessionId} to navigation params`);
+    logger.app.info(`Adding sessionId=${sessionId} to navigation params`);
   }
   
   // Log the full URL we're navigating to for debugging
   const targetUrl = `/DragDropInterface?${params.toString()}`;
-  console.log("Navigating to:", targetUrl);
+  logger.app.info("Navigating to:", targetUrl);
   
   // Navigate to DragDropInterface with the parameters
   router.push(targetUrl);

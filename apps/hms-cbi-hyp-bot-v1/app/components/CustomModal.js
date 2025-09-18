@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import * as React from 'react'
 import { useEffect } from 'react'
 import Box from '@mui/material/Box'
@@ -29,16 +30,16 @@ export default function CustomModal({ isOpen, closeModal, hypothesis }) {
 
   // useEffect(() => {
   //   setOpen(visible);
-  //   console.log("visible changed", visible);
+  //   logger.app.info("visible changed", visible);
   // }, [visible]);
 
   // useEffect(() => {
-  //   console.log("open changed", open);
+  //   logger.app.info("open changed", open);
   // }, [open]);
 
   // const handleClose = () => {
   //   setOpen(false);
-  //   console.log("closed");
+  //   logger.app.info("closed");
   // };
 
   return (

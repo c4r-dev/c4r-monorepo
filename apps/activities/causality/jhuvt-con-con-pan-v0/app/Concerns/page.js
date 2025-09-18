@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 // pages/index.js
 'use client'
 
@@ -530,7 +531,7 @@ const ConcernCard = ({ id, text, onDrop, onClick }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.CARD,
     item: () => {
-      console.log(`🎬 DRAG STARTED: ${text}`)
+      logger.app.info(`🎬 DRAG STARTED: ${text}`)
       return { id, text }
     },
     collect: (monitor) => ({
@@ -648,7 +649,7 @@ const StaticCard = ({ id, text, currentBin, onMove }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.CARD,
     item: () => {
-      console.log(`🎬 RELOCATE DRAG STARTED: ${text} from ${currentBin} bin`)
+      logger.app.info(`🎬 RELOCATE DRAG STARTED: ${text} from ${currentBin} bin`)
       return { id, text, isRelocation: true, sourceBin: currentBin }
     },
     collect: (monitor) => ({
@@ -794,15 +795,15 @@ const DropTarget = ({ name, placedCards, onDrop, onRelocate }) => {
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
     drop: (item, monitor) => {
-      console.log(`🎯 DROP ATTEMPT: ${item.text} -> ${name} bin (currently ${placedCards.length} cards)`)
+      logger.app.info(`🎯 DROP ATTEMPT: ${item.text} -> ${name} bin (currently ${placedCards.length} cards)`)
       
       // Check if this is a relocation (card moving between bins)
       if (item.isRelocation && item.sourceBin) {
-        console.log(`🔄 RELOCATION: Moving ${item.text} from ${item.sourceBin} to ${name}`)
+        logger.app.info(`🔄 RELOCATION: Moving ${item.text} from ${item.sourceBin} to ${name}`)
         
         // Don't allow dropping in the same bin
         if (item.sourceBin === name) {
-          console.log(`⚠️ SAME BIN DROP: Ignoring drop in same bin`)
+          logger.app.info(`⚠️ SAME BIN DROP: Ignoring drop in same bin`)
           return { dropped: false, name }
         }
         
@@ -810,7 +811,7 @@ const DropTarget = ({ name, placedCards, onDrop, onRelocate }) => {
         return { dropped: true, name, relocated: true }
       } else {
         // Regular card placement from concerns section
-        console.log(`✅ NEW PLACEMENT: Proceeding...`)
+        logger.app.info(`✅ NEW PLACEMENT: Proceeding...`)
         onDrop(item.id, name)
         return { dropped: true, name }
       }
@@ -818,11 +819,11 @@ const DropTarget = ({ name, placedCards, onDrop, onRelocate }) => {
     canDrop: (item, monitor) => {
       // For relocations, prevent dropping in the same bin
       if (item.isRelocation && item.sourceBin === name) {
-        console.log(`🔍 CAN DROP CHECK: ${item.text} -> ${name} = false (same bin)`)
+        logger.app.info(`🔍 CAN DROP CHECK: ${item.text} -> ${name} = false (same bin)`)
         return false
       }
       
-      console.log(`🔍 CAN DROP CHECK: ${item.text} -> ${name} = true (${placedCards.length} cards)`)
+      logger.app.info(`🔍 CAN DROP CHECK: ${item.text} -> ${name} = true (${placedCards.length} cards)`)
       return true // Allow unlimited cards
     },
     hover: (item, monitor) => {
@@ -833,7 +834,7 @@ const DropTarget = ({ name, placedCards, onDrop, onRelocate }) => {
       const canDrop = !!monitor.canDrop()
       
       if (isOver && !canDrop) {
-        console.log(`🔴 HOVERING OVER SAME BIN: ${name}`)
+        logger.app.info(`🔴 HOVERING OVER SAME BIN: ${name}`)
       }
       
       return { isOver, canDrop }
@@ -1096,19 +1097,19 @@ function Home() {
 
   // Handle dropping a card in a bin
   const handleDrop = (cardId, binName) => {
-    console.log(`Attempting to drop card ${cardId} in ${binName} bin`)
-    console.log(`Current bin contents:`, placedCards[binName])
+    logger.app.info(`Attempting to drop card ${cardId} in ${binName} bin`)
+    logger.app.info(`Current bin contents:`, placedCards[binName])
     
     // Allow multiple cards per bin (removed limit check)
 
     // Find the card that was dropped
     const droppedCard = cards.find((card) => card.id === cardId)
     if (!droppedCard || droppedCard.placed) {
-      console.log(`Card not found or already placed`)
+      logger.app.info(`Card not found or already placed`)
       return // Card not found or already placed
     }
 
-    console.log(`Proceeding with drop of card: ${droppedCard.text}`)
+    logger.app.info(`Proceeding with drop of card: ${droppedCard.text}`)
 
     // Save current card and bin for the popup
     setCurrentCard(droppedCard)
@@ -1120,12 +1121,12 @@ function Home() {
 
   // Handle relocating a card between bins
   const handleRelocate = (cardId, sourceBin, targetBin) => {
-    console.log(`Relocating card ${cardId} from ${sourceBin} to ${targetBin}`)
+    logger.app.info(`Relocating card ${cardId} from ${sourceBin} to ${targetBin}`)
     
     // Find the card in the source bin
     const cardToMove = placedCards[sourceBin].find(card => card.id === cardId)
     if (!cardToMove) {
-      console.error(`Card ${cardId} not found in ${sourceBin} bin`)
+      logger.app.error(`Card ${cardId} not found in ${sourceBin} bin`)
       return
     }
 
@@ -1177,7 +1178,7 @@ function Home() {
         [currentBin]: [...prev[currentBin], { ...currentCard, sourceBin: undefined }],
       }))
       
-      console.log(`Successfully relocated ${currentCard.text} from ${currentCard.sourceBin} to ${currentBin}`)
+      logger.app.info(`Successfully relocated ${currentCard.text} from ${currentCard.sourceBin} to ${currentBin}`)
     } else {
       // This is a new placement from concerns section
       // Add the card to the bin
@@ -1231,7 +1232,7 @@ function Home() {
     try {
       // Generate a unique student ID for this submission
       const uniqueStudentId = generateUniqueStudentId()
-      console.log('Generated unique student ID:', uniqueStudentId)
+      logger.app.info('Generated unique student ID:', uniqueStudentId)
       
       // Update the student ID state for reference
       setStudentId(uniqueStudentId)
@@ -1268,7 +1269,7 @@ function Home() {
         concerns: concernsData,
       }
 
-      console.log('Submitting data:', payload)
+      logger.app.info('Submitting data:', payload)
 
       // Import the API utility function
       const { apiCall } = await import('../lib/api');
@@ -1279,13 +1280,13 @@ function Home() {
         body: JSON.stringify(payload),
       })
 
-      console.log('Response status:', response.status)
-      console.log('Response headers:', response.headers)
+      logger.app.info('Response status:', response.status)
+      logger.app.info('Response headers:', response.headers)
 
       let result
       try {
         const responseText = await response.text()
-        console.log('Raw response text:', responseText)
+        logger.app.info('Raw response text:', responseText)
         
         if (responseText) {
           result = JSON.parse(responseText)
@@ -1293,14 +1294,14 @@ function Home() {
           result = { message: 'Empty response from server' }
         }
       } catch (parseError) {
-        console.error('Failed to parse response as JSON:', parseError)
+        logger.app.error('Failed to parse response as JSON:', parseError)
         result = { message: 'Invalid JSON response from server' }
       }
 
       if (response.ok) {
         // Success
         setSubmitSuccess(true)
-        console.log('Submission result:', result)
+        logger.app.info('Submission result:', result)
 
         // Navigate to results page with sessionId and unique studentId parameters
         window.location.href = `/Results?sessionId=${encodeURIComponent(
@@ -1309,14 +1310,14 @@ function Home() {
       } else {
         // Handle error
         setSubmitError(result.message || 'An error occurred during submission.')
-        console.error('Submission error:', result)
+        logger.app.error('Submission error:', result)
         alert(
           `Error: ${result.message || 'An error occurred during submission.'}`,
         )
       }
     } catch (error) {
       setSubmitError('Network error or server is not responding.')
-      console.error('Submission error:', error)
+      logger.app.error('Submission error:', error)
       alert(
         'An error occurred while submitting your responses. Please try again later.',
       )

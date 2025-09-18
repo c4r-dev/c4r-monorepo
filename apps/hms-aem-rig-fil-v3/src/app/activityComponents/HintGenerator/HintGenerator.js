@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client'
 
 import { useState } from 'react'
@@ -23,14 +24,14 @@ export default function HintGenerator() {
       });
 
       const data = await res.json();
-      console.log("data", data);
+      logger.app.info("data", data);
 
       const parsedData = JSON.parse(data.content);
       setHints(prevHints => [...prevHints, parsedData.question1]);
       setCurrentHintIndex(hints.length);
 
     } catch (error) {
-      console.error("Error:", error);
+      logger.app.error("Error:", error);
       setHints(prevHints => [...prevHints, "An error occurred while fetching the hint."]);
       setCurrentHintIndex(hints.length);
     } finally {

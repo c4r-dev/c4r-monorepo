@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import hljs from 'highlight.js/lib/core';
@@ -208,7 +209,7 @@ export const TextareaHighlight = ({
       const result = hljs.highlight(value, { language: 'python' });
       return result.value;
     } catch (error) {
-      console.warn('Syntax highlighting failed:', error);
+      logger.app.warn('Syntax highlighting failed:', error);
       return value; // Fallback to plain text
     }
   }, [value]);

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../../packages/logging/logger.js');
 /**
  * Utilities for saving and loading flow comments
  */
@@ -31,7 +32,7 @@ export const saveCommentToDatabase = async (comment) => {
     const result = await response.json();
     return { success: true, data: result };
   } catch (error) {
-    console.error('Error saving comment to database:', error);
+    logger.app.error('Error saving comment to database:', error);
     
     if (error.name === 'AbortError') {
       return { success: false, error: 'Request timed out. Please check your connection.' };
@@ -73,7 +74,7 @@ export const getCommentsForFlow = async (flowId, sessionId) => {
     const comments = await response.json();
     return { success: true, data: comments };
   } catch (error) {
-    console.error('Error fetching comments from database:', error);
+    logger.app.error('Error fetching comments from database:', error);
     
     if (error.name === 'AbortError') {
       return { success: false, error: 'Request timed out. Please check your connection.', data: [] };
@@ -112,7 +113,7 @@ export const deleteComment = async (commentId) => {
     const result = await response.json();
     return { success: true, data: result };
   } catch (error) {
-    console.error('Error deleting comment:', error);
+    logger.app.error('Error deleting comment:', error);
     
     if (error.name === 'AbortError') {
       return { success: false, error: 'Request timed out. Please check your connection.' };

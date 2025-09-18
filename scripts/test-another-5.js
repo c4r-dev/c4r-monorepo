@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 const activities = [
     '/randomization/smi-ran-blk-ran-v2',
@@ -9,14 +10,14 @@ const activities = [
 ];
 
 async function testActivities() {
-    console.log('🧪 Testing another 5 random activities...\n');
+    logger.app.info('🧪 Testing another 5 random activities...\n');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     
     for (let i = 0; i < activities.length; i++) {
         const activity = activities[i];
-        console.log(`[${i+1}/5] Testing: ${activity}`);
+        logger.app.info(`[${i+1}/5] Testing: ${activity}`);
         
         try {
             const url = `http://localhost:3333${activity}`;
@@ -24,19 +25,19 @@ async function testActivities() {
             
             if (response.status() === 200) {
                 const title = await page.title();
-                console.log(`✅ ${activity} - ${response.status()} - "${title}"`);
+                logger.app.info(`✅ ${activity} - ${response.status()} - "${title}"`);
             } else {
-                console.log(`❌ ${activity} - ${response.status()}`);
+                logger.app.info(`❌ ${activity} - ${response.status()}`);
             }
         } catch (error) {
-            console.log(`❌ ${activity} - Error: ${error.message}`);
+            logger.app.info(`❌ ${activity} - Error: ${error.message}`);
         }
         
-        console.log('');
+        logger.app.info('');
     }
     
     await browser.close();
-    console.log('🎉 Testing complete!');
+    logger.app.info('🎉 Testing complete!');
 }
 
 testActivities().catch(console.error);

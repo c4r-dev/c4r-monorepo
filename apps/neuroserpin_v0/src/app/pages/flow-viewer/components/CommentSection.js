@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 /**
  * CommentSection Component
  * 
@@ -56,7 +57,7 @@ const CommentSection = ({ flowName, availableNodes, onCommentUpdate }) => {
         setComments([]);
       }
     } catch (error) {
-      console.error('Error loading comments:', error);
+      logger.app.error('Error loading comments:', error);
       setError('An unexpected error occurred while loading comments');
       setComments([]);
     } finally {
@@ -104,7 +105,7 @@ const CommentSection = ({ flowName, availableNodes, onCommentUpdate }) => {
         setError('Failed to save comment: ' + result.error);
       }
     } catch (error) {
-      console.error('Error submitting comment:', error);
+      logger.app.error('Error submitting comment:', error);
       setError('An unexpected error occurred while saving the comment');
     } finally {
       setIsSubmitting(false);
@@ -131,7 +132,7 @@ const CommentSection = ({ flowName, availableNodes, onCommentUpdate }) => {
         setError('Failed to delete comment: ' + result.error);
       }
     } catch (error) {
-      console.error('Error deleting comment:', error);
+      logger.app.error('Error deleting comment:', error);
       setError('An unexpected error occurred while deleting the comment');
     } finally {
       setIsLoading(false);

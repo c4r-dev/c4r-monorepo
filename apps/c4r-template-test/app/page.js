@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 "use client";
 
 import Header from "./components/Header/Header";
@@ -19,7 +20,7 @@ export default function Home() {
         <CustomButton
           variant="primary" // primary, tertiary, blue, grey, etc.
           onClick={() => {
-            console.log("Button clicked");
+            logger.app.info("Button clicked");
           }}>
           Click me
         </CustomButton>
@@ -27,7 +28,7 @@ export default function Home() {
         <CustomButton
           variant="grey" 
           onClick={() => {
-            console.log("Button clicked");
+            logger.app.info("Button clicked");
           }}>
           Click me
         </CustomButton>
@@ -35,7 +36,7 @@ export default function Home() {
         <CustomButton
           variant="blue" 
           onClick={() => {
-            console.log("Navigate to example page");
+            logger.app.info("Navigate to example page");
             router.push('/examplePage?sessionID=1234567890');
           }}>
           Navigate to Example Page

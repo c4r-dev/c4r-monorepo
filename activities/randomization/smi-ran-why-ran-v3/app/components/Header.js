@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React from 'react'
 import Grid from '@mui/material/Grid'
 import Image from 'next/image'
@@ -5,7 +6,7 @@ import ravenIcon from '../assets/raven-icon.svg'
 import { useRouter } from 'next/navigation'
 
 function Header({oneLineText = '',isMobile=false}) {
-  console.log(oneLineText, "this is one line text in header component")
+  logger.app.info(oneLineText, "this is one line text in header component")
   const router = useRouter()
   const exitActivity = (e) => {
     e.preventDefault()

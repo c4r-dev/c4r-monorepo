@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -645,7 +646,7 @@ const Home = () => {
 
   const handleContinue = () => {
     // Navigate to the next page or perform any action when continue is clicked
-    console.log('Continue clicked')
+    logger.app.info('Continue clicked')
     // You can add navigation logic here, such as:
     // router.push('/next-page');
     // window.location.href = '/StratifiedRandomization';

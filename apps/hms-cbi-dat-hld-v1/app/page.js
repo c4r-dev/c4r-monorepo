@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -53,7 +54,7 @@ export default function Home() {
 
       setErrorData(frequencyData);
     } catch (error) {
-      console.error("Error fetching user errors:", error);
+      logger.app.error("Error fetching user errors:", error);
     }
   };
 
@@ -116,7 +117,7 @@ export default function Home() {
         setOutOfSamplePerformance(80)
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      logger.app.error("Error fetching data:", error);
       setTestPerformance(50);
       setPredictedPerformance(50);
       setOutOfSamplePerformance(80)
@@ -156,8 +157,8 @@ export default function Home() {
       body: JSON.stringify(userData),
     })
       .then((res) => res.json())
-      // .then((data) => console.log("Data saved to MongoDB:", data))
-      .catch((error) => console.error("Error saving data:", error));
+      // .then((data) => logger.app.info("Data saved to MongoDB:", data))
+      .catch((error) => logger.app.error("Error saving data:", error));
   };
 
   const isButtonDisabled = () => {

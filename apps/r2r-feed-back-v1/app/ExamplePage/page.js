@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState } from "react";
@@ -45,15 +46,15 @@ export default function FeedBack() {
                 // Clear the input fields
                 setAnswerq1("");
                 setFBTool("");
-                console.log("Answer submitted successfully");
+                logger.app.info("Answer submitted successfully");
                 // router.push("/closeWindow");  
             } else {
-                console.log("Failed to create an answer.");
+                logger.app.info("Failed to create an answer.");
                 alert("There was an error submitting your feedback. Please try again.");
                 throw new Error("Failed to create an answer.");
             }
         } catch (error) {
-            console.log(error);
+            logger.app.info(error);
         }
     };
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -22,8 +23,8 @@ ChartJS.register(
 );
 
 const ComparisonChart = ( {correctGuesses, incorrectGuesses, percentDisprove, numGuesses } ) => {
-  console.log("correctGuesses", correctGuesses);
-  console.log("incorrectGuesses", incorrectGuesses);
+  logger.app.info("correctGuesses", correctGuesses);
+  logger.app.info("incorrectGuesses", incorrectGuesses);
 
   // Sort the correctGuesses and incorrectGuesses by numGuesses
   let sortedCorrectGuesses = correctGuesses.sort((a, b) => a.numGuesses - b.numGuesses);
@@ -53,8 +54,8 @@ const ComparisonChart = ( {correctGuesses, incorrectGuesses, percentDisprove, nu
   }, []).map(({ numGuesses, percentDisprove }) => ({ numGuesses, percentDisprove }));
 
 
-  console.log("sortedCorrectGuesses", sortedCorrectGuesses);
-  console.log("sortedIncorrectGuesses", sortedIncorrectGuesses);
+  logger.app.info("sortedCorrectGuesses", sortedCorrectGuesses);
+  logger.app.info("sortedIncorrectGuesses", sortedIncorrectGuesses);
 
   const options = {
     responsive: true,

@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { useState } from 'react';
@@ -14,7 +15,7 @@ The button is passed a function, selectNote, that will be called when the button
 export default function NoteList( {selectedNote, setSelectedNote, noteText} ) {
     // const [selectedNote, setSelectedNote] = useState(null);
 
-    console.log(noteText);
+    logger.app.info(noteText);
 
     // Set noteText with: Missed Mistakes, Reporting Results, Designing Experiments
     // const noteText = ['Missed Mistakes', 'Reporting Results', 'Designing Experiments'];

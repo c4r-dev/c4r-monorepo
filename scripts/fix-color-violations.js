@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const logger = require('../packages/logging/logger.js');
 
 // Color mappings for critical violations
 const COLOR_MAPPINGS = {
@@ -66,7 +67,7 @@ class ColorViolationFixer {
   }
 
   findFilesWithColorViolations() {
-    console.log('🔍 Finding files with color violations...');
+    logger.app.info('🔍 Finding files with color violations...');
     
     const patterns = Object.keys(COLOR_MAPPINGS).map(color => 
       color.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -77,10 +78,10 @@ class ColorViolationFixer {
       const result = execSync(grepCommand, { encoding: 'utf8' });
       const files = result.trim().split('\n').filter(f => f);
       
-      console.log(`Found ${files.length} files with color violations`);
+      logger.app.info(`Found ${files.length} files with color violations`);
       return files;
     } catch (error) {
-      console.log('Using fallback file discovery...');
+      logger.app.info('Using fallback file discovery...');
       return this.findFilesRecursively(this.activitiesDir);
     }
   }
@@ -188,13 +189,13 @@ class ColorViolationFixer {
           changes: fileChanges
         });
 
-        console.log(`✅ Fixed ${fileViolations} violations in: ${filePath}`);
+        logger.app.info(`✅ Fixed ${fileViolations} violations in: ${filePath}`);
         return true;
       }
       
       return false;
     } catch (error) {
-      console.error(`❌ Error processing ${filePath}:`, error.message);
+      logger.app.error(`❌ Error processing ${filePath}:`, error.message);
       return false;
     }
   }
@@ -254,22 +255,22 @@ npm run lint:colors  # Check for new violations
 `;
 
     fs.writeFileSync('color-violation-report.md', reportContent);
-    console.log('📝 Report saved to: color-violation-report.md');
+    logger.app.info('📝 Report saved to: color-violation-report.md');
   }
 
   run() {
-    console.log('🎨 Starting color violation fixes...');
+    logger.app.info('🎨 Starting color violation fixes...');
     
     const files = this.findFilesWithColorViolations();
-    console.log(`Processing ${files.length} files...`);
+    logger.app.info(`Processing ${files.length} files...`);
     
     files.forEach(file => {
       this.fixColorViolations(file);
     });
 
-    console.log('\n📊 Color violation fix completed!');
-    console.log(`🔍 Found ${this.violationsFound} violations across ${this.filesProcessed} files`);
-    console.log('⚠️  Manual review required for proper className integration');
+    logger.app.info('\n📊 Color violation fix completed!');
+    logger.app.info(`🔍 Found ${this.violationsFound} violations across ${this.filesProcessed} files`);
+    logger.app.info('⚠️  Manual review required for proper className integration');
     
     this.generateReport();
   }

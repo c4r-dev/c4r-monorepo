@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -35,7 +36,7 @@ function FTBResultsPageContent() {
       setAggregateStats(data.aggregateStats);
       setLoading(false);
     } catch (error) {
-      console.error('Failed to load session results:', error);
+      logger.app.error('Failed to load session results:', error);
       setError('Failed to load results. Please try again.');
       setLoading(false);
     }

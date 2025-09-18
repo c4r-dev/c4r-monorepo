@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState } from "react";
@@ -31,7 +32,7 @@ const OngoingChat = () => {
             setChatHistory([...updatedChatHistory, data]);
             setUserMessage("");
         } catch (error) {
-            console.error("Error:", error);
+            logger.app.error("Error:", error);
             setChatHistory([
                 ...updatedChatHistory,
                 { role: "assistant", content: "An error occurred while fetching the response." }

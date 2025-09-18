@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { Textarea } from '../components/ui/textarea'
@@ -388,7 +389,7 @@ function LLMPage({
 
     // Call the POST API
     try {
-      console.log('Sending request with body:', requestBody) // Add logging to debug
+      logger.app.info('Sending request with body:', requestBody) // Add logging to debug
       const response = await fetch('/api/hypothesis', {
         method: 'POST',
         headers: {
@@ -402,9 +403,9 @@ function LLMPage({
       }
 
       const data = await response.json()
-      console.log('API Response: after each submit', data)
+      logger.app.info('API Response: after each submit', data)
     } catch (error) {
-      console.error('Error calling API:', error)
+      logger.app.error('Error calling API:', error)
     }
   }
 
@@ -528,7 +529,7 @@ function LLMPage({
                 {/* <textarea
                         className="styled-textarea"
                         placeholder="Enter text"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => logger.app.info(e.target.value)}
                     /> */}
                 {/* </div> */}
                 <Typography
@@ -592,7 +593,7 @@ function LLMPage({
                         flexGrow: 1,
                         width: '100%',}} 
                         placeholder="Enter text"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => logger.app.info(e.target.value)}
                     /> 
                     </div> */}
                 {submitCount < 2 ? (
@@ -656,7 +657,7 @@ function LLMPage({
                     <textarea
                         className="styled-textarea"
                         placeholder="Enter text"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => logger.app.info(e.target.value)}
                     />
                 </div> */}
       </Box>
@@ -749,7 +750,7 @@ function FetchSearchParams({
           setApiData(data)
           setHypothesisDesc(data.hypDesc)
         } catch (error) {
-          console.error('Error fetching data:', error)
+          logger.app.error('Error fetching data:', error)
         }
       }
       fetchData()
@@ -801,7 +802,7 @@ export default function Page() {
   }
 
   const handleGuideBtn = () => {
-    console.log('Guide button clicked')
+    logger.app.info('Guide button clicked')
     openModal(true)
   }
 
@@ -827,7 +828,7 @@ export default function Page() {
           setApiData={setApiData}
         />
       </Suspense>
-      {/* {console.log(hypothesisDesc, 'hypothesisDesc')} */}
+      {/* {logger.app.info(hypothesisDesc, 'hypothesisDesc')} */}
       <Box>
         <CustomModal isOpen={isGuideModalVisible} closeModal={closeModal} />
 

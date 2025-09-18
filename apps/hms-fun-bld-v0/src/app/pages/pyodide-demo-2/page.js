@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 /**
  * PyodideDemo - A React component that enables running Python code in the browser
  * using Pyodide. This component provides a code editor and output display for
@@ -159,7 +160,7 @@ if __name__ == "__main__":
             print("Successfully installed tifffile")
           `);
         } catch (e) {
-          console.log("Could not install tifffile:", e.message);
+          logger.app.info("Could not install tifffile:", e.message);
         }
         
         // Fix numpy compatibility and install nd2reader
@@ -178,14 +179,14 @@ if __name__ == "__main__":
             print("Successfully installed nd2reader with numpy compatibility fix")
           `);
         } catch (e) {
-          console.log("Could not install nd2reader:", e.message);
+          logger.app.info("Could not install nd2reader:", e.message);
         }
         
         setPyodide(pyodideInstance);
         setOutput('Pyodide and packages loaded successfully! Loading your image files...');
         setLoading(false);
       } catch (error) {
-        console.error('Error initializing Pyodide:', error);
+        logger.app.error('Error initializing Pyodide:', error);
         setOutput(`Error initializing Pyodide: ${error.message}`);
         setLoading(false);
       }
@@ -240,9 +241,9 @@ if __name__ == "__main__":
           const nd2ArrayBuffer = await nd2Response.arrayBuffer();
           const nd2Uint8Array = new Uint8Array(nd2ArrayBuffer);
           pyodide.FS.writeFile('/20191010_tail_01.nd2', nd2Uint8Array);
-          console.log('Successfully loaded 20191010_tail_01.nd2 into filesystem');
+          logger.app.info('Successfully loaded 20191010_tail_01.nd2 into filesystem');
         } else {
-          console.error('Failed to load 20191010_tail_01.nd2');
+          logger.app.error('Failed to load 20191010_tail_01.nd2');
         }
 
         // Load the .tif file  
@@ -251,14 +252,14 @@ if __name__ == "__main__":
           const tifArrayBuffer = await tifResponse.arrayBuffer();
           const tifUint8Array = new Uint8Array(tifArrayBuffer);
           pyodide.FS.writeFile('/20240523_Vang-1_37.tif', tifUint8Array);
-          console.log('Successfully loaded 20240523_Vang-1_37.tif into filesystem');
+          logger.app.info('Successfully loaded 20240523_Vang-1_37.tif into filesystem');
         } else {
-          console.error('Failed to load 20240523_Vang-1_37.tif');
+          logger.app.error('Failed to load 20240523_Vang-1_37.tif');
         }
 
         setOutput('Files loaded into Python environment. Ready to run Python code.');
       } catch (error) {
-        console.error('Error loading files:', error);
+        logger.app.error('Error loading files:', error);
         setOutput(`Error loading files: ${error.message}. Using mock data instead.`);
         
         // Fallback to mock data if file loading fails

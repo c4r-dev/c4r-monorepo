@@ -2,6 +2,7 @@
 // This script will connect directly to MongoDB and clean up the data
 
 const { MongoClient } = require('mongodb');
+const logger = require('../../../../packages/logging/logger.js');
 
 // Configuration - adjust as needed
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/your-database-name';
@@ -36,17 +37,17 @@ async function cleanupSingleWordResponses() {
     const client = new MongoClient(MONGODB_URI);
     
     try {
-        console.log('Connecting to MongoDB...');
+        logger.app.info('Connecting to MongoDB...');
         await client.connect();
-        console.log('Connected to MongoDB successfully');
+        logger.app.info('Connected to MongoDB successfully');
         
         const db = client.db(DATABASE_NAME);
         const collection = db.collection(COLLECTION_NAME);
         
         // Find all sessions
-        console.log('Fetching all sessions...');
+        logger.app.info('Fetching all sessions...');
         const sessions = await collection.find({}).toArray();
-        console.log(`Found ${sessions.length} sessions`);
+        logger.app.info(`Found ${sessions.length} sessions`);
         
         let totalProcessed = 0;
         let totalRemoved = 0;
@@ -54,10 +55,10 @@ async function cleanupSingleWordResponses() {
         
         for (const session of sessions) {
             let sessionModified = false;
-            console.log(`\nProcessing session: ${session.sessionId}`);
+            logger.app.info(`\nProcessing session: ${session.sessionId}`);
             
             if (session.students && Array.isArray(session.students)) {
-                console.log(`  - Found ${session.students.length} students`);
+                logger.app.info(`  - Found ${session.students.length} students`);
                 
                 const originalCount = session.students.length;
                 
@@ -69,7 +70,7 @@ async function cleanupSingleWordResponses() {
                     const hasKeysmashResponse = isSingleWordResponse(student.response);
                     
                     if (hasKeysmashResponse) {
-                        console.log(`  - Removing keysmash response: "${student.response}" from student ${student.studentId}`);
+                        logger.app.info(`  - Removing keysmash response: "${student.response}" from student ${student.studentId}`);
                         totalRemoved++;
                         return false; // Remove this student
                     }
@@ -81,7 +82,7 @@ async function cleanupSingleWordResponses() {
                 
                 if (originalCount !== newCount) {
                     sessionModified = true;
-                    console.log(`  - Reduced students from ${originalCount} to ${newCount}`);
+                    logger.app.info(`  - Reduced students from ${originalCount} to ${newCount}`);
                     
                     // Update the session in the database
                     await collection.updateOne(
@@ -101,17 +102,17 @@ async function cleanupSingleWordResponses() {
             }
         }
         
-        console.log('\n=== CLEANUP SUMMARY ===');
-        console.log(`Total student entries processed: ${totalProcessed}`);
-        console.log(`Single-word responses removed: ${totalRemoved}`);
-        console.log(`Sessions modified: ${sessionsModified}`);
-        console.log('Cleanup completed successfully!');
+        logger.app.info('\n=== CLEANUP SUMMARY ===');
+        logger.app.info(`Total student entries processed: ${totalProcessed}`);
+        logger.app.info(`Single-word responses removed: ${totalRemoved}`);
+        logger.app.info(`Sessions modified: ${sessionsModified}`);
+        logger.app.info('Cleanup completed successfully!');
         
     } catch (error) {
-        console.error('Error during cleanup:', error);
+        logger.app.error('Error during cleanup:', error);
     } finally {
         await client.close();
-        console.log('MongoDB connection closed');
+        logger.app.info('MongoDB connection closed');
     }
 }
 

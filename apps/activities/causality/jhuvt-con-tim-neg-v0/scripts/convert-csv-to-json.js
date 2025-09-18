@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const logger = require('../../../../../packages/logging/logger.js');
 
 function csvToJson(csvFilePath, jsonFilePath) {
   try {
@@ -40,12 +41,12 @@ function csvToJson(csvFilePath, jsonFilePath) {
     // Write to JSON file
     fs.writeFileSync(jsonFilePath, JSON.stringify(jsonArray, null, 2));
     
-    console.log(`✅ Successfully converted ${csvFilePath} to ${jsonFilePath}`);
-    console.log(`📊 Converted ${jsonArray.length} rows`);
+    logger.app.info(`✅ Successfully converted ${csvFilePath} to ${jsonFilePath}`);
+    logger.app.info(`📊 Converted ${jsonArray.length} rows`);
     
     return jsonArray;
   } catch (error) {
-    console.error('❌ Error converting CSV to JSON:', error.message);
+    logger.app.error('❌ Error converting CSV to JSON:', error.message);
     return null;
   }
 }
@@ -55,8 +56,8 @@ const csvFile = process.argv[2];
 const jsonFile = process.argv[3];
 
 if (!csvFile || !jsonFile) {
-  console.log('Usage: node scripts/convert-csv-to-json.js <input.csv> <output.json>');
-  console.log('Example: node scripts/convert-csv-to-json.js data.csv public/data.json');
+  logger.app.info('Usage: node scripts/convert-csv-to-json.js <input.csv> <output.json>');
+  logger.app.info('Example: node scripts/convert-csv-to-json.js data.csv public/data.json');
   process.exit(1);
 }
 

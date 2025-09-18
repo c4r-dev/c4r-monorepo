@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { useSearchParams } from "next/navigation";
@@ -26,7 +27,7 @@ export default function SingleUser() {
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        logger.app.error('Error fetching data:', error);
       }
     };
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 'use client';
 import { useEffect, useState, useCallback } from 'react';
 import './activity-1.css';
@@ -422,7 +423,7 @@ export default function Activity1Page() {
     if (!pyodide) {
       const message = 'Python environment not ready. Please wait...';
       setCodeOutput(message);
-      console.log('[DEBUG]', message);
+      logger.app.info('[DEBUG]', message);
       return;
     }
 
@@ -430,8 +431,8 @@ export default function Activity1Page() {
     setCodeOutput('Executing...');
     setHasExecutionError(false);
 
-    console.log('[DEBUG] Starting execution of code:');
-    console.log(value);
+    logger.app.info('[DEBUG] Starting execution of code:');
+    logger.app.info(value);
 
     try {
       // Setup execution environment with matplotlib interception
@@ -492,7 +493,7 @@ _error_traceback = None
 _plot_images = []
       `);
 
-      console.log('[DEBUG] Set up output capture with matplotlib interception...');
+      logger.app.info('[DEBUG] Set up output capture with matplotlib interception...');
       
       // Prepare the user code for execution
       const escapedCode = value
@@ -663,7 +664,7 @@ plt.show = _original_plt_show
 }
       `);
       
-      console.log('[DEBUG] Captured execution result:', result);
+      logger.app.info('[DEBUG] Captured execution result:', result);
       
       const stdout = result.get('stdout') || '';
       const stderr = result.get('stderr') || '';
@@ -674,18 +675,18 @@ plt.show = _original_plt_show
       
       // Log everything to console for debugging
       if (stdout) {
-        console.log('[STDOUT]', stdout);
+        logger.app.info('[STDOUT]', stdout);
       }
       if (stderr) {
-        console.log('[STDERR]', stderr);
+        logger.app.info('[STDERR]', stderr);
       }
       if (errorMessage) {
-        console.log('[ERROR MESSAGE]', errorMessage);
+        logger.app.info('[ERROR MESSAGE]', errorMessage);
       }
       if (errorTraceback) {
-        console.log('[ERROR TRACEBACK]', errorTraceback);
+        logger.app.info('[ERROR TRACEBACK]', errorTraceback);
       }
-      console.log('[PLOT IMAGES COUNT]', plotImages.length);
+      logger.app.info('[PLOT IMAGES COUNT]', plotImages.length);
       
       // Display the complete output with detailed error information
       let displayOutput = '';
@@ -705,7 +706,7 @@ plt.show = _original_plt_show
         }
         
         setHasExecutionError(true);
-        console.log('[DEBUG] Execution failed with detailed error');
+        logger.app.info('[DEBUG] Execution failed with detailed error');
       } else {
         // Successful execution
         displayOutput = '';
@@ -739,14 +740,14 @@ plt.show = _original_plt_show
         }
         
         setHasExecutionError(false);
-        console.log('[DEBUG] Execution completed successfully');
+        logger.app.info('[DEBUG] Execution completed successfully');
       }
       
       setCodeOutput(displayOutput);
       
     } catch (error) {
       // Fallback for JavaScript/Pyodide errors (not Python execution errors)
-      console.error('[DEBUG] JavaScript/Pyodide error:', error);
+      logger.app.error('[DEBUG] JavaScript/Pyodide error:', error);
       
       let detailedError = `=== SYSTEM ERROR ===\n\n`;
       
@@ -779,7 +780,7 @@ else:
             detailedError += `\nPython Traceback:\n${pythonTraceback.join('')}`;
           }
         } catch (tbError) {
-          console.log('[DEBUG] Could not retrieve Python traceback:', tbError);
+          logger.app.info('[DEBUG] Could not retrieve Python traceback:', tbError);
         }
       }
       
@@ -791,7 +792,7 @@ else:
       setHasExecutionError(true);
     } finally {
       setIsExecuting(false);
-      console.log('[DEBUG] Execution phase completed');
+      logger.app.info('[DEBUG] Execution phase completed');
     }
   };
 
@@ -813,9 +814,9 @@ else:
           }
         }));
         
-        console.log('[DEBUG] Successfully loaded initial code from file');
+        logger.app.info('[DEBUG] Successfully loaded initial code from file');
       } catch (error) {
-        console.error('[DEBUG] Error loading initial code:', error);
+        logger.app.error('[DEBUG] Error loading initial code:', error);
       } finally {
         setIsLoadingCode(false);
       }
@@ -845,14 +846,14 @@ else:
 
     async function initPyodide() {
       try {
-        console.log('Loading Pyodide...');
+        logger.app.info('Loading Pyodide...');
         await loadPyodideScript();
         const loadPyodide = window.loadPyodide;
         const pyodideInstance = await loadPyodide({
           indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/"
         });
         
-        console.log('Loading Python packages...');
+        logger.app.info('Loading Python packages...');
         
         // Load required packages
         await pyodideInstance.loadPackage([
@@ -1094,9 +1095,9 @@ else:
         `);
         
         setPyodide(pyodideInstance);
-        console.log('Pyodide and packages loaded successfully!');
+        logger.app.info('Pyodide and packages loaded successfully!');
       } catch (error) {
-        console.error('Error initializing Pyodide:', error);
+        logger.app.error('Error initializing Pyodide:', error);
       }
     }
     initPyodide();
@@ -1130,7 +1131,7 @@ else:
       if (!response.ok) {
         // If API endpoint doesn't exist or has server error, use mock response for testing
         if (response.status === 404 || response.status === 500) {
-          console.warn(`API error (${response.status}), falling back to mock response`);
+          logger.app.warn(`API error (${response.status}), falling back to mock response`);
           return getMockValidationResponse(question, answer, userCode);
         }
         throw new Error(`API call failed: ${response.status}`);
@@ -1146,10 +1147,10 @@ else:
       
       return data.explanation || 'Validation completed successfully.';
     } catch (error) {
-      console.error('API validation error:', error);
+      logger.app.error('API validation error:', error);
       // If it's a network error, 404, or 500 error, provide mock response for testing
       if (error.message.includes('404') || error.message.includes('500') || error.name === 'TypeError') {
-        console.warn('Using mock response due to API error:', error.message);
+        logger.app.warn('Using mock response due to API error:', error.message);
         return getMockValidationResponse(question, answer, userCode);
       }
       return `Unable to validate at this time. Please try again later. (${error.message})`;
@@ -1195,7 +1196,7 @@ Please go back and edit your code again.`;
       // For now, let's use mock guidance since the API might not have a guidance endpoint
       return getMockGuidanceResponse(question, userCode);
     } catch (error) {
-      console.error('Guidance API error:', error);
+      logger.app.error('Guidance API error:', error);
       return getMockGuidanceResponse(question, userCode);
     }
   };
@@ -1727,7 +1728,7 @@ ${userCode.includes('target_file') || userCode.includes('raw_data') ? '• You\'
             className="continue-button"
             onClick={() => {
               // Reset to beginning or show completion message
-              console.log('Activity completed!');
+              logger.app.info('Activity completed!');
             }}
           >
             {getButtonText()}

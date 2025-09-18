@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -104,7 +105,7 @@ export default function FixThatBiasPage() {
         });
       }, 100);
     } catch (error) {
-      console.error('Failed to initialize session:', error);
+      logger.app.error('Failed to initialize session:', error);
       setLoading(false);
     }
   };
@@ -126,7 +127,7 @@ export default function FixThatBiasPage() {
       
       // Scroll logic moved to useEffect that triggers on currentCaseStudy change
     } catch (error) {
-      console.error('Failed to load case study:', error);
+      logger.app.error('Failed to load case study:', error);
     }
   };
 
@@ -175,7 +176,7 @@ export default function FixThatBiasPage() {
         setSelectedNodeId(null);
       }
     } catch (error) {
-      console.error('Failed to submit selection:', error);
+      logger.app.error('Failed to submit selection:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
       setSelectedNodeId(null);
@@ -209,7 +210,7 @@ export default function FixThatBiasPage() {
       // Clear selection after "No Concerns" confirmation
       setSelectedNodeId(null);
     } catch (error) {
-      console.error('Failed to submit no concerns:', error);
+      logger.app.error('Failed to submit no concerns:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
     }
@@ -246,7 +247,7 @@ export default function FixThatBiasPage() {
         setSelectedSolution(null);
       }
     } catch (error) {
-      console.error('Failed to submit solution:', error);
+      logger.app.error('Failed to submit solution:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
     }

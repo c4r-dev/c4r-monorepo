@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import fs from 'fs/promises';
 import path from 'path';
 import { unlink } from 'fs';
@@ -29,7 +30,7 @@ filehandler.saveFileAsBinary = async (file) => {
     mimetype: filedata.type,
     size: filedata.size
   }
-  // console.log("binary file : ", opobj)
+  // logger.app.info("binary file : ", opobj)
   return opobj
 };
 // Delete a file

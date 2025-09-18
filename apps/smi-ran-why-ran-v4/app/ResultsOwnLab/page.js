@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 import React, { useEffect, Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -173,7 +174,7 @@ function ResultsMultipleLabs() {
   }, [selectedOption, selectedSecondOption, selectedVariableValue])
 
   const handleStudent = (variable) => {
-    // console.log(variable, 'is variable')
+    // logger.app.info(variable, 'is variable')
     if (groupDetails.students && groupDetails.students.length > 0) {
       groupDetails.students.map((student) => {
         if (student.assignedVariable === variable) {

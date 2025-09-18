@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -46,7 +47,7 @@ const ExploreChoices = () => {
         setAllData(data ? [data] : []) // Store the dataset as an array
         setSessionData(data)
       } catch (error) {
-        console.error('Error fetching session data:', error)
+        logger.app.error('Error fetching session data:', error)
       }
     }
 

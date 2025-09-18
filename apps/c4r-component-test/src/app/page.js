@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import Image from "next/image";
@@ -40,7 +41,7 @@ export default function Home() {
                 {/* Buttons */}
                 <div className="button-group">
                     <CustomButton
-                        onClick={() => console.log("Clear clicked")}
+                        onClick={() => logger.app.info("Clear clicked")}
                         ariaLabel="Clear button"
                         disabled={false}
                         variant="grey"
@@ -54,7 +55,7 @@ export default function Home() {
                     </CustomButton>
 
                     <CustomButton
-                        onClick={() => console.log("Test clicked")}
+                        onClick={() => logger.app.info("Test clicked")}
                         ariaLabel="Test button"
                         disabled={false}
                         variant="purple"
@@ -86,7 +87,7 @@ export default function Home() {
                     <textarea
                         className="styled-textarea"
                         placeholder="Enter text"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => logger.app.info(e.target.value)}
                     />
                 </div>
             </div>

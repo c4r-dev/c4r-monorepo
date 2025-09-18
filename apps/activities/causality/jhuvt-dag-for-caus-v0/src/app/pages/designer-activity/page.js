@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
@@ -698,7 +699,7 @@ function DesignerActivityPage({ sessionIdFromUrl }) {
       });
     } catch (e) {
       // non-blocking
-      console.error('Failed to submit design to server', e);
+      logger.app.error('Failed to submit design to server', e);
     }
 
     // Add to submitted designs (local preview)
@@ -725,7 +726,7 @@ function DesignerActivityPage({ sessionIdFromUrl }) {
       setSubmittedDesigns(Array.isArray(data) ? data : []);
     } catch (e) {
       // leave prior state
-      console.error(e);
+      logger.app.error(e);
     } finally {
       setIsLoadingSubmissions(false);
     }

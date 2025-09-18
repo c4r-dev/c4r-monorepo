@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, Suspense } from 'react'
@@ -119,8 +120,8 @@ function RandomizeActivityVariables(props) {
       .then((response) => {
         response.json()
       })
-      .then((data) => console.log(data))
-      .catch((error) => console.error('Error:', error))
+      .then((data) => logger.app.info(data))
+      .catch((error) => logger.app.error('Error:', error))
   }, [selectedGroup])
 
   const handleVariablesPage = async (e) => {
@@ -136,7 +137,7 @@ function RandomizeActivityVariables(props) {
       msg ===
       `Group with grp_id ${selectedGroup} and __v ${v} has already been visited.`
     ) {
-      console.log('grp id already exists')
+      logger.app.info('grp id already exists')
       if (v < 7) {
         setSelectedVariable(variables[v].variableName)
       } else {
@@ -156,7 +157,7 @@ function RandomizeActivityVariables(props) {
   }
 
   const handleGuideBtn = () => {
-    console.log('Guide button clicked')
+    logger.app.info('Guide button clicked')
     openModal(true)
   }
 

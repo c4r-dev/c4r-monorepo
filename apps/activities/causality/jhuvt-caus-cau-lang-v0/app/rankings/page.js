@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -119,14 +120,14 @@ const CausalRankingPage = () => {
 
   // Enhanced function to update comparison matrix with debugging
   const updateComparisonMatrix = (rankedCards) => {
-    console.log('=== UPDATING MATRIX ===');
-    console.log('Round:', currentRound + 1);
-    console.log('User ranking:', rankedCards.map(card => card.keyWord));
+    logger.app.info('=== UPDATING MATRIX ===');
+    logger.app.info('Round:', currentRound + 1);
+    logger.app.info('User ranking:', rankedCards.map(card => card.keyWord));
     
     const newMatrix = comparisonMatrix.map(row => [...row]);
     const wordIndices = rankedCards.map(card => allKeyWords.indexOf(card.keyWord));
     
-    console.log('Word indices:', wordIndices);
+    logger.app.info('Word indices:', wordIndices);
     
     // Track each pairwise comparison
     const comparisons = [];
@@ -155,8 +156,8 @@ const CausalRankingPage = () => {
       }
     }
     
-    console.log('Pairwise comparisons:', comparisons);
-    console.log('Matrix updates:', matrixUpdates);
+    logger.app.info('Pairwise comparisons:', comparisons);
+    logger.app.info('Matrix updates:', matrixUpdates);
     
     // Store round history for debugging
     const roundData = {
@@ -169,7 +170,7 @@ const CausalRankingPage = () => {
     setRoundHistory(prev => [...prev, roundData]);
     setComparisonMatrix(newMatrix);
     
-    console.log('Updated matrix:', newMatrix);
+    logger.app.info('Updated matrix:', newMatrix);
   };
 
   // Calculate final rankings based on matrix row sums
@@ -180,7 +181,7 @@ const CausalRankingPage = () => {
       index: index
     }));
     
-    console.log('Row sums (total wins):', rowSums);
+    logger.app.info('Row sums (total wins):', rowSums);
     
     // Sort by score (descending) - higher score means more causal
     return rowSums.sort((a, b) => b.score - a.score);
@@ -188,7 +189,7 @@ const CausalRankingPage = () => {
 
   // Debug function to show matrix
   const showMatrixDebug = () => {
-    console.log('=== CURRENT MATRIX STATE ===');
+    logger.app.info('=== CURRENT MATRIX STATE ===');
     console.table(comparisonMatrix);
     
     // Show row sums
@@ -197,7 +198,7 @@ const CausalRankingPage = () => {
       wins: row.reduce((sum, val) => sum + val, 0)
     }));
     
-    console.log('Row sums (total wins):', rowSums);
+    logger.app.info('Row sums (total wins):', rowSums);
     
     // Show matrix as formatted table
     const matrixDisplay = comparisonMatrix.map((row, i) => {
@@ -214,7 +215,7 @@ const CausalRankingPage = () => {
 
   // Test function to verify specific scenarios
   const testRankingScenario = () => {
-    console.log('=== TESTING RANKING SCENARIO ===');
+    logger.app.info('=== TESTING RANKING SCENARIO ===');
     
     // Reset matrix for testing
     const testMatrix = Array(20).fill().map(() => Array(20).fill(0));
@@ -226,16 +227,16 @@ const CausalRankingPage = () => {
       ['causes', 'leads to', 'influences', 'triggers']
     ];
     
-    console.log('Test rounds:', testRounds);
+    logger.app.info('Test rounds:', testRounds);
     
     testRounds.forEach((ranking, roundIndex) => {
-      console.log(`Processing test round ${roundIndex + 1}:`, ranking);
+      logger.app.info(`Processing test round ${roundIndex + 1}:`, ranking);
       const indices = ranking.map(word => allKeyWords.indexOf(word));
       
       for (let i = 0; i < indices.length; i++) {
         for (let j = i + 1; j < indices.length; j++) {
           testMatrix[indices[i]][indices[j]]++;
-          console.log(`${ranking[i]} beats ${ranking[j]} -> matrix[${indices[i]}][${indices[j]}]++`);
+          logger.app.info(`${ranking[i]} beats ${ranking[j]} -> matrix[${indices[i]}][${indices[j]}]++`);
         }
       }
     });
@@ -246,7 +247,7 @@ const CausalRankingPage = () => {
       wins: row.reduce((sum, val) => sum + val, 0)
     })).filter(item => item.wins > 0).sort((a, b) => b.wins - a.wins);
     
-    console.log('Test results:', testRowSums);
+    logger.app.info('Test results:', testRowSums);
   };
 
   const currentCards = allCards[currentRound] || [];
@@ -386,7 +387,7 @@ const CausalRankingPage = () => {
         <Button 
           variant="outlined" 
           size="small" 
-          onClick={() => console.log('Round History:', roundHistory)}
+          onClick={() => logger.app.info('Round History:', roundHistory)}
           sx={{ textTransform: 'none' }}
         >
           Show History
@@ -475,9 +476,9 @@ const CausalRankingPage = () => {
                 variant="outlined" 
                 size="small" 
                 onClick={() => {
-                  console.log('=== FINAL RESULTS DEBUG ===');
-                  console.log('Final rankings:', finalRankings);
-                  console.log('Complete round history:', roundHistory);
+                  logger.app.info('=== FINAL RESULTS DEBUG ===');
+                  logger.app.info('Final rankings:', finalRankings);
+                  logger.app.info('Complete round history:', roundHistory);
                   showMatrixDebug();
                 }}
                 sx={{ textTransform: 'none', mb: 2 }}

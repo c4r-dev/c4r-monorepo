@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import hljs from 'highlight.js/lib/core';
@@ -263,7 +264,7 @@ export const TextareaHighlight = ({
       const result = hljs.highlight(value, { language: 'python' });
       return result.value;
     } catch (error) {
-      console.warn('Syntax highlighting failed:', error);
+      logger.app.warn('Syntax highlighting failed:', error);
       return value; // Fallback to plain text
     }
   }, [value]);
@@ -340,9 +341,9 @@ export const TextareaHighlight = ({
   };
 
   const handleMouseEnter = (lineNumber, event) => {
-    // console.log('Mouse enter triggered for line:', lineNumber);
+    // logger.app.info('Mouse enter triggered for line:', lineNumber);
     if (isLineInHardcodedRegion(lineNumber) && hardcodedRegion?.tooltipText) {
-      // console.log('Showing tooltip for hardcoded region');
+      // logger.app.info('Showing tooltip for hardcoded region');
       const rect = event.currentTarget.getBoundingClientRect();
       setTooltip({
         visible: true,
@@ -354,7 +355,7 @@ export const TextareaHighlight = ({
   };
 
   const handleMouseLeave = () => {
-    // console.log('Mouse leave triggered');
+    // logger.app.info('Mouse leave triggered');
     setTooltip({ visible: false, x: 0, y: 0, text: '' });
   };
 
@@ -376,10 +377,10 @@ export const TextareaHighlight = ({
     
     const lineNumber = Math.floor((mouseY + scrollTop - paddingTop) / lineHeight) + 1;
     
-    // console.log('Textarea mouse move - Line:', lineNumber, 'Is hardcoded:', isLineInHardcodedRegion(lineNumber));
+    // logger.app.info('Textarea mouse move - Line:', lineNumber, 'Is hardcoded:', isLineInHardcodedRegion(lineNumber));
 
     if (isLineInHardcodedRegion(lineNumber) && hardcodedRegion?.tooltipText) {
-      // console.log('Showing tooltip for hardcoded region from textarea');
+      // logger.app.info('Showing tooltip for hardcoded region from textarea');
       
       // Calculate position above the highlighted region
       const regionStartY = (hardcodedRegion.startLine - 1) * lineHeight + paddingTop - scrollTop;
@@ -398,7 +399,7 @@ export const TextareaHighlight = ({
   };
 
   const handleTextareaMouseLeave = () => {
-    // console.log('Textarea mouse leave');
+    // logger.app.info('Textarea mouse leave');
     setTooltip({ visible: false, x: 0, y: 0, text: '' });
   };
 

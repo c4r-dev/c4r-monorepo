@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 import React from 'react'
 import * as d3 from 'd3'
 // import data from "../../Data/data.json";
@@ -107,7 +108,7 @@ function TreatmentPlot({
       .enter()
       .append('circle')
       .attr('cx', (d, i) => {
-        console.log("d and i iss" + JSON.stringify(d), i)
+        logger.app.info("d and i iss" + JSON.stringify(d), i)
         const xJitterArray = xJitterPositions[d.treatment] || []
         return (
           xScale(d.treatment) +
@@ -220,7 +221,7 @@ function TreatmentPlot({
       .call(d3.axisBottom(xScale))
       .selectAll('text') // Select all text elements in the x-axis
       .text((d) => {
-        console.log("d isss" + d)
+        logger.app.info("d isss" + d)
         if (d === 'In-person treatment') return 'Control' // Change Label
         if (d === 'Virtual treatment') return 'Enrichment' // Change Label
         return d // Default

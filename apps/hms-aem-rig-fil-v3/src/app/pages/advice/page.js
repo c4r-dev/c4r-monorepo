@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { useState, Suspense, useEffect } from "react";
@@ -45,7 +46,7 @@ const AdvicePage = () => {
                 // data should now be an array of submissions 
                 setAdviceSubmissions(Array.isArray(data) ? data : []);
             } catch (error) {
-                console.error("Failed to fetch Advice Data:", error);
+                logger.app.error("Failed to fetch Advice Data:", error);
             }
         };
 

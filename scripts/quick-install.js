@@ -10,6 +10,7 @@
 const { execSync, spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 // Colors for console output
 const colors = {
@@ -23,7 +24,7 @@ const colors = {
 };
 
 function log(color, message) {
-  console.log(`${colors[color]}${message}${colors.reset}`);
+  logger.app.info(`${colors[color]}${message}${colors.reset}`);
 }
 
 function checkRequirements() {
@@ -151,7 +152,7 @@ CMD ["npm", "run", "local"]`;
 }
 
 async function main() {
-  console.log(`${colors.bold}${colors.blue}🎓 C4R Quick Install${colors.reset}\n`);
+  logger.app.info(`${colors.bold}${colors.blue}🎓 C4R Quick Install${colors.reset}\n`);
   
   checkRequirements();
   optimizeNpmSettings();

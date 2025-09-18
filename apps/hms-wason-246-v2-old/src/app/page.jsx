@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -73,7 +74,7 @@ export function InputContent() {
 
     const searchParams = useSearchParams();
     const ruleID = searchParams.get("ruleID");
-    console.log("ruleID:", ruleID);
+    logger.app.info("ruleID:", ruleID);
 
     // const [open, setOpen] = React.useState(true);
     // const handleOpen = () => setOpen(true);
@@ -86,7 +87,7 @@ export function InputContent() {
     const ruleNumber = ruleID === "0" 
         ? Math.floor(Math.random() * 6) + 1 
         : ruleID ? parseInt(ruleID) : 1;
-    console.log("ruleNumber:", ruleNumber);
+    logger.app.info("ruleNumber:", ruleNumber);
     // Map the imports from sequenceChecks.js to a mapping, such that the key is the rule number and the value is the function
     const ruleFunctions = {
         1: isIncreasing,
@@ -97,7 +98,7 @@ export function InputContent() {
         6: isArithmeticSequence,
     };
     const ruleFunction = ruleFunctions[ruleNumber];
-    console.log("ruleFunction:", ruleFunction);
+    logger.app.info("ruleFunction:", ruleFunction);
 
     // Map each rule function to a string that describes the rule
     const ruleDescriptions = {
@@ -159,7 +160,7 @@ export function InputContent() {
 
         // Convert all elements of testSequence to integers
         const testSequenceInt = testSequence.map(Number);
-        console.log("testSequenceInt:", testSequenceInt);
+        logger.app.info("testSequenceInt:", testSequenceInt);
 
         // Sequence matching logic
         const isMatch = ruleFunction(
@@ -167,7 +168,7 @@ export function InputContent() {
             testSequenceInt[1],
             testSequenceInt[2]
         );
-        console.log("isMatch", isMatch);
+        logger.app.info("isMatch", isMatch);
 
         const newTest = {
             number: currentTestNumber.toString().padStart(2, "0"),
@@ -263,15 +264,15 @@ export function InputContent() {
             });
 
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
                 loadReviewPage(guessID);
             } else {
-                console.log("Response not ok.");
+                logger.app.info("Response not ok.");
                 throw new Error("Response not ok.");
             }
         } catch (error) {
-            console.log("Error in fetch");
-            console.log(error);
+            logger.app.info("Error in fetch");
+            logger.app.info(error);
         }
     };
 

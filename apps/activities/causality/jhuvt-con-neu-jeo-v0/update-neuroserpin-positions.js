@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 #!/usr/bin/env node
 
 /**
@@ -40,23 +41,23 @@ const positionUpdates = {
 
 async function updateNeuroserpin6Positions() {
   try {
-    console.log('Connecting to MongoDB...');
+    logger.app.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Connected to MongoDB');
+    logger.app.info('✅ Connected to MongoDB');
 
     // Find the Neuroserpin6 document by exact ID
-    console.log('Searching for Neuroserpin6 document...');
+    logger.app.info('Searching for Neuroserpin6 document...');
     const flowchartDoc = await CustomFlowchart.findById("682f33b87a6b41356cee7202");
 
     if (!flowchartDoc) {
-      console.log('❌ Neuroserpin6 document not found');
-      console.log('Available documents:');
+      logger.app.info('❌ Neuroserpin6 document not found');
+      logger.app.info('Available documents:');
       const allDocs = await CustomFlowchart.find({}, 'name');
-      allDocs.forEach(doc => console.log('  -', doc.name));
+      allDocs.forEach(doc => logger.app.info('  -', doc.name));
       return;
     }
 
-    console.log('✅ Found document:', flowchartDoc.name);
+    logger.app.info('✅ Found document:', flowchartDoc.name);
 
     // Parse the flowchart JSON
     const flowchartData = JSON.parse(flowchartDoc.flowchart);
@@ -67,32 +68,32 @@ async function updateNeuroserpin6Positions() {
       if (positionUpdates[node.id]) {
         const oldPosition = { ...node.position };
         node.position = positionUpdates[node.id];
-        console.log(`📍 Updated ${node.id}: (${oldPosition.x}, ${oldPosition.y}) → (${node.position.x}, ${node.position.y})`);
+        logger.app.info(`📍 Updated ${node.id}: (${oldPosition.x}, ${oldPosition.y}) → (${node.position.x}, ${node.position.y})`);
         updatedCount++;
       }
     });
 
     if (updatedCount === 0) {
-      console.log('ℹ️  No position updates needed');
+      logger.app.info('ℹ️  No position updates needed');
       return;
     }
 
     // Save back to MongoDB
-    console.log(`\n💾 Saving ${updatedCount} position updates...`);
+    logger.app.info(`\n💾 Saving ${updatedCount} position updates...`);
     await CustomFlowchart.findByIdAndUpdate(
       flowchartDoc._id,
       { flowchart: JSON.stringify(flowchartData) },
       { new: true }
     );
 
-    console.log('✅ Successfully updated Neuroserpin6 positions in MongoDB!');
-    console.log(`📊 Updated ${updatedCount} node positions`);
+    logger.app.info('✅ Successfully updated Neuroserpin6 positions in MongoDB!');
+    logger.app.info(`📊 Updated ${updatedCount} node positions`);
 
   } catch (error) {
-    console.error('❌ Error updating positions:', error);
+    logger.app.error('❌ Error updating positions:', error);
   } finally {
     await mongoose.disconnect();
-    console.log('🔌 Disconnected from MongoDB');
+    logger.app.info('🔌 Disconnected from MongoDB');
   }
 }
 

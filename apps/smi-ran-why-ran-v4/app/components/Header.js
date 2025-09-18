@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 // import React from 'react'
 // import Grid from '@mui/material/Grid'
 // import Image from 'next/image'
@@ -5,7 +6,7 @@
 // import { useRouter } from 'next/navigation'
 
 // function Header({oneLineText = '',isMobile=false}) {
-//   console.log(oneLineText, "this is one line text in header component")
+//   logger.app.info(oneLineText, "this is one line text in header component")
 //   const router = useRouter()
 //   const exitActivity = (e) => {
 //     e.preventDefault()
@@ -66,19 +67,19 @@ const Header = ({
 }) => {
   const handleLogoClick = () => {
     if (onLogoClick) {
-      console.log('Logo clicked, calling onLogoClick')
+      logger.app.info('Logo clicked, calling onLogoClick')
       onLogoClick()
     } else {
-      console.log('No onLogoClick function provided')
+      logger.app.info('No onLogoClick function provided')
     }
   }
 
   const handleHelpClick = () => {
     if (onHelpClick) {
-      console.log('Help clicked, calling onHelpClick')
+      logger.app.info('Help clicked, calling onHelpClick')
       onHelpClick()
     } else {
-      console.log('No onHelpClick function provided')
+      logger.app.info('No onHelpClick function provided')
     }
   }
 

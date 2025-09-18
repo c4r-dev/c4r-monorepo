@@ -1,9 +1,10 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 async function testAllActivitiesWithScreenshots() {
-    console.log('🧪 Testing all 75 activities with screenshots and activity detection...');
+    logger.app.info('🧪 Testing all 75 activities with screenshots and activity detection...');
     
     // Create screenshots directory
     const screenshotsDir = path.join(__dirname, 'activity-screenshots');
@@ -18,12 +19,12 @@ async function testAllActivitiesWithScreenshots() {
     const page = await browser.newPage();
     
     // First, get the list of all activities from the API
-    console.log('📋 Fetching activity list from server...');
+    logger.app.info('📋 Fetching activity list from server...');
     try {
         await page.goto('http://localhost:3333/api/activities', { waitUntil: 'networkidle0' });
         const activitiesJson = await page.evaluate(() => document.body.innerText);
         const activities = JSON.parse(activitiesJson);
-        console.log(`📦 Found ${activities.length} activities to test`);
+        logger.app.info(`📦 Found ${activities.length} activities to test`);
         
         let results = {
             working: [],
@@ -38,7 +39,7 @@ async function testAllActivitiesWithScreenshots() {
             const activityName = `${activity.domain}-${activity.name}`;
             
             try {
-                console.log(`\n🔗 [${i+1}/${activities.length}] Testing: ${activity.route} (${activity.type})`);
+                logger.app.info(`\n🔗 [${i+1}/${activities.length}] Testing: ${activity.route} (${activity.type})`);
                 
                 const response = await page.goto(url, { 
                     waitUntil: 'domcontentloaded', 
@@ -149,7 +150,7 @@ async function testAllActivitiesWithScreenshots() {
                         description = 'Minimal content';
                     }
                     
-                    console.log(`   ${statusIcon} ${description} - Screenshot saved`);
+                    logger.app.info(`   ${statusIcon} ${description} - Screenshot saved`);
                     
                     results[status].push({
                         activity,
@@ -168,7 +169,7 @@ async function testAllActivitiesWithScreenshots() {
                     });
                     
                 } else {
-                    console.log(`   ❌ HTTP ${response?.status() || 'Unknown'} - No screenshot`);
+                    logger.app.info(`   ❌ HTTP ${response?.status() || 'Unknown'} - No screenshot`);
                     results.failed.push({
                         activity,
                         error: `HTTP ${response?.status() || 'Unknown'}`,
@@ -177,7 +178,7 @@ async function testAllActivitiesWithScreenshots() {
                 }
                 
             } catch (error) {
-                console.log(`   ❌ Error: ${error.message}`);
+                logger.app.info(`   ❌ Error: ${error.message}`);
                 results.failed.push({
                     activity,
                     error: error.message,
@@ -189,19 +190,19 @@ async function testAllActivitiesWithScreenshots() {
         await browser.close();
         
         // Generate summary report
-        console.log('\n📊 COMPREHENSIVE ACTIVITY TEST RESULTS:');
-        console.log('=' .repeat(60));
-        console.log(`✅ Fully Working: ${results.working.length}/${activities.length}`);
-        console.log(`🔄 Partially Working: ${results.partial.length}/${activities.length}`);
-        console.log(`❌ Failed: ${results.failed.length}/${activities.length}`);
-        console.log(`📸 Screenshots taken: ${results.screenshots.length}`);
+        logger.app.info('\n📊 COMPREHENSIVE ACTIVITY TEST RESULTS:');
+        logger.app.info('=' .repeat(60));
+        logger.app.info(`✅ Fully Working: ${results.working.length}/${activities.length}`);
+        logger.app.info(`🔄 Partially Working: ${results.partial.length}/${activities.length}`);
+        logger.app.info(`❌ Failed: ${results.failed.length}/${activities.length}`);
+        logger.app.info(`📸 Screenshots taken: ${results.screenshots.length}`);
         
         const totalWorking = results.working.length + results.partial.length;
         const successRate = Math.round(totalWorking/activities.length*100);
-        console.log(`\n🎯 Overall Success Rate: ${totalWorking}/${activities.length} (${successRate}%)`);
+        logger.app.info(`\n🎯 Overall Success Rate: ${totalWorking}/${activities.length} (${successRate}%)`);
         
         // Detailed breakdown by type
-        console.log('\n📋 BY ACTIVITY TYPE:');
+        logger.app.info('\n📋 BY ACTIVITY TYPE:');
         const byType = {};
         activities.forEach(activity => {
             if (!byType[activity.type]) byType[activity.type] = { working: 0, partial: 0, failed: 0, total: 0 };
@@ -214,7 +215,7 @@ async function testAllActivitiesWithScreenshots() {
         
         Object.entries(byType).forEach(([type, counts]) => {
             const typeSuccess = Math.round((counts.working + counts.partial) / counts.total * 100);
-            console.log(`  ${type}: ${counts.working + counts.partial}/${counts.total} (${typeSuccess}%) - ✅${counts.working} 🔄${counts.partial} ❌${counts.failed}`);
+            logger.app.info(`  ${type}: ${counts.working + counts.partial}/${counts.total} (${typeSuccess}%) - ✅${counts.working} 🔄${counts.partial} ❌${counts.failed}`);
         });
         
         // Save detailed report
@@ -232,28 +233,28 @@ async function testAllActivitiesWithScreenshots() {
             details: results
         }, null, 2));
         
-        console.log(`\n📄 Detailed report saved: ${reportPath}`);
-        console.log(`📁 Screenshots directory: ${screenshotsDir}`);
+        logger.app.info(`\n📄 Detailed report saved: ${reportPath}`);
+        logger.app.info(`📁 Screenshots directory: ${screenshotsDir}`);
         
         // Show some examples
         if (results.working.length > 0) {
-            console.log(`\n✅ WORKING EXAMPLES:`);
+            logger.app.info(`\n✅ WORKING EXAMPLES:`);
             results.working.slice(0, 3).forEach(r => {
-                console.log(`  • ${r.activity.route} - ${r.description}`);
+                logger.app.info(`  • ${r.activity.route} - ${r.description}`);
             });
         }
         
         if (results.failed.length > 0) {
-            console.log(`\n❌ FAILED ACTIVITIES:`);
+            logger.app.info(`\n❌ FAILED ACTIVITIES:`);
             results.failed.slice(0, 5).forEach(r => {
-                console.log(`  • ${r.activity.route} - ${r.error || r.description}`);
+                logger.app.info(`  • ${r.activity.route} - ${r.error || r.description}`);
             });
         }
         
-        console.log('\n🎉 Activity testing complete!');
+        logger.app.info('\n🎉 Activity testing complete!');
         
     } catch (error) {
-        console.error('❌ Failed to fetch activities:', error);
+        logger.app.error('❌ Failed to fetch activities:', error);
         await browser.close();
     }
 }

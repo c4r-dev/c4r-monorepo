@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 /* eslint-disable react-hooks/rules-of-hooks */
 
@@ -134,8 +135,8 @@ function Relationship(props) {
   }
 
   useEffect(() => {
-    // console.log(selectedOption, 'the selected option is')
-    // console.log(typeof selectedOption)
+    // logger.app.info(selectedOption, 'the selected option is')
+    // logger.app.info(typeof selectedOption)
 
     let intSelectedOption = parseInt(selectedOption)
 

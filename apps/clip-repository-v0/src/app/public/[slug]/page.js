@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 import { api } from "@/utils/apibase";
 import { toast } from "react-toastify";
@@ -14,7 +15,7 @@ const Page = ({ params }) => {
         };
         try {
             const response = await api.request(config);
-            console.log(response.data.videoClipLists);
+            logger.app.info(response.data.videoClipLists);
             setImageData(response?.data?.videoClipLists?.thumbnail?.data);
         } catch (error) {
             // if (error.response.status == 401) {
@@ -29,7 +30,7 @@ const Page = ({ params }) => {
             //     });
             // }
             // router.push("/dashboard/user");
-            console.error(error);
+            logger.app.error(error);
         }
     };
     useEffect(() => {

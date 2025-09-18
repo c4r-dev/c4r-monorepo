@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 /*
 This is a popup that appears at the start of the activity. 
 
@@ -67,7 +68,7 @@ const BiasConfigPopup = ({
       await navigator.clipboard.writeText(sharingURL);
       setShowCopyAlert(true);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.app.error('Failed to copy:', err);
     }
   };
 

@@ -3,6 +3,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 // Get all activity routes from the server logs or discover them
 const ACTIVITY_ROUTES = [
@@ -97,18 +98,18 @@ class ActivityTester {
     }
 
     async initialize() {
-        console.log('🚀 Initializing comprehensive activity tester...');
+        logger.app.info('🚀 Initializing comprehensive activity tester...');
         this.browser = await puppeteer.launch({
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             timeout: this.timeout
         });
-        console.log('✅ Browser initialized');
+        logger.app.info('✅ Browser initialized');
     }
 
     async testActivity(route) {
         const activityName = route.split('/').pop();
-        console.log(`\n🧪 Testing: ${route}`);
+        logger.app.info(`\n🧪 Testing: ${route}`);
         
         const page = await this.browser.newPage();
         const result = {
@@ -210,16 +211,16 @@ class ActivityTester {
                 result.warnings.push('Slow loading (>10s)');
             }
 
-            console.log(`   Status: ${this.getStatusEmoji(result.status)} ${result.status} (${result.mode})`);
-            console.log(`   Load time: ${result.loadTime}ms`);
+            logger.app.info(`   Status: ${this.getStatusEmoji(result.status)} ${result.status} (${result.mode})`);
+            logger.app.info(`   Load time: ${result.loadTime}ms`);
             if (result.warnings.length > 0) {
-                console.log(`   Warnings: ${result.warnings.join(', ')}`);
+                logger.app.info(`   Warnings: ${result.warnings.join(', ')}`);
             }
 
         } catch (error) {
             result.status = 'error';
             result.errors.push(error.message);
-            console.log(`   Status: ❌ ERROR - ${error.message}`);
+            logger.app.info(`   Status: ❌ ERROR - ${error.message}`);
         } finally {
             await page.close();
         }
@@ -240,7 +241,7 @@ class ActivityTester {
     }
 
     async testAllActivities() {
-        console.log(`\n🎯 Testing ${ACTIVITY_ROUTES.length} activities...\n`);
+        logger.app.info(`\n🎯 Testing ${ACTIVITY_ROUTES.length} activities...\n`);
         
         for (const route of ACTIVITY_ROUTES) {
             const result = await this.testActivity(route);
@@ -252,9 +253,9 @@ class ActivityTester {
     }
 
     generateReport() {
-        console.log('\n' + '='.repeat(80));
-        console.log('📊 COMPREHENSIVE ACTIVITY TEST RESULTS');
-        console.log('='.repeat(80));
+        logger.app.info('\n' + '='.repeat(80));
+        logger.app.info('📊 COMPREHENSIVE ACTIVITY TEST RESULTS');
+        logger.app.info('='.repeat(80));
 
         // Group by status
         const grouped = {};
@@ -264,48 +265,48 @@ class ActivityTester {
         });
 
         // Summary stats
-        console.log('\n📈 SUMMARY:');
+        logger.app.info('\n📈 SUMMARY:');
         Object.keys(grouped).forEach(status => {
             const count = grouped[status].length;
             const emoji = this.getStatusEmoji(status);
-            console.log(`   ${emoji} ${status.toUpperCase()}: ${count} activities`);
+            logger.app.info(`   ${emoji} ${status.toUpperCase()}: ${count} activities`);
         });
 
         // Detailed breakdown by category
-        console.log('\n📋 BY CATEGORY:');
+        logger.app.info('\n📋 BY CATEGORY:');
         const categories = ['causality', 'randomization', 'coding-practices', 'collaboration', 'tools'];
         
         categories.forEach(category => {
             const categoryResults = this.results.filter(r => r.route.includes(category));
-            console.log(`\n📁 ${category.toUpperCase()} (${categoryResults.length} activities):`);
+            logger.app.info(`\n📁 ${category.toUpperCase()} (${categoryResults.length} activities):`);
             
             categoryResults.forEach(result => {
                 const emoji = this.getStatusEmoji(result.status);
                 const warnings = result.warnings.length > 0 ? ` (${result.warnings.join(', ')})` : '';
-                console.log(`   ${emoji} ${result.route} - ${result.status}${warnings}`);
+                logger.app.info(`   ${emoji} ${result.route} - ${result.status}${warnings}`);
             });
         });
 
         // Problems that need fixing
-        console.log('\n🔧 NEEDS ATTENTION:');
+        logger.app.info('\n🔧 NEEDS ATTENTION:');
         const problemResults = this.results.filter(r => 
             r.status === 'error' || r.status === 'broken' || r.status === 'fallback'
         );
         
         if (problemResults.length === 0) {
-            console.log('   🎉 All activities are working properly!');
+            logger.app.info('   🎉 All activities are working properly!');
         } else {
             problemResults.forEach(result => {
-                console.log(`   ❌ ${result.route}`);
-                console.log(`      Status: ${result.status} (${result.mode})`);
+                logger.app.info(`   ❌ ${result.route}`);
+                logger.app.info(`      Status: ${result.status} (${result.mode})`);
                 if (result.errors.length > 0) {
-                    console.log(`      Errors: ${result.errors.join(', ')}`);
+                    logger.app.info(`      Errors: ${result.errors.join(', ')}`);
                 }
                 if (result.warnings.length > 0) {
-                    console.log(`      Warnings: ${result.warnings.join(', ')}`);
+                    logger.app.info(`      Warnings: ${result.warnings.join(', ')}`);
                 }
                 if (result.failedRequests.length > 0) {
-                    console.log(`      Failed requests: ${result.failedRequests.length}`);
+                    logger.app.info(`      Failed requests: ${result.failedRequests.length}`);
                 }
             });
         }
@@ -313,7 +314,7 @@ class ActivityTester {
         // Save detailed results to file
         const reportPath = path.join(__dirname, 'activity-test-results.json');
         fs.writeFileSync(reportPath, JSON.stringify(this.results, null, 2));
-        console.log(`\n💾 Detailed results saved to: ${reportPath}`);
+        logger.app.info(`\n💾 Detailed results saved to: ${reportPath}`);
 
         return this.results;
     }
@@ -321,7 +322,7 @@ class ActivityTester {
     async cleanup() {
         if (this.browser) {
             await this.browser.close();
-            console.log('\n🧹 Browser closed');
+            logger.app.info('\n🧹 Browser closed');
         }
     }
 }
@@ -337,15 +338,15 @@ async function main() {
         // Exit with error code if there are broken activities
         const brokenCount = results.filter(r => r.status === 'error' || r.status === 'broken').length;
         if (brokenCount > 0) {
-            console.log(`\n❌ Testing complete: ${brokenCount} activities need fixes`);
+            logger.app.info(`\n❌ Testing complete: ${brokenCount} activities need fixes`);
             process.exit(1);
         } else {
-            console.log('\n✅ Testing complete: All activities working!');
+            logger.app.info('\n✅ Testing complete: All activities working!');
             process.exit(0);
         }
         
     } catch (error) {
-        console.error('💥 Test runner failed:', error);
+        logger.app.error('💥 Test runner failed:', error);
         process.exit(1);
     } finally {
         await tester.cleanup();

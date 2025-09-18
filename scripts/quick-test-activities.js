@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { ActivityTester } = require('./test-all-activities.js');
+const logger = require('../packages/logging/logger.js');
 
 // Sample activities from each category
 const SAMPLE_ROUTES = [
@@ -34,7 +35,7 @@ class QuickActivityTester extends ActivityTester {
     }
 
     async quickTest() {
-        console.log(`🎯 Quick testing ${SAMPLE_ROUTES.length} sample activities...\n`);
+        logger.app.info(`🎯 Quick testing ${SAMPLE_ROUTES.length} sample activities...\n`);
         
         for (const route of SAMPLE_ROUTES) {
             const result = await this.testActivity(route);
@@ -48,9 +49,9 @@ class QuickActivityTester extends ActivityTester {
     }
 
     generateQuickReport() {
-        console.log('\n' + '='.repeat(60));
-        console.log('📊 QUICK TEST RESULTS');
-        console.log('='.repeat(60));
+        logger.app.info('\n' + '='.repeat(60));
+        logger.app.info('📊 QUICK TEST RESULTS');
+        logger.app.info('='.repeat(60));
 
         // Group by status
         const grouped = {};
@@ -60,11 +61,11 @@ class QuickActivityTester extends ActivityTester {
         });
 
         // Summary stats
-        console.log('\n📈 SUMMARY:');
+        logger.app.info('\n📈 SUMMARY:');
         Object.keys(grouped).forEach(status => {
             const count = grouped[status].length;
             const emoji = this.getStatusEmoji(status);
-            console.log(`   ${emoji} ${status.toUpperCase()}: ${count} activities`);
+            logger.app.info(`   ${emoji} ${status.toUpperCase()}: ${count} activities`);
         });
 
         // Issues needing attention
@@ -73,11 +74,11 @@ class QuickActivityTester extends ActivityTester {
         );
         
         if (problemResults.length === 0) {
-            console.log('\n✅ All sample activities working!');
+            logger.app.info('\n✅ All sample activities working!');
         } else {
-            console.log(`\n🔧 ${problemResults.length} activities need attention:`);
+            logger.app.info(`\n🔧 ${problemResults.length} activities need attention:`);
             problemResults.forEach(result => {
-                console.log(`   ❌ ${result.route} - ${result.status}`);
+                logger.app.info(`   ❌ ${result.route} - ${result.status}`);
             });
         }
 
@@ -94,10 +95,10 @@ async function main() {
         tester.generateQuickReport();
         
         const issues = results.filter(r => r.status === 'error' || r.status === 'broken').length;
-        console.log(`\n🏁 Quick test complete: ${results.length - issues}/${results.length} working`);
+        logger.app.info(`\n🏁 Quick test complete: ${results.length - issues}/${results.length} working`);
         
     } catch (error) {
-        console.error('💥 Quick test failed:', error);
+        logger.app.error('💥 Quick test failed:', error);
     } finally {
         await tester.cleanup();
     }

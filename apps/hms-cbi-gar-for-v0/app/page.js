@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 'use client'
 import React, { useState, useEffect, Suspense } from 'react'
 import {
@@ -68,7 +69,7 @@ export default function UserChoices() {
   // Handle radio button change
   const handleChange = (event) => {
     setSelectedValue(event.target.value)
-    console.log('Selected Value:', event.target.value) // Logs the selected value
+    logger.app.info('Selected Value:', event.target.value) // Logs the selected value
   }
 
   const router = useRouter()
@@ -109,7 +110,7 @@ export default function UserChoices() {
 
   // Handle navigation back to this screen
   useEffect(() => {
-    console.log('in use effect')
+    logger.app.info('in use effect')
     const handleRouteChange = () => {
       if (sessionID) {
         fetchData(sessionID)
@@ -179,19 +180,19 @@ export default function UserChoices() {
       if (!response.ok) throw new Error(`Error: ${response.statusText}`)
 
       const data = await response.json()
-      console.log('GET API Response:', data)
+      logger.app.info('GET API Response:', data)
 
       const currentSessionData = data.find(
         (item) => item.sessionID === sessionID,
       )
       if (currentSessionData) {
-        console.log('Session data:', currentSessionData)
+        logger.app.info('Session data:', currentSessionData)
         setSelectedY(currentSessionData.xVariable || 'grade_cs65')
         setSelectedX(currentSessionData.yVariable || 'sleep')
         setFirstTimeVisit(false) // Set to false after fetching data
       }
     } catch (error) {
-      console.error('Error fetching data:', error)
+      logger.app.error('Error fetching data:', error)
     } finally {
       setLoading(false)
     }
@@ -215,7 +216,7 @@ export default function UserChoices() {
           // outcome: selectedRadioButton,
         }
 
-        console.log('POST API Request:', requestBody)
+        logger.app.info('POST API Request:', requestBody)
 
         const response = await fetch('/api/garden', {
           method: 'POST',
@@ -230,7 +231,7 @@ export default function UserChoices() {
         }
 
         const responseData = await response.json()
-        console.log('API Response:', responseData)
+        logger.app.info('API Response:', responseData)
 
         // Set firstTimeVisit to false after successful API call
         setFirstTimeVisit(false)
@@ -241,7 +242,7 @@ export default function UserChoices() {
         `/UserComparison?sessionID=${sessionID}&hypothesisNumber=${hypothesisNumber}`,
       )
     } catch (error) {
-      console.error('Error calling POST API:', error)
+      logger.app.error('Error calling POST API:', error)
     } finally {
       setLoading(false) // End loading
     }
@@ -249,7 +250,7 @@ export default function UserChoices() {
 
   // Loading screen
   if (loading) {
-    console.log('in lodading')
+    logger.app.info('in lodading')
     return (
       <Box
         display="flex"

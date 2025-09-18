@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 /*
     Confirmation Bias Activity
 
@@ -82,7 +83,7 @@ const Activity = () => {
             // setShowInputScreen(true);
             // setShowWalkthroughNextButton(false);
             setWalkthroughMode(false);
-            console.log("walkthroughMode", walkthroughMode);
+            logger.app.info("walkthroughMode", walkthroughMode);
         }
     };
 
@@ -101,17 +102,17 @@ const Activity = () => {
             loadFeedbackScreen();
             setShowInputScreen(false);
         }
-        console.log("feedbackEntries", feedbackEntries);
+        logger.app.info("feedbackEntries", feedbackEntries);
     }, [feedbackEntries]);
 
     const addEntry = (sequence, hypothesis) => {
-        console.log(`Adding entry: ${sequence}`);
+        logger.app.info(`Adding entry: ${sequence}`);
 
         // set hasSubmittedFirstHypothesis to true
         setHasSubmittedFirstHypothesis(true);
 
         const sequenceArray = sequence.split(",").map(Number);
-        console.log(sequenceArray);
+        logger.app.info(sequenceArray);
         const matchesRule = isIncreasing(
             sequenceArray[0],
             sequenceArray[1],
@@ -142,7 +143,7 @@ const Activity = () => {
 
         handleSubmit();
 
-        console.log("openComparisonPanel");
+        logger.app.info("openComparisonPanel");
         setShowFeedbackScreen(false);
         setShowComparisonPanel(true);
     };
@@ -150,9 +151,9 @@ const Activity = () => {
     // Use effect for comparisonData
     useEffect(() => {
         if (feedbackEntries.length > 0) {
-            console.log("calculating percentDisprove");
-            console.log("entries", entries);
-            console.log("feedbackEntries", feedbackEntries);
+            logger.app.info("calculating percentDisprove");
+            logger.app.info("entries", entries);
+            logger.app.info("feedbackEntries", feedbackEntries);
 
             /*
             feedbackEntries = [
@@ -169,8 +170,8 @@ const Activity = () => {
                     return acc + (entry ? 1 : 0);
                 }, 0) / feedbackEntries.length;
 
-            console.log("numGuesses", numGuesses);
-            console.log("percentDisprove", percentDisprove);
+            logger.app.info("numGuesses", numGuesses);
+            logger.app.info("percentDisprove", percentDisprove);
             setPercentDisprove(percentDisprove);
             setNumGuesses(numGuesses);
         }
@@ -209,19 +210,19 @@ const Activity = () => {
                 body: JSON.stringify(submitBody),
             });
 
-            console.log("response:", response);
+            logger.app.info("response:", response);
 
             if (response.ok) {
                 setIsSubmitting(false);
                 handleFetchFeedback();
             } else {
                 setIsSubmitting(false);
-                console.log("Submission failed");
+                logger.app.info("Submission failed");
                 throw new Error("Submission failed");
             }
         } catch (error) {
             // setSubmissionStatus('error');
-            console.log("Submission failed", error);
+            logger.app.info("Submission failed", error);
             setIsSubmitting(false);
         }
     };
@@ -234,18 +235,18 @@ const Activity = () => {
                 "https://api.sheety.co/f86a219e4c66ae9bacf55c87219398c1/wason246/table1";
             const response = await fetch(endpoint);
             const data = await response.json();
-            console.log("data", data);
+            logger.app.info("data", data);
             setIsFetchingFeedback(false);
 
             if (response.ok) {
-                console.log("Fetching user feedback successful");
+                logger.app.info("Fetching user feedback successful");
                 setComparisonData(data.table1);
             } else {
-                console.log("Fetching user feedback failed");
+                logger.app.info("Fetching user feedback failed");
                 throw new Error("Fetching feedback failed");
             }
         } catch (error) {
-            console.log("Fetching user feedback failed", error);
+            logger.app.info("Fetching user feedback failed", error);
         }
     };
 
@@ -442,11 +443,11 @@ const InputScreen = ({
             { sequence: "1,2,3", hypothesis: "" },
         ];
 
-        console.log("entries", entries);
+        logger.app.info("entries", entries);
         let sequence = entries[entries.length - 1].sequence;
         let hypothesis = entries[entries.length - 1].hypothesis;
-        console.log("sequence", sequence);
-        console.log("hypothesis", hypothesis);
+        logger.app.info("sequence", sequence);
+        logger.app.info("hypothesis", hypothesis);
 
     };
 
@@ -455,7 +456,7 @@ const InputScreen = ({
         setIsLoading(true);
         fetchDisprovalFeedback(entries)
             .then((disproveFeedback) => {
-                console.log(
+                logger.app.info(
                     "disproveFeedback from input screen",
                     disproveFeedback
                 );
@@ -464,7 +465,7 @@ const InputScreen = ({
                 setIsLoading(false);
             })
             .catch((error) => {
-                console.error("Error fetching disproval feedback:", error);
+                logger.app.error("Error fetching disproval feedback:", error);
                 alert("Failed to fetch feedback. Please try again.");
                 setIsLoading(false);
             });
@@ -659,7 +660,7 @@ const IntegerInputPanel = ({
     // Then the number 4 is typed and the focus moves to the third input. Then the number 6 is typed.
     //  This should happen so that the user can see the typing animation.
     const triggerTypingAnimation = () => {
-        console.log("triggerTypingAnimation");
+        logger.app.info("triggerTypingAnimation");
         const input1 = document.getElementById("input1");
         const input2 = document.getElementById("input2");
         const input3 = document.getElementById("input3");
@@ -725,7 +726,7 @@ const IntegerInputPanel = ({
     useEffect(() => {
         if (walkthroughMode && walkthroughPhase === 2) {
             // triggerTypingAnimation();
-            console.log("triggerTypingAnimation");
+            logger.app.info("triggerTypingAnimation");
         }
     }, [walkthroughMode, walkthroughPhase]);
 
@@ -993,9 +994,9 @@ const FeedbackPanel = ({ entries, feedbackEntries, currentEntryIndex }) => {
 };
 
 const FeedbackTable = ({ entries, feedbackEntries, currentEntryIndex }) => {
-    console.log("feedbackEntries", feedbackEntries);
-    console.log("entries", entries);
-    console.log("currentEntryIndex", currentEntryIndex);
+    logger.app.info("feedbackEntries", feedbackEntries);
+    logger.app.info("entries", entries);
+    logger.app.info("currentEntryIndex", currentEntryIndex);
 
     const hintEntry = {
         entryNumber: "--",
@@ -1010,11 +1011,11 @@ const FeedbackTable = ({ entries, feedbackEntries, currentEntryIndex }) => {
     };
 
     const interpretFeedback = (feedback) => {
-        console.log(feedback);
+        logger.app.info(feedback);
         return feedback ? "CONFIRMS" : "FALSIFIES";
     };
 
-    console.log("feedbackEntries", feedbackEntries);
+    logger.app.info("feedbackEntries", feedbackEntries);
 
     return (
         <div className="test-table">
@@ -1170,7 +1171,7 @@ const HypothesisAutotypeButton = ({
             // if (typeof advanceToNextPhase === 'function') {
             //     advanceToNextPhase();
             // } else {
-            //     console.error('advanceToNextPhase is not a function');
+            //     logger.app.error('advanceToNextPhase is not a function');
             // }
             advanceToNextPhase();
         }
@@ -1345,19 +1346,19 @@ const ComparisonPanel = ({
             setIsLoading(false);
             let tempCorrectGuesses = [];
             let tempIncorrectGuesses = [];
-            console.log("comparisonData loaded");
-            console.log("comparisonData", comparisonData);
+            logger.app.info("comparisonData loaded");
+            logger.app.info("comparisonData", comparisonData);
 
             for (let i = 0; i < comparisonData.length; i++) {
                 if (comparisonData[i].isFinalGuessCorrect) {
                     tempCorrectGuesses.push(comparisonData[i]);
-                    console.log(
+                    logger.app.info(
                         "isFinalGuessCorrect",
                         comparisonData[i].isFinalGuessCorrect
                     );
                 } else {
                     tempIncorrectGuesses.push(comparisonData[i]);
-                    console.log(
+                    logger.app.info(
                         "isFinalGuessCorrect",
                         comparisonData[i].isFinalGuessCorrect
                     );
@@ -1366,16 +1367,16 @@ const ComparisonPanel = ({
             setCorrectGuesses(tempCorrectGuesses);
             setIncorrectGuesses(tempIncorrectGuesses);
 
-            console.log("tempCorrectGuesses", tempCorrectGuesses);
-            console.log("tempIncorrectGuesses", tempIncorrectGuesses);
+            logger.app.info("tempCorrectGuesses", tempCorrectGuesses);
+            logger.app.info("tempIncorrectGuesses", tempIncorrectGuesses);
         } else {
-            console.log("comparisonData not loaded yet");
+            logger.app.info("comparisonData not loaded yet");
         }
     }, [comparisonData]);
 
     useEffect(() => {
-        console.log("correctGuesses", correctGuesses);
-        console.log("incorrectGuesses", incorrectGuesses);
+        logger.app.info("correctGuesses", correctGuesses);
+        logger.app.info("incorrectGuesses", incorrectGuesses);
     }, [correctGuesses, incorrectGuesses]);
 
     if (isLoading) {

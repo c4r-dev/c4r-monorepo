@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 // Test activities that were updated to use standardized Inter font
 const testActivities = [
@@ -7,7 +8,7 @@ const testActivities = [
 ];
 
 async function testDesignSystem() {
-    console.log('🎨 Testing standardized design system implementation...\n');
+    logger.app.info('🎨 Testing standardized design system implementation...\n');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -18,7 +19,7 @@ async function testDesignSystem() {
     
     for (let i = 0; i < testActivities.length; i++) {
         const activity = testActivities[i];
-        console.log(`[${i+1}/${testActivities.length}] Testing: ${activity}`);
+        logger.app.info(`[${i+1}/${testActivities.length}] Testing: ${activity}`);
         
         try {
             const url = `http://localhost:3333${activity}`;
@@ -35,9 +36,9 @@ async function testDesignSystem() {
                 
                 const hasInter = fontFamily.includes('Inter');
                 
-                console.log(`✅ ${activity} - ${response.status()} - "${title}"`);
-                console.log(`   Font: ${fontFamily}`);
-                console.log(`   Inter loaded: ${hasInter ? '✅ Yes' : '❌ No'}`);
+                logger.app.info(`✅ ${activity} - ${response.status()} - "${title}"`);
+                logger.app.info(`   Font: ${fontFamily}`);
+                logger.app.info(`   Inter loaded: ${hasInter ? '✅ Yes' : '❌ No'}`);
                 
                 if (hasInter) {
                     successCount++;
@@ -46,41 +47,41 @@ async function testDesignSystem() {
                     errors.push({ activity, issue: 'Inter font not detected', fontFamily });
                 }
             } else {
-                console.log(`❌ ${activity} - ${response.status()}`);
+                logger.app.info(`❌ ${activity} - ${response.status()}`);
                 errorCount++;
                 errors.push({ activity, status: response.status(), type: 'HTTP_ERROR' });
             }
         } catch (error) {
-            console.log(`❌ ${activity} - Error: ${error.message}`);
+            logger.app.info(`❌ ${activity} - Error: ${error.message}`);
             errorCount++;
             errors.push({ activity, error: error.message, type: 'EXCEPTION' });
         }
         
-        console.log('');
+        logger.app.info('');
     }
     
     await browser.close();
     
-    console.log('🎉 Design system testing complete!');
-    console.log(`📊 Results: ${successCount} success, ${errorCount} errors`);
+    logger.app.info('🎉 Design system testing complete!');
+    logger.app.info(`📊 Results: ${successCount} success, ${errorCount} errors`);
     
     if (errors.length > 0) {
-        console.log('\n❌ Issues found:');
+        logger.app.info('\n❌ Issues found:');
         errors.forEach(err => {
             if (err.type === 'HTTP_ERROR') {
-                console.log(`  - ${err.activity}: HTTP ${err.status}`);
+                logger.app.info(`  - ${err.activity}: HTTP ${err.status}`);
             } else if (err.issue) {
-                console.log(`  - ${err.activity}: ${err.issue} (Font: ${err.fontFamily})`);
+                logger.app.info(`  - ${err.activity}: ${err.issue} (Font: ${err.fontFamily})`);
             } else {
-                console.log(`  - ${err.activity}: ${err.error}`);
+                logger.app.info(`  - ${err.activity}: ${err.error}`);
             }
         });
     } else {
-        console.log('\n✅ All activities are using the standardized Inter font!');
+        logger.app.info('\n✅ All activities are using the standardized Inter font!');
     }
     
     const successRate = ((successCount / testActivities.length) * 100).toFixed(1);
-    console.log(`\n📈 Design system adoption rate: ${successRate}%`);
+    logger.app.info(`\n📈 Design system adoption rate: ${successRate}%`);
 }
 
 testDesignSystem().catch(console.error);

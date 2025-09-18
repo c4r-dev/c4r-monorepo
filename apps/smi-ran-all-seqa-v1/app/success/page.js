@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
@@ -150,7 +151,7 @@ export default function SuccessPage() {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          console.log("Raw data from API:", result.data); // Log raw data before aggregation
+          logger.app.info("Raw data from API:", result.data); // Log raw data before aggregation
 
           // Count occurrences of each selectedOption
           const countMap = { 1: 0, 2: 0, 3: 0 };
@@ -215,8 +216,8 @@ export default function SuccessPage() {
           const filtered = filterTableData(unfiltered);
           setFilteredTableData(filtered);
           
-          console.log("Unfiltered table data:", unfiltered);
-          console.log("Filtered table data:", filtered);
+          logger.app.info("Unfiltered table data:", unfiltered);
+          logger.app.info("Filtered table data:", filtered);
 
           // Correctly format aggregatedData as an array of objects with 'sequence', 'count', and 'color'
           const aggregatedData = [
@@ -225,12 +226,12 @@ export default function SuccessPage() {
             { sequence: "Sequence 3", count: countMap[3], color: "#f031dd", isRandom: true }  // Orange with isRandom flag
           ];
 
-          console.log("Aggregated data for chart:", aggregatedData); // Log after transformation
+          logger.app.info("Aggregated data for chart:", aggregatedData); // Log after transformation
 
           setData(aggregatedData);
         }
       })
-      .catch((err) => console.error("Error fetching data:", err));
+      .catch((err) => logger.app.error("Error fetching data:", err));
   }, []);
 
   const handleClick = () => {

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
@@ -70,7 +71,7 @@ const NewTask = () => {
       router.push("/");
       router.refresh();
     } catch (error) {
-      console.error(error);
+      logger.app.error(error);
     }
   };
 
@@ -83,7 +84,7 @@ const NewTask = () => {
         router.push("/");
         router.refresh();
       } catch (error) {
-        console.error(error);
+        logger.app.error(error);
       }
     }
   };
@@ -100,7 +101,7 @@ const NewTask = () => {
       router.push("/");
       router.refresh();
     } catch (error) {
-      console.error(error);
+      logger.app.error(error);
     }
   };
 

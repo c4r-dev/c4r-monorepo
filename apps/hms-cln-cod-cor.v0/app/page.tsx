@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 // app/page.tsx
 'use client';
 
@@ -140,13 +141,13 @@ export default function Home() {
     
     setUserData(updatedUserData);
     
-    console.log(`Question ${currentQuestionIndex + 1} (${currentCodeVersion} Version): Q1: ${q1Answer}, Q2: ${q2Answer} - Time: ${timeSpent}ms`);
+    logger.app.info(`Question ${currentQuestionIndex + 1} (${currentCodeVersion} Version): Q1: ${q1Answer}, Q2: ${q2Answer} - Time: ${timeSpent}ms`);
     
     // Check if this is the last question
     if (currentQuestionIndex >= shuffledData.length - 1) {
       // This is the final question - submit and show results
-      console.log('Final question completed, submitting data');
-      console.log('Complete user data:', JSON.stringify(updatedUserData, null, 2));
+      logger.app.info('Final question completed, submitting data');
+      logger.app.info('Complete user data:', JSON.stringify(updatedUserData, null, 2));
       
       try {
         const response = await fetch('/api/submissions', {
@@ -159,7 +160,7 @@ export default function Home() {
         
         if (response.ok) {
           const result = await response.json();
-          console.log('Data saved successfully:', result);
+          logger.app.info('Data saved successfully:', result);
           setIsSubmitted(true);
           setShowReviewSection(true);
           
@@ -182,10 +183,10 @@ export default function Home() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }, 100);
         } else {
-          console.error('Failed to save data');
+          logger.app.error('Failed to save data');
         }
       } catch (error) {
-        console.error('Error submitting data:', error);
+        logger.app.error('Error submitting data:', error);
       }
     } else {
       // Move to next question

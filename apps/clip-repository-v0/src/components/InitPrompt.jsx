@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -59,10 +60,10 @@ const AllViews = () => {
     try {
       const response = await api.request(config);
       setVideoClipListList(response.data);
-      console.log(response.data);
+      logger.app.info(response.data);
       setListLoading(false);
     } catch (error) {
-      console.log(error);
+      logger.app.info(error);
       setListLoading(false);
       if (error.response.status == 401) {
         toast.error(error.response.data.message + ", Login to try again.", {
@@ -79,8 +80,8 @@ const AllViews = () => {
   function toggleExpandBottomSection() {
     setExpandBottomSection(!expandBottomSection);
     if (expandBottomSection) {
-      console.log("opening expand section");
-      console.log("get filtered videos");
+      logger.app.info("opening expand section");
+      logger.app.info("get filtered videos");
     }
   }
   function copyToClipBoard(value) {

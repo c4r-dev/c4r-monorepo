@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 
 import React from 'react';
@@ -44,15 +45,15 @@ const ChocolateChart: React.FC<ChocolateChartProps> = ({ data }) => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Submission successful:', result);
+        logger.app.info('Submission successful:', result);
         // Navigate to results page
         router.push('/results');
       } else {
-        console.error('Submission failed:', await response.text());
+        logger.app.error('Submission failed:', await response.text());
         alert('Failed to submit analysis. Please try again.');
       }
     } catch (error) {
-      console.error('Error submitting analysis:', error);
+      logger.app.error('Error submitting analysis:', error);
       alert('An error occurred while submitting. Please try again.');
     } finally {
       setIsSubmitting(false);

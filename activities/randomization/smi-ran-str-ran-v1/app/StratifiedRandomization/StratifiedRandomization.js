@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -1291,7 +1292,7 @@ const StratifiedRandomization = () => {
 
       // Check for specific combinations
       if (canonicalKey === 'Size+Swimming Speed') {
-        console.log('Handling Size+Swimming Speed specifically')
+        logger.app.info('Handling Size+Swimming Speed specifically')
 
         // Use the data from combinedStratificationData
         const strata = combinedStratificationData['Size+Swimming Speed']
@@ -1330,7 +1331,7 @@ const StratifiedRandomization = () => {
         setStratifiedFish(stratified)
         setRemainingFish([])
       } else if (canonicalKey === 'Sex+Family ID') {
-        console.log('Handling Sex+Family ID specifically')
+        logger.app.info('Handling Sex+Family ID specifically')
 
         // Use the data from combinedStratificationData
         const strata = combinedStratificationData['Sex+Family ID']
@@ -1419,7 +1420,7 @@ const StratifiedRandomization = () => {
         sortedFilters.includes('Family ID') &&
         sortedFilters.includes('Size')
       ) {
-        console.log('Handling Sex+Family ID+Size specifically')
+        logger.app.info('Handling Sex+Family ID+Size specifically')
 
         // Use the data from combinedStratificationData
         const strata = combinedStratificationData['Sex+Family ID+Size']
@@ -1465,7 +1466,7 @@ const StratifiedRandomization = () => {
         sortedFilters.includes('Family ID') &&
         sortedFilters.includes('Swimming Speed')
       ) {
-        console.log('Handling Sex+Family ID+Swimming Speed specifically')
+        logger.app.info('Handling Sex+Family ID+Swimming Speed specifically')
 
         // Use the data from combinedStratificationData
         const strata =
@@ -1511,7 +1512,7 @@ const StratifiedRandomization = () => {
         sortedFilters.includes('Size') &&
         sortedFilters.includes('Swimming Speed')
       ) {
-        console.log('Handling Sex+Size+Swimming Speed specifically')
+        logger.app.info('Handling Sex+Size+Swimming Speed specifically')
 
         // Use the data from combinedStratificationData
         const strata = combinedStratificationData['Sex+Size+Swimming Speed']
@@ -1556,7 +1557,7 @@ const StratifiedRandomization = () => {
         sortedFilters.includes('Size') &&
         sortedFilters.includes('Swimming Speed')
       ) {
-        console.log('Handling Family ID+Size+Swimming Speed specifically')
+        logger.app.info('Handling Family ID+Size+Swimming Speed specifically')
 
         // Use the data from combinedStratificationData
         const strata =
@@ -1599,7 +1600,7 @@ const StratifiedRandomization = () => {
         setRemainingFish([])
       } else {
         // For other three-filter combinations, show an error or fallback
-        console.log('Other three-filter combinations not yet supported')
+        logger.app.info('Other three-filter combinations not yet supported')
         setStratifiedFish({})
         setRemainingFish(fishData)
       }
@@ -1611,7 +1612,7 @@ const StratifiedRandomization = () => {
         activeFilters.includes('Size') &&
         activeFilters.includes('Swimming Speed')
       ) {
-        console.log('Handling Sex+Family ID+Size+Swimming Speed specifically')
+        logger.app.info('Handling Sex+Family ID+Size+Swimming Speed specifically')
 
         // Use the data from combinedStratificationData
         const strata =
@@ -1656,7 +1657,7 @@ const StratifiedRandomization = () => {
         setRemainingFish([])
       } else {
         // For other four-filter combinations, show an error or fallback
-        console.log('Other four-filter combinations not yet supported')
+        logger.app.info('Other four-filter combinations not yet supported')
         setStratifiedFish({})
         setRemainingFish(fishData)
       }
@@ -1770,7 +1771,7 @@ const StratifiedRandomization = () => {
   }
 
   const handleContinue = () => {
-    console.log('Continue clicked')
+    logger.app.info('Continue clicked')
     // Navigation logic
     // router.push('/next-page');
   }
@@ -1904,7 +1905,7 @@ const StratifiedRandomization = () => {
         activeFilters.includes('Size') &&
         activeFilters.includes('Swimming Speed')
       ) {
-        console.log('Handling Sex+Family ID+Size+Swimming Speed specifically')
+        logger.app.info('Handling Sex+Family ID+Size+Swimming Speed specifically')
 
         // Use the data from combinedStratificationData
         const strata =
@@ -1949,7 +1950,7 @@ const StratifiedRandomization = () => {
         setRemainingFish([])
       } else {
         // For other four-filter combinations, show an error or fallback
-        console.log('Other four-filter combinations not yet supported')
+        logger.app.info('Other four-filter combinations not yet supported')
         setStratifiedFish({})
         setRemainingFish(fishData)
       }

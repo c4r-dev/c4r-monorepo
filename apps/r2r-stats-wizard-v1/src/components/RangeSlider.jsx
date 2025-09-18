@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Raven1 } from "../assets/ravens_dots_and_clouds/raven-phase-1.svg";
@@ -16,7 +17,7 @@ function RangeSlider({ min, max, value, step }) {
     const navigate = useNavigate();
 
     const submitButtonClick = () => {
-        console.log(inputValue);
+        logger.app.info(inputValue);
         sessionStorage.setItem("guess", inputValue);
         navigate("/showResults");
     };

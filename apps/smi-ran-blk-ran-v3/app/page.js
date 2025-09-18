@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 // File: app/page.js
 "use client"; // Needed for useState and useRouter
 
@@ -34,14 +35,14 @@ export default function Randomize1Page() {
         // Rule 1: numBlocks divisibility by numTreatments
         if (numBlocks % numTreatments !== 0) {
             errorMsg = `Balanced assignment requires numBlocks (${numBlocks}) to be perfectly divisible by numTreatments (${numTreatments}).`;
-            console.error(errorMsg);
+            logger.app.error(errorMsg);
             isValid = false;
         }
 
         // Rule 2: numBlocks divisibility by product (for grid layout)
         if (isValid && (numBlocks % product !== 0)) {
             errorMsg = `Grid layout requires numBlocks (${numBlocks}) to be perfectly divisible by (blockSize * numTreatments = ${product}).`;
-            console.error(errorMsg);
+            logger.app.error(errorMsg);
             isValid = false;
         }
 
@@ -73,12 +74,12 @@ export default function Randomize1Page() {
 
     function createBalancedBlockAssignments(numBlocks, numTreatments) {
         if (numBlockColumns === 0) {
-             console.error("Attempted to create block assignments when validation failed.");
+             logger.app.error("Attempted to create block assignments when validation failed.");
              return [];
         }
         if (numBlocks % numTreatments !== 0) { // Safeguard check
             const internalErrorMsg = `Internal Error: numBlocks (${numBlocks}) is not divisible by numTreatments (${numTreatments}).`;
-            console.error(internalErrorMsg);
+            logger.app.error(internalErrorMsg);
             setValidationError(internalErrorMsg);
             return [];
         }
@@ -114,7 +115,7 @@ export default function Randomize1Page() {
             const result = createBalancedBlockAssignments(numBlocks, numTreatments);
             setRandomization(result);
         } else {
-            console.log(`Submit clicked but validation failed: ${validationError}`);
+            logger.app.info(`Submit clicked but validation failed: ${validationError}`);
             setRandomization([]);
         }
     };

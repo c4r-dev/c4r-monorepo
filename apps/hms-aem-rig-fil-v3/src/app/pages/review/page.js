@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { useState, Suspense, useEffect } from "react";
@@ -88,7 +89,7 @@ const ReviewPage = () => {
                 const data = await response.json();
                 setSubmissionHistory(data.userInputs || []);
             } catch (error) {
-                console.error("Failed to fetch Rigor Files:", error);
+                logger.app.error("Failed to fetch Rigor Files:", error);
             }
         };
 
@@ -123,10 +124,10 @@ const ReviewPage = () => {
             if (response.ok) {
                 router.push(`/pages/advice?sessionID=${sessionID}`);
             } else {
-                console.error("Failed to submit advice");
+                logger.app.error("Failed to submit advice");
             }
         } catch (error) {
-            console.error("Error submitting advice:", error);
+            logger.app.error("Error submitting advice:", error);
         }
     };
 

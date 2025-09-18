@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../../packages/logging/logger.js');
 export const getFlowsFromDatabase = async () => {
   try {
     // Fetch the local JSON file from the public directory
@@ -7,7 +8,7 @@ export const getFlowsFromDatabase = async () => {
     }
     const flowcharts = await response.json();
     
-    console.log('Loaded flowcharts from JSON:', flowcharts);
+    logger.app.info('Loaded flowcharts from JSON:', flowcharts);
     
     // Format the data to match the structure used by the app
     const formattedFlows = flowcharts.map(flow => {
@@ -24,10 +25,10 @@ export const getFlowsFromDatabase = async () => {
       };
     });
     
-    console.log('Formatted flows:', formattedFlows);
+    logger.app.info('Formatted flows:', formattedFlows);
     return formattedFlows;
   } catch (error) {
-    console.error('Error loading flows from JSON:', error);
+    logger.app.error('Error loading flows from JSON:', error);
     return [];
   }
 };

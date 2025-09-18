@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 import React, { useState, useEffect } from 'react'
 import {
@@ -42,7 +43,7 @@ export default function RandomizationQuestionsScreen({
     if (urlUserId) {
       // If userId already exists in URL, use that
       setUserId(urlUserId)
-      console.log('Using existing userId from URL:', urlUserId)
+      logger.app.info('Using existing userId from URL:', urlUserId)
     } else {
       // Generate a new unique user ID
       const generateUserId = () => {
@@ -61,7 +62,7 @@ export default function RandomizationQuestionsScreen({
       // Replace current URL with the new one containing userId
       window.history.replaceState({}, '', currentUrl.toString())
 
-      console.log('Generated new userId and added to URL:', newUserId)
+      logger.app.info('Generated new userId and added to URL:', newUserId)
       localStorage.setItem('userId', newUserId)
     }
 
@@ -69,7 +70,7 @@ export default function RandomizationQuestionsScreen({
     const sectionParam = searchParams.get('selectedSection')
     if (sectionParam) {
       setSelectedSection(sectionParam)
-      console.log('Using selectedSection from URL:', sectionParam)
+      logger.app.info('Using selectedSection from URL:', sectionParam)
     }
   }, [searchParams])
 
@@ -121,10 +122,10 @@ export default function RandomizationQuestionsScreen({
         throw new Error(data.message || 'Failed to save question')
       }
 
-      console.log('Question saved to API:', data)
+      logger.app.info('Question saved to API:', data)
       return true
     } catch (error) {
-      console.error('Error saving question:', error)
+      logger.app.error('Error saving question:', error)
       return false
     } finally {
       setIsLoading(false)
@@ -150,7 +151,7 @@ export default function RandomizationQuestionsScreen({
 
       // Log the API result without changing the UI flow
       if (!saveSuccessful) {
-        console.warn(
+        logger.app.warn(
           'Question was added to the UI but failed to save to the API',
         )
       }
@@ -185,7 +186,7 @@ export default function RandomizationQuestionsScreen({
       const currentSectionParam = searchParams.get('selectedSection')
       // Pass along the questions, userId, and selectedSection
       onContinue(questions, userId, currentSectionParam || selectedSection)
-      console.log(
+      logger.app.info(
         'Continuing with selectedSection:',
         currentSectionParam || selectedSection,
       )

@@ -1,3 +1,4 @@
+const logger = require('../../../../logging/logger.js');
 'use client';
 
 import React from 'react';
@@ -80,7 +81,7 @@ interface C4RQuestionCardProps {
  *   status="pending"
  *   draggable
  *   showInfo
- *   onClick={() => console.log('Question clicked')}
+ *   onClick={() => logger.app.info('Question clicked')}
  *   onInfo={() => showQuestionDetails()}
  * />
  * ```

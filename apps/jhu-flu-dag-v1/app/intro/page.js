@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { Suspense, useState, useEffect } from "react";
@@ -18,7 +19,7 @@ const ContinueButton = () => {
 
   const searchParams = useSearchParams();
   const labGroupId = searchParams.get('labGroupId');
-  console.log('labGroupId', labGroupId);
+  logger.app.info('labGroupId', labGroupId);
 
   const router = useRouter();
   const onContinue = () => {

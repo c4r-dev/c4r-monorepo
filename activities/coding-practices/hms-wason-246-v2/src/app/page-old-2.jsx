@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState, Suspense } from "react";
@@ -24,7 +25,7 @@ const IntroContent = () => {
 
     const searchParams = useSearchParams();
     const ruleID = searchParams.get("ruleID");
-    console.log("ruleID:", ruleID);
+    logger.app.info("ruleID:", ruleID);
 
     // Text for the intro screen
     const introText = [

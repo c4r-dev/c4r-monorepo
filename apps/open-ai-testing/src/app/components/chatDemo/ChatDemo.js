@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState } from "react";
@@ -26,7 +27,7 @@ const ChatDemo = () => {
             const data = await res.json();
             setResponse(data.content);
         } catch (error) {
-            console.error("Error:", error);
+            logger.app.error("Error:", error);
             setResponse("An error occurred while fetching the response.");
         } finally {
             setLoading(false);

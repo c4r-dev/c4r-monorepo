@@ -1,3 +1,4 @@
+const logger = require('../../../../logging/logger.js');
 'use client';
 
 import React, { useState } from 'react';
@@ -98,7 +99,7 @@ interface C4RDataTableProps<T = any> {
  *   data={results}
  *   searchable
  *   exportable
- *   onRowClick={(row) => console.log('Clicked:', row)}
+ *   onRowClick={(row) => logger.app.info('Clicked:', row)}
  * />
  * ```
  */

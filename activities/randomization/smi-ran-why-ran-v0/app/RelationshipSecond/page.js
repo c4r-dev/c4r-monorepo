@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { Suspense, useEffect, useState } from 'react'
@@ -35,7 +36,7 @@ function RelationshipSecond(props) {
   }
 
   const renderDAG = () => {
-    //console.log('in renderDAG')
+    //logger.app.info('in renderDAG')
     if (isOptionSelected) {
       if (selectedOption === 1) {
         if (selectedSecondOption === 1) {
@@ -83,7 +84,7 @@ function RelationshipSecond(props) {
   }
 
   // useEffect(() => {
-  //   console.log(selectedOption, 'the selected option is')
+  //   logger.app.info(selectedOption, 'the selected option is')
   // }, [selectedOption])
 
   return (

@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -102,50 +103,50 @@ const CausalRankingPage = () => {
 
   // Function to fetch existing matrix from API
   const fetchExistingMatrix = async (matrixId, baseUrl = 'https://jhuvt-caus-cau-lang-v0.vercel.app') => {
-    console.log('🔍 === FETCHING EXISTING MATRIX ===');
-    console.log('📋 Matrix ID to fetch:', matrixId);
+    logger.app.info('🔍 === FETCHING EXISTING MATRIX ===');
+    logger.app.info('📋 Matrix ID to fetch:', matrixId);
     
     try {
       const url = `${baseUrl}/api/matrix?matrixId=${matrixId}`;
-      console.log('🌐 Making GET request to:', url);
+      logger.app.info('🌐 Making GET request to:', url);
       
       const response = await fetch(url);
       
-      console.log('📨 GET Response received:');
-      console.log('  - Status:', response.status);
-      console.log('  - Status Text:', response.statusText);
-      console.log('  - OK:', response.ok);
+      logger.app.info('📨 GET Response received:');
+      logger.app.info('  - Status:', response.status);
+      logger.app.info('  - Status Text:', response.statusText);
+      logger.app.info('  - OK:', response.ok);
       
       if (!response.ok) {
         if (response.status === 404) {
-          console.log('📭 Matrix not found - will create new one');
+          logger.app.info('📭 Matrix not found - will create new one');
           return null; // Matrix doesn't exist yet
         }
-        console.log('❌ GET Response not OK, attempting to parse error...');
+        logger.app.info('❌ GET Response not OK, attempting to parse error...');
         const errorData = await response.json();
-        console.log('🚫 GET Error Response Data:', errorData);
+        logger.app.info('🚫 GET Error Response Data:', errorData);
         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
       
-      console.log('✅ GET Response OK, parsing data...');
+      logger.app.info('✅ GET Response OK, parsing data...');
       const result = await response.json();
-      console.log('📊 Existing Matrix Data:');
-      console.log('  - Matrix ID:', result.matrixId);
-      console.log('  - Matrix dimensions:', result.matrix?.length + 'x' + (result.matrix?.[0]?.length || 0));
-      console.log('  - Version:', result.version);
-      console.log('  - Created by:', result.createdBy);
-      console.log('  - Last modified:', result.lastModified);
-      console.log('📋 Full Matrix Response:', result);
+      logger.app.info('📊 Existing Matrix Data:');
+      logger.app.info('  - Matrix ID:', result.matrixId);
+      logger.app.info('  - Matrix dimensions:', result.matrix?.length + 'x' + (result.matrix?.[0]?.length || 0));
+      logger.app.info('  - Version:', result.version);
+      logger.app.info('  - Created by:', result.createdBy);
+      logger.app.info('  - Last modified:', result.lastModified);
+      logger.app.info('📋 Full Matrix Response:', result);
       
       return result.matrix || null;
     } catch (error) {
-      console.log('💥 === FETCH EXISTING MATRIX FAILED ===');
-      console.error('🚨 Fetch Error Type:', error.constructor.name);
-      console.error('🚨 Fetch Error Message:', error.message);
-      console.error('🚨 Full Fetch Error:', error);
+      logger.app.info('💥 === FETCH EXISTING MATRIX FAILED ===');
+      logger.app.error('🚨 Fetch Error Type:', error.constructor.name);
+      logger.app.error('🚨 Fetch Error Message:', error.message);
+      logger.app.error('🚨 Full Fetch Error:', error);
       
       if (error instanceof TypeError) {
-        console.log('🔍 TypeError suggests network issue - check if server is running on localhost:3002');
+        logger.app.info('🔍 TypeError suggests network issue - check if server is running on localhost:3002');
       }
       
       throw error;
@@ -181,43 +182,43 @@ const CausalRankingPage = () => {
   // Initialize on component mount
   useEffect(() => {
     const initializeComponent = async () => {
-      console.log('🚀 === COMPONENT INITIALIZATION ===');
+      logger.app.info('🚀 === COMPONENT INITIALIZATION ===');
       
       try {
         // Initialize rounds data first
-        console.log('🔧 Initializing rounds data...');
+        logger.app.info('🔧 Initializing rounds data...');
         const { allRoundsCards, allRoundsKeyWords } = initializeRounds();
         setAllCards(allRoundsCards);
         setRoundKeyWords(allRoundsKeyWords);
-        console.log('✅ Rounds data initialized');
+        logger.app.info('✅ Rounds data initialized');
         
         // Try to fetch existing matrix
-        console.log('🔍 Attempting to fetch existing matrix...');
+        logger.app.info('🔍 Attempting to fetch existing matrix...');
         setIsLoadingExistingMatrix(true);
         
         const existingMatrixData = await fetchExistingMatrix(EXISTING_MATRIX_ID);
         
         if (existingMatrixData) {
-          console.log('📊 Existing matrix found and loaded');
-          console.log('📈 Existing matrix row sums:', existingMatrixData.map((row, i) => ({ 
+          logger.app.info('📊 Existing matrix found and loaded');
+          logger.app.info('📈 Existing matrix row sums:', existingMatrixData.map((row, i) => ({ 
             word: allKeyWords[i], 
             sum: row.reduce((a, b) => a + b, 0) 
           })));
           setExistingMatrix(existingMatrixData);
         } else {
-          console.log('📭 No existing matrix found - starting fresh');
+          logger.app.info('📭 No existing matrix found - starting fresh');
           // Initialize with empty 15x15 matrix
           setExistingMatrix(Array(15).fill().map(() => Array(15).fill(0)));
         }
         
       } catch (error) {
-        console.error('💥 Error during initialization:', error);
-        console.log('🔄 Falling back to empty matrix...');
+        logger.app.error('💥 Error during initialization:', error);
+        logger.app.info('🔄 Falling back to empty matrix...');
         // Fallback to empty matrix if fetch fails
         setExistingMatrix(Array(15).fill().map(() => Array(15).fill(0)));
       } finally {
         setIsLoadingExistingMatrix(false);
-        console.log('✅ Component initialization complete');
+        logger.app.info('✅ Component initialization complete');
       }
     };
 
@@ -226,14 +227,14 @@ const CausalRankingPage = () => {
 
   // Enhanced function to update comparison matrix with debugging
   const updateComparisonMatrix = (rankedCards) => {
-    console.log('=== UPDATING MATRIX ===');
-    console.log('Round:', currentRound + 1);
-    console.log('User ranking:', rankedCards.map(card => card.keyWord));
+    logger.app.info('=== UPDATING MATRIX ===');
+    logger.app.info('Round:', currentRound + 1);
+    logger.app.info('User ranking:', rankedCards.map(card => card.keyWord));
     
     const newMatrix = comparisonMatrix.map(row => [...row]);
     const wordIndices = rankedCards.map(card => allKeyWords.indexOf(card.keyWord));
     
-    console.log('Word indices:', wordIndices);
+    logger.app.info('Word indices:', wordIndices);
     
     // Track each pairwise comparison
     const comparisons = [];
@@ -262,8 +263,8 @@ const CausalRankingPage = () => {
       }
     }
     
-    console.log('Pairwise comparisons:', comparisons);
-    console.log('Matrix updates:', matrixUpdates);
+    logger.app.info('Pairwise comparisons:', comparisons);
+    logger.app.info('Matrix updates:', matrixUpdates);
     
     // Store round history for debugging
     const roundData = {
@@ -276,7 +277,7 @@ const CausalRankingPage = () => {
     setRoundHistory(prev => [...prev, roundData]);
     setComparisonMatrix(newMatrix);
     
-    console.log('Updated matrix:', newMatrix);
+    logger.app.info('Updated matrix:', newMatrix);
   };
 
   // Calculate final rankings based on matrix row sums
@@ -287,7 +288,7 @@ const CausalRankingPage = () => {
       index: index
     }));
     
-    console.log('Row sums (total wins):', rowSums);
+    logger.app.info('Row sums (total wins):', rowSums);
     
     // Sort by score (descending) - higher score means more causal
     return rowSums.sort((a, b) => b.score - a.score);
@@ -295,11 +296,11 @@ const CausalRankingPage = () => {
 
   // API call function
   const submitMatrixData = async (matrix) => {
-    console.log('🚀 === STARTING API SUBMISSION ===');
+    logger.app.info('🚀 === STARTING API SUBMISSION ===');
     
     // Use the same matrix ID to update the existing matrix
     const matrixId = EXISTING_MATRIX_ID;
-    console.log('📋 Using Matrix ID:', matrixId, '(updating existing matrix)');
+    logger.app.info('📋 Using Matrix ID:', matrixId, '(updating existing matrix)');
     
     const requestBody = {
       matrixId,
@@ -321,21 +322,21 @@ const CausalRankingPage = () => {
       changes: `Added causal ranking data from ${roundHistory.length + 1} rounds to cumulative matrix`
     };
 
-    console.log('📦 Request Body Structure:');
-    console.log('  - matrixId:', requestBody.matrixId);
-    console.log('  - matrix dimensions:', matrix.length + 'x' + (matrix[0]?.length || 0));
-    console.log('  - metadata:', requestBody.metadata);
-    console.log('  - lastModifiedBy:', requestBody.lastModifiedBy);
-    console.log('  - changes:', requestBody.changes);
-    console.log('📊 Full Request Body:', requestBody);
+    logger.app.info('📦 Request Body Structure:');
+    logger.app.info('  - matrixId:', requestBody.matrixId);
+    logger.app.info('  - matrix dimensions:', matrix.length + 'x' + (matrix[0]?.length || 0));
+    logger.app.info('  - metadata:', requestBody.metadata);
+    logger.app.info('  - lastModifiedBy:', requestBody.lastModifiedBy);
+    logger.app.info('  - changes:', requestBody.changes);
+    logger.app.info('📊 Full Request Body:', requestBody);
 
     try {
-      console.log('🌐 Making POST request to /api/matrix...');
-      console.log('📡 Request Details:');
-      console.log('  - URL: /api/matrix');
-      console.log('  - Method: POST');
-      console.log('  - Content-Type: application/json');
-      console.log('  - Body size:', JSON.stringify(requestBody).length, 'characters');
+      logger.app.info('🌐 Making POST request to /api/matrix...');
+      logger.app.info('📡 Request Details:');
+      logger.app.info('  - URL: /api/matrix');
+      logger.app.info('  - Method: POST');
+      logger.app.info('  - Content-Type: application/json');
+      logger.app.info('  - Body size:', JSON.stringify(requestBody).length, 'characters');
       
       const response = await fetch('/api/matrix', {
         method: 'POST',
@@ -345,37 +346,37 @@ const CausalRankingPage = () => {
         body: JSON.stringify(requestBody)
       });
 
-      console.log('📨 Response received:');
-      console.log('  - Status:', response.status);
-      console.log('  - Status Text:', response.statusText);
-      console.log('  - OK:', response.ok);
-      console.log('  - Headers:', Object.fromEntries(response.headers.entries()));
+      logger.app.info('📨 Response received:');
+      logger.app.info('  - Status:', response.status);
+      logger.app.info('  - Status Text:', response.statusText);
+      logger.app.info('  - OK:', response.ok);
+      logger.app.info('  - Headers:', Object.fromEntries(response.headers.entries()));
 
       if (!response.ok) {
-        console.log('❌ Response not OK, attempting to parse error...');
+        logger.app.info('❌ Response not OK, attempting to parse error...');
         const errorData = await response.json();
-        console.log('🚫 Error Response Data:', errorData);
+        logger.app.info('🚫 Error Response Data:', errorData);
         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
 
-      console.log('✅ Response OK, parsing success data...');
+      logger.app.info('✅ Response OK, parsing success data...');
       const result = await response.json();
-      console.log('🎉 SUCCESS! Cumulative matrix updated successfully:');
-      console.log('  - Matrix ID:', result.matrixId);
-      console.log('  - Version:', result.version);
-      console.log('  - Dimensions:', result.dimensions);
-      console.log('  - Last Modified:', result.lastModified);
-      console.log('📋 Full Success Response:', result);
+      logger.app.info('🎉 SUCCESS! Cumulative matrix updated successfully:');
+      logger.app.info('  - Matrix ID:', result.matrixId);
+      logger.app.info('  - Version:', result.version);
+      logger.app.info('  - Dimensions:', result.dimensions);
+      logger.app.info('  - Last Modified:', result.lastModified);
+      logger.app.info('📋 Full Success Response:', result);
       
       return result;
     } catch (error) {
-      console.log('💥 === API SUBMISSION FAILED ===');
-      console.error('🚨 Error Type:', error.constructor.name);
-      console.error('🚨 Error Message:', error.message);
-      console.error('🚨 Full Error:', error);
+      logger.app.info('💥 === API SUBMISSION FAILED ===');
+      logger.app.error('🚨 Error Type:', error.constructor.name);
+      logger.app.error('🚨 Error Message:', error.message);
+      logger.app.error('🚨 Full Error:', error);
       
       if (error instanceof TypeError) {
-        console.log('🔍 TypeError suggests network/fetch issue - check if API endpoint exists');
+        logger.app.info('🔍 TypeError suggests network/fetch issue - check if API endpoint exists');
       }
       
       throw error;
@@ -384,7 +385,7 @@ const CausalRankingPage = () => {
 
   // Debug function to show matrix
   const showMatrixDebug = () => {
-    console.log('=== CURRENT MATRIX STATE ===');
+    logger.app.info('=== CURRENT MATRIX STATE ===');
     console.table(comparisonMatrix);
     
     // Show row sums
@@ -393,7 +394,7 @@ const CausalRankingPage = () => {
       wins: row.reduce((sum, val) => sum + val, 0)
     }));
     
-    console.log('Row sums (total wins):', rowSums);
+    logger.app.info('Row sums (total wins):', rowSums);
     
     // Show matrix as formatted table
     const matrixDisplay = comparisonMatrix.map((row, i) => {
@@ -410,7 +411,7 @@ const CausalRankingPage = () => {
 
   // Test function to verify specific scenarios
   const testRankingScenario = () => {
-    console.log('=== TESTING RANKING SCENARIO ===');
+    logger.app.info('=== TESTING RANKING SCENARIO ===');
     
     // Reset matrix for testing - updated to 15x15
     const testMatrix = Array(15).fill().map(() => Array(15).fill(0));
@@ -422,16 +423,16 @@ const CausalRankingPage = () => {
       ['triggers', 'impacts', 'influences', 'induces']
     ];
     
-    console.log('Test rounds:', testRounds);
+    logger.app.info('Test rounds:', testRounds);
     
     testRounds.forEach((ranking, roundIndex) => {
-      console.log(`Processing test round ${roundIndex + 1}:`, ranking);
+      logger.app.info(`Processing test round ${roundIndex + 1}:`, ranking);
       const indices = ranking.map(word => allKeyWords.indexOf(word));
       
       for (let i = 0; i < indices.length; i++) {
         for (let j = i + 1; j < indices.length; j++) {
           testMatrix[indices[i]][indices[j]]++;
-          console.log(`${ranking[i]} beats ${ranking[j]} -> matrix[${indices[i]}][${indices[j]}]++`);
+          logger.app.info(`${ranking[i]} beats ${ranking[j]} -> matrix[${indices[i]}][${indices[j]}]++`);
         }
       }
     });
@@ -442,7 +443,7 @@ const CausalRankingPage = () => {
       wins: row.reduce((sum, val) => sum + val, 0)
     })).filter(item => item.wins > 0).sort((a, b) => b.wins - a.wins);
     
-    console.log('Test results:', testRowSums);
+    logger.app.info('Test results:', testRowSums);
   };
 
   const currentCards = allCards[currentRound] || [];
@@ -529,35 +530,35 @@ const CausalRankingPage = () => {
   };
 
   const handleSubmitAllRankings = async () => {
-    console.log('🎯 === SUBMIT ALL RANKINGS CLICKED ===');
-    console.log('📊 Current round:', currentRound + 1);
-    console.log('📋 Current round cards ranking:', currentCards.map(card => card.keyWord));
-    console.log('📈 Rounds completed so far:', roundHistory.length);
-    console.log('🔍 Current comparison matrix state:', comparisonMatrix);
+    logger.app.info('🎯 === SUBMIT ALL RANKINGS CLICKED ===');
+    logger.app.info('📊 Current round:', currentRound + 1);
+    logger.app.info('📋 Current round cards ranking:', currentCards.map(card => card.keyWord));
+    logger.app.info('📈 Rounds completed so far:', roundHistory.length);
+    logger.app.info('🔍 Current comparison matrix state:', comparisonMatrix);
     
     // Clear any previous errors
     setSubmitError(null);
     setSubmitSuccess(false);
     setIsSubmitting(true);
-    console.log('⏳ Setting isSubmitting to true...');
+    logger.app.info('⏳ Setting isSubmitting to true...');
 
     try {
-      console.log('🔄 Updating comparison matrix with final round...');
+      logger.app.info('🔄 Updating comparison matrix with final round...');
       // Update matrix with final round's ranking
       updateComparisonMatrix(currentCards);
       
       // Wait a moment for the matrix to update (since useState is async)
-      console.log('⏱️ Waiting 100ms for state update...');
+      logger.app.info('⏱️ Waiting 100ms for state update...');
       await new Promise(resolve => setTimeout(resolve, 100));
       
       // Get the updated matrix - we need to manually create it since state might not be updated yet
-      console.log('🏗️ Creating final matrix manually...');
+      logger.app.info('🏗️ Creating final matrix manually...');
       const newSessionMatrix = comparisonMatrix.map(row => [...row]);
       
       // Apply the final round's updates to the matrix
-      console.log('🔧 Applying final round updates to matrix...');
+      logger.app.info('🔧 Applying final round updates to matrix...');
       const wordIndices = currentCards.map(card => allKeyWords.indexOf(card.keyWord));
-      console.log('📍 Final round word indices:', wordIndices);
+      logger.app.info('📍 Final round word indices:', wordIndices);
       
       let updatesApplied = 0;
       for (let i = 0; i < wordIndices.length; i++) {
@@ -565,77 +566,77 @@ const CausalRankingPage = () => {
           const beforeValue = newSessionMatrix[wordIndices[i]][wordIndices[j]];
           newSessionMatrix[wordIndices[i]][wordIndices[j]]++;
           updatesApplied++;
-          console.log(`  📝 Updated matrix[${wordIndices[i]}][${wordIndices[j]}]: ${beforeValue} -> ${newSessionMatrix[wordIndices[i]][wordIndices[j]]} (${allKeyWords[wordIndices[i]]} > ${allKeyWords[wordIndices[j]]})`);
+          logger.app.info(`  📝 Updated matrix[${wordIndices[i]}][${wordIndices[j]}]: ${beforeValue} -> ${newSessionMatrix[wordIndices[i]][wordIndices[j]]} (${allKeyWords[wordIndices[i]]} > ${allKeyWords[wordIndices[j]]})`);
         }
       }
-      console.log('✅ Applied', updatesApplied, 'matrix updates for final round');
+      logger.app.info('✅ Applied', updatesApplied, 'matrix updates for final round');
       
       // Create cumulative matrix by adding existing matrix + new session matrix
-      console.log('🔗 === CREATING CUMULATIVE MATRIX ===');
-      console.log('📊 New session matrix dimensions:', newSessionMatrix.length + 'x' + newSessionMatrix[0].length);
-      console.log('📊 Existing matrix dimensions:', existingMatrix?.length + 'x' + (existingMatrix?.[0]?.length || 0));
+      logger.app.info('🔗 === CREATING CUMULATIVE MATRIX ===');
+      logger.app.info('📊 New session matrix dimensions:', newSessionMatrix.length + 'x' + newSessionMatrix[0].length);
+      logger.app.info('📊 Existing matrix dimensions:', existingMatrix?.length + 'x' + (existingMatrix?.[0]?.length || 0));
       
       const cumulativeMatrix = Array(15).fill().map(() => Array(15).fill(0));
       
       // Add existing matrix values
       if (existingMatrix) {
-        console.log('➕ Adding existing matrix values...');
+        logger.app.info('➕ Adding existing matrix values...');
         for (let i = 0; i < 15; i++) {
           for (let j = 0; j < 15; j++) {
             cumulativeMatrix[i][j] += (existingMatrix[i]?.[j] || 0);
           }
         }
-        console.log('✅ Existing matrix values added');
+        logger.app.info('✅ Existing matrix values added');
       } else {
-        console.log('📭 No existing matrix to add');
+        logger.app.info('📭 No existing matrix to add');
       }
       
       // Add new session matrix values
-      console.log('➕ Adding new session matrix values...');
+      logger.app.info('➕ Adding new session matrix values...');
       for (let i = 0; i < 15; i++) {
         for (let j = 0; j < 15; j++) {
           cumulativeMatrix[i][j] += newSessionMatrix[i][j];
         }
       }
-      console.log('✅ New session matrix values added');
+      logger.app.info('✅ New session matrix values added');
       
-      console.log('📊 Cumulative matrix dimensions:', cumulativeMatrix.length + 'x' + cumulativeMatrix[0].length);
-      console.log('📈 Cumulative matrix row sums:', cumulativeMatrix.map((row, i) => ({ 
+      logger.app.info('📊 Cumulative matrix dimensions:', cumulativeMatrix.length + 'x' + cumulativeMatrix[0].length);
+      logger.app.info('📈 Cumulative matrix row sums:', cumulativeMatrix.map((row, i) => ({ 
         word: allKeyWords[i], 
         sum: row.reduce((a, b) => a + b, 0) 
       })));
-      console.log('🎯 Final cumulative matrix:', cumulativeMatrix);
+      logger.app.info('🎯 Final cumulative matrix:', cumulativeMatrix);
 
-      console.log('🚀 Calling submitMatrixData with cumulative matrix...');
+      logger.app.info('🚀 Calling submitMatrixData with cumulative matrix...');
       // Submit cumulative matrix to API
       const result = await submitMatrixData(cumulativeMatrix);
       
       // Success handling
-      console.log('🎉 === CUMULATIVE SUBMISSION SUCCESSFUL ===');
-      console.log('💾 Saved Matrix ID:', result.matrixId);
-      console.log('📊 Matrix Version:', result.version);
-      console.log('📏 Matrix Dimensions:', result.dimensions);
-      console.log('🕒 Last Modified:', result.lastModified);
+      logger.app.info('🎉 === CUMULATIVE SUBMISSION SUCCESSFUL ===');
+      logger.app.info('💾 Saved Matrix ID:', result.matrixId);
+      logger.app.info('📊 Matrix Version:', result.version);
+      logger.app.info('📏 Matrix Dimensions:', result.dimensions);
+      logger.app.info('🕒 Last Modified:', result.lastModified);
       
       setSavedMatrixId(result.matrixId);
       setSubmitSuccess(true);
       setShowResults(true);
       
-      console.log('✅ State updated - showing results page');
+      logger.app.info('✅ State updated - showing results page');
       
     } catch (error) {
-      console.log('💥 === SUBMISSION FAILED ===');
-      console.error('🚨 Error details:', {
+      logger.app.info('💥 === SUBMISSION FAILED ===');
+      logger.app.error('🚨 Error details:', {
         name: error.name,
         message: error.message,
         stack: error.stack
       });
       
       const errorMessage = error.message || 'Failed to submit rankings. Please try again.';
-      console.log('📝 Setting error message:', errorMessage);
+      logger.app.info('📝 Setting error message:', errorMessage);
       setSubmitError(errorMessage);
     } finally {
-      console.log('🏁 Setting isSubmitting to false...');
+      logger.app.info('🏁 Setting isSubmitting to false...');
       setIsSubmitting(false);
     }
   };
@@ -690,7 +691,7 @@ const CausalRankingPage = () => {
         <Button 
           variant="outlined" 
           size="small" 
-          onClick={() => console.log('Round History:', roundHistory)}
+          onClick={() => logger.app.info('Round History:', roundHistory)}
           sx={{ textTransform: 'none' }}
         >
           Show History
@@ -699,16 +700,16 @@ const CausalRankingPage = () => {
           variant="outlined" 
           size="small" 
           onClick={() => {
-            console.log('🔍 === EXISTING MATRIX DEBUG ===');
-            console.log('Matrix ID:', EXISTING_MATRIX_ID);
-            console.log('Existing matrix loaded:', !!existingMatrix);
+            logger.app.info('🔍 === EXISTING MATRIX DEBUG ===');
+            logger.app.info('Matrix ID:', EXISTING_MATRIX_ID);
+            logger.app.info('Existing matrix loaded:', !!existingMatrix);
             if (existingMatrix) {
-              console.log('Existing matrix dimensions:', existingMatrix.length + 'x' + existingMatrix[0].length);
-              console.log('Existing matrix row sums:', existingMatrix.map((row, i) => ({ 
+              logger.app.info('Existing matrix dimensions:', existingMatrix.length + 'x' + existingMatrix[0].length);
+              logger.app.info('Existing matrix row sums:', existingMatrix.map((row, i) => ({ 
                 word: allKeyWords[i], 
                 sum: row.reduce((a, b) => a + b, 0) 
               })));
-              console.log('Full existing matrix:', existingMatrix);
+              logger.app.info('Full existing matrix:', existingMatrix);
             }
           }}
           sx={{ textTransform: 'none' }}
@@ -834,9 +835,9 @@ const CausalRankingPage = () => {
                 variant="outlined" 
                 size="small" 
                 onClick={() => {
-                  console.log('=== FINAL RESULTS DEBUG ===');
-                  console.log('Final rankings:', finalRankings);
-                  console.log('Complete round history:', roundHistory);
+                  logger.app.info('=== FINAL RESULTS DEBUG ===');
+                  logger.app.info('Final rankings:', finalRankings);
+                  logger.app.info('Complete round history:', roundHistory);
                   showMatrixDebug();
                 }}
                 sx={{ textTransform: 'none', mb: 2 }}

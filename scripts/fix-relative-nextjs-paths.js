@@ -55,7 +55,7 @@ class RelativePathFixer {
         const configPath = activity.nextConfigPath;
         
         try {
-            console.log(`🔧 Fixing relative path: ${activity.route}`);
+            logger.app.info(`🔧 Fixing relative path: ${activity.route}`);
             
             let configContent = fs.readFileSync(configPath, 'utf8');
             
@@ -64,6 +64,7 @@ class RelativePathFixer {
                 configContent = configContent.replace(
                     /\/\*\* @type \{import\('next'\)\.NextConfig\} \*\//,
                     `/** @type {import('next').NextConfig} */\nconst path = require('path');\n`
+const logger = require('../packages/logging/logger.js');
                 );
             }
             
@@ -79,35 +80,35 @@ class RelativePathFixer {
             );
             
             fs.writeFileSync(configPath, configContent);
-            console.log(`   ✅ Fixed: ${configPath}`);
+            logger.app.info(`   ✅ Fixed: ${configPath}`);
             this.fixedCount++;
             
         } catch (error) {
-            console.error(`   ❌ Error fixing ${activity.route}:`, error.message);
+            logger.app.error(`   ❌ Error fixing ${activity.route}:`, error.message);
         }
     }
 
     async fixAllPaths() {
-        console.log('🔍 Finding activities with relative outputFileTracingRoot paths...');
+        logger.app.info('🔍 Finding activities with relative outputFileTracingRoot paths...');
         
         const activities = this.findActivitiesWithRelativePaths();
-        console.log(`📦 Found ${activities.length} activities with relative path issues\n`);
+        logger.app.info(`📦 Found ${activities.length} activities with relative path issues\n`);
         
         if (activities.length === 0) {
-            console.log('✅ No relative path issues found!');
+            logger.app.info('✅ No relative path issues found!');
             return;
         }
 
-        console.log('🔧 Fixing relative paths...\n');
+        logger.app.info('🔧 Fixing relative paths...\n');
         
         for (const activity of activities) {
             this.fixRelativePath(activity);
         }
         
-        console.log(`\n🎉 Fixed ${this.fixedCount} Next.js configurations!`);
-        console.log('\n📋 Summary of fixed activities:');
+        logger.app.info(`\n🎉 Fixed ${this.fixedCount} Next.js configurations!`);
+        logger.app.info('\n📋 Summary of fixed activities:');
         activities.forEach(activity => {
-            console.log(`   • ${activity.route}`);
+            logger.app.info(`   • ${activity.route}`);
         });
     }
 }

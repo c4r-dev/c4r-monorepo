@@ -24,7 +24,7 @@ const colors = {
 };
 
 function log(color, message) {
-  console.log(`${colors[color]}${message}${colors.reset}`);
+  logger.app.info(`${colors[color]}${message}${colors.reset}`);
 }
 
 // Kill processes on ports 3300-3399 (optimized with parallel checking)
@@ -138,7 +138,7 @@ function startSeamlessServer(port = 3333) {
 
 // Main function
 async function startLocalDevelopment() {
-  console.log(`${colors.bold}${colors.blue}🏗️  C4R Local Development Server Manager${colors.reset}\n`);
+  logger.app.info(`${colors.bold}${colors.blue}🏗️  C4R Local Development Server Manager${colors.reset}\n`);
   
   try {
     // Step 1: Kill existing servers
@@ -166,6 +166,7 @@ async function startLocalDevelopment() {
     try {
       const fallbackScript = path.join(process.cwd(), 'scripts', 'start-all-activities.js');
       if (require('fs').existsSync(fallbackScript)) {
+const logger = require('../packages/logging/logger.js');
         log('blue', '🔄 Starting individual activity servers as fallback...');
         spawn('node', [fallbackScript], { stdio: 'inherit' });
       } else {

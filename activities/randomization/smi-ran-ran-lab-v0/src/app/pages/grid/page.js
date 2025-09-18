@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect, Suspense } from 'react';
@@ -229,7 +230,7 @@ function FlowCanvas() {
             if (change.dragging === false && !logged) {
               const finalNode = nextNodes.find(n => n.id === change.id);
               if (finalNode) {
-                 console.log(`Node ${finalNode.id} finished moving to:`, finalNode.position);
+                 logger.app.info(`Node ${finalNode.id} finished moving to:`, finalNode.position);
                  logged = true;
               }
             }
@@ -296,7 +297,7 @@ function FlowCanvas() {
 
       // Add the new node to the canvas state and log its position
       setNodes((nds) => nds.concat(newNode));
-      console.log(`Node ${newNode.id} dropped at:`, newNode.position);
+      logger.app.info(`Node ${newNode.id} dropped at:`, newNode.position);
       setIsDraggingOver(false); // Reset drag over state on successful drop
 
       // Remove the dropped node from the available sidebar nodes state
@@ -386,7 +387,7 @@ function FlowCanvas() {
         throw new Error(result.message || 'Failed to save flowchart');
       }
 
-      console.log("Submission successful:", result);
+      logger.app.info("Submission successful:", result);
       setSubmitStatus({ type: 'success', message: 'Flowchart saved successfully!' });
       
       // After successful submission, redirect to the results page with the same sessionID
@@ -395,7 +396,7 @@ function FlowCanvas() {
       }, 1000); // Short delay to show success message before redirecting
 
     } catch (error) {
-      console.error("Submission failed:", error);
+      logger.app.error("Submission failed:", error);
       setSubmitStatus({ type: 'error', message: error.message || 'An error occurred during submission.' });
     } finally {
       setIsSubmitting(false);

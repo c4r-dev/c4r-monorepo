@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -162,14 +163,14 @@ export default function ObstacleListClient() {
 
   // When navigating to the next round, rebuild the URL to include sessionID.
   const handleNextRound = () => {
-    console.log('hello1')
+    logger.app.info('hello1')
 
     if (currentRoundIndex < roundsData.length - 1) {
-      console.log('hello2', sessionID + 'this is the session id')
+      logger.app.info('hello2', sessionID + 'this is the session id')
 
       let url = `?round=${currentRoundIndex + 2}`
       if (sessionID) {
-        console.log('hello')
+        logger.app.info('hello')
         url += `&sessionId=${sessionID}`
       }
       router.push(url)
@@ -207,7 +208,7 @@ export default function ObstacleListClient() {
       roundsData,
     }
 
-    console.log('Final payload:', payload)
+    logger.app.info('Final payload:', payload)
 
     try {
       // Send the payload to your POST API endpoint
@@ -221,7 +222,7 @@ export default function ObstacleListClient() {
 
       if (response.ok) {
         const responseData = await response.json()
-        console.log('Successfully saved session data:', responseData)
+        logger.app.info('Successfully saved session data:', responseData)
 
         // Append subsessionId to URL and navigate
         // router.push(
@@ -236,10 +237,10 @@ export default function ObstacleListClient() {
           `/analyze?sessionId=${sessionID}`,
         )
       } else {
-        console.error('Error saving session data:', response.statusText)
+        logger.app.error('Error saving session data:', response.statusText)
       }
     } catch (error) {
-      console.error('Error in POST request:', error)
+      logger.app.error('Error in POST request:', error)
     } finally {
       setIsSubmitting(false) // Reset loading state after navigation
     }
@@ -262,7 +263,7 @@ export default function ObstacleListClient() {
   return (
     <div className="obstacle-container">
       <DesignChoiceScreen />
-      {console.log(JSON.stringify(roundsData) + 'this is the rounds data')}
+      {logger.app.info(JSON.stringify(roundsData) + 'this is the rounds data')}
       {/* <div className="obstacle-header" style={{ marginTop: '20px' }}>
         <h3>
           Round {currentChoices.round}: Which choice do you think favors

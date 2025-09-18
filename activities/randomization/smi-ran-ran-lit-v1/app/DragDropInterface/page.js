@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 import React, { useState, useEffect } from 'react'
 import {
@@ -279,9 +280,9 @@ const updateUrlParameters = () => {
     const newUrl = `${window.location.pathname}?${newParams.toString()}`
     window.history.replaceState({}, '', newUrl)
 
-    console.log('Updated URL parameters with question counts:', newUrl)
+    logger.app.info('Updated URL parameters with question counts:', newUrl)
   } catch (error) {
-    console.error('Error updating URL parameters:', error)
+    logger.app.error('Error updating URL parameters:', error)
   }
 }
 
@@ -293,7 +294,7 @@ const updateUrlParameters = () => {
       const sessionId = urlParams.get('sessionId')
       const section = urlParams.get('selectedSection') || 'default'
 
-      console.log('URL Parameters:', {
+      logger.app.info('URL Parameters:', {
         userId,
         sessionId,
         selectedSection: section,
@@ -312,7 +313,7 @@ const updateUrlParameters = () => {
   // Function to fetch questions from the API for a specific user and session
   const fetchUserQuestions = async (userId, sessionId) => {
     try {
-      console.log(
+      logger.app.info(
         `Fetching questions for user: ${userId}, session: ${sessionId}`,
       )
 
@@ -324,21 +325,21 @@ const updateUrlParameters = () => {
       }
 
       const data = await response.json()
-      console.log('API response:', data)
+      logger.app.info('API response:', data)
 
       if (!data.sessions || data.sessions.length === 0) {
-        console.warn('No sessions found in API response')
+        logger.app.warn('No sessions found in API response')
         return []
       }
 
       // Find the matching session
       const session = data.sessions.find((s) => s.sessionId === sessionId)
       if (!session) {
-        console.warn(`Session not found: ${sessionId}`)
+        logger.app.warn(`Session not found: ${sessionId}`)
         return []
       }
 
-      console.log('Found session:', session)
+      logger.app.info('Found session:', session)
 
       // Extract questions for the specific user
       let userQuestions = []
@@ -346,7 +347,7 @@ const updateUrlParameters = () => {
         const student = section.students.find((s) => s.studentId === userId)
         if (student && student.questions && student.questions.length > 0) {
           userQuestions = student.questions.map((q) => q.questionText)
-          console.log(
+          logger.app.info(
             `Found ${userQuestions.length} questions for student ${userId}`,
           )
           break
@@ -355,7 +356,7 @@ const updateUrlParameters = () => {
 
       return userQuestions
     } catch (error) {
-      console.error('Error fetching user questions:', error)
+      logger.app.error('Error fetching user questions:', error)
       throw error
     }
   }
@@ -367,7 +368,7 @@ const updateUrlParameters = () => {
     count = 5,
   ) => {
     try {
-      console.log(
+      logger.app.info(
         `Fetching random questions from other students in session: ${sessionId}`,
       )
 
@@ -387,7 +388,7 @@ const updateUrlParameters = () => {
       // First attempt: Find questions from other students in the same session
       const session = data.sessions.find((s) => s.sessionId === sessionId)
       if (!session) {
-        console.warn(`Session not found: ${sessionId}, will try all sessions`)
+        logger.app.warn(`Session not found: ${sessionId}, will try all sessions`)
       }
 
       // Collect questions from other students in this session
@@ -414,13 +415,13 @@ const updateUrlParameters = () => {
         }
       }
 
-      console.log(
+      logger.app.info(
         `Found ${otherStudentsQuestions.length} questions from other students in same session`,
       )
 
       // If no questions found in the current session, try all sessions
       if (otherStudentsQuestions.length === 0) {
-        console.log(
+        logger.app.info(
           'No questions found in current session. Searching all sessions...',
         )
 
@@ -448,7 +449,7 @@ const updateUrlParameters = () => {
           }
         }
 
-        console.log(
+        logger.app.info(
           `Found ${otherStudentsQuestions.length} questions from all other sessions`,
         )
       }
@@ -480,7 +481,7 @@ const updateUrlParameters = () => {
 
       return selectedQuestions
     } catch (error) {
-      console.error('Error fetching random questions:', error)
+      logger.app.error('Error fetching random questions:', error)
       throw error
     }
   }
@@ -529,7 +530,7 @@ const updateUrlParameters = () => {
         setSessionId(params.sessionId)
         setSelectedSection(params.selectedSection)
 
-        console.log(
+        logger.app.info(
           'this is the userid, sessionid, and selectedSection',
           params.userId,
           params.sessionId,
@@ -546,9 +547,9 @@ const updateUrlParameters = () => {
         // If no questions were found or params missing, use test data
         if (!questions || questions.length === 0) {
           if (!params.userId || !params.sessionId) {
-            console.warn('Missing URL parameters - using test data')
+            logger.app.warn('Missing URL parameters - using test data')
           } else {
-            console.warn(
+            logger.app.warn(
               `No questions found for user ${params.userId} in session ${params.sessionId} - using test data`,
             )
           }
@@ -577,7 +578,7 @@ const updateUrlParameters = () => {
         // Initialize URL parameters for category status (all empty at start)
         updateUrlParameters()
       } catch (err) {
-        console.error('Error in loadQuestions:', err)
+        logger.app.error('Error in loadQuestions:', err)
         setError(`Failed to load questions: ${err.message}`)
       } finally {
         setIsLoading(false)
@@ -680,7 +681,7 @@ const updateUrlParameters = () => {
         )
       }
     } catch (error) {
-      console.error('Error loading more questions:', error)
+      logger.app.error('Error loading more questions:', error)
 
       // Use fallback questions if API fails
       const fallbackFormattedQuestions = fallbackQuestions.map((q, i) => ({
@@ -811,7 +812,7 @@ const updateUrlParameters = () => {
         }
       }
     } catch (error) {
-      console.error('Error processing drop:', error)
+      logger.app.error('Error processing drop:', error)
     }
 
     setActiveDragId(null)
@@ -864,7 +865,7 @@ const updateUrlParameters = () => {
         }
       }
     } catch (error) {
-      console.error('Error processing drop on stack:', error)
+      logger.app.error('Error processing drop on stack:', error)
     }
 
     setActiveDragId(null)

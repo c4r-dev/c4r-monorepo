@@ -10,6 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const logger = require('../packages/logging/logger.js');
 
 // Colors for console output
 const colors = {
@@ -22,7 +23,7 @@ const colors = {
 };
 
 function log(color, message) {
-  console.log(`${colors[color]}${message}${colors.reset}`);
+  logger.app.info(`${colors[color]}${message}${colors.reset}`);
 }
 
 // Sample activities to test (representative of different patterns)
@@ -197,7 +198,7 @@ async function testCustomButtonMigration() {
   }
   
   // Print test summary
-  console.log('\n' + '='.repeat(60));
+  logger.app.info('\n' + '='.repeat(60));
   log('bold', '📊 Test Summary:');
   log('green', `  ✅ Activities tested: ${testResults.totalTested}`);
   log('green', `  ✅ Dependency tests passed: ${testResults.dependencyTests.passed}/${testResults.dependencyTests.passed + testResults.dependencyTests.failed}`);
@@ -209,7 +210,7 @@ async function testCustomButtonMigration() {
     testResults.errors.forEach(error => log('red', `  - ${error}`));
   }
   
-  console.log('\n' + '='.repeat(60));
+  logger.app.info('\n' + '='.repeat(60));
   
   const totalTests = testResults.dependencyTests.passed + testResults.dependencyTests.failed + 
                      testResults.importTests.passed + testResults.importTests.failed +

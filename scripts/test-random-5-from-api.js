@@ -4,6 +4,7 @@
 // Usage: node test-random-5-from-api.js [--baseurl=http://localhost:3333] [--timeout=12000] [--headless]
 
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function fetchActivities(baseUrl) {
   const res = await fetch(`${baseUrl}/api/activities`);
@@ -26,19 +27,19 @@ async function main() {
   const timeout = parseInt(args.find(a => a.startsWith('--timeout='))?.split('=')[1]) || 12000;
   const headless = args.includes('--headless') || true;
 
-  console.log('🧪 Random 5 Activities Test (API-driven)');
-  console.log(`Base URL: ${baseUrl}`);
+  logger.app.info('🧪 Random 5 Activities Test (API-driven)');
+  logger.app.info(`Base URL: ${baseUrl}`);
 
   let activities = [];
   try {
     activities = await fetchActivities(baseUrl);
   } catch (e) {
-    console.error(`❌ Could not load activities from API: ${e.message}`);
+    logger.app.error(`❌ Could not load activities from API: ${e.message}`);
     process.exit(1);
   }
 
   if (!Array.isArray(activities) || activities.length === 0) {
-    console.error('❌ No activities returned by API');
+    logger.app.error('❌ No activities returned by API');
     process.exit(1);
   }
 
@@ -50,25 +51,25 @@ async function main() {
   for (let i = 0; i < sample.length; i++) {
     const a = sample[i];
     const url = a.url || `${baseUrl}${a.route}`;
-    console.log(`[${i + 1}/${sample.length}] ${a.route}`);
+    logger.app.info(`[${i + 1}/${sample.length}] ${a.route}`);
     try {
       const resp = await page.goto(url, { waitUntil: 'domcontentloaded', timeout });
       const status = resp?.status?.() || 0;
       const title = await page.title();
-      console.log(`   ✅ status=${status} title="${title}"`);
+      logger.app.info(`   ✅ status=${status} title="${title}"`);
       pass++;
     } catch (err) {
-      console.log(`   ❌ ${err.message}`);
+      logger.app.info(`   ❌ ${err.message}`);
     }
   }
 
   await browser.close();
-  console.log(`\n🎯 Passed ${pass}/${sample.length}`);
+  logger.app.info(`\n🎯 Passed ${pass}/${sample.length}`);
   process.exit(pass === sample.length ? 0 : 1);
 }
 
 main().catch(err => {
-  console.error('💥 Runner failed:', err);
+  logger.app.error('💥 Runner failed:', err);
   process.exit(1);
 });
 

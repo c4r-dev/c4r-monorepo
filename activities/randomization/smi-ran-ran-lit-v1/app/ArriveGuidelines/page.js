@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 import React, { useState, useEffect } from 'react'
 import {
@@ -331,7 +332,7 @@ export default function ComparisonScreen() {
 
       // Get URL parameters
       const params = getParamsFromUrl()
-      console.log('URL Parameters:', params)
+      logger.app.info('URL Parameters:', params)
       setCategoryParams(params.categories)
       setQuestionCounts(params.questionCounts)
       setSelectedSection(params.selectedSection)
@@ -342,7 +343,7 @@ export default function ComparisonScreen() {
 
       setIsLoading(false)
     } catch (err) {
-      console.error('Error loading comparison data:', err)
+      logger.app.error('Error loading comparison data:', err)
       setError(`Failed to load comparison data: ${err.message}`)
       setIsLoading(false)
     }

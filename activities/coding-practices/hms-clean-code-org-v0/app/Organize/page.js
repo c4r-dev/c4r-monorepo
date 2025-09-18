@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -81,7 +82,7 @@ const ProjectOrganizationPage = () => {
           codeBlocks: file.codeBlocks || []
         }));
       } catch (error) {
-        console.error('Error parsing stored files:', error);
+        logger.app.error('Error parsing stored files:', error);
       }
     }
     
@@ -631,9 +632,9 @@ const ProjectOrganizationPage = () => {
           }}
           onClick={() => {
             // Here you would typically navigate to the next step
-            console.log('Project organized successfully!');
-            console.log('Files:', files);
-            console.log('Folders:', folders);
+            logger.app.info('Project organized successfully!');
+            logger.app.info('Files:', files);
+            logger.app.info('Folders:', folders);
           }}
         >
           MUST ORGANIZE PROJECT TO PROCEED

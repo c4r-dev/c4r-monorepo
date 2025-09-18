@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState } from 'react'
@@ -61,11 +62,11 @@ export default function ShowQRCode() {
       }),
     })
       .then((response) => {
-        // console.log(response)
+        // logger.app.info(response)
         response.json()
       })
-      .then((data) => console.log(data))
-      .catch((error) => console.error('Error:', error))
+      .then((data) => logger.app.info(data))
+      .catch((error) => logger.app.error('Error:', error))
   }
 
   return (

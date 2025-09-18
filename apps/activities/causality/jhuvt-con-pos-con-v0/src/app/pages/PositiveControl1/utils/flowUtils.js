@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../../packages/logging/logger.js');
 export const getFlowsFromDatabase = async () => {
   try {
     // Fetch the local JSON file from the public directory
@@ -23,7 +24,7 @@ export const getFlowsFromDatabase = async () => {
     });
     return formattedFlows;
   } catch (error) {
-    console.error('Error loading flows from JSON:', error);
+    logger.app.error('Error loading flows from JSON:', error);
     return [];
   }
 };

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client'
 
 import { Suspense, useState } from "react";
@@ -16,7 +17,7 @@ export default function DrawPage() {
 
     // const searchParams = useSearchParams()
     // const labGroupId = searchParams.get('labGroupId')
-    // console.log('labGroupId', labGroupId);
+    // logger.app.info('labGroupId', labGroupId);
 
 
     // Modal for instructions

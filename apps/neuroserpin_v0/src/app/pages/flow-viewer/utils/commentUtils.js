@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 /**
  * Utilities for saving and loading flow comments
  */
@@ -21,7 +22,7 @@ export const saveCommentToDatabase = async (comment) => {
     const result = await response.json();
     return { success: true, data: result };
   } catch (error) {
-    console.error('Error saving comment to database:', error);
+    logger.app.error('Error saving comment to database:', error);
     return { success: false, error: error.message };
   }
 };
@@ -43,7 +44,7 @@ export const getCommentsForFlow = async (flowId, sessionId) => {
     const comments = await response.json();
     return { success: true, data: comments };
   } catch (error) {
-    console.error('Error fetching comments from database:', error);
+    logger.app.error('Error fetching comments from database:', error);
     return { success: false, error: error.message, data: [] };
   }
 };
@@ -63,7 +64,7 @@ export const deleteComment = async (commentId) => {
     const result = await response.json();
     return { success: true, data: result };
   } catch (error) {
-    console.error('Error deleting comment:', error);
+    logger.app.error('Error deleting comment:', error);
     return { success: false, error: error.message };
   }
 }; 

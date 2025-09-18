@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { Suspense } from "react";
@@ -19,7 +20,7 @@ export default function DrawPage() {
 
     // const searchParams = useSearchParams()
     // const labGroupId = searchParams.get('labGroupId')
-    // console.log('labGroupId', labGroupId);
+    // logger.app.info('labGroupId', labGroupId);
 
     const router = useRouter();
 
@@ -36,7 +37,7 @@ export default function DrawPage() {
     }
 
     // const submitResponseToServer = (DagData) => {
-    //     console.log('submitResponseToServer');
+    //     logger.app.info('submitResponseToServer');
     // }
 
     // const onSubmit = () => {

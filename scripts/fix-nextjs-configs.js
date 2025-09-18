@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 // Get the monorepo root directory
 const monorepoRoot = path.resolve(__dirname);
 
-console.log('🔧 Fixing Next.js configurations for monorepo...');
-console.log(`📁 Monorepo root: ${monorepoRoot}`);
+logger.app.info('🔧 Fixing Next.js configurations for monorepo...');
+logger.app.info(`📁 Monorepo root: ${monorepoRoot}`);
 
 // Find all next.config.js files
 function findNextConfigs(dir) {
@@ -37,14 +38,14 @@ function findNextConfigs(dir) {
 
 // Fix a Next.js config file
 function fixNextConfig(configPath) {
-    console.log(`🔨 Fixing: ${path.relative(monorepoRoot, configPath)}`);
+    logger.app.info(`🔨 Fixing: ${path.relative(monorepoRoot, configPath)}`);
     
     try {
         let content = fs.readFileSync(configPath, 'utf8');
         
         // Check if already has the correct format (not in experimental or output)
         if (content.includes('outputFileTracingRoot') && !content.includes('experimental:') && !content.includes('output:')) {
-            console.log(`   ✅ Already configured correctly`);
+            logger.app.info(`   ✅ Already configured correctly`);
             return;
         }
         
@@ -74,21 +75,21 @@ module.exports = nextConfig;
         // Write new config
         fs.writeFileSync(configPath, newConfig);
         
-        console.log(`   ✅ Fixed - workspace root: ${relativeRoot}`);
+        logger.app.info(`   ✅ Fixed - workspace root: ${relativeRoot}`);
         
     } catch (error) {
-        console.log(`   ❌ Error: ${error.message}`);
+        logger.app.info(`   ❌ Error: ${error.message}`);
     }
 }
 
 // Main execution
 const configFiles = findNextConfigs(path.join(monorepoRoot, 'activities'));
-console.log(`\n🔍 Found ${configFiles.length} Next.js config files:`);
+logger.app.info(`\n🔍 Found ${configFiles.length} Next.js config files:`);
 
 configFiles.forEach(fixNextConfig);
 
 // Also check for activities that might need next.config.js files
-console.log('\n🔍 Checking for Next.js activities without config files...');
+logger.app.info('\n🔍 Checking for Next.js activities without config files...');
 
 function findNextJSActivities() {
     const activities = [];
@@ -125,14 +126,14 @@ function findNextJSActivities() {
 const activitiesNeedingConfigs = findNextJSActivities();
 
 if (activitiesNeedingConfigs.length > 0) {
-    console.log(`\n📝 Creating config files for ${activitiesNeedingConfigs.length} activities:`);
+    logger.app.info(`\n📝 Creating config files for ${activitiesNeedingConfigs.length} activities:`);
     
     activitiesNeedingConfigs.forEach(activityDir => {
         const configPath = path.join(activityDir, 'next.config.js');
         const relativeActivity = path.relative(monorepoRoot, activityDir);
         const relativeRoot = path.relative(activityDir, monorepoRoot);
         
-        console.log(`🔨 Creating: ${relativeActivity}/next.config.js`);
+        logger.app.info(`🔨 Creating: ${relativeActivity}/next.config.js`);
         
         const newConfig = `/** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -150,13 +151,13 @@ module.exports = nextConfig;
 `;
         
         fs.writeFileSync(configPath, newConfig);
-        console.log(`   ✅ Created - workspace root: ${relativeRoot}`);
+        logger.app.info(`   ✅ Created - workspace root: ${relativeRoot}`);
     });
 }
 
-console.log('\n✅ Next.js configuration fixes complete!');
-console.log('\n💡 This should resolve:');
-console.log('   - Next.js workspace root inference warnings');
-console.log('   - Multiple lockfile conflicts');
-console.log('   - TypeScript build errors');
-console.log('   - File tracing issues');
+logger.app.info('\n✅ Next.js configuration fixes complete!');
+logger.app.info('\n💡 This should resolve:');
+logger.app.info('   - Next.js workspace root inference warnings');
+logger.app.info('   - Multiple lockfile conflicts');
+logger.app.info('   - TypeScript build errors');
+logger.app.info('   - File tracing issues');

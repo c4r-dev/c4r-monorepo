@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class StableDependencyFixer {
     constructor() {
@@ -53,7 +54,7 @@ class StableDependencyFixer {
     }
 
     fixRootPackageJson() {
-        console.log('🔧 Fixing root package.json for React 18.x + Next.js 15.x compatibility...');
+        logger.app.info('🔧 Fixing root package.json for React 18.x + Next.js 15.x compatibility...');
         
         const rootPackageJsonPath = path.join(this.baseDir, 'package.json');
         const rootPackageJson = JSON.parse(fs.readFileSync(rootPackageJsonPath, 'utf8'));
@@ -83,7 +84,7 @@ class StableDependencyFixer {
         rootPackageJson.devDependencies['eslint-config-next'] = this.stableVersions['eslint-config-next'];
         
         fs.writeFileSync(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2));
-        console.log('✅ Updated root package.json to stable React 18.x versions');
+        logger.app.info('✅ Updated root package.json to stable React 18.x versions');
     }
 
     findAllActivities() {
@@ -120,7 +121,7 @@ class StableDependencyFixer {
     }
 
     fixActivityPackageJsons() {
-        console.log('🔄 Fixing all activity package.json files...');
+        logger.app.info('🔄 Fixing all activity package.json files...');
         
         const activities = this.findAllActivities();
         let fixedCount = 0;
@@ -156,43 +157,43 @@ class StableDependencyFixer {
                 }
                 
             } catch (error) {
-                console.error(`❌ Error fixing ${activity.route}:`, error.message);
+                logger.app.error(`❌ Error fixing ${activity.route}:`, error.message);
             }
         }
         
-        console.log(`✅ Fixed ${fixedCount} activity package.json files`);
+        logger.app.info(`✅ Fixed ${fixedCount} activity package.json files`);
         return { activitiesProcessed: activities.length, fixedCount };
     }
 
     async run() {
         try {
-            console.log('🚀 Starting stable dependency fix (React 18.x + Next.js 15.x)...\n');
+            logger.app.info('🚀 Starting stable dependency fix (React 18.x + Next.js 15.x)...\n');
             
             this.fixRootPackageJson();
             const result = this.fixActivityPackageJsons();
             
-            console.log('\n📊 STABLE DEPENDENCY FIX REPORT');
-            console.log('=====================================');
-            console.log(`✅ Activities processed: ${result.activitiesProcessed}`);
-            console.log(`🔧 Activities fixed: ${result.fixedCount}`);
-            console.log(`🎯 Target versions:`);
-            console.log(`   • React: ${this.stableVersions.react}`);
-            console.log(`   • React-DOM: ${this.stableVersions['react-dom']}`);
-            console.log(`   • Next.js: ${this.stableVersions.next}`);
-            console.log(`   • @types/react: ${this.stableVersions['@types/react']}`);
-            console.log(`   • @types/react-dom: ${this.stableVersions['@types/react-dom']}`);
+            logger.app.info('\n📊 STABLE DEPENDENCY FIX REPORT');
+            logger.app.info('=====================================');
+            logger.app.info(`✅ Activities processed: ${result.activitiesProcessed}`);
+            logger.app.info(`🔧 Activities fixed: ${result.fixedCount}`);
+            logger.app.info(`🎯 Target versions:`);
+            logger.app.info(`   • React: ${this.stableVersions.react}`);
+            logger.app.info(`   • React-DOM: ${this.stableVersions['react-dom']}`);
+            logger.app.info(`   • Next.js: ${this.stableVersions.next}`);
+            logger.app.info(`   • @types/react: ${this.stableVersions['@types/react']}`);
+            logger.app.info(`   • @types/react-dom: ${this.stableVersions['@types/react-dom']}`);
             
-            console.log('\n💡 NEXT STEPS:');
-            console.log('   1. Run: npm install --legacy-peer-deps');
-            console.log('   2. Test activities to verify compatibility');
-            console.log('   3. Fix any remaining peer dependency warnings');
+            logger.app.info('\n💡 NEXT STEPS:');
+            logger.app.info('   1. Run: npm install --legacy-peer-deps');
+            logger.app.info('   2. Test activities to verify compatibility');
+            logger.app.info('   3. Fix any remaining peer dependency warnings');
             
-            console.log('\n🎉 Stable dependency fix completed successfully!');
+            logger.app.info('\n🎉 Stable dependency fix completed successfully!');
             
             return result;
             
         } catch (error) {
-            console.error('💥 Stable fix failed:', error);
+            logger.app.error('💥 Stable fix failed:', error);
             process.exit(1);
         }
     }

@@ -12,6 +12,7 @@ const fs = require('fs');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { exec } = require('child_process');
 const { promisify } = require('util');
+const logger = require('../packages/logging/logger');
 
 const execAsync = promisify(exec);
 
@@ -30,7 +31,12 @@ class SeamlessActivityServer {
     }
 
     async initialize() {
-        console.log('🚀 Initializing Seamless C4R Activity Server...');
+        const initStart = Date.now();
+        logger.app.info('Server initialization started', {
+            event: 'server_init_start',
+            port: this.port
+        });
+        logger.app.info('🚀 Initializing Seamless C4R Activity Server...');
         
         // Discover all activities
         await this.discoverActivities();
@@ -47,17 +53,24 @@ class SeamlessActivityServer {
         // Start server
         await this.startServer();
         
-        console.log('\n🎉 Seamless C4R Server Ready!');
-        console.log('=' .repeat(60));
-        console.log(`🌐 Dashboard: http://localhost:${this.port}`);
-        console.log(`📋 Activity Browser: http://localhost:${this.port}/browse`);
-        console.log('=' .repeat(60));
+        const initDuration = Date.now() - initStart;
+        logger.app.info('Server initialization completed', {
+            event: 'server_init_complete',
+            duration_ms: initDuration,
+            activities_count: this.activities.size
+        });
+        
+        logger.app.info('\n🎉 Seamless C4R Server Ready!');
+        logger.app.info('=' .repeat(60));
+        logger.app.info(`🌐 Dashboard: http://localhost:${this.port}`);
+        logger.app.info(`📋 Activity Browser: http://localhost:${this.port}/browse`);
+        logger.app.info('=' .repeat(60));
         
         this.printActivityMap();
     }
 
     async discoverActivities() {
-        console.log('🔍 Discovering activities...');
+        logger.app.info('🔍 Discovering activities...');
         
         const searchDirs = [
             'activities/causality',
@@ -93,7 +106,7 @@ class SeamlessActivityServer {
             }
         }
         
-        console.log(`📦 Found ${count} activities`);
+        logger.app.info(`📦 Found ${count} activities`);
     }
 
     detectFramework(packageJson) {
@@ -287,16 +300,13 @@ class SeamlessActivityServer {
     }
 
     setupMiddleware() {
+        // Request tracking middleware (replaces simple console.log)
+        this.app.use(logger.requestTracker.bind(logger));
+        
         // Enable CORS
         this.app.use((req, res, next) => {
             res.header('Access-Control-Allow-Origin', '*');
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-            next();
-        });
-
-        // Logging
-        this.app.use((req, res, next) => {
-            console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
             next();
         });
 
@@ -337,7 +347,7 @@ class SeamlessActivityServer {
             const assetPath = req.url.split('?')[0];
             for (const activity of this.activities.values()) {
                 if (activity.type === 'nextjs') {
-                    const relativePath = assetPath.replace(/^\/static\//, '');
+                    const relativePath = assetPath.replace(/^\/_next\/static\//, '');
                     const possiblePaths = [
                         path.join(activity.path, '.next', 'static', relativePath),
                         path.join(activity.path, 'out', '_next', 'static', relativePath),
@@ -345,6 +355,20 @@ class SeamlessActivityServer {
                     ];
                     for (const filePath of possiblePaths) {
                         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                            logger.app.info(`📄 Serving static asset: ${assetPath} from ${filePath}`);
+                            
+                            // Set appropriate MIME type and cache headers
+                            if (filePath.endsWith('.css')) {
+                                res.setHeader('Content-Type', 'text/css');
+                            } else if (filePath.endsWith('.js')) {
+                                res.setHeader('Content-Type', 'application/javascript');
+                            } else if (filePath.endsWith('.woff2')) {
+                                res.setHeader('Content-Type', 'font/woff2');
+                            } else if (filePath.endsWith('.woff')) {
+                                res.setHeader('Content-Type', 'font/woff');
+                            }
+                            res.setHeader('Cache-Control', 'public, max-age=31536000');
+                            
                             return res.sendFile(filePath);
                         }
                     }
@@ -385,6 +409,48 @@ class SeamlessActivityServer {
             res.json(activitiesList);
         });
 
+        // Add debugging middleware to see all requests
+        this.app.use((req, res, next) => {
+            if (req.url.includes('_next')) {
+                logger.app.info(`🔍 REQUEST DEBUG: ${req.method} ${req.url} (referer: ${req.get('Referer') || 'none'})`);
+            }
+            next();
+        });
+
+        // Global /_next handler for Next.js static assets (browser requests without activity path)
+        this.app.use('/_next', (req, res) => {
+            try {
+                logger.app.info(`🎯 GLOBAL /_next HANDLER HIT: ${req.originalUrl}`);
+                
+                // Extract activity route from Referer header
+                const referer = req.get('Referer');
+                if (!referer) {
+                    logger.app.info(`❌ No referer for /_next request: ${req.originalUrl}`);
+                    return res.status(404).send('Asset not found - no referer');
+                }
+
+                // Parse the referer to get the activity route
+                const refererUrl = new URL(referer);
+                const activityRoute = refererUrl.pathname;
+                
+                // Find the activity for this route
+                const activity = this.activities.get(activityRoute);
+                if (!activity) {
+                    logger.app.info(`❌ No activity found for route: ${activityRoute} (from referer: ${referer})`);
+                    return res.status(404).send('Asset not found - no matching activity');
+                }
+
+                logger.app.info(`🔗 Global /_next handler: ${req.originalUrl} -> ${activity.name} (from ${activityRoute})`);
+                
+                // Serve the static asset using the activity's asset handler
+                this.serveActivityStaticAsset(activity, req, res);
+                
+            } catch (e) {
+                logger.app.error(`❌ Global /_next handler error:`, e.message);
+                res.status(404).send('Asset not found');
+            }
+        });
+
         // Dynamic activity routes
         for (const [route, activity] of this.activities) {
             this.setupSeamlessActivityRoute(route, activity);
@@ -397,17 +463,24 @@ class SeamlessActivityServer {
     }
 
     setupSeamlessActivityRoute(route, activity) {
-        console.log(`🔗 Setting up seamless route: ${route}`);
+        logger.app.info(`🔗 Setting up seamless route: ${route}`);
+        
+        // Log structured route setup
+        logger.app.info('Setting up activity route', {
+            route,
+            activity: activity.name,
+            type: activity.type,
+            domain: activity.domain,
+            event: 'route_setup'
+        });
 
         if (activity.type === 'nextjs') {
-            // Dedicated Next.js sub-mount for this activity
-            this.app.use(`${route}/_next`, async (req, res) => {
+            // Dedicated Next.js static asset handler for this activity
+            this.app.use(`${route}/_next`, (req, res) => {
                 try {
-                    const nextApp = await this.getOrCreateNextApp(activity);
-                    // At this mount, req.url begins with '/_next/...'
-                    return nextApp.getRequestHandler()(req, res);
+                    this.serveActivityStaticAsset(activity, req, res);
                 } catch (e) {
-                    console.error(`❌ Next asset handler error for ${activity.name}:`, e.message);
+                    logger.app.error(`❌ Next asset handler error for ${activity.name}:`, e.message);
                     res.status(404).end();
                 }
             });
@@ -418,7 +491,7 @@ class SeamlessActivityServer {
                     // Mounted at route, so req.url is relative to the activity root already
                     return nextApp.getRequestHandler()(req, res);
                 } catch (e) {
-                    console.error(`❌ Next request handler error for ${activity.name}:`, e.message);
+                    logger.app.error(`❌ Next request handler error for ${activity.name}:`, e.message);
                     this.serveStaticFallback(activity, req, res, next);
                 }
             });
@@ -434,10 +507,10 @@ class SeamlessActivityServer {
     serveActivityStaticAsset(activity, req, res, next) {
         // Clean the asset path (remove query parameters)
         const assetPath = req.url.split('?')[0];
-        console.log(`🔍 Looking for static asset: ${assetPath} for activity: ${activity.name}`);
+        logger.app.info(`🔍 Looking for static asset: ${assetPath} for activity: ${activity.name}`);
         
         // Extract the relative path after /_next/static/
-        const relativePath = assetPath.replace('/_next/static/', '');
+        const relativePath = assetPath.replace(/^\/_next\/static\//, '');
         
         // Try different possible locations for the static asset in THIS activity only
         const possiblePaths = [
@@ -455,7 +528,7 @@ class SeamlessActivityServer {
         
         for (const filePath of possiblePaths) {
             if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                console.log(`✅ Found static asset: ${filePath} for activity: ${activity.name}`);
+                logger.app.info(`✅ Found static asset: ${filePath} for activity: ${activity.name}`);
                 
                 // Set appropriate MIME type and cache headers
                 if (filePath.endsWith('.js')) {
@@ -482,7 +555,7 @@ class SeamlessActivityServer {
             }
         }
         
-        console.log(`❌ Static asset not found: ${assetPath} for activity: ${activity.name}`);
+        logger.app.info(`❌ Static asset not found: ${assetPath} for activity: ${activity.name}`);
         // If not found, return 404
         res.status(404).send(`Static asset not found: ${assetPath}`);
     }
@@ -518,7 +591,7 @@ class SeamlessActivityServer {
                 next();
             }
         } catch (error) {
-            console.error(`❌ Error serving ${activity.name}:`, error.message);
+            logger.app.error(`❌ Error serving ${activity.name}:`, error.message);
             res.status(500).send(this.generateActivityErrorPage(activity, error));
         }
     }
@@ -529,7 +602,7 @@ class SeamlessActivityServer {
             const nextApp = await this.getOrCreateNextApp(activity);
             
             if (!nextApp) {
-                console.error(`❌ Failed to initialize Next.js app for ${activity.name}`);
+                logger.app.error(`❌ Failed to initialize Next.js app for ${activity.name}`);
                 this.serveStaticFallback(activity, req, res, next);
                 return;
             }
@@ -548,7 +621,7 @@ class SeamlessActivityServer {
             await nextApp.getRequestHandler()(req, res);
             
         } catch (error) {
-            console.error(`❌ Error serving Next.js app ${activity.name}:`, error.message);
+            logger.app.error(`❌ Error serving Next.js app ${activity.name}:`, error.message);
             this.serveStaticFallback(activity, req, res, next);
         }
     }
@@ -562,7 +635,7 @@ class SeamlessActivityServer {
         }
         
         try {
-            console.log(`🚀 Initializing Next.js app: ${activity.name}`);
+            logger.app.info(`🚀 Initializing Next.js app: ${activity.name}`);
             
             // Change to activity directory to ensure correct workspace root inference
             const originalCwd = process.cwd();
@@ -581,6 +654,9 @@ class SeamlessActivityServer {
                     port: null, // Don't bind to a specific port since we're using custom server
                     customServer: true,
                     conf: {
+                        // Set assetPrefix to include activity route for seamless serving
+                        assetPrefix: activity.route,
+                        
                         // Webpack configuration for shared dependencies
                         webpack: (config, { isServer, dev }) => {
                             // Set proper resolve paths for shared dependencies
@@ -600,7 +676,8 @@ class SeamlessActivityServer {
                                 config.output.chunkFilename = `static/chunks/${activityName}-[name]-[contenthash].js`;
                                 config.output.filename = `static/chunks/${activityName}-[name]-[contenthash].js`;
                                 
-                                // Use Next.js default publicPath (`/_next/`) to avoid route confusion
+                                // Configure publicPath to include the activity route
+                                config.output.publicPath = `${activity.route}/_next/`;
                             }
                             
                             // Add fallbacks for Node.js modules in browser
@@ -625,7 +702,7 @@ class SeamlessActivityServer {
                 // Prepare the Next.js app
                 await nextApp.prepare();
                 
-                console.log(`✅ Next.js app ready: ${activity.name}`);
+                logger.app.info(`✅ Next.js app ready: ${activity.name}`);
                 
                 // Cache the app instance
                 this.nextApps.set(activityKey, nextApp);
@@ -638,22 +715,22 @@ class SeamlessActivityServer {
             }
             
         } catch (error) {
-            console.error(`❌ Failed to initialize Next.js app ${activity.name}:`, error.message);
+            logger.app.error(`❌ Failed to initialize Next.js app ${activity.name}:`, error.message);
             
             // If Next.js fails, try to serve as static export
             const outDir = path.join(activity.path, 'out');
             if (fs.existsSync(outDir)) {
-                console.log(`📁 Falling back to static export for ${activity.name}`);
+                logger.app.info(`📁 Falling back to static export for ${activity.name}`);
                 return null; // Will trigger static fallback
             }
             
             // Try to build static export
             try {
-                console.log(`🔨 Building static export for ${activity.name}...`);
+                logger.app.info(`🔨 Building static export for ${activity.name}...`);
                 await this.buildStaticExport(activity);
                 return null; // Will serve from static export
             } catch (buildError) {
-                console.error(`❌ Static export build failed for ${activity.name}:`, buildError.message);
+                logger.app.error(`❌ Static export build failed for ${activity.name}:`, buildError.message);
                 return null;
             }
         }
@@ -676,7 +753,7 @@ class SeamlessActivityServer {
                 }
             });
             
-            console.log(`✅ Static export built for ${activity.name}`);
+            logger.app.info(`✅ Static export built for ${activity.name}`);
             
         } finally {
             // Always restore original directory
@@ -765,7 +842,7 @@ class SeamlessActivityServer {
 
     async buildNextJSApp(activity) {
         const activityPath = activity.path;
-        console.log(`🔨 Building Next.js app: ${activity.name}`);
+        logger.app.info(`🔨 Building Next.js app: ${activity.name}`);
         
         try {
             const { execSync } = require('child_process');
@@ -791,7 +868,7 @@ class SeamlessActivityServer {
                 env: env
             });
             
-            console.log(`✅ Built ${activity.name} successfully`);
+            logger.app.info(`✅ Built ${activity.name} successfully`);
             
             // Try to create static export if not already done
             try {
@@ -801,13 +878,13 @@ class SeamlessActivityServer {
                     timeout: 60000,
                     env: env
                 });
-                console.log(`✅ Exported ${activity.name} to static files`);
+                logger.app.info(`✅ Exported ${activity.name} to static files`);
             } catch (exportError) {
-                console.log(`⚠️  Static export failed for ${activity.name}, serving build output`);
+                logger.app.info(`⚠️  Static export failed for ${activity.name}, serving build output`);
             }
             
         } catch (error) {
-            console.error(`❌ Build failed for ${activity.name}:`, error.message);
+            logger.app.error(`❌ Build failed for ${activity.name}:`, error.message);
             throw error;
         }
     }
@@ -1130,14 +1207,14 @@ class SeamlessActivityServer {
         }
 
         Object.entries(byDomain).forEach(([domain, activities]) => {
-            console.log(`\n📁 ${domain.toUpperCase()}`);
+            logger.app.info(`\n📁 ${domain.toUpperCase()}`);
             activities.forEach(activity => {
-                console.log(`  → ${activity.route.padEnd(40)} ✅ seamless`);
+                logger.app.info(`  → ${activity.route.padEnd(40)} ✅ seamless`);
             });
         });
 
-        console.log(`\n🎉 All ${this.activities.size} activities served seamlessly!`);
-        console.log(`💡 No individual npm install required`);
+        logger.app.info(`\n🎉 All ${this.activities.size} activities served seamlessly!`);
+        logger.app.info(`💡 No individual npm install required`);
     }
 
     async startServer() {
@@ -1162,7 +1239,7 @@ class SeamlessActivityServer {
                                 nextApp.getUpgradeHandler()(request, socket, head);
                                 return;
                             } catch (error) {
-                                console.error(`❌ WebSocket upgrade error for ${activity.name}:`, error.message);
+                                logger.app.error(`❌ WebSocket upgrade error for ${activity.name}:`, error.message);
                             }
                         }
                     }
@@ -1185,7 +1262,7 @@ if (require.main === module) {
     
     // Handle graceful shutdown
     process.on('SIGINT', () => {
-        console.log('\n🛑 Shutting down seamless server...');
+        logger.app.info('\n🛑 Shutting down seamless server...');
         process.exit(0);
     });
     

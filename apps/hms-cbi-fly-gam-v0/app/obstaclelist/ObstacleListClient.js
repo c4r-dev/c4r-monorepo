@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import { useState, useEffect } from "react";
@@ -82,7 +83,7 @@ export default function ObstacleListClient() {
       }
 
       const data = await response.json();
-      console.log("Selections saved:", data);
+      logger.app.info("Selections saved:", data);
 
       const queryParams = new URLSearchParams({
         study: JSON.stringify(study),
@@ -91,7 +92,7 @@ export default function ObstacleListClient() {
 
       router.push(`/obstacledisplay?${queryParams}`);
     } catch (error) {
-      console.error(error);
+      logger.app.error(error);
     } finally {
       setIsSaving(false);
     }

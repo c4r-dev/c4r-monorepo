@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 // 'use client';
 // import React, { useState , Suspense, useEffect} from 'react';
 // import { Box, Typography, Grid, FormControlLabel, Checkbox, Button, Radio, RadioGroup ,Grid2} from '@mui/material';
@@ -43,10 +44,10 @@
 
 //   const handleYChange = (event) => {
 
-//     console.log("this is in handle y change");
+//     logger.app.info("this is in handle y change");
 
 //     const value = event.target.value;
-//     console.log(value, "this is the value");
+//     logger.app.info(value, "this is the value");
 //     setSelectedY((prev) =>
 //       event.target.checked ? [...prev, value] : prev.filter((val) => val !== value)
 //     ); // Add or remove the variable from selectedY array

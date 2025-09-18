@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 // components/FeedbackForm.js
 'use client'
 
@@ -25,7 +26,7 @@ import Questions from "../questions/questions.json"
 function loadQuestionFromCategory(category) {
     let currentQuestions = [];
     Questions.forEach(question => {
-        console.log("Question", question);
+        logger.app.info("Question", question);
         if (question.category === category) {
             currentQuestions.push(question.question);
         }
@@ -47,7 +48,7 @@ const FeedbackForm = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     // const [feedback, setFeedback] = useState(questions.map(() => ({ rating: '', comment: '' })));
     // const [feedback, setFeedback] = useState([{rating: '', comment: ''}]);
-    // console.log("feedback", feedback);
+    // logger.app.info("feedback", feedback);
     const [feedback, setFeedback] = useState( [   
         {
         "rating": "",
@@ -72,14 +73,14 @@ const FeedbackForm = () => {
     let currentQuestions = [];
 
     currentQuestions = loadQuestionFromCategory(category);
-    console.log("currentQuestions", currentQuestions);
+    logger.app.info("currentQuestions", currentQuestions);
 
     // useEffect(() => {
-    //     console.log("feedback", feedback);
+    //     logger.app.info("feedback", feedback);
     // }, [feedback]);
 
     useEffect(() => {
-        console.log("allResponses", allResponses);
+        logger.app.info("allResponses", allResponses);
         if (allResponses.length === currentQuestions.length) {
             handleReview();
         }
@@ -100,18 +101,18 @@ const FeedbackForm = () => {
 
     // 
     useEffect(() => {
-        console.log("allResponses", allResponses);
+        logger.app.info("allResponses", allResponses);
         if (allResponses.length === currentQuestions.length) {
             handleReview();
         }
     }, [allResponses]);
 
     const handleSubmit = async () => {
-        console.log(feedback);
+        logger.app.info(feedback);
         
         // Get the current feedback instance
         const currentFeedback = feedback[currentQuestion]
-        console.log(currentFeedback);
+        logger.app.info(currentFeedback);
 
         const fbtool = currentFeedback.rating;
         const questionAnswer = currentFeedback.comment;
@@ -135,7 +136,7 @@ const FeedbackForm = () => {
             });
     
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
                 // Create an onbject with currentFeedback's data
                 const newResponse = {
                     ...currentFeedback,
@@ -150,7 +151,7 @@ const FeedbackForm = () => {
             throw new Error("Failed to create an answer.");
             }
         } catch (error) {
-            console.log(error);
+            logger.app.info(error);
         }
 
         // If there are more questions, navigate to the next question

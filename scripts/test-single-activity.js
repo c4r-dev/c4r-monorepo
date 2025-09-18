@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function testActivity(activityUrl, timeout = 15000) {
     const browser = await puppeteer.launch({
@@ -12,7 +13,7 @@ async function testActivity(activityUrl, timeout = 15000) {
     await page.setViewport({ width: 1200, height: 800 });
     
     try {
-        console.log(`🧪 Testing: ${activityUrl}`);
+        logger.app.info(`🧪 Testing: ${activityUrl}`);
         
         // Navigate to the activity
         const response = await page.goto(activityUrl, { 
@@ -54,20 +55,20 @@ async function testActivity(activityUrl, timeout = 15000) {
             };
         });
         
-        console.log(`✅ Successfully loaded: ${activityUrl}`);
-        console.log(`   - React Root: ${hasReactContent.hasReactRoot}`);
-        console.log(`   - Interactive Elements: ${hasReactContent.hasInteractive}`);
-        console.log(`   - Has Content: ${hasReactContent.hasContent}`);
-        console.log(`   - Has Errors: ${hasReactContent.hasErrors}`);
+        logger.app.info(`✅ Successfully loaded: ${activityUrl}`);
+        logger.app.info(`   - React Root: ${hasReactContent.hasReactRoot}`);
+        logger.app.info(`   - Interactive Elements: ${hasReactContent.hasInteractive}`);
+        logger.app.info(`   - Has Content: ${hasReactContent.hasContent}`);
+        logger.app.info(`   - Has Errors: ${hasReactContent.hasErrors}`);
         
         if (hasReactContent.hasErrors) {
-            console.log(`❌ Content preview:`, hasReactContent.bodyText);
+            logger.app.info(`❌ Content preview:`, hasReactContent.bodyText);
             return { success: false, error: 'Page contains React errors' };
         }
         
         if (!hasReactContent.hasContent) {
-            console.log(`⚠️  Warning: Page has minimal content`);
-            console.log(`   Content preview:`, hasReactContent.bodyText);
+            logger.app.info(`⚠️  Warning: Page has minimal content`);
+            logger.app.info(`   Content preview:`, hasReactContent.bodyText);
         }
         
         return { 
@@ -76,8 +77,8 @@ async function testActivity(activityUrl, timeout = 15000) {
         };
         
     } catch (error) {
-        console.log(`❌ Failed to load: ${activityUrl}`);
-        console.log(`   Error: ${error.message}`);
+        logger.app.info(`❌ Failed to load: ${activityUrl}`);
+        logger.app.info(`   Error: ${error.message}`);
         return { success: false, error: error.message };
     } finally {
         await browser.close();
@@ -94,14 +95,14 @@ async function main() {
         '/tools/claude-chat'
     ];
     
-    console.log('🧪 Testing Next.js activities with single package.json...\n');
+    logger.app.info('🧪 Testing Next.js activities with single package.json...\n');
     
     for (const activity of testActivities) {
         const result = await testActivity(`${serverUrl}${activity}`);
-        console.log('');
+        logger.app.info('');
     }
     
-    console.log('✅ Testing complete!');
+    logger.app.info('✅ Testing complete!');
 }
 
 main().catch(console.error);

@@ -12,6 +12,7 @@ const fs = require('fs');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const chokidar = require('chokidar');
 const next = require('next');
+const logger = require('../packages/logging/logger.js');
 
 class UnifiedC4RServer {
     constructor() {
@@ -24,7 +25,7 @@ class UnifiedC4RServer {
     }
 
     async initialize() {
-        console.log('🚀 Initializing C4R Unified Development Server...');
+        logger.app.info('🚀 Initializing C4R Unified Development Server...');
         
         // Discover all activities
         await this.discoverActivities();
@@ -38,17 +39,17 @@ class UnifiedC4RServer {
         // Start server
         await this.startServer();
         
-        console.log('\n🎉 C4R Unified Server Ready!');
-        console.log('=' .repeat(60));
-        console.log(`🌐 Main Dashboard: http://localhost:${this.port}`);
-        console.log(`📋 Activity Browser: http://localhost:${this.port}/browse`);
-        console.log('=' .repeat(60));
+        logger.app.info('\n🎉 C4R Unified Server Ready!');
+        logger.app.info('=' .repeat(60));
+        logger.app.info(`🌐 Main Dashboard: http://localhost:${this.port}`);
+        logger.app.info(`📋 Activity Browser: http://localhost:${this.port}/browse`);
+        logger.app.info('=' .repeat(60));
         
         this.printActivityMap();
     }
 
     async discoverActivities() {
-        console.log('🔍 Discovering activities...');
+        logger.app.info('🔍 Discovering activities...');
         
         const searchDirs = [
             'activities/causality',
@@ -87,7 +88,7 @@ class UnifiedC4RServer {
             }
         }
         
-        console.log(`📦 Found ${count} activities`);
+        logger.app.info(`📦 Found ${count} activities`);
     }
 
     detectFramework(packageJson) {
@@ -113,7 +114,7 @@ class UnifiedC4RServer {
 
         // Logging
         this.app.use((req, res, next) => {
-            console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+            logger.app.info(`${new Date().toISOString()} ${req.method} ${req.url}`);
             next();
         });
     }
@@ -243,7 +244,7 @@ class UnifiedC4RServer {
             `);
             
         } catch (error) {
-            console.error(`❌ Error serving ${activity.name}:`, error.message);
+            logger.app.error(`❌ Error serving ${activity.name}:`, error.message);
             res.status(500).send(`
                 <h1>Error Loading ${activity.name}</h1>
                 <p>Error: ${error.message}</p>
@@ -379,14 +380,14 @@ class UnifiedC4RServer {
         }
 
         Object.entries(byDomain).forEach(([domain, activities]) => {
-            console.log(`\n📁 ${domain.toUpperCase()}`);
+            logger.app.info(`\n📁 ${domain.toUpperCase()}`);
             activities.forEach(activity => {
-                console.log(`  → ${activity.route.padEnd(40)} (${activity.type})`);
+                logger.app.info(`  → ${activity.route.padEnd(40)} (${activity.type})`);
             });
         });
 
-        console.log(`\n💡 All activities accessible via: http://localhost:${this.port}/[domain]/[activity-name]`);
-        console.log(`📱 Example: http://localhost:${this.port}/causality/jhu-flu-dag-v1`);
+        logger.app.info(`\n💡 All activities accessible via: http://localhost:${this.port}/[domain]/[activity-name]`);
+        logger.app.info(`📱 Example: http://localhost:${this.port}/causality/jhu-flu-dag-v1`);
     }
 
     async startServer() {
@@ -399,19 +400,19 @@ class UnifiedC4RServer {
     }
 
     async shutdown() {
-        console.log('\n🛑 Shutting down unified server...');
+        logger.app.info('\n🛑 Shutting down unified server...');
         
         // Close all Next.js apps
         for (const [route, nextApp] of this.nextApps) {
             try {
                 await nextApp.close();
-                console.log(`  ✅ Closed ${route}`);
+                logger.app.info(`  ✅ Closed ${route}`);
             } catch (error) {
-                console.log(`  ❌ Error closing ${route}: ${error.message}`);
+                logger.app.info(`  ❌ Error closing ${route}: ${error.message}`);
             }
         }
         
-        console.log('👋 Server stopped');
+        logger.app.info('👋 Server stopped');
         process.exit(0);
     }
 }

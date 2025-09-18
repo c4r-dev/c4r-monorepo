@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 import { useState } from 'react';
 import { 
   getFunctionContent, 
@@ -66,7 +67,7 @@ const FunctionReview = ({
       return result;
 
     } catch (error) {
-      console.error('Validation error:', error);
+      logger.app.error('Validation error:', error);
       setFeedbackMessages(prev => ({
         ...prev,
         [functionId]: {

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, Suspense } from 'react'
@@ -108,11 +109,11 @@ function StrategyScreen() {
   // Fetch session data on component mount
   useEffect(() => {
     const sessionId = searchParams.get('sessionID')
-    console.log('Session ID from URL:', sessionId)
+    logger.app.info('Session ID from URL:', sessionId)
     if (sessionId) {
       fetchSessionData(sessionId)
     } else {
-      console.warn('No sessionID found in URL parameters, redirecting to home page')
+      logger.app.warn('No sessionID found in URL parameters, redirecting to home page')
       router.push('/')
       return
     }
@@ -131,12 +132,12 @@ function StrategyScreen() {
   const fetchSessionData = async (sessionId) => {
     try {
       setLoading(true)
-      console.log('Fetching data for session:', sessionId)
+      logger.app.info('Fetching data for session:', sessionId)
 
       const response = await fetch(`/api/controls?sessionId=${sessionId}`)
       if (!response.ok) {
         if (response.status === 404) {
-          console.warn('Session not found, redirecting to home page')
+          logger.app.warn('Session not found, redirecting to home page')
           router.push('/')
           return
         }
@@ -144,7 +145,7 @@ function StrategyScreen() {
       }
 
       const apiResponse = await response.json()
-      console.log('Raw API Response:', apiResponse)
+      logger.app.info('Raw API Response:', apiResponse)
 
       // Extract students array from the nested response structure
       let studentsArray = []
@@ -162,11 +163,11 @@ function StrategyScreen() {
         studentsArray = apiResponse.data
       }
 
-      console.log('Extracted students array:', studentsArray)
+      logger.app.info('Extracted students array:', studentsArray)
       setSessionData(studentsArray)
       setLoading(false)
     } catch (error) {
-      console.error('Error fetching session data:', error)
+      logger.app.error('Error fetching session data:', error)
       setLoading(false)
     }
   }
@@ -196,7 +197,7 @@ function StrategyScreen() {
       }
     })
 
-    console.log('Option counts:', counts)
+    logger.app.info('Option counts:', counts)
 
     // Update chart data with actual counts
     setChartData([
@@ -209,20 +210,20 @@ function StrategyScreen() {
 
   const filterDataByTab = () => {
     if (!sessionData.length) {
-      console.log('No session data available for filtering')
+      logger.app.info('No session data available for filtering')
       setTableRows([])
       return
     }
 
     const selectedOption = tabOptions[selectedTab]
-    console.log('Filtering by option:', selectedOption)
+    logger.app.info('Filtering by option:', selectedOption)
 
     // Filter data based on selected tab option
     const filtered = sessionData.filter((student) => {
       return student.option === selectedOption
     })
 
-    console.log('Filtered data:', filtered)
+    logger.app.info('Filtered data:', filtered)
     setFilteredData(filtered)
 
     // Create table rows based ONLY on Screen 2 data: random explanations displayed (purple) and user limits
@@ -233,12 +234,12 @@ function StrategyScreen() {
       // Use ONLY the random explanation that was displayed in Screen 2 (purple section)
       const displayedExplanation = student.displayedExplanation || ''
       
-      console.log(`=== STUDENT ${student.studentId} DATA ===`)
-      console.log('Student response (own from Screen 1):', student.response)
-      console.log('Displayed explanation (shown in Screen 2 purple):', student.displayedExplanation)
-      console.log('Displayed option student ID:', student.displayedOptionStudentId)
-      console.log('Limit explanations:', limitExplanations)
-      console.log('Using displayed explanation from Screen 2:', displayedExplanation)
+      logger.app.info(`=== STUDENT ${student.studentId} DATA ===`)
+      logger.app.info('Student response (own from Screen 1):', student.response)
+      logger.app.info('Displayed explanation (shown in Screen 2 purple):', student.displayedExplanation)
+      logger.app.info('Displayed option student ID:', student.displayedOptionStudentId)
+      logger.app.info('Limit explanations:', limitExplanations)
+      logger.app.info('Using displayed explanation from Screen 2:', displayedExplanation)
       
       if (limitExplanations.length === 0) {
         // If no limit explanations, create a single row with the displayed explanation from Screen 2
@@ -262,7 +263,7 @@ function StrategyScreen() {
     })
 
     setTableRows(rows)
-    console.log('Generated table rows:', rows)
+    logger.app.info('Generated table rows:', rows)
   }
 
   const handleRefresh = () => {
@@ -273,7 +274,7 @@ function StrategyScreen() {
   }
 
   // Debug: Show current state
-  console.log('Current state:', {
+  logger.app.info('Current state:', {
     selectedTab,
     sessionDataLength: sessionData.length,
     filteredDataLength: filteredData.length,

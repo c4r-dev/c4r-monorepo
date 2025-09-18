@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -49,11 +50,11 @@ export default function MatchupClient() {
           if (matchingSubsession && Array.isArray(matchingSubsession.rounds)) {
             setRoundsData(matchingSubsession.rounds);
           } else {
-            console.error('Subsession not found or invalid rounds array');
+            logger.app.error('Subsession not found or invalid rounds array');
           }
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        logger.app.error('Error fetching data:', error);
       }
     }
     fetchSelections();
@@ -67,7 +68,7 @@ export default function MatchupClient() {
   // Handle the Results button click.
   const handleResultsClick = async () => {
     if (!sessionId || !subsessionId) {
-      console.error('No sessionId or subsessionId available.');
+      logger.app.error('No sessionId or subsessionId available.');
       return;
     }
 
@@ -82,7 +83,7 @@ export default function MatchupClient() {
       selectedMatchup, // The round object from roundsData
     };
 
-    console.log('Payload:', payload);
+    logger.app.info('Payload:', payload);
 
     try {
       const res = await fetch(`/api/selection`, {
@@ -92,16 +93,16 @@ export default function MatchupClient() {
       });
 
       if (!res.ok) {
-        console.error('Error updating results:', res.statusText);
+        logger.app.error('Error updating results:', res.statusText);
       } else {
         const data = await res.json();
-        console.log('Results updated successfully:', data);
+        logger.app.info('Results updated successfully:', data);
         
         // Navigate to the analyze page with sessionId and subsessionId in URL
         router.push(`/analyze?sessionId=${sessionId}&subsessionId=${subsessionId}`);
       }
     } catch (error) {
-      console.error('Error in handleResultsClick:', error);
+      logger.app.error('Error in handleResultsClick:', error);
     }
   };
 
@@ -150,7 +151,7 @@ export default function MatchupClient() {
 
   return (
     <div className="obstacle-container">
-      {console.log(roundsData)}
+      {logger.app.info(roundsData)}
       {/* Render one row per round */}
       {roundsData.map((round, rowIndex) => {
         // Determine which choice is selected and which is not.

@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useEffect, useState } from 'react'
@@ -59,7 +60,7 @@ const ScatterClickNoSnap = ({
           tooltip={{
             itemContent: (params) => {
               // const rowsData = params?.series?.data?.[0]?.rows
-              //console.log(params.series.data[0] + 'this is item content')
+              //logger.app.info(params.series.data[0] + 'this is item content')
 
               return (
                 <Tooltip key={params.index}>

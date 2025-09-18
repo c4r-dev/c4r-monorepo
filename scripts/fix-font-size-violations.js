@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const logger = require('../packages/logging/logger.js');
 
 // Approved font size mappings
 const FONT_SIZE_MAPPINGS = {
@@ -69,7 +70,7 @@ class FontSizeFixer {
       warning: '⚠️',
       error: '❌'
     };
-    console.log(`${icons[type]} ${message}`);
+    logger.app.info(`${icons[type]} ${message}`);
   }
 
   async findViolatingFiles() {

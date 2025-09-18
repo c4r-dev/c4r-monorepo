@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class SinglePackageValidator {
     constructor() {
@@ -9,7 +10,7 @@ class SinglePackageValidator {
     }
 
     validate() {
-        console.log('🔍 Validating single package architecture...');
+        logger.app.info('🔍 Validating single package architecture...');
         
         const packageJsonPath = path.join(this.baseDir, 'package.json');
         const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
@@ -36,13 +37,13 @@ class SinglePackageValidator {
         }
         
         if (issues.length === 0) {
-            console.log('✅ Single package architecture validation passed');
-            console.log(`📊 Total activities: ${packageJson.c4rConfig?.totalActivities || 'Unknown'}`);
-            console.log(`📦 Total dependencies: ${Object.keys(packageJson.dependencies).length}`);
-            console.log(`🔧 Total devDependencies: ${Object.keys(packageJson.devDependencies).length}`);
+            logger.app.info('✅ Single package architecture validation passed');
+            logger.app.info(`📊 Total activities: ${packageJson.c4rConfig?.totalActivities || 'Unknown'}`);
+            logger.app.info(`📦 Total dependencies: ${Object.keys(packageJson.dependencies).length}`);
+            logger.app.info(`🔧 Total devDependencies: ${Object.keys(packageJson.devDependencies).length}`);
         } else {
-            console.log('❌ Validation issues found:');
-            issues.forEach(issue => console.log(`   • ${issue}`));
+            logger.app.info('❌ Validation issues found:');
+            issues.forEach(issue => logger.app.info(`   • ${issue}`));
         }
         
         return issues.length === 0;

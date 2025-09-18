@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, Suspense } from 'react'
@@ -67,7 +68,7 @@ function ResultsContent() {
         try {
           setLoading(true)
           const apiUrl = `http://localhost:3001/api/studies?sessionId=${queryParams.sessionId}&selectedSection=1`
-          console.log('Calling API:', apiUrl)
+          logger.app.info('Calling API:', apiUrl)
           
           const response = await fetch(apiUrl)
           
@@ -76,18 +77,18 @@ function ResultsContent() {
           }
           
           const data = await response.json()
-          console.log('API Response:', data)
-          console.log('API Response Type:', typeof data)
-          console.log('API Response Keys:', Object.keys(data))
-          console.log('Checking for responses property:', data.responses)
+          logger.app.info('API Response:', data)
+          logger.app.info('API Response Type:', typeof data)
+          logger.app.info('API Response Keys:', Object.keys(data))
+          logger.app.info('Checking for responses property:', data.responses)
           setApiData(data)
         } catch (error) {
-          console.error('Error calling studies API:', error)
+          logger.app.error('Error calling studies API:', error)
         } finally {
           setLoading(false)
         }
       } else {
-        console.log('No sessionId found in URL parameters')
+        logger.app.info('No sessionId found in URL parameters')
       }
     }
 
@@ -132,12 +133,12 @@ function ResultsContent() {
 
   // Function to calculate percentage of users who chose "inadequate"
   const calculateInadequatePercentage = (apiData, targetRound) => {
-    console.log('=== DEBUG calculateInadequatePercentage ===')
-    console.log('apiData:', apiData)
-    console.log('targetRound:', targetRound)
+    logger.app.info('=== DEBUG calculateInadequatePercentage ===')
+    logger.app.info('apiData:', apiData)
+    logger.app.info('targetRound:', targetRound)
     
     if (!apiData || !apiData.data || !apiData.data.students) {
-      console.log('No API data or students found')
+      logger.app.info('No API data or students found')
       return { percentage: 0, inadequateCount: 0, totalCount: 0 }
     }
     
@@ -146,14 +147,14 @@ function ResultsContent() {
     
     // Loop through each student
     apiData.data.students.forEach((student, studentIndex) => {
-      console.log(`Processing student ${studentIndex}:`, student)
+      logger.app.info(`Processing student ${studentIndex}:`, student)
       
       // Look for the specific round in the student's rounds
       const roundKey = `round${targetRound}`
-      console.log(`Looking for round key: ${roundKey}`)
+      logger.app.info(`Looking for round key: ${roundKey}`)
       
       const round = student.rounds[roundKey]
-      console.log(`Found round data:`, round)
+      logger.app.info(`Found round data:`, round)
       
       if (round && (round.response || round.option)) {
         totalStudents++
@@ -161,19 +162,19 @@ function ResultsContent() {
         // Check if this student chose "inadequate" (opposite of "adequate")
         if (round.option && round.option !== "adequate") {
           inadequateCount++
-          console.log(`Student ${studentIndex} chose inadequate option: ${round.option}`)
+          logger.app.info(`Student ${studentIndex} chose inadequate option: ${round.option}`)
         } else {
-          console.log(`Student ${studentIndex} chose adequate option`)
+          logger.app.info(`Student ${studentIndex} chose adequate option`)
         }
       }
     })
     
     const percentage = totalStudents > 0 ? Math.round((inadequateCount / totalStudents) * 100) : 0
     
-    console.log(`Round ${targetRound} stats:`)
-    console.log(`- Total students: ${totalStudents}`)
-    console.log(`- Inadequate count: ${inadequateCount}`)
-    console.log(`- Percentage inadequate: ${percentage}%`)
+    logger.app.info(`Round ${targetRound} stats:`)
+    logger.app.info(`- Total students: ${totalStudents}`)
+    logger.app.info(`- Inadequate count: ${inadequateCount}`)
+    logger.app.info(`- Percentage inadequate: ${percentage}%`)
     
     return { percentage, inadequateCount, totalCount: totalStudents }
   }
@@ -252,36 +253,36 @@ function ResultsContent() {
 
   // Updated function to extract responses from API data with round filtering
   const getResponsesFromApiData = (apiData, targetRound) => {
-    console.log('=== DEBUG getResponsesFromApiData ===')
-    console.log('apiData:', apiData)
-    console.log('targetRound:', targetRound)
+    logger.app.info('=== DEBUG getResponsesFromApiData ===')
+    logger.app.info('apiData:', apiData)
+    logger.app.info('targetRound:', targetRound)
     
     if (!apiData || !apiData.data || !apiData.data.students) {
-      console.log('No API data or students found')
+      logger.app.info('No API data or students found')
       return []
     }
     
-    console.log('Students data:', apiData.data.students)
+    logger.app.info('Students data:', apiData.data.students)
     
     const responses = []
     
     // Loop through each student
     apiData.data.students.forEach((student, studentIndex) => {
-      console.log(`Processing student ${studentIndex}:`, student)
-      console.log(`Student rounds:`, student.rounds)
+      logger.app.info(`Processing student ${studentIndex}:`, student)
+      logger.app.info(`Student rounds:`, student.rounds)
       
       // Look for the specific round in the student's rounds
       const roundKey = `round${targetRound}`
-      console.log(`Looking for round key: ${roundKey}`)
+      logger.app.info(`Looking for round key: ${roundKey}`)
       
       const round = student.rounds[roundKey]
-      console.log(`Found round data:`, round)
+      logger.app.info(`Found round data:`, round)
       
       if (round) {
-        console.log(`Round ${targetRound} exists for student ${studentIndex}`)
-        console.log(`Round response:`, round.response)
-        console.log(`Round option:`, round.option)
-        console.log(`Round category:`, round.category)
+        logger.app.info(`Round ${targetRound} exists for student ${studentIndex}`)
+        logger.app.info(`Round response:`, round.response)
+        logger.app.info(`Round option:`, round.option)
+        logger.app.info(`Round category:`, round.category)
         
         if (round.response) {
           // Determine category for color coding
@@ -308,25 +309,25 @@ function ResultsContent() {
             option: round.option
           }
           
-          console.log('Adding response:', responseObj)
+          logger.app.info('Adding response:', responseObj)
           responses.push(responseObj)
         } else {
-          console.log(`No response found for round ${targetRound} in student ${studentIndex}`)
+          logger.app.info(`No response found for round ${targetRound} in student ${studentIndex}`)
         }
       } else {
-        console.log(`Round ${roundKey} not found for student ${studentIndex}`)
+        logger.app.info(`Round ${roundKey} not found for student ${studentIndex}`)
       }
     })
     
-    console.log(`Total responses found for round ${targetRound}:`, responses.length)
-    console.log('All responses:', responses)
+    logger.app.info(`Total responses found for round ${targetRound}:`, responses.length)
+    logger.app.info('All responses:', responses)
     
     return responses
   }
 
   // Helper function to get all responses (fallback)
   const getAllResponsesFromApiData = (apiData) => {
-    console.log('=== FALLBACK: Getting all responses ===')
+    logger.app.info('=== FALLBACK: Getting all responses ===')
     if (!apiData || !apiData.data || !apiData.data.students) {
       return []
     }
@@ -361,7 +362,7 @@ function ResultsContent() {
       }
     })
     
-    console.log('Fallback responses found:', responses.length)
+    logger.app.info('Fallback responses found:', responses.length)
     return responses
   }
 
@@ -424,7 +425,7 @@ function ResultsContent() {
   // Get responses for the current active study (round)
   const currentRound = activeStudy + 1 // Convert tab index to round number (0->1, 1->2, 2->3)
   const apiResponses = getResponsesFromApiData(apiData, currentRound)
-  console.log(`Extracted responses from API for round ${currentRound}:`, apiResponses)
+  logger.app.info(`Extracted responses from API for round ${currentRound}:`, apiResponses)
   
   // If no responses found for specific round, try to get all responses as fallback
   const fallbackResponses = apiResponses.length === 0 && apiData ? 
@@ -476,7 +477,7 @@ function ResultsContent() {
         hoverText: "Default explanation"
       }))
     
-  console.log(`Final explanations for round ${currentRound}:`, explanations)
+  logger.app.info(`Final explanations for round ${currentRound}:`, explanations)
 
   // Study tab handling
   const handleStudyChange = (event, newValue) => {
@@ -489,7 +490,7 @@ function ResultsContent() {
   // Check if completed parameter exists (optional)
   useEffect(() => {
     if (queryParams.completed) {
-      console.log('Completed flag detected:', queryParams.completed)
+      logger.app.info('Completed flag detected:', queryParams.completed)
       // You can do something with this information if needed
     }
   }, [queryParams])

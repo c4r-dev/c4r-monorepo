@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useCallback, Suspense, useRef, useMemo } from 'react';
@@ -229,7 +230,7 @@ function PositiveControlContent() {
     };
 
     try {
-      console.log(`[SessionFlow] Saving session ${sessionId} for flow ${flowIdFromUrl}`);
+      logger.app.info(`[SessionFlow] Saving session ${sessionId} for flow ${flowIdFromUrl}`);
       const result = await saveSessionFlow(
         sessionId,
         flowIdFromUrl,
@@ -239,12 +240,12 @@ function PositiveControlContent() {
       );
       
       if (!result.success) {
-        console.error('Failed to save session flow:', result.message);
+        logger.app.error('Failed to save session flow:', result.message);
       } else {
-        console.log(`[SessionFlow] Successfully saved session ${sessionId}`);
+        logger.app.info(`[SessionFlow] Successfully saved session ${sessionId}`);
       }
     } catch (error) {
-      console.error('Error saving session flow:', error);
+      logger.app.error('Error saving session flow:', error);
     }
   }, [sessionId, flowIdFromUrl, selectedFlowInfo, nodes, edges, validations]);
 
@@ -309,7 +310,7 @@ function PositiveControlContent() {
         throw new Error('Flow data is missing.');
       }
     } catch (err) {
-      console.error('Error loading flow:', err);
+      logger.app.error('Error loading flow:', err);
       setError(err.message || 'An error occurred while fetching the flow.');
       setFlowData(null);
       setNodes([]);
@@ -342,7 +343,7 @@ function PositiveControlContent() {
       // Auto-save session flow when edge is added
       setTimeout(() => {
         if (selectedFlowInfo) {
-          console.log(`[SessionFlow] Auto-saving after edge addition`);
+          logger.app.info(`[SessionFlow] Auto-saving after edge addition`);
           const modifiedFlowData = {
             nodes: nodes,
             edges: updatedEdges
@@ -355,7 +356,7 @@ function PositiveControlContent() {
             modifiedFlowData,
             validations
           ).catch(error => {
-            console.error('Error auto-saving session flow:', error);
+            logger.app.error('Error auto-saving session flow:', error);
           });
         }
       }, 100);
@@ -458,7 +459,7 @@ function PositiveControlContent() {
         // Auto-save session flow when node is added
         setTimeout(() => {
           if (selectedFlowInfo) {
-            console.log(`[SessionFlow] Auto-saving after node addition`);
+            logger.app.info(`[SessionFlow] Auto-saving after node addition`);
             const modifiedFlowData = {
               nodes: updatedNodes,
               edges: edges
@@ -471,7 +472,7 @@ function PositiveControlContent() {
               modifiedFlowData,
               validations
             ).catch(error => {
-              console.error('Error auto-saving session flow:', error);
+              logger.app.error('Error auto-saving session flow:', error);
             });
           }
         }, 100);
@@ -606,7 +607,7 @@ function PositiveControlContent() {
         setValidations(validations);
       }
     } catch (error) {
-      console.error('Error during validation submission:', error);
+      logger.app.error('Error during validation submission:', error);
       setValidations(validations);
     } finally {
       setIsSubmittingValidation(false);
@@ -646,8 +647,8 @@ function PositiveControlContent() {
       sessionId: sessionId // Include session ID for reference
     };
 
-    console.log(`[PositiveControl1] Submitting data with sessionId: ${sessionId}`);
-    console.log(`[PositiveControl1] Submission data:`, submissionData);
+    logger.app.info(`[PositiveControl1] Submitting data with sessionId: ${sessionId}`);
+    logger.app.info(`[PositiveControl1] Submission data:`, submissionData);
 
     setIsSubmittingWork(true);
 
@@ -664,7 +665,7 @@ function PositiveControlContent() {
         alert(`Error submitting work: ${result.message}`);
       }
     } catch (error) {
-      console.error('Error during work submission:', error);
+      logger.app.error('Error during work submission:', error);
       alert(`Error submitting work: ${error.message}`);
     } finally {
       setIsSubmittingWork(false);

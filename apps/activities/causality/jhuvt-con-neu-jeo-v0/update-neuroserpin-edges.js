@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 #!/usr/bin/env node
 
 /**
@@ -176,20 +177,20 @@ const edgeUpdates = [
 
 async function updateNeuroserpin6Edges() {
   try {
-    console.log('Connecting to MongoDB...');
+    logger.app.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Connected to MongoDB');
+    logger.app.info('✅ Connected to MongoDB');
 
     // Find the Neuroserpin6 document by exact ID
-    console.log('Searching for Neuroserpin6 document...');
+    logger.app.info('Searching for Neuroserpin6 document...');
     const flowchartDoc = await CustomFlowchart.findById("682f33b87a6b41356cee7202");
 
     if (!flowchartDoc) {
-      console.log('❌ Neuroserpin6 document not found with ID: 682f33b87a6b41356cee7202');
+      logger.app.info('❌ Neuroserpin6 document not found with ID: 682f33b87a6b41356cee7202');
       return;
     }
 
-    console.log('✅ Found document:', flowchartDoc.name);
+    logger.app.info('✅ Found document:', flowchartDoc.name);
 
     // Parse the flowchart JSON
     const flowchartData = JSON.parse(flowchartDoc.flowchart);
@@ -210,7 +211,7 @@ async function updateNeuroserpin6Edges() {
         const index = flowchartData.edges.findIndex(edge => edge.id === edgeUpdate.id);
         if (index !== -1) {
           flowchartData.edges.splice(index, 1);
-          console.log(`🗑️  Deleted edge: ${edgeUpdate.id}`);
+          logger.app.info(`🗑️  Deleted edge: ${edgeUpdate.id}`);
           deletedCount++;
         }
       } else if (existingEdges.has(edgeUpdate.id)) {
@@ -219,45 +220,45 @@ async function updateNeuroserpin6Edges() {
         if (edgeIndex !== -1) {
           const oldEdge = flowchartData.edges[edgeIndex];
           flowchartData.edges[edgeIndex] = { ...oldEdge, ...edgeUpdate };
-          console.log(`🔗 Updated edge: ${edgeUpdate.id}`);
-          console.log(`   From: ${edgeUpdate.source} → To: ${edgeUpdate.target}`);
+          logger.app.info(`🔗 Updated edge: ${edgeUpdate.id}`);
+          logger.app.info(`   From: ${edgeUpdate.source} → To: ${edgeUpdate.target}`);
           updatedCount++;
         }
       } else {
         // Add new edge
         flowchartData.edges.push(edgeUpdate);
-        console.log(`➕ Added new edge: ${edgeUpdate.id}`);
-        console.log(`   From: ${edgeUpdate.source} → To: ${edgeUpdate.target}`);
+        logger.app.info(`➕ Added new edge: ${edgeUpdate.id}`);
+        logger.app.info(`   From: ${edgeUpdate.source} → To: ${edgeUpdate.target}`);
         addedCount++;
       }
     });
 
     const totalChanges = updatedCount + deletedCount + addedCount;
     if (totalChanges === 0) {
-      console.log('ℹ️  No edge updates needed');
+      logger.app.info('ℹ️  No edge updates needed');
       return;
     }
 
     // Save back to MongoDB
-    console.log(`\n💾 Saving edge changes...`);
+    logger.app.info(`\n💾 Saving edge changes...`);
     await CustomFlowchart.findByIdAndUpdate(
       flowchartDoc._id,
       { flowchart: JSON.stringify(flowchartData) },
       { new: true }
     );
 
-    console.log('✅ Successfully updated Neuroserpin6 edges in MongoDB!');
-    console.log(`📊 Summary:`);
-    console.log(`   - Updated: ${updatedCount} edges`);
-    console.log(`   - Added: ${addedCount} edges`);
-    console.log(`   - Deleted: ${deletedCount} edges`);
-    console.log(`   - Total changes: ${totalChanges}`);
+    logger.app.info('✅ Successfully updated Neuroserpin6 edges in MongoDB!');
+    logger.app.info(`📊 Summary:`);
+    logger.app.info(`   - Updated: ${updatedCount} edges`);
+    logger.app.info(`   - Added: ${addedCount} edges`);
+    logger.app.info(`   - Deleted: ${deletedCount} edges`);
+    logger.app.info(`   - Total changes: ${totalChanges}`);
 
   } catch (error) {
-    console.error('❌ Error updating edges:', error);
+    logger.app.error('❌ Error updating edges:', error);
   } finally {
     await mongoose.disconnect();
-    console.log('\n🔌 Disconnected from MongoDB');
+    logger.app.info('\n🔌 Disconnected from MongoDB');
   }
 }
 

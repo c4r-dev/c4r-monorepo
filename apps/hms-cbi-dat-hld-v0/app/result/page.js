@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
@@ -48,7 +49,7 @@ function ResultContent() {
           setPredictedPerformance(50); // Fallback default if no data is found
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        logger.app.error("Error fetching data:", error);
       }
     };
 

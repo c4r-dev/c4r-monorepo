@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -25,7 +26,7 @@ const SessionConfigPopup = ({
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    console.log('SessionConfigPopup received open prop:', open);
+    logger.app.info('SessionConfigPopup received open prop:', open);
     setIsOpen(open);
   }, [open]);
 
@@ -67,14 +68,14 @@ const SessionConfigPopup = ({
   };
 
   const handleModeSelect = (selectedMode) => {
-    console.log('handleModeSelect called with:', selectedMode);
+    logger.app.info('handleModeSelect called with:', selectedMode);
     if (selectedMode === 'individual') {
       // Route to individual mode with hardcoded sessionID
-      console.log('Routing to individual mode');
+      logger.app.info('Routing to individual mode');
       onClose?.(selectedMode); // Pass the selected mode to parent
     } else {
       // Use existing sessionID for group mode
-      console.log('Setting mode to group');
+      logger.app.info('Setting mode to group');
       setMode('group');
       
       // Generate QR code for the sharing URL using existing sessionID
@@ -98,12 +99,12 @@ const SessionConfigPopup = ({
       const sharingURL = `${window.location.origin}/?sessionID=${sessionID}`;
       await navigator.clipboard.writeText(sharingURL);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.app.error('Failed to copy:', err);
     }
   };
 
   // Don't render anything if not open
-  console.log('SessionConfigPopup render - isOpen:', isOpen);
+  logger.app.info('SessionConfigPopup render - isOpen:', isOpen);
   if (!isOpen) return null;
 
   return (

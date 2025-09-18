@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 import hljs from 'highlight.js';
 
 // Common color palette for functions
@@ -27,7 +28,7 @@ export const getHighlightedFunctionContent = (func, value) => {
     const result = hljs.highlight(content, { language: 'python' });
     return result.value;
   } catch (error) {
-    console.warn('Syntax highlighting failed:', error);
+    logger.app.warn('Syntax highlighting failed:', error);
     return content; // Fallback to plain text
   }
 };

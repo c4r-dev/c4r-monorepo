@@ -26,7 +26,7 @@ export async function submitFeedback(answerQ1, fbtool) {
         const jsonResponse = await response.json();
         return jsonResponse;
     } catch (error) {
-        console.error("Error:", error);
+        window.c4rLogger ? window.c4rLogger.error('app_error', "Error:", error);
         throw error;
     }
 }
@@ -49,7 +49,8 @@ export async function fetchFeedback() {
         const jsonResponse = await response.json();
         return jsonResponse;
     } catch (error) {
-        console.error("Error:", error);
+        window.c4rLogger ? window.c4rLogger.error('app_error', "Error:", error);
         throw error;
     }
 }
+ : console.$1(

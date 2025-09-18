@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { Suspense, useState, useEffect, useRef } from "react";
@@ -132,14 +133,14 @@ function CompareContent() {
         const fetchCompareData = async () => {
             try {
                 const response = await fetch(`/api/numberRuleGuessApi`);
-                console.log("response:", response);
+                logger.app.info("response:", response);
                 const result = await response.json();
-                console.log("result:", result);
+                logger.app.info("result:", result);
 
 
                 // Find the current user's true and false guesses
                 const currentUser = result.find(item => item.guessID === guessID);
-                console.log("currentUser:", currentUser);
+                logger.app.info("currentUser:", currentUser);
 
                 let tempTrueNum = 0;
                 let tempFalseNum = 0;
@@ -154,8 +155,8 @@ function CompareContent() {
                 setCurrentUserTrueNum(tempTrueNum);
                 setCurrentUserFalseNum(tempFalseNum);
 
-                // console.log("currentUserTrueNum:", currentUserTrueNum);
-                // console.log("currentUserFalseNum:", currentUserFalseNum);
+                // logger.app.info("currentUserTrueNum:", currentUserTrueNum);
+                // logger.app.info("currentUserFalseNum:", currentUserFalseNum);
 
 
 
@@ -186,8 +187,8 @@ function CompareContent() {
                     numberOfFalseGuesses.push(falseCountInItem);
                 });
 
-                console.log("numberOfTrueGuesses:", numberOfTrueGuesses);
-                console.log("numberOfFalseGuesses:", numberOfFalseGuesses);
+                logger.app.info("numberOfTrueGuesses:", numberOfTrueGuesses);
+                logger.app.info("numberOfFalseGuesses:", numberOfFalseGuesses);
 
 
                 // We will graph the above data in two bar charts (One for true and one for false)
@@ -253,7 +254,7 @@ function CompareContent() {
                     falseData: tempFalseData
                 }
 
-                console.log("tempConsolidatedGuesses:", tempConsolidatedGuesses);
+                logger.app.info("tempConsolidatedGuesses:", tempConsolidatedGuesses);
 
                 setConsolidatedGuesses(tempConsolidatedGuesses);
 
@@ -283,8 +284,8 @@ function CompareContent() {
                     falseCounts.push({guessListLength: guessListLength, falseCount: falseCount});
                 });
 
-                console.log("trueCounts:", trueCounts);
-                console.log("falseCounts:", falseCounts);
+                logger.app.info("trueCounts:", trueCounts);
+                logger.app.info("falseCounts:", falseCounts);
 
                 // For each given guessListLength, find the average of the trueCount and falseCount
                 let averagesByLength = {};
@@ -311,12 +312,12 @@ function CompareContent() {
 
                 setAveragesByLength(averagesByLength);
 
-                console.log("averagesByLength:", averagesByLength);
+                logger.app.info("averagesByLength:", averagesByLength);
 
 
 
             } catch (error) {
-                console.log("Error loading results: ", error);
+                logger.app.info("Error loading results: ", error);
             }
         };
 

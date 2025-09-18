@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client'
 
 import React, {
@@ -96,7 +97,7 @@ function AddressControlConstraint() {
       )
       if (!response.ok) {
         if (response.status !== 404) {
-          console.error(`HTTP error! status: ${response.status}`) // Log non-404 errors
+          logger.app.error(`HTTP error! status: ${response.status}`) // Log non-404 errors
         }
         // Ensure timer is reset if status fetch fails or returns 404
         setTimerInfo({ isActive: false, startTime: null, durationSeconds: 90 })
@@ -110,7 +111,7 @@ function AddressControlConstraint() {
         }
       }
     } catch (error) {
-      console.error('Error fetching timer status:', error)
+      logger.app.error('Error fetching timer status:', error)
       // Don't set errorMessage here to avoid spamming user for background errors
     }
   }, [sessionId])
@@ -118,7 +119,7 @@ function AddressControlConstraint() {
   // Function to stop polling interval
   const stopPolling = useCallback(() => {
     if (pollIntervalRef.current) {
-      console.log('[Polling] Stopping polling...')
+      logger.app.info('[Polling] Stopping polling...')
       clearInterval(pollIntervalRef.current)
       pollIntervalRef.current = null
     }
@@ -129,7 +130,7 @@ function AddressControlConstraint() {
     // Prevent starting if no sessionID, individual mode, or polling already active
     if (!sessionId || sessionId === 'individual1' || pollIntervalRef.current) return
 
-    console.log('[Polling] Starting polling...')
+    logger.app.info('[Polling] Starting polling...')
     fetchTimerStatus() // Fetch immediately
 
     const pollFrequency = isTimerConfirmedStarted ? 30000 : 5000
@@ -155,21 +156,21 @@ function AddressControlConstraint() {
       if (!sessionId || sessionId === 'individual1') return // Exit if no sessionID or individual mode
 
       if (document.hidden) {
-        console.log('[Visibility] Tab hidden, pausing polling.')
+        logger.app.info('[Visibility] Tab hidden, pausing polling.')
         stopPolling()
       } else {
-        console.log('[Visibility] Tab visible, resuming polling.')
+        logger.app.info('[Visibility] Tab visible, resuming polling.')
         // Restart polling. startPolling checks if it's already running.
         startPolling()
       }
     }
 
     document.addEventListener('visibilitychange', handleVisibilityChange)
-    console.log('[Visibility] Listener added.')
+    logger.app.info('[Visibility] Listener added.')
 
     // Cleanup listener on component unmount
     return () => {
-      console.log('[Visibility] Removing listener.')
+      logger.app.info('[Visibility] Removing listener.')
       document.removeEventListener('visibilitychange', handleVisibilityChange)
       // Ensure polling stops if component unmounts while tab is hidden
       stopPolling()
@@ -284,7 +285,7 @@ function AddressControlConstraint() {
 
     if (sessionIdFromUrl) {
       setSessionId(sessionIdFromUrl)
-      console.log('SessionID set to:', sessionIdFromUrl) // Debug log
+      logger.app.info('SessionID set to:', sessionIdFromUrl) // Debug log
     }
 
     // Generate unique student ID if not present in URL
@@ -320,14 +321,14 @@ function AddressControlConstraint() {
       setExplanationText(explanationFromUrl)
     }
 
-    console.log('Session ID from URL:', sessionIdFromUrl)
-    console.log(
+    logger.app.info('Session ID from URL:', sessionIdFromUrl)
+    logger.app.info(
       'Student ID from URL (generated or existing):',
       studentIdFromUrl,
     )
-    console.log('Selected Option from URL:', selectedOptionFromUrl)
-    console.log('Custom Option from URL:', customOptionFromUrl)
-    console.log('Explanation from URL:', explanationFromUrl)
+    logger.app.info('Selected Option from URL:', selectedOptionFromUrl)
+    logger.app.info('Custom Option from URL:', customOptionFromUrl)
+    logger.app.info('Explanation from URL:', explanationFromUrl)
   }, [searchParams])
 
   const handleSeeControlsClick = () => {
@@ -426,8 +427,8 @@ function AddressControlConstraint() {
       const newUrl = `${window.location.pathname}?${queryParams.toString()}`
       window.history.replaceState({}, '', newUrl)
 
-      console.log('Custom option added to URL:', otherOptionText.trim())
-      console.log('Current explanation in URL:', explanationText.trim())
+      logger.app.info('Custom option added to URL:', otherOptionText.trim())
+      logger.app.info('Current explanation in URL:', explanationText.trim())
     }
   }
 
@@ -454,7 +455,7 @@ function AddressControlConstraint() {
       const newUrl = `${window.location.pathname}?${queryParams.toString()}`
       window.history.replaceState({}, '', newUrl)
 
-      console.log('Explanation saved to URL:', explanationText.trim())
+      logger.app.info('Explanation saved to URL:', explanationText.trim())
       setExplanationSubmitted(true)
 
       // Special handling for individual mode - navigate to ResearchMethodology
@@ -462,12 +463,12 @@ function AddressControlConstraint() {
         try {
           // Save data for individual mode
           await saveUrlDataToAPI()
-          console.log('Individual data saved successfully!')
+          logger.app.info('Individual data saved successfully!')
           
           // Navigate to ResearchMethodology page
           handleNavigateToNext()
         } catch (error) {
-          console.error('Error saving individual data:', error)
+          logger.app.error('Error saving individual data:', error)
           // Still navigate even if save fails
           handleNavigateToNext()
         }
@@ -479,9 +480,9 @@ function AddressControlConstraint() {
         try {
           // Call the controls API to save user details
           await saveUrlDataToAPI()
-          console.log('Data saved successfully when timer expired!')
+          logger.app.info('Data saved successfully when timer expired!')
         } catch (error) {
-          console.error('Error saving data when timer expired:', error)
+          logger.app.error('Error saving data when timer expired:', error)
           // Don't prevent the user from continuing even if save fails
         }
       }
@@ -517,9 +518,9 @@ function AddressControlConstraint() {
       }
 
       // Debug: Log what we're getting from URL and state
-      console.log('Current URL:', window.location.href)
-      console.log('URL Params:', Object.fromEntries(urlParams.entries()))
-      console.log('State values:', {
+      logger.app.info('Current URL:', window.location.href)
+      logger.app.info('URL Params:', Object.fromEntries(urlParams.entries()))
+      logger.app.info('State values:', {
         sessionId,
         studentId,
         selectedOption,
@@ -539,12 +540,12 @@ function AddressControlConstraint() {
         selectedOption || cleanUrlParam(urlParams.get('selectedOption'))
       const mappedOption = mapOptionForAPI(currentOption)
 
-      console.log('Original option:', currentOption)
-      console.log('Mapped option for API:', mappedOption)
+      logger.app.info('Original option:', currentOption)
+      logger.app.info('Mapped option for API:', mappedOption)
 
       // Determine withinTimer based on timeExpired state
       const withinTimer = !timeExpired
-      console.log('Timer expired:', timeExpired, '-> withinTimer:', withinTimer)
+      logger.app.info('Timer expired:', timeExpired, '-> withinTimer:', withinTimer)
 
       // Prepare the data payload
       const payload = {
@@ -558,7 +559,7 @@ function AddressControlConstraint() {
         withinTimer: withinTimer, // Set based on timer status
       }
 
-      console.log('Payload being sent:', payload)
+      logger.app.info('Payload being sent:', payload)
 
       // Validate that we have required fields
       if (!payload.sessionId || !payload.studentId) {
@@ -582,7 +583,7 @@ function AddressControlConstraint() {
       }
 
       const result = await response.json()
-      console.log('Data saved successfully:', result)
+      logger.app.info('Data saved successfully:', result)
 
       // Also send withinTimer to the saveRandomizationIdeas API
       const response1 = await fetch('/api/saveRandomizationIdeas', {
@@ -609,7 +610,7 @@ function AddressControlConstraint() {
 
       return result
     } catch (error) {
-      console.error('Error saving data:', error)
+      logger.app.error('Error saving data:', error)
       setIsTimerConfirmedStarted(false)
       // You might want to show an error message to the user
       alert('Failed to save data. Please try again.')
@@ -637,7 +638,7 @@ function AddressControlConstraint() {
         cleanUrlParam(urlParams.get('studentId')) ||
         `student_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 
-      console.log(
+      logger.app.info(
         'Using studentId for both API and navigation:',
         finalStudentId,
       )
@@ -645,10 +646,10 @@ function AddressControlConstraint() {
       // FIRST: Save the current state to the database BEFORE navigation
       // Pass the finalStudentId to ensure consistency
       await saveUrlDataToAPI(finalStudentId)
-      console.log('Data saved successfully!')
+      logger.app.info('Data saved successfully!')
     } catch (error) {
       // Handle error - don't navigate if save failed
-      console.error('Failed to save data before navigation:', error)
+      logger.app.error('Failed to save data before navigation:', error)
       // Optionally show user feedback
       alert('Failed to save data. Please try again.')
       setFinalSubmitted(false) // Re-enable button on error
@@ -685,23 +686,23 @@ function AddressControlConstraint() {
       queryParams.append('explanation', explanationText.trim())
     }
 
-    console.log('Navigating with URL params:', queryParams.toString())
+    logger.app.info('Navigating with URL params:', queryParams.toString())
     router.push(`/ResearchMethodology?${queryParams.toString()}`)
   }
 
   // Helper function to determine if navigation button should be enabled
   const isNavigationEnabled = () => {
-    console.log('Checking navigation conditions:')
-    console.log('- explanationSubmitted:', explanationSubmitted)
-    console.log('- finalSubmitted:', finalSubmitted)
-    console.log('- timeExpired:', timeExpired)
-    console.log('- sessionId:', sessionId)
+    logger.app.info('Checking navigation conditions:')
+    logger.app.info('- explanationSubmitted:', explanationSubmitted)
+    logger.app.info('- finalSubmitted:', finalSubmitted)
+    logger.app.info('- timeExpired:', timeExpired)
+    logger.app.info('- sessionId:', sessionId)
 
     // Logic based on timer status:
     if (!timeExpired) {
       // Timer is NOT expired: enable button only after BOTH explanation submit AND final submit
       const shouldEnable = explanationSubmitted && finalSubmitted
-      console.log(
+      logger.app.info(
         '- Timer not expired: need both explanation and final submit:',
         shouldEnable,
       )
@@ -709,7 +710,7 @@ function AddressControlConstraint() {
     } else {
       // Timer IS expired: enable button only after explanation submit
       const shouldEnable = explanationSubmitted
-      console.log(
+      logger.app.info(
         '- Timer expired: need only explanation submit:',
         shouldEnable,
       )

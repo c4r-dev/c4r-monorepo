@@ -6,6 +6,7 @@
  */
 
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function testSingleActivity(activityRoute, options = {}) {
     const {
@@ -17,7 +18,7 @@ async function testSingleActivity(activityRoute, options = {}) {
     } = options;
     
     const url = `${baseUrl}${activityRoute}`;
-    console.log(`🔍 Testing activity: ${url}`);
+    logger.app.info(`🔍 Testing activity: ${url}`);
     
     const browser = await puppeteer.launch({ 
         headless,
@@ -34,32 +35,32 @@ async function testSingleActivity(activityRoute, options = {}) {
     page.on('console', msg => {
         const message = `[${msg.type().toUpperCase()}] ${msg.text()}`;
         consoleMessages.push(message);
-        console.log(`  ${message}`);
+        logger.app.info(`  ${message}`);
     });
     
     page.on('pageerror', error => {
         const message = `[PAGE ERROR] ${error.message}`;
         consoleMessages.push(message);
-        console.log(`  ${message}`);
+        logger.app.info(`  ${message}`);
     });
     
     page.on('request', request => {
-        console.log(`  [REQUEST] ${request.method()} ${request.url()}`);
+        logger.app.info(`  [REQUEST] ${request.method()} ${request.url()}`);
     });
     
     page.on('response', response => {
         const status = response.status();
         const url = response.url();
         if (status >= 400) {
-            console.log(`  [❌ ${status}] ${url}`);
+            logger.app.info(`  [❌ ${status}] ${url}`);
             failedRequests.push({ status, url });
         } else {
-            console.log(`  [✅ ${status}] ${url}`);
+            logger.app.info(`  [✅ ${status}] ${url}`);
         }
     });
     
     try {
-        console.log(`\n🌐 Navigating to ${url}...`);
+        logger.app.info(`\n🌐 Navigating to ${url}...`);
         await page.goto(url, { 
             waitUntil: 'domcontentloaded',
             timeout 
@@ -86,19 +87,19 @@ async function testSingleActivity(activityRoute, options = {}) {
             };
         });
         
-        console.log(`\n📄 Page Analysis:`);
-        console.log(`  Title: "${pageAnalysis.title}"`);
-        console.log(`  Has Error: ${pageAnalysis.hasError}`);
-        console.log(`  Has Activity Content: ${pageAnalysis.hasActivityContent}`);
-        console.log(`  Has Loading Indicator: ${pageAnalysis.hasLoadingIndicator}`);
-        console.log(`  Fallback Mode: ${pageAnalysis.hasFallbackMode}`);
-        console.log(`  Next.js Bootstrap: ${pageAnalysis.hasNextJSBootstrap}`);
-        console.log(`  React Content: ${pageAnalysis.hasReactContent}`);
-        console.log(`  Body Length: ${pageAnalysis.bodyLength} chars`);
+        logger.app.info(`\n📄 Page Analysis:`);
+        logger.app.info(`  Title: "${pageAnalysis.title}"`);
+        logger.app.info(`  Has Error: ${pageAnalysis.hasError}`);
+        logger.app.info(`  Has Activity Content: ${pageAnalysis.hasActivityContent}`);
+        logger.app.info(`  Has Loading Indicator: ${pageAnalysis.hasLoadingIndicator}`);
+        logger.app.info(`  Fallback Mode: ${pageAnalysis.hasFallbackMode}`);
+        logger.app.info(`  Next.js Bootstrap: ${pageAnalysis.hasNextJSBootstrap}`);
+        logger.app.info(`  React Content: ${pageAnalysis.hasReactContent}`);
+        logger.app.info(`  Body Length: ${pageAnalysis.bodyLength} chars`);
         
         // Wait longer if loading
         if (pageAnalysis.hasLoadingIndicator) {
-            console.log(`⏳ Found loading indicator, waiting longer...`);
+            logger.app.info(`⏳ Found loading indicator, waiting longer...`);
             await page.waitForTimeout(5000);
         }
         
@@ -109,7 +110,7 @@ async function testSingleActivity(activityRoute, options = {}) {
                 path: screenshotName,
                 fullPage: true 
             });
-            console.log(`📸 Screenshot saved: ${screenshotName}`);
+            logger.app.info(`📸 Screenshot saved: ${screenshotName}`);
         }
         
         // Final assessment
@@ -118,19 +119,19 @@ async function testSingleActivity(activityRoute, options = {}) {
                      pageAnalysis.hasNextJSBootstrap ? 'nextjs-bootstrap' :
                      pageAnalysis.hasReactContent ? 'react' : 'static';
         
-        console.log(`\n🎯 RESULT:`);
-        console.log(`  Status: ${isWorking ? '✅ Working' : '⚠️  Issues detected'}`);
-        console.log(`  Mode: ${mode}`);
-        console.log(`  Failed Requests: ${failedRequests.length}`);
-        console.log(`  Console Errors: ${consoleMessages.filter(m => m.includes('[ERROR]')).length}`);
+        logger.app.info(`\n🎯 RESULT:`);
+        logger.app.info(`  Status: ${isWorking ? '✅ Working' : '⚠️  Issues detected'}`);
+        logger.app.info(`  Mode: ${mode}`);
+        logger.app.info(`  Failed Requests: ${failedRequests.length}`);
+        logger.app.info(`  Console Errors: ${consoleMessages.filter(m => m.includes('[ERROR]')).length}`);
         
         if (failedRequests.length > 0) {
-            console.log(`\n❌ Failed Requests:`);
+            logger.app.info(`\n❌ Failed Requests:`);
             failedRequests.slice(0, 5).forEach(req => {
-                console.log(`     ${req.status} ${req.url}`);
+                logger.app.info(`     ${req.status} ${req.url}`);
             });
             if (failedRequests.length > 5) {
-                console.log(`     ... and ${failedRequests.length - 5} more`);
+                logger.app.info(`     ... and ${failedRequests.length - 5} more`);
             }
         }
         
@@ -147,7 +148,7 @@ async function testSingleActivity(activityRoute, options = {}) {
         };
         
     } catch (error) {
-        console.error(`\n❌ Test failed: ${error.message}`);
+        logger.app.error(`\n❌ Test failed: ${error.message}`);
         await browser.close();
         
         return {
@@ -166,7 +167,7 @@ async function main() {
     const args = process.argv.slice(2);
     
     if (args.length === 0) {
-        console.log(`
+        logger.app.info(`
 Usage: node test-activity.js <activity-route> [options]
 
 Examples:
@@ -196,17 +197,17 @@ Options:
     };
     
     if (!activityRoute.startsWith('/')) {
-        console.error('❌ Activity route must start with / (e.g., /tools/c4r-team-nextjs-template)');
+        logger.app.error('❌ Activity route must start with / (e.g., /tools/c4r-team-nextjs-template)');
         process.exit(1);
     }
     
-    console.log(`🧪 C4R Activity Tester`);
-    console.log(`🎯 Testing: ${activityRoute}`);
-    console.log(`⚙️  Options: ${JSON.stringify(options, null, 2)}\n`);
+    logger.app.info(`🧪 C4R Activity Tester`);
+    logger.app.info(`🎯 Testing: ${activityRoute}`);
+    logger.app.info(`⚙️  Options: ${JSON.stringify(options, null, 2)}\n`);
     
     const result = await testSingleActivity(activityRoute, options);
     
-    console.log(`\n🏁 Test complete!`);
+    logger.app.info(`\n🏁 Test complete!`);
     return result;
 }
 

@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import { Box, Typography } from '@mui/material'
@@ -28,7 +29,7 @@ export default function ScatterPlot({
 
   useEffect(() => {
     if (!data.length || !selectedY || !selectedX) {
-      console.warn('No data available or no variables selected')
+      logger.app.warn('No data available or no variables selected')
       return
     }
 
@@ -160,7 +161,7 @@ export default function ScatterPlot({
     )
     const correlationCoefficient = correlationNumerator / correlationDenominator
 
-    console.log('Correlation Coefficient (r):', correlationCoefficient)
+    logger.app.info('Correlation Coefficient (r):', correlationCoefficient)
 
     if (onCorrelationChange) {
       onCorrelationChange(correlationCoefficient)

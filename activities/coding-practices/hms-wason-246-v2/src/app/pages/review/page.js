@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
@@ -69,17 +70,17 @@ export function ReviewContent() {
                 const response = await fetch(
                     `/api/numberRuleGuessApi?guessID=${guessID}`
                 );
-                console.log("response:", response);
+                logger.app.info("response:", response);
                 const result = await response.json();
-                console.log("result:", result);
+                logger.app.info("result:", result);
                 // setDagResults(result);
 
                 // Filter the result to get the guess with the guessID
                 const guess = result.find((guess) => guess.guessID === guessID);
-                console.log("guess:", guess);
+                logger.app.info("guess:", guess);
                 setReviewData(guess);
             } catch (error) {
-                console.log("Error loading results: ", error);
+                logger.app.info("Error loading results: ", error);
             }
         };
 

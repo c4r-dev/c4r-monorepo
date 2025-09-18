@@ -11,10 +11,15 @@
 ## 🗺️ Repository Map
 
 - **`server/seamless-activity-server.js`** - Main unified server
+- **`server/seamless-activity-server-with-logging.js`** - Enhanced server with full logging infrastructure
 - **`activities/`** - Research activities by domain (causality, randomization, coding-practices)
 - **`apps/`** - Migrated activities with individual package.json
 - **`packages/ui/`** - Shared UI components
+- **`packages/logging/`** - Comprehensive logging system (browser + server)
 - **`scripts/local-dev-server.js`** - Development server manager
+- **`scripts/analyze-logs.js`** - Log analysis tool for LLM consumption
+- **`logs/`** - Structured log files (app.jsonl, browser.jsonl, errors.jsonl, etc.)
+- **`LOGGING.md`** - Complete logging documentation
 
 ## 🎯 Most Common AI Tasks
 
@@ -24,6 +29,9 @@ npm run local                  # Kill existing servers, start seamless server on
 npm run dev                    # Start seamless server on port 3333
 npm run dev:unified           # Start alternative unified server
 npm run browse                # Open activity browser
+
+# Enhanced logging server
+node server/seamless-activity-server-with-logging.js  # Full logging infrastructure
 ```
 
 ### ⚡ Vite Hot Module Replacement (HMR)
@@ -45,6 +53,31 @@ Most development activities use **Vite** which provides **instant hot reloading*
 ```bash
 node debug-nextjs.js           # Debug with Puppeteer
 ```
+
+### 📊 Logging & Analytics
+```bash
+# Generate daily analysis reports
+node scripts/analyze-logs.js report              # LLM-friendly markdown report
+node scripts/analyze-logs.js summary            # JSON summary for analysis
+
+# Monitor logs in real-time
+tail -f logs/*.jsonl                            # All logs
+tail -f logs/browser.jsonl                      # Browser events only
+tail -f logs/errors.jsonl                       # Errors only
+
+# Access live metrics
+curl http://localhost:3333/api/metrics          # Server metrics
+curl http://localhost:3333/api/logs/errors      # Recent errors
+curl http://localhost:3333/api/logs/browser     # Recent browser events
+```
+
+**Key Features:**
+- ✅ **Dual Output**: Console logs for development + structured files for LLM analysis
+- ✅ **Browser + Server Correlation**: Complete user journey tracking
+- ✅ **Automatic Analysis**: Daily reports with actionable insights
+- ✅ **Zero Setup**: Works seamlessly with existing activities
+
+**See `LOGGING.md` for complete documentation.**
 
 ## 🔧 Server Architecture
 

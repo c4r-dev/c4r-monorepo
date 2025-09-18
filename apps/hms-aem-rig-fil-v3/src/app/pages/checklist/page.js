@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { useState, Suspense, useEffect } from "react";
@@ -238,7 +239,7 @@ const ReviewPage = () => {
                 const data = await response.json();
                 setUserInputs(data.userInputs || []);
             } catch (error) {
-                console.error("Failed to fetch Rigor Files:", error);
+                logger.app.error("Failed to fetch Rigor Files:", error);
             }
         };
 

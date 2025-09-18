@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, Suspense } from 'react'
@@ -183,8 +184,8 @@ function ResearchMethodologyScreen() {
       }
       const apiResponse = await response.json()
 
-      console.log('API Response:', apiResponse)
-      console.log('Current Student ID:', currentStudentId)
+      logger.app.info('API Response:', apiResponse)
+      logger.app.info('Current Student ID:', currentStudentId)
 
       // Extract students array from the nested response structure
       let studentsArray = []
@@ -204,14 +205,14 @@ function ResearchMethodologyScreen() {
         studentsArray = []
       }
 
-      console.log('All students:', studentsArray)
+      logger.app.info('All students:', studentsArray)
 
       // Find current user in the session to check their withinTimer status
       const currentUser = studentsArray.find(student => student.studentId === currentStudentId)
       const currentUserWithinTimer = currentUser ? currentUser.withinTimer !== false : true
 
-      console.log('Current user data:', currentUser)
-      console.log('Current user withinTimer:', currentUserWithinTimer)
+      logger.app.info('Current user data:', currentUser)
+      logger.app.info('Current user withinTimer:', currentUserWithinTimer)
 
       // Helper function to check if an option is valid
       const isValidOption = (student) => {
@@ -225,7 +226,7 @@ function ResearchMethodologyScreen() {
         student.studentId !== currentStudentId
       )
 
-      console.log('Other students:', otherStudents)
+      logger.app.info('Other students:', otherStudents)
 
       // Case 1: Current user is the only student in the session
       if (otherStudents.length === 0) {
@@ -236,14 +237,14 @@ function ResearchMethodologyScreen() {
           setSelectedStudentCustomOption(currentUserCustomOption || '') // Set custom option
           setDisplayedOptionStudentId(currentStudentId)
           setNoValidOptions(false)
-          console.log('Case 1: Only student - showing own option:', displayOption)
+          logger.app.info('Case 1: Only student - showing own option:', displayOption)
         } else {
           setSelectedStudentOption('No valid options available.')
           setSelectedStudentExplanation('No valid options were selected within the time limit.')
           setSelectedStudentCustomOption('') // Clear custom option
           setDisplayedOptionStudentId(null)
           setNoValidOptions(true)
-          console.log('Case 1: Only student chose to set experiment aside or outside time limit')
+          logger.app.info('Case 1: Only student chose to set experiment aside or outside time limit')
         }
         return
       }
@@ -251,14 +252,14 @@ function ResearchMethodologyScreen() {
       // Case 2: There are other students - first try to find valid options from others
       const validOtherStudents = otherStudents.filter(isValidOption)
 
-      console.log('Valid other students:', validOtherStudents)
+      logger.app.info('Valid other students:', validOtherStudents)
 
       if (validOtherStudents.length > 0) {
         // Randomly select one option from other students
         const randomIndex = Math.floor(Math.random() * validOtherStudents.length)
         const selectedStudent = validOtherStudents[randomIndex]
 
-        console.log('Selected Student:', selectedStudent)
+        logger.app.info('Selected Student:', selectedStudent)
 
         const displayOption = selectedStudent.option === 'Other.' ? 'Other' : selectedStudent.option
         setSelectedStudentOption(displayOption)
@@ -266,7 +267,7 @@ function ResearchMethodologyScreen() {
         setSelectedStudentCustomOption(selectedStudent.customOption || '') // Set custom option from selected student
         setDisplayedOptionStudentId(selectedStudent.studentId)
         setNoValidOptions(false)
-        console.log('Case 2: Multiple students - showing random other option:', displayOption)
+        logger.app.info('Case 2: Multiple students - showing random other option:', displayOption)
       } else {
         // Case 3: All other students chose "Set aside" or are outside time limit
         // Fall back to current user's option if it's valid
@@ -277,7 +278,7 @@ function ResearchMethodologyScreen() {
           setSelectedStudentCustomOption(currentUserCustomOption || '') // Set custom option
           setDisplayedOptionStudentId(currentStudentId)
           setNoValidOptions(false)
-          console.log('Case 3: All others invalid - showing current user option:', displayOption)
+          logger.app.info('Case 3: All others invalid - showing current user option:', displayOption)
         } else {
           // Final fallback: No valid options available
           setSelectedStudentOption('No valid options available.')
@@ -285,12 +286,12 @@ function ResearchMethodologyScreen() {
           setSelectedStudentCustomOption('') // Clear custom option
           setDisplayedOptionStudentId(null)
           setNoValidOptions(true)
-          console.log('Final fallback: No valid options from any students')
+          logger.app.info('Final fallback: No valid options from any students')
         }
       }
 
     } catch (error) {
-      console.error('Error fetching student options:', error)
+      logger.app.error('Error fetching student options:', error)
       // Set fallback values on error
       if (currentUserOption && currentUserOption !== 'Set this experiment aside.') {
         const displayOption = currentUserOption === 'Other.' ? 'Other' : currentUserOption
@@ -332,12 +333,12 @@ function ResearchMethodologyScreen() {
       }
 
       const result = await response.json()
-      console.log('Explanation submitted successfully:', result)
+      logger.app.info('Explanation submitted successfully:', result)
       
       // Navigate to Results page with sessionId
       router.push(`/Results?sessionID=${sessionId}`)
     } catch (error) {
-      console.error('Error submitting explanation:', error)
+      logger.app.error('Error submitting explanation:', error)
       // Re-enable button on error
       setSubmitted(false)
       alert('Failed to submit explanation. Please try again.')

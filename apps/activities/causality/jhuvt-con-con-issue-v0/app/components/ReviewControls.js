@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -133,17 +134,17 @@ function ReviewControls() {
     const sessionIdFromUrl = searchParams.get('sessionID');
     const studentIdFromUrl = searchParams.get('studentId');
     
-    console.log('useEffect: sessionIdFromUrl =', sessionIdFromUrl);
-    console.log('useEffect: searchParams =', Object.fromEntries(searchParams.entries()));
+    logger.app.info('useEffect: sessionIdFromUrl =', sessionIdFromUrl);
+    logger.app.info('useEffect: searchParams =', Object.fromEntries(searchParams.entries()));
     
     if (sessionIdFromUrl) {
-      console.log('Setting sessionId from URL:', sessionIdFromUrl);
+      logger.app.info('Setting sessionId from URL:', sessionIdFromUrl);
       setSessionId(sessionIdFromUrl);
     } else {
-      console.warn('No sessionId found in URL parameters, using fallback');
+      logger.app.warn('No sessionId found in URL parameters, using fallback');
       // Generate a fallback sessionId for individual sessions
       const fallbackSessionId = `individual_${Date.now()}`;
-      console.log('Setting fallback sessionId:', fallbackSessionId);
+      logger.app.info('Setting fallback sessionId:', fallbackSessionId);
       setSessionId(fallbackSessionId);
     }
 
@@ -153,17 +154,17 @@ function ReviewControls() {
     setStudentId(newStudentId);
     updateURLWithStudentId(newStudentId);
     
-    console.log('Generated new student ID:', newStudentId);
-    console.log('Session ID from URL:', sessionIdFromUrl);
+    logger.app.info('Generated new student ID:', newStudentId);
+    logger.app.info('Session ID from URL:', sessionIdFromUrl);
   }, []); // Empty dependency array means this runs once on mount
 
   // UPDATED: Function to send data to API
   const sendRoundDataToAPI = async (roundData) => {
     // Don't send data if sessionId or studentId is not available
     if (!sessionId || !studentId) {
-      console.error('Cannot send data: sessionId or studentId is not available');
-      console.error('sessionId:', sessionId);
-      console.error('studentId:', studentId);
+      logger.app.error('Cannot send data: sessionId or studentId is not available');
+      logger.app.error('sessionId:', sessionId);
+      logger.app.error('studentId:', studentId);
       return;
     }
 
@@ -176,14 +177,14 @@ function ReviewControls() {
         roundData: roundData
       };
 
-      console.log('Sending data to API:', requestBody);
-      console.log('sessionId value:', sessionId);
-      console.log('studentId value:', studentId);
-      console.log('sessionId type:', typeof sessionId);
+      logger.app.info('Sending data to API:', requestBody);
+      logger.app.info('sessionId value:', sessionId);
+      logger.app.info('studentId value:', studentId);
+      logger.app.info('sessionId type:', typeof sessionId);
 
       // Updated to use window.location.origin for Next.js API routes
       const apiUrl = `${window.location.origin}/api/studies`;
-      console.log('API URL:', apiUrl);
+      logger.app.info('API URL:', apiUrl);
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -194,23 +195,23 @@ function ReviewControls() {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('API Error Response:', errorText);
+        logger.app.error('API Error Response:', errorText);
         throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
       }
 
       const result = await response.json();
-      console.log('API response:', result);
+      logger.app.info('API response:', result);
       return result;
     } catch (error) {
-      console.error('Error sending data to API:', error);
+      logger.app.error('Error sending data to API:', error);
       // Try to parse the error response if possible
       if (error.message.includes('body:')) {
         try {
           const errorBody = error.message.split('body: ')[1];
           const parsedError = JSON.parse(errorBody);
-          console.error('Parsed API Error:', parsedError);
+          logger.app.error('Parsed API Error:', parsedError);
         } catch (parseErr) {
-          console.error('Could not parse error response');
+          logger.app.error('Could not parse error response');
         }
       }
     }
@@ -226,7 +227,7 @@ function ReviewControls() {
   
   const handleAssessment = (assessment) => {
     setSelectedAssessment(assessment);
-    console.log(`User selected: ${assessment}`);
+    logger.app.info(`User selected: ${assessment}`);
     
     // Show feedback box regardless of assessment type
     setShowFeedbackBox(true);
@@ -249,7 +250,7 @@ function ReviewControls() {
   };
   
   const handleCategorize = () => {
-    console.log("User feedback:", feedback);
+    logger.app.info("User feedback:", feedback);
     // Save the feedback first
     setFeedback(tempFeedback);
     // Exit edit mode
@@ -293,7 +294,7 @@ function ReviewControls() {
   
   // FIXED: Create a unified submit function to handle both adequate and inadequate responses
   const handleFinalSubmit = async (isAdequateSubmission = false) => {
-    console.log("Final submission for Experiment #", currentExperimentIndex + 1);
+    logger.app.info("Final submission for Experiment #", currentExperimentIndex + 1);
     
     // For adequate submissions, use tempFeedback; for inadequate, use feedback
     const finalFeedback = isAdequateSubmission ? tempFeedback : feedback;
@@ -316,8 +317,8 @@ function ReviewControls() {
     const updatedResponses = [...allResponses, response];
     setAllResponses(updatedResponses);
     
-    console.log("Submitting response:", response);
-    console.log("Total responses so far:", updatedResponses.length);
+    logger.app.info("Submitting response:", response);
+    logger.app.info("Total responses so far:", updatedResponses.length);
     
     // Send round data to API
     const roundData = {
@@ -327,14 +328,14 @@ function ReviewControls() {
     };
     
     await sendRoundDataToAPI(roundData);
-    console.log("Round data sent to API:", roundData);
+    logger.app.info("Round data sent to API:", roundData);
     
     // IMPORTANT: Check completion BEFORE updating any state
     const isLastExperiment = currentExperimentIndex === 2; // 0, 1, 2 = 3 experiments
     
     if (isLastExperiment) {
       // If we've completed all experiments, navigate to results immediately
-      console.log("All experiments completed! Navigating to results page...");
+      logger.app.info("All experiments completed! Navigating to results page...");
       
       const queryParams = new URLSearchParams();
       queryParams.append('completed', 'true');
@@ -348,7 +349,7 @@ function ReviewControls() {
     }
     
     // Only execute this if NOT the last experiment
-    console.log("Moving to next experiment...");
+    logger.app.info("Moving to next experiment...");
     
     // Reset all states for the next experiment
     setShowFeedbackBox(false);

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -30,7 +31,7 @@ export default function ResultsPage() {
       }
     } catch (err) {
       setError('An error occurred while fetching submissions');
-      console.error('Error fetching submissions:', err);
+      logger.app.error('Error fetching submissions:', err);
     } finally {
       setLoading(false);
     }

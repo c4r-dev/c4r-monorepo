@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 /**
  * Activity-1 Page
  * 
@@ -125,7 +126,7 @@ const flowIdFromUrl = '68bef748545973b916b70167';
           }
         }
       } catch (error) {
-        console.error('Error loading database flows:', error);
+        logger.app.error('Error loading database flows:', error);
       }
       
       setIsLoading(false);
@@ -146,7 +147,7 @@ const flowIdFromUrl = '68bef748545973b916b70167';
   // Load concerns from database
   const loadConcernsForFlow = async (flowId) => {
     if (!sessionId) {
-      console.log('No sessionId available, skipping concern loading');
+      logger.app.info('No sessionId available, skipping concern loading');
       return;
     }
     
@@ -159,7 +160,7 @@ const flowIdFromUrl = '68bef748545973b916b70167';
         setConcerns([]);
       }
     } catch (error) {
-      console.error('Error loading concerns:', error);
+      logger.app.error('Error loading concerns:', error);
       setConcerns([]);
     } finally {
       setConcernsLoading(false);

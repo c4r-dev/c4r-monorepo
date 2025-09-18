@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import { useSearchParams } from "next/navigation";
@@ -30,7 +31,7 @@ function ActualPerformanceContent() {
   try {
     datasets = dataString ? JSON.parse(decodeURIComponent(dataString)) : {};
   } catch (error) {
-    console.error("Error parsing datasets:", error);
+    logger.app.error("Error parsing datasets:", error);
   }
 
   useEffect(() => {
@@ -49,8 +50,8 @@ function ActualPerformanceContent() {
         body: JSON.stringify(userData),
       })
         .then((res) => res.json())
-        .then((data) => console.log("Data saved to MongoDB:", data))
-        .catch((error) => console.error("Error saving data:", error));
+        .then((data) => logger.app.info("Data saved to MongoDB:", data))
+        .catch((error) => logger.app.error("Error saving data:", error));
 
       dataSaved.current = true;
     }
@@ -78,7 +79,7 @@ function ActualPerformanceContent() {
           setFilteredUserErrors(filteredErrors);
         }
       })
-      .catch((error) => console.error("Error fetching user data:", error));
+      .catch((error) => logger.app.error("Error fetching user data:", error));
   }, []);
 
   const binWidth = 3;

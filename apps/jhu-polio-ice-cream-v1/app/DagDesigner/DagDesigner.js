@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import React, { useState, useCallback, useEffect } from "react";
 import {
     ReactFlow,
@@ -73,8 +74,8 @@ const SaveRestore = ({ loadReviewPage, labGroupId, plausibility }) => {
     const [firstNodeAdded, setFirstNodeAdded] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
 
-    console.log("labGroupId from DagDesigner", labGroupId);
-    console.log("plausibility from DagDesigner", plausibility);
+    logger.app.info("labGroupId from DagDesigner", labGroupId);
+    logger.app.info("plausibility from DagDesigner", plausibility);
     // Variable Modal logic
     const [showVariableModal, setShowVariableModal] = useState(false);
 
@@ -123,21 +124,21 @@ const SaveRestore = ({ loadReviewPage, labGroupId, plausibility }) => {
             const flow = rfInstance.toObject();
             localStorage.setItem(flowKey, JSON.stringify(flow));
         }
-        console.log("rfInstance", rfInstance);
-        console.log("rfInstance type", typeof rfInstance);
+        logger.app.info("rfInstance", rfInstance);
+        logger.app.info("rfInstance type", typeof rfInstance);
         // convert to array
         const flowArray = Object.values(rfInstance);
-        console.log("flowArray", flowArray);
-        console.log("flowArray type", typeof flowArray);
+        logger.app.info("flowArray", flowArray);
+        logger.app.info("flowArray type", typeof flowArray);
 
         // Flow object
         const flowObject = rfInstance.toObject();
-        console.log("flowObject", flowObject);
-        console.log("flowObject type", typeof flowObject);
+        logger.app.info("flowObject", flowObject);
+        logger.app.info("flowObject type", typeof flowObject);
     }, [rfInstance]);
 
     const onSubmit = useCallback(() => {
-        console.log("onSubmit");
+        logger.app.info("onSubmit");
 
         // If description is empty, alert the user
         const textAreaText = document.querySelector(
@@ -148,7 +149,7 @@ const SaveRestore = ({ loadReviewPage, labGroupId, plausibility }) => {
             return;
         }
 
-        console.log("rfInstance", rfInstance);
+        logger.app.info("rfInstance", rfInstance);
         if (rfInstance) {
             const flow = rfInstance.toObject();
             if (flow.nodes.length === 0) {
@@ -160,13 +161,13 @@ const SaveRestore = ({ loadReviewPage, labGroupId, plausibility }) => {
             handleSubmitToApi(flowString);
         } else {
             // TODO: Add error handling
-            console.log("No flow instance found");
+            logger.app.info("No flow instance found");
             alert("No flow instance found");
         }
     }, [rfInstance]);
 
     const handleSubmitToApi = async (flowString) => {
-        console.log(flowString);
+        logger.app.info(flowString);
         const textArea = document.querySelector(
             ".dag-designer-submit-area-text-area"
         );
@@ -193,13 +194,13 @@ const SaveRestore = ({ loadReviewPage, labGroupId, plausibility }) => {
             });
 
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
                 loadReviewPage(labGroupId);
             } else {
                 throw new Error("Response not ok.");
             }
         } catch (error) {
-            console.log(error);
+            logger.app.info(error);
         }
 
         // Handle after submit
@@ -419,7 +420,7 @@ export default function DagDesigner(props) {
     const searchParams = useSearchParams();
     const labGroupId = searchParams.get("labGroupId");
     const plausibility = searchParams.get("plausibility");
-    console.log("labGroupId", labGroupId);
+    logger.app.info("labGroupId", labGroupId);
     // props.labGroupId = labGroupId;
     // Add labGroupId to props, despite object not being mutable
     const updatedProps = {

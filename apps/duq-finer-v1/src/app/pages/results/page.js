@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { Suspense, useState, useEffect } from "react";
@@ -232,7 +233,7 @@ function ResultsContent() {
         setIsGuideModalVisible(true);
     };
     const handleGuideBtn = () => {
-        console.log("Guide button clicked");
+        logger.app.info("Guide button clicked");
         openModal(true);
     };
     const handleErrorSnackbarClose = () => {
@@ -254,7 +255,7 @@ function ResultsContent() {
         const data = await res.json();
         // Filter data to only include entries with the given sessionID
         const filteredData = data.filter(entry => entry.sessionID === sessionID);
-        console.log("Filtered data:", filteredData);
+        logger.app.info("Filtered data:", filteredData);
         setResultsData(filteredData);
 
 
@@ -266,7 +267,7 @@ function ResultsContent() {
             }
             criteriaGroups[entry.questionNumber].push(entry);
         });
-        console.log("Criteria groups:", criteriaGroups);
+        logger.app.info("Criteria groups:", criteriaGroups);
 
         // For each of the 5 entries in the criteriaGroups, sort them into subgroups regarding the selected feature
         // For example, criteriaGroup[1] should have 5 subgroups, some with areaOption "Time & Money", some with "Skills", etc.
@@ -283,13 +284,13 @@ function ResultsContent() {
                 tempFeatureGroups[entry.areaOption].push(entry);
             });
         });
-        console.log("Feature groups:", tempFeatureGroups);
+        logger.app.info("Feature groups:", tempFeatureGroups);
         setFeatureGroups(tempFeatureGroups);
         // Display the number of entries in each subgroup       
     }
 
     useEffect(() => {
-        console.log("Fetching results data");
+        logger.app.info("Fetching results data");
         fetchResultsData();
     }, []);
 
@@ -311,7 +312,7 @@ function ResultsContent() {
       }
 
     const exportToPdf2 = () => {
-        console.log("Exporting to PDF");
+        logger.app.info("Exporting to PDF");
         // const doc = new jsPDF();
         // const fullPage = document.getElementById("results-full-page");
         // doc.html(fullPage.innerHTML, {

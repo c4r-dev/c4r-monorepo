@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -147,9 +148,9 @@ export default function Home() {
         });
         
         if (response.ok) {
-          console.log('Responses saved successfully');
+          logger.app.info('Responses saved successfully');
         } else {
-          console.error('Failed to save responses');
+          logger.app.error('Failed to save responses');
         }
       }
       
@@ -166,7 +167,7 @@ export default function Home() {
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
-      console.error('Error saving responses:', error);
+      logger.app.error('Error saving responses:', error);
       setLoading(false);
     }
   };

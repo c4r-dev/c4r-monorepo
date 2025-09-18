@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 // 4 random activities for detailed problem analysis
 const testActivities = [
@@ -9,7 +10,7 @@ const testActivities = [
 ];
 
 async function testRandomActivitiesDetailed() {
-    console.log('🔍 Testing 4 random activities for detailed problem analysis...\n');
+    logger.app.info('🔍 Testing 4 random activities for detailed problem analysis...\n');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -64,8 +65,8 @@ async function testRandomActivitiesDetailed() {
     
     for (let i = 0; i < testActivities.length; i++) {
         const activity = testActivities[i];
-        console.log(`\n[${i+1}/${testActivities.length}] Testing: ${activity}`);
-        console.log('='.repeat(60));
+        logger.app.info(`\n[${i+1}/${testActivities.length}] Testing: ${activity}`);
+        logger.app.info('='.repeat(60));
         
         // Reset tracking arrays for this activity
         allRequests.length = 0;
@@ -118,29 +119,29 @@ async function testRandomActivitiesDetailed() {
             
             activityResults.push(result);
             
-            console.log(`✅ ${activity} - Status: ${response.status()}`);
-            console.log(`   Title: "${title}"`);
-            console.log(`   Body content: ${bodyContent} characters`);
-            console.log(`   Font: ${fontFamily}`);
-            console.log(`   Total requests: ${allRequests.length}`);
-            console.log(`   Failed requests: ${failedRequests.length}`);
-            console.log(`   Network errors (4xx/5xx): ${networkErrors.length}`);
-            console.log(`   Console errors: ${consoleErrors.length}`);
+            logger.app.info(`✅ ${activity} - Status: ${response.status()}`);
+            logger.app.info(`   Title: "${title}"`);
+            logger.app.info(`   Body content: ${bodyContent} characters`);
+            logger.app.info(`   Font: ${fontFamily}`);
+            logger.app.info(`   Total requests: ${allRequests.length}`);
+            logger.app.info(`   Failed requests: ${failedRequests.length}`);
+            logger.app.info(`   Network errors (4xx/5xx): ${networkErrors.length}`);
+            logger.app.info(`   Console errors: ${consoleErrors.length}`);
             
             if (networkErrors.length > 0) {
-                console.log(`\n   🚨 Network Errors:`);
+                logger.app.info(`\n   🚨 Network Errors:`);
                 networkErrors.forEach(err => {
-                    console.log(`     - ${err.status} ${err.url} (${err.resourceType})`);
+                    logger.app.info(`     - ${err.status} ${err.url} (${err.resourceType})`);
                 });
             }
             
             if (consoleErrors.length > 0) {
-                console.log(`\n   🚨 Console Errors:`);
+                logger.app.info(`\n   🚨 Console Errors:`);
                 consoleErrors.slice(0, 3).forEach(err => {
-                    console.log(`     - ${err.text}`);
+                    logger.app.info(`     - ${err.text}`);
                 });
                 if (consoleErrors.length > 3) {
-                    console.log(`     ... and ${consoleErrors.length - 3} more`);
+                    logger.app.info(`     ... and ${consoleErrors.length - 3} more`);
                 }
             }
             
@@ -154,16 +155,16 @@ async function testRandomActivitiesDetailed() {
             };
             activityResults.push(result);
             
-            console.log(`❌ ${activity} - Error: ${error.message}`);
+            logger.app.info(`❌ ${activity} - Error: ${error.message}`);
         }
     }
     
     await browser.close();
     
     // Comprehensive problem analysis
-    console.log('\n' + '='.repeat(80));
-    console.log('📊 COMPREHENSIVE PROBLEM ANALYSIS');
-    console.log('='.repeat(80));
+    logger.app.info('\n' + '='.repeat(80));
+    logger.app.info('📊 COMPREHENSIVE PROBLEM ANALYSIS');
+    logger.app.info('='.repeat(80));
     
     // Collect all unique problems
     const allNetworkErrors = [];
@@ -210,61 +211,61 @@ async function testRandomActivitiesDetailed() {
         notFoundPatterns[pattern] = (notFoundPatterns[pattern] || 0) + 1;
     });
     
-    console.log(`\n🚨 404 ERRORS (${notFoundErrors.length} total):`);
+    logger.app.info(`\n🚨 404 ERRORS (${notFoundErrors.length} total):`);
     Object.entries(notFoundPatterns).forEach(([pattern, count]) => {
-        console.log(`   ${count}x ${pattern}`);
+        logger.app.info(`   ${count}x ${pattern}`);
     });
     
     if (notFoundErrors.length > 0) {
-        console.log(`\n   Specific 404s:`);
+        logger.app.info(`\n   Specific 404s:`);
         notFoundErrors.slice(0, 10).forEach(err => {
-            console.log(`     - ${err.url} (${err.activity})`);
+            logger.app.info(`     - ${err.url} (${err.activity})`);
         });
         if (notFoundErrors.length > 10) {
-            console.log(`     ... and ${notFoundErrors.length - 10} more`);
+            logger.app.info(`     ... and ${notFoundErrors.length - 10} more`);
         }
     }
     
-    console.log(`\n🚨 OTHER HTTP ERRORS:`);
+    logger.app.info(`\n🚨 OTHER HTTP ERRORS:`);
     const otherErrors = allNetworkErrors.filter(err => err.status !== 404);
     otherErrors.forEach(err => {
-        console.log(`   ${err.status} - ${err.url} (${err.activity})`);
+        logger.app.info(`   ${err.status} - ${err.url} (${err.activity})`);
     });
     
-    console.log(`\n🚨 CONSOLE ERRORS:`);
+    logger.app.info(`\n🚨 CONSOLE ERRORS:`);
     const uniqueConsoleErrors = [...new Set(allConsoleErrors.map(err => err.text))];
     uniqueConsoleErrors.slice(0, 5).forEach(error => {
-        console.log(`   - ${error}`);
+        logger.app.info(`   - ${error}`);
     });
     if (uniqueConsoleErrors.length > 5) {
-        console.log(`   ... and ${uniqueConsoleErrors.length - 5} more unique errors`);
+        logger.app.info(`   ... and ${uniqueConsoleErrors.length - 5} more unique errors`);
     }
     
-    console.log(`\n🎨 FONT ISSUES:`);
+    logger.app.info(`\n🎨 FONT ISSUES:`);
     if (fontIssues.length === 0) {
-        console.log(`   ✅ All activities using correct fonts`);
+        logger.app.info(`   ✅ All activities using correct fonts`);
     } else {
         fontIssues.forEach(issue => {
-            console.log(`   - ${issue.activity}: ${issue.fontFamily}`);
+            logger.app.info(`   - ${issue.activity}: ${issue.fontFamily}`);
         });
     }
     
-    console.log(`\n⚡ PERFORMANCE ISSUES:`);
+    logger.app.info(`\n⚡ PERFORMANCE ISSUES:`);
     if (performanceIssues.length === 0) {
-        console.log(`   ✅ No major performance issues detected`);
+        logger.app.info(`   ✅ No major performance issues detected`);
     } else {
         performanceIssues.forEach(issue => {
-            console.log(`   - ${issue.activity}: ${issue.issue} (${issue.totalRequests} requests)`);
+            logger.app.info(`   - ${issue.activity}: ${issue.issue} (${issue.totalRequests} requests)`);
         });
     }
     
-    console.log(`\n📈 SUMMARY:`);
-    console.log(`   Activities tested: ${testActivities.length}`);
-    console.log(`   Total 404 errors: ${notFoundErrors.length}`);
-    console.log(`   Total other HTTP errors: ${otherErrors.length}`);
-    console.log(`   Unique console errors: ${uniqueConsoleErrors.length}`);
-    console.log(`   Font issues: ${fontIssues.length}`);
-    console.log(`   Performance issues: ${performanceIssues.length}`);
+    logger.app.info(`\n📈 SUMMARY:`);
+    logger.app.info(`   Activities tested: ${testActivities.length}`);
+    logger.app.info(`   Total 404 errors: ${notFoundErrors.length}`);
+    logger.app.info(`   Total other HTTP errors: ${otherErrors.length}`);
+    logger.app.info(`   Unique console errors: ${uniqueConsoleErrors.length}`);
+    logger.app.info(`   Font issues: ${fontIssues.length}`);
+    logger.app.info(`   Performance issues: ${performanceIssues.length}`);
 }
 
 testRandomActivitiesDetailed().catch(console.error);

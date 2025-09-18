@@ -5,6 +5,7 @@
  */
 
 const http = require('http');
+const logger = require('../packages/logging/logger.js');
 
 async function checkActivity(url) {
     return new Promise((resolve) => {
@@ -43,7 +44,7 @@ async function checkActivity(url) {
 }
 
 async function main() {
-    console.log('📋 Checking activity serving modes...\n');
+    logger.app.info('📋 Checking activity serving modes...\n');
     
     const activities = [
         '/causality/jhu-flu-dag-v1',
@@ -129,7 +130,7 @@ async function main() {
         const batchResults = await Promise.all(promises);
         results.push(...batchResults);
         
-        console.log(`✅ Checked ${Math.min(i + batchSize, activities.length)}/${activities.length} activities`);
+        logger.app.info(`✅ Checked ${Math.min(i + batchSize, activities.length)}/${activities.length} activities`);
         
         // Brief pause between batches
         if (i + batchSize < activities.length) {
@@ -143,43 +144,43 @@ async function main() {
     const errorActivities = results.filter(r => r.status === 'ERROR' || r.status === 'TIMEOUT');
     const otherActivities = results.filter(r => !r.isFallback && !r.isBootstrap && r.status === 200);
     
-    console.log('\n📊 ACTIVITY SERVING REPORT');
-    console.log('=' .repeat(80));
+    logger.app.info('\n📊 ACTIVITY SERVING REPORT');
+    logger.app.info('=' .repeat(80));
     
-    console.log(`\n✅ Next.js Bootstrap Mode: ${bootstrapActivities.length}`);
+    logger.app.info(`\n✅ Next.js Bootstrap Mode: ${bootstrapActivities.length}`);
     if (bootstrapActivities.length > 0) {
         bootstrapActivities.forEach(r => {
-            console.log(`   ${r.url.replace('http://localhost:3333', '')}`);
+            logger.app.info(`   ${r.url.replace('http://localhost:3333', '')}`);
         });
     }
     
-    console.log(`\n⚠️  Static Fallback Mode: ${fallbackActivities.length}`);
+    logger.app.info(`\n⚠️  Static Fallback Mode: ${fallbackActivities.length}`);
     if (fallbackActivities.length > 0) {
         fallbackActivities.forEach(r => {
-            console.log(`   ${r.url.replace('http://localhost:3333', '')}`);
+            logger.app.info(`   ${r.url.replace('http://localhost:3333', '')}`);
         });
     }
     
-    console.log(`\n📄 Other Serving Mode: ${otherActivities.length}`);
+    logger.app.info(`\n📄 Other Serving Mode: ${otherActivities.length}`);
     if (otherActivities.length > 0) {
         otherActivities.forEach(r => {
-            console.log(`   ${r.url.replace('http://localhost:3333', '')}`);
+            logger.app.info(`   ${r.url.replace('http://localhost:3333', '')}`);
         });
     }
     
-    console.log(`\n❌ Errors/Timeouts: ${errorActivities.length}`);
+    logger.app.info(`\n❌ Errors/Timeouts: ${errorActivities.length}`);
     if (errorActivities.length > 0) {
         errorActivities.forEach(r => {
-            console.log(`   ${r.url.replace('http://localhost:3333', '')} (${r.status})`);
+            logger.app.info(`   ${r.url.replace('http://localhost:3333', '')} (${r.status})`);
         });
     }
     
-    console.log(`\n📈 SUMMARY:`);
-    console.log(`   Total: ${results.length}`);
-    console.log(`   Next.js Bootstrap: ${bootstrapActivities.length}`);
-    console.log(`   Static Fallback: ${fallbackActivities.length}`);
-    console.log(`   Other: ${otherActivities.length}`);
-    console.log(`   Errors: ${errorActivities.length}`);
+    logger.app.info(`\n📈 SUMMARY:`);
+    logger.app.info(`   Total: ${results.length}`);
+    logger.app.info(`   Next.js Bootstrap: ${bootstrapActivities.length}`);
+    logger.app.info(`   Static Fallback: ${fallbackActivities.length}`);
+    logger.app.info(`   Other: ${otherActivities.length}`);
+    logger.app.info(`   Errors: ${errorActivities.length}`);
     
     return {
         fallback: fallbackActivities.map(r => r.url.replace('http://localhost:3333', '')),

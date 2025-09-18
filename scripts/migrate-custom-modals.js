@@ -14,8 +14,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
-console.log('🔧 Starting Custom Modal Migration...\n');
+logger.app.info('🔧 Starting Custom Modal Migration...\n');
 
 const results = {
   filesAnalyzed: 0,
@@ -119,7 +120,7 @@ function findFilesToMigrate(dir, basePath = '') {
       }
     });
   } catch (error) {
-    console.error(`Error scanning ${dir}: ${error.message}`);
+    logger.app.error(`Error scanning ${dir}: ${error.message}`);
   }
   
   return files;
@@ -141,7 +142,7 @@ function migrateFile(filePath, relativePath) {
       return { modified: false };
     }
     
-    console.log(`📄 Migrating: ${relativePath}`);
+    logger.app.info(`📄 Migrating: ${relativePath}`);
     
     // Replace import statements
     modalPatterns.imports.forEach(({ pattern, replacement }) => {
@@ -166,7 +167,7 @@ function migrateFile(filePath, relativePath) {
     // Write the modified content back to file
     if (modified) {
       fs.writeFileSync(filePath, content);
-      console.log(`  ✅ Updated ${importsReplaced} imports, ${usagesUpdated} usages`);
+      logger.app.info(`  ✅ Updated ${importsReplaced} imports, ${usagesUpdated} usages`);
       
       return {
         modified: true,
@@ -180,7 +181,7 @@ function migrateFile(filePath, relativePath) {
     return { modified: false };
     
   } catch (error) {
-    console.error(`  ❌ Error migrating ${relativePath}: ${error.message}`);
+    logger.app.error(`  ❌ Error migrating ${relativePath}: ${error.message}`);
     return { error: error.message };
   }
 }
@@ -191,7 +192,7 @@ function findCustomModalFiles() {
   directories.forEach(dir => {
     const fullPath = path.resolve(dir);
     if (fs.existsSync(fullPath)) {
-      console.log(`🔍 Scanning ${dir}/ for modal files...`);
+      logger.app.info(`🔍 Scanning ${dir}/ for modal files...`);
       const files = findFilesToMigrate(fullPath, dir);
       modalFiles.push(...files);
     }
@@ -201,10 +202,10 @@ function findCustomModalFiles() {
 }
 
 // Main execution
-console.log('🎯 Finding files with custom modal implementations...\n');
+logger.app.info('🎯 Finding files with custom modal implementations...\n');
 
 const allFiles = findCustomModalFiles();
-console.log(`📊 Found ${allFiles.length} files to analyze\n`);
+logger.app.info(`📊 Found ${allFiles.length} files to analyze\n`);
 
 // Migrate each file
 allFiles.forEach(({ path: filePath, relativePath }) => {
@@ -230,27 +231,27 @@ allFiles.forEach(({ path: filePath, relativePath }) => {
 });
 
 // Generate summary report
-console.log(`\n🎉 MODAL MIGRATION COMPLETE!`);
-console.log(`==============================`);
-console.log(`📄 Files analyzed: ${results.filesAnalyzed}`);
-console.log(`✅ Files modified: ${results.filesModified}`);
-console.log(`🔄 Imports replaced: ${results.importsReplaced}`);
-console.log(`🔧 Component usages updated: ${results.usagesUpdated}`);
-console.log(`❌ Errors: ${results.errors.length}`);
+logger.app.info(`\n🎉 MODAL MIGRATION COMPLETE!`);
+logger.app.info(`==============================`);
+logger.app.info(`📄 Files analyzed: ${results.filesAnalyzed}`);
+logger.app.info(`✅ Files modified: ${results.filesModified}`);
+logger.app.info(`🔄 Imports replaced: ${results.importsReplaced}`);
+logger.app.info(`🔧 Component usages updated: ${results.usagesUpdated}`);
+logger.app.info(`❌ Errors: ${results.errors.length}`);
 
 if (results.errors.length > 0) {
-  console.log(`\n❌ ERRORS:`);
-  console.log(`=========`);
+  logger.app.info(`\n❌ ERRORS:`);
+  logger.app.info(`=========`);
   results.errors.forEach(({ file, error }) => {
-    console.log(`- ${file}: ${error}`);
+    logger.app.info(`- ${file}: ${error}`);
   });
 }
 
 if (results.modifiedFiles.length > 0) {
-  console.log(`\n📋 MODIFIED FILES:`);
-  console.log(`=================`);
+  logger.app.info(`\n📋 MODIFIED FILES:`);
+  logger.app.info(`=================`);
   results.modifiedFiles.forEach(({ file, importsReplaced, usagesUpdated }) => {
-    console.log(`✅ ${file} (${importsReplaced} imports, ${usagesUpdated} usages)`);
+    logger.app.info(`✅ ${file} (${importsReplaced} imports, ${usagesUpdated} usages)`);
   });
 }
 
@@ -270,20 +271,20 @@ const migrationReport = {
 
 fs.writeFileSync('modal-migration-report.json', JSON.stringify(migrationReport, null, 2));
 
-console.log(`\n💡 NEXT STEPS:`);
-console.log(`=============`);
-console.log(`1. Review modal-migration-report.json for detailed migration info`);
-console.log(`2. Test a few activities to ensure modals work with HelpModal`);
-console.log(`3. Run the cleanup script to remove CustomModal component files`);
-console.log(`4. Check for any remaining Material-UI Modal imports that need updating`);
+logger.app.info(`\n💡 NEXT STEPS:`);
+logger.app.info(`=============`);
+logger.app.info(`1. Review modal-migration-report.json for detailed migration info`);
+logger.app.info(`2. Test a few activities to ensure modals work with HelpModal`);
+logger.app.info(`3. Run the cleanup script to remove CustomModal component files`);
+logger.app.info(`4. Check for any remaining Material-UI Modal imports that need updating`);
 
-console.log(`\n🎯 BENEFITS ACHIEVED:`);
-console.log(`====================`);
-console.log(`✨ Eliminated 40+ duplicate modal implementations`);
-console.log(`🎨 Standardized on HelpModal with purple variant support`);
-console.log(`📦 Reduced bundle size by removing redundant code`);
-console.log(`🛠️ Improved maintainability with shared component`);
-console.log(`🔧 Consistent API across all activities`);
+logger.app.info(`\n🎯 BENEFITS ACHIEVED:`);
+logger.app.info(`====================`);
+logger.app.info(`✨ Eliminated 40+ duplicate modal implementations`);
+logger.app.info(`🎨 Standardized on HelpModal with purple variant support`);
+logger.app.info(`📦 Reduced bundle size by removing redundant code`);
+logger.app.info(`🛠️ Improved maintainability with shared component`);
+logger.app.info(`🔧 Consistent API across all activities`);
 
-console.log(`\n💾 Migration report saved to modal-migration-report.json`);
-console.log(`✨ Custom modal migration complete!`);
+logger.app.info(`\n💾 Migration report saved to modal-migration-report.json`);
+logger.app.info(`✨ Custom modal migration complete!`);

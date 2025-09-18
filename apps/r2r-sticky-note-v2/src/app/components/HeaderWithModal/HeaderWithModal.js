@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState } from "react";
@@ -22,13 +23,13 @@ const HeaderWithModal = ({title="Default Title", onLogoClick, openModalMode, ini
 
     const handleLogoClick = () => {
         if (onLogoClick) {
-            console.log("Logo clicked, calling onLogoClick");
+            logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();
             if (openModalMode) {
                 openModal();
             }
         } else {
-            console.log("No onLogoClick function provided");
+            logger.app.info("No onLogoClick function provided");
             if (openModalMode) {
                 openModal();
             }

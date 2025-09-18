@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
@@ -55,18 +56,18 @@ export default function FeedbackTool() {
                 // Clear the input fields
                 setAnswerq1("");
                 setFBTool("");
-                console.log("Answer submitted successfully");
+                logger.app.info("Answer submitted successfully");
                 setHasSubmitted(true);
                 // router.push("/closeWindow");
             } else {
-                console.log("Failed to create an answer.");
+                logger.app.info("Failed to create an answer.");
                 alert(
                     "There was an error submitting your feedback. Please try again."
                 );
                 throw new Error("Failed to create an answer.");
             }
         } catch (error) {
-            console.log(error);
+            logger.app.info(error);
         }
     };
 

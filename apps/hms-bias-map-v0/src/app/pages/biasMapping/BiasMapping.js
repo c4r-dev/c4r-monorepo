@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useRef, useCallback, useState, useEffect } from 'react';
@@ -213,7 +214,7 @@ function BiasFlow() {
       router.push(`/pages/review?sessionID=${currentSessionID}`);
       
     } catch (error) {
-      console.error('Error submitting bias mapping:', error);
+      logger.app.error('Error submitting bias mapping:', error);
       alert('Failed to submit bias mapping. Please try again.');
     }
   };

@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import * as React from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -12,7 +13,7 @@ function createData(name, value) {
 }
 /* eslint-disable react/display-name */
 const BasicTable = React.forwardRef((rowObj, ref) => {
-   //console.log(JSON.stringify(rowObj) + 'this is rowObj')
+   //logger.app.info(JSON.stringify(rowObj) + 'this is rowObj')
   const rows = Object.entries(rowObj.rows).map(([key, value]) =>
     createData(key, value)
   )
@@ -21,7 +22,7 @@ const BasicTable = React.forwardRef((rowObj, ref) => {
       <Table sx={{ width: '300px' }} size="small" aria-label="a dense table">
         <TableBody>
           {rows.map((row) => {
-            // console.log(row, 'this is row')
+            // logger.app.info(row, 'this is row')
             return (
               <TableRow
                 key={`${row.name} + " " + ${row.value}`}

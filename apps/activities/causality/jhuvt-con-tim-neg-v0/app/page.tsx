@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 // app/page.tsx
 'use client';
 
@@ -77,7 +78,7 @@ export default function Home() {
       // Fetch updated submissions after saving
       await fetchSubmissions();
     } catch (error) {
-      console.error('Error saving submission:', error);
+      logger.app.error('Error saving submission:', error);
     } finally {
       setLoading(false);
     }
@@ -92,7 +93,7 @@ export default function Home() {
         setSubmissions(data.submissions || []);
       }
     } catch (error) {
-      console.error('Error fetching submissions:', error);
+      logger.app.error('Error fetching submissions:', error);
     }
   };
 
@@ -550,7 +551,7 @@ className="button"
                 }}
                 disabled={graphThoughts.trim().length === 0 || submitClicked}
                 onClick={async () => {
-                  // console.log('Graph thoughts:', graphThoughts);
+                  // logger.app.info('Graph thoughts:', graphThoughts);
                   setSubmitClicked(true);
                   setShowResultsPage(true);
                   

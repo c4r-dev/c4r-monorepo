@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -34,7 +35,7 @@ export function InputContent() {
         setIsGuideModalVisible(true);
     };
     const handleGuideBtn = () => {
-        console.log("Guide button clicked");
+        logger.app.info("Guide button clicked");
         openModal(true);
     };
     const handleErrorSnackbarClose = () => {
@@ -46,7 +47,7 @@ export function InputContent() {
     };
 
     const handleSubmit = () => {
-        console.log("Submit button clicked");
+        logger.app.info("Submit button clicked");
 
         // Check if response input is empty
         if (document.querySelector(".response-input").value === "") {
@@ -100,7 +101,7 @@ export function InputContent() {
                 {/* Input Panel */}
                 <form className="input-panel" onSubmit={(e) => {
                     e.preventDefault();
-                    console.log("Form submitted"); // Placeholder submit handler
+                    logger.app.info("Form submitted"); // Placeholder submit handler
                 }}>
                     <h2>What research question should we evaluate?</h2>
                     <textarea

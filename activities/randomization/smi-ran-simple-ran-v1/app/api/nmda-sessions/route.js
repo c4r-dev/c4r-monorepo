@@ -1,44 +1,45 @@
 import { NextResponse } from 'next/server';
 import connectMongoDB from '../libs/mongodb';
 import NmdaSession from '../models/NmdaSession';
+const logger = require('../../../../../packages/logging/logger');
 
 export async function POST(req) {
   try {
-    console.log('Connecting to MongoDB...');
+    logger.app.info('Connecting to MongoDB...');
     await connectMongoDB();
-    console.log('MongoDB connected successfully');
+    logger.app.info('MongoDB connected successfully');
 
     // Parse the request body
     const sessionData = await req.json();
-    console.log('Received session data:', JSON.stringify(sessionData, null, 2));
+    logger.app.info('Received session data', { sessionData });
     
     const { sessionId, moveHistory, finalState } = sessionData;
 
     // Validate required fields
     if (!sessionId) {
-      console.log('Missing sessionId in request');
+      logger.app.warn('Missing sessionId in request');
       return NextResponse.json(
         { message: 'Missing required field: sessionId' },
         { status: 400 }
       );
     }
 
-    console.log(`Processing session: ${sessionId}`);
-    console.log('Move history:', JSON.stringify(moveHistory, null, 2));
-    console.log('Final state:', JSON.stringify(finalState, null, 2));
+    logger.app.info('Processing session', { sessionId });
+    logger.app.info('Move history', { moveHistory });
+    logger.app.info('Final state', { finalState });
 
     // Verify the data structure matches the schema
     // Log any potential schema validation issues
     if (!moveHistory || typeof moveHistory !== 'object') {
-      console.log('Invalid moveHistory structure');
+      logger.app.warn('Invalid moveHistory structure');
     }
     
     if (!finalState || typeof finalState !== 'object') {
-      console.log('Invalid finalState structure');
+      logger.app.warn('Invalid finalState structure');
     }
 
     // Find and update the session document, or create a new one if it doesn't exist
-    console.log('Attempting to update or create session document...');
+    logger.app.info('Attempting to update or create session document...');
     const updatedSession = await NmdaSession.findOneAndUpdate(
       { sessionId },
       {
@@ -54,15 +55,15 @@ export async function POST(req) {
       }
     );
 
-    console.log('Session saved successfully:', updatedSession);
+    logger.app.info('Session saved successfully', { sessionId: updatedSession.sessionId });
     return NextResponse.json({ 
       success: true,
       sessionId: updatedSession.sessionId,
       timestamp: updatedSession.timestamp
     });
   } catch (error) {
-    console.error('Error saving NMDA session data:', error);
-    console.error('Stack trace:', error.stack);
+    logger.app.error('Error saving NMDA session data', { error: error.message, stack: error.stack });
+    logger.app.error('Stack trace', { stack: error.stack });
     // More detailed error response
     return NextResponse.json(
       { 
@@ -86,10 +87,10 @@ export async function GET(req) {
     // If aggregated data is requested, return last 15 entries for each task from all sessions
     if (aggregated === 'true') {
       try {
-        console.log('Fetching aggregated data...');
+        logger.app.info('Fetching aggregated data...');
         // Get all sessions and aggregate the last 15 entries for each task
         const sessions = await NmdaSession.find({}).sort({ timestamp: -1 });
-        console.log(`Found ${sessions.length} sessions`);
+        logger.app.info('Found sessions', { sessionCount: sessions.length });
         
         const aggregatedData = {
           task1: [],
@@ -99,15 +100,15 @@ export async function GET(req) {
         
         // Collect all moves from all sessions
         sessions.forEach((session, index) => {
-          console.log(`Processing session ${index + 1}:`, session.sessionId);
+          logger.app.info('Processing session', { sessionIndex: index + 1, sessionId: session.sessionId });
           if (session.moveHistory) {
-            console.log('Session moveHistory:', session.moveHistory);
+            logger.app.info('Session moveHistory', { sessionId: session.sessionId, hasHistory: !!session.moveHistory });
             // Add moves from each task, including session info
             ['task1', 'task2', 'task3'].forEach(taskKey => {
               if (session.moveHistory[taskKey] && session.moveHistory[taskKey].length > 0) {
-                console.log(`Found ${session.moveHistory[taskKey].length} moves for ${taskKey}`);
+                logger.app.info('Found moves for task', { taskKey, moveCount: session.moveHistory[taskKey].length });
                 session.moveHistory[taskKey].forEach(move => {
-                  console.log('Processing move:', move);
+                  logger.app.info('Processing move', { taskKey, moveData: move });
                   // Extract the raw data from Mongoose document
                   const moveData = move.toObject ? move.toObject() : move;
                   aggregatedData[taskKey].push({
@@ -121,7 +122,7 @@ export async function GET(req) {
           }
         });
         
-        console.log('Aggregated data before sorting:', aggregatedData);
+        logger.app.info('Aggregated data before sorting', { dataKeys: Object.keys(aggregatedData) });
         
         // Sort each task's moves by timestamp (newest first) and take last 15
         ['task1', 'task2', 'task3'].forEach(taskKey => {
@@ -130,7 +131,7 @@ export async function GET(req) {
             .slice(0, 15);
         });
         
-        console.log('Final aggregated data:', aggregatedData);
+        logger.app.info('Final aggregated data', { dataKeys: Object.keys(aggregatedData), totalEntries: Object.values(aggregatedData).flat().length });
         
         return NextResponse.json({
           moveHistory: aggregatedData,
@@ -138,7 +139,7 @@ export async function GET(req) {
           aggregated: true
         });
       } catch (error) {
-        console.error('Error fetching aggregated data:', error);
+        logger.app.error('Error fetching aggregated data', { error: error.message, stack: error.stack });
         return NextResponse.json(
           { message: 'Error fetching aggregated data', error: error.message },
           { status: 500 }
@@ -166,7 +167,7 @@ export async function GET(req) {
     
     return NextResponse.json(session);
   } catch (error) {
-    console.error('Error fetching NMDA session:', error);
+    logger.app.error('Error fetching NMDA session', { error: error.message, stack: error.stack });
     return NextResponse.json(
       { message: 'Internal Server Error', error: error.message },
       { status: 500 }

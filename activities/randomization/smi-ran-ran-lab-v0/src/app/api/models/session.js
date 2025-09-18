@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 import mongoose, { Schema } from "mongoose";
 
 const sessionSchema = new Schema(
@@ -40,7 +41,7 @@ mongoose.connection.on('connected', async () => {
     const collectionExists = collections.some(c => c.name === 'sessions');
     
     if (collectionExists) {
-      console.log('Checking Session collection indexes...');
+      logger.app.info('Checking Session collection indexes...');
       const indexes = await mongoose.connection.db.collection('sessions').indexes();
       
       // Look for indexes with incorrect casing (sessionId vs sessionID)
@@ -49,13 +50,13 @@ mongoose.connection.on('connected', async () => {
       );
       
       if (incorrectCaseIndex) {
-        console.log('Found incorrect case index, dropping...');
+        logger.app.info('Found incorrect case index, dropping...');
         await mongoose.connection.db.collection('sessions').dropIndex(incorrectCaseIndex.name);
-        console.log('Index dropped, will be recreated with correct case.');
+        logger.app.info('Index dropped, will be recreated with correct case.');
       }
     }
   } catch (err) {
-    console.error('Error checking/fixing Session indexes:', err);
+    logger.app.error('Error checking/fixing Session indexes:', err);
   }
 });
 

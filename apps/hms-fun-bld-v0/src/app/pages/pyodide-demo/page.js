@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 'use client';
 import { useEffect, useState } from 'react';
 import styles from './pyodide-1.css';
@@ -139,7 +140,7 @@ if __name__ == "__main__":
             print("Successfully installed tifffile")
           `);
         } catch (e) {
-          console.log("Could not install tifffile:", e.message);
+          logger.app.info("Could not install tifffile:", e.message);
         }
         
         try {
@@ -149,14 +150,14 @@ if __name__ == "__main__":
             print("Successfully installed nd2reader")
           `);
         } catch (e) {
-          console.log("Could not install nd2reader:", e.message);
+          logger.app.info("Could not install nd2reader:", e.message);
         }
         
         setPyodide(pyodideInstance);
         setOutput('Pyodide and packages loaded successfully! Ready to run Python code.');
         setLoading(false);
       } catch (error) {
-        console.error('Error initializing Pyodide:', error);
+        logger.app.error('Error initializing Pyodide:', error);
         setOutput(`Error initializing Pyodide: ${error.message}`);
         setLoading(false);
       }

@@ -1,3 +1,4 @@
+const logger = require('../../../../logging/logger.js');
 'use client';
 
 import React, { useState } from 'react';
@@ -91,7 +92,7 @@ export default function SessionConfigDialog({
       await navigator.clipboard.writeText(sharingURL);
       // Could add a toast notification here
     } catch (err) {
-      console.error('Failed to copy:', err);
+      logger.app.error('Failed to copy:', err);
     }
   };
 

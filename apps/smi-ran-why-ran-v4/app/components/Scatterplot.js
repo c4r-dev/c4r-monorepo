@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useEffect, useState } from 'react'
@@ -16,11 +17,11 @@ const ScatterClickNoSnap = ({
   selectedXVariable = null,
   xLabel = ''
 }) => {
- // console.log(yLabel, selectedVariable, selectedXVariable , 'THESE ARE PROPS')
+ // logger.app.info(yLabel, selectedVariable, selectedXVariable , 'THESE ARE PROPS')
   const [scatterChartsParams, setScatterChartsParams] = useState(
     scatterChartsParameters
   )
- // console.log('selected variable is ',selectedVariable)
+ // logger.app.info('selected variable is ',selectedVariable)
   
 
 
@@ -78,11 +79,11 @@ const ScatterClickNoSnap = ({
           //  onItemClick={(event, d) => setData(d)}
           tooltip={{
             itemContent: (params) => {
-            //  console.log(params,'this is para for each item')
+            //  logger.app.info(params,'this is para for each item')
               // const rowsData = params?.series?.data?.[0]?.rows
-              //console.log(JSON.stringify(params.series.data[params.itemData.dataIndex]) + 'this is item content')
-             // console.log(index + 'this is index' + params.index)
-             // console.log('THIS IS PARAMS' +" " + JSON.stringify(params.series.data[params.itemData.dataIndex]))
+              //logger.app.info(JSON.stringify(params.series.data[params.itemData.dataIndex]) + 'this is item content')
+             // logger.app.info(index + 'this is index' + params.index)
+             // logger.app.info('THIS IS PARAMS' +" " + JSON.stringify(params.series.data[params.itemData.dataIndex]))
               return (
                 <Tooltip key={params.index}>
                   <Table rows={params.series.data[params.itemData.dataIndex]} />

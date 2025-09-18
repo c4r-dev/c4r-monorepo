@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 // 'use client'
 // import React, { useState, useEffect, Suspense } from 'react'
 // import {
@@ -58,10 +59,10 @@
 //       try {
 //         const response = await fetch('/api/garden') // Replace with your actual API endpoint
 //         const data = await response.json()
-//         console.log('Data fetched:', 'data in user Comparison page', data)
+//         logger.app.info('Data fetched:', 'data in user Comparison page', data)
 //         setGardenData(data)
 //       } catch (error) {
-//         console.error('Error fetching garden data:', error)
+//         logger.app.error('Error fetching garden data:', error)
 //       }
 //     }
 
@@ -236,10 +237,10 @@ export default function UserComparison() {
       try {
         const response = await fetch('/api/garden') // Replace with your actual API endpoint
         const data = await response.json()
-        console.log('Data fetched:', 'data in user Comparison page', data)
+        logger.app.info('Data fetched:', 'data in user Comparison page', data)
         setGardenData(data)
       } catch (error) {
-        console.error('Error fetching garden data:', error)
+        logger.app.error('Error fetching garden data:', error)
       }
     }
 

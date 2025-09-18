@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useCallback, Suspense, useRef, useMemo } from 'react';
@@ -134,7 +135,7 @@ function PositiveControl2Content() {
   useEffect(() => {
     const miceNode = nodes.find(n => n.id === 'node-1-mice');
     if (miceNode) {
-      console.log('[PositiveControl2] NODES UPDATED - 16 Mice position:', miceNode.position);
+      logger.app.info('[PositiveControl2] NODES UPDATED - 16 Mice position:', miceNode.position);
     }
   }, [nodes]);
 
@@ -338,19 +339,19 @@ function PositiveControl2Content() {
         setEdges(data.edges || []);
         
         // Debug: Compare ALL node positions with PositiveControl1
-        console.log('[PositiveControl2] ALL positions:', 
+        logger.app.info('[PositiveControl2] ALL positions:', 
           Object.fromEntries(processedNodes.map(n => [n.id, n.position]))
         );
         
         // Debug: Check if 16 Mice node exists and its position
         const miceNode = processedNodes.find(n => n.id === 'node-1-mice');
-        console.log('[PositiveControl2] INITIAL LOAD - 16 Mice position:', miceNode?.position);
+        logger.app.info('[PositiveControl2] INITIAL LOAD - 16 Mice position:', miceNode?.position);
         
       } else {
         throw new Error('Flow data is missing.');
       }
     } catch (err) {
-      console.error('Error loading session data:', err);
+      logger.app.error('Error loading session data:', err);
       setError(err.message || 'An error occurred while loading session data.');
       setSessionData(null);
     } finally {
@@ -370,11 +371,11 @@ function PositiveControl2Content() {
       if (result.success) {
         setSubmissions(result.data || []);
       } else {
-        console.error('Failed to load submissions:', result.message);
+        logger.app.error('Failed to load submissions:', result.message);
         setSubmissions([]);
       }
     } catch (error) {
-      console.error('Error loading submissions:', error);
+      logger.app.error('Error loading submissions:', error);
       setSubmissions([]);
     } finally {
       setIsLoadingSubmissions(false);
@@ -395,7 +396,7 @@ function PositiveControl2Content() {
         loadSubmissions()
       ]);
     } catch (error) {
-      console.error('Error during refresh:', error);
+      logger.app.error('Error during refresh:', error);
     } finally {
       setIsRefreshing(false);
     }

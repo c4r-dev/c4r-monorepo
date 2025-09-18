@@ -1,3 +1,4 @@
+const logger = require('../../packages/logging/logger.js');
 // Global Vars
 const noteContents = [
     "Missed mistakes",
@@ -38,7 +39,7 @@ let allSessions = false;
 // http://127.0.0.1:5500/index.html?sessionID=bdaq4
 const urlParams = new URLSearchParams(window.location.search);
 const sessionID = urlParams.get("sessionID");
-console.log("sessionID", sessionID);
+logger.app.info("sessionID", sessionID);
 
 if (sessionID) {
     currentSessionID = sessionID;
@@ -46,11 +47,11 @@ if (sessionID) {
 
 // Toggle all sessions
 function toggleAllSessions() {
-    console.log("toggleAllSessions");
-    console.log("allSessions", allSessions);
+    logger.app.info("toggleAllSessions");
+    logger.app.info("allSessions", allSessions);
 
     allSessions = !allSessions;
-    console.log("new allSessions", allSessions);
+    logger.app.info("new allSessions", allSessions);
     fetchNoteScores(currentSessionID);
 }
 
@@ -95,8 +96,8 @@ function moveSlide(step) {
     track.style.transform = "translateX(-" + slideIndex * slideWidth + "px)";
 
 
-    console.log("slideIndex", slideIndex);
-    console.log("totalSlides", totalSlides);
+    logger.app.info("slideIndex", slideIndex);
+    logger.app.info("totalSlides", totalSlides);
 }
 
 // Drag and Drop logic
@@ -117,11 +118,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         // Same as above, but with mobile device support
         // note.addEventListener("touchstart", function (e) {
-        //     console.log("touchstart");
+        //     logger.app.info("touchstart");
         //     dragged = this;
         //     offsetX = e.clientX - dragged.getBoundingClientRect().left;
         //     offsetY = e.clientY - dragged.getBoundingClientRect().top;
-        //     console.log(e);
+        //     logger.app.info(e);
         //     // e.dataTransfer.setData("text", ""); // DataTransfer object requires setting some data.
         //     // e.dataTransfer.effectAllowed = "move";
         // });
@@ -129,11 +130,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
         //     // Prevent default touchmove event
         //     e.preventDefault();
 
-        //     console.log("touchmove");
+        //     logger.app.info("touchmove");
         //     dragged = this;
         //     offsetX = e.clientX - dragged.getBoundingClientRect().left;
         //     offsetY = e.clientY - dragged.getBoundingClientRect().top;
-        //     console.log(e);
+        //     logger.app.info(e);
         //     // e.dataTransfer.setData("text", ""); // DataTransfer object requires setting some data.
         //     // e.dataTransfer.effectAllowed = "move";
 
@@ -170,13 +171,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             noteClone.style.left = `${xPercent}%`;
             noteClone.style.top = `${yPercent}%`;
 
-            console.log("x:", x, "y:", y);
-            console.log("xPercent:", xPercent, "yPercent:", yPercent);
+            logger.app.info("x:", x, "y:", y);
+            logger.app.info("xPercent:", xPercent, "yPercent:", yPercent);
 
             // Normalize the values to the range of -10 to 10
             const xValue = (x / whiteboardRect.width) * 20 - 10;
             const yValue = ((y / whiteboardRect.height) * 20 - 10) * -1;
-            console.log("xValue:", xValue, "yValue:", yValue);
+            logger.app.info("xValue:", xValue, "yValue:", yValue);
 
             // Update the scores in our noteScores data structure
             const noteText =
@@ -203,7 +204,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Update carousel slides
     function updateCarousel() {
-        console.log("updateCarousel");
+        logger.app.info("updateCarousel");
 
         // This assumes the width of each slide is fixed and known.
         // Recalculate the slideIndex based on remaining slides
@@ -221,7 +222,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
 
         if (totalSlides === slideIndex) {
-            // console.log("No slides left");
+            // logger.app.info("No slides left");
             moveSlide(-1);
         }
 
@@ -247,7 +248,7 @@ function handleNextBtn(phase) {
         document.getElementById("phase1-loader").style.display = "block";
 
         // Submit the note scores to the server
-        console.log("noteScores:", noteScores);
+        logger.app.info("noteScores:", noteScores);
 
         // Submit note scores to the server
 
@@ -274,15 +275,15 @@ function handleNextBtn(phase) {
             .then((response) => response.json())
             .then((json) => {
                 // Update the div with the new sessionId
-                console.log("response: ", json);
-                console.log("Continue to results");
+                logger.app.info("response: ", json);
+                logger.app.info("Continue to results");
             })
             .then(() => {
                 // Fetch the note scores from the server
                 fetchNoteScores(currentSessionID);
             })
             .catch((error) => {
-                console.log(error);
+                logger.app.info(error);
                 alert("There was an error submitting your answer.");
                 document.getElementById("phase1-next").disabled = false;
             });
@@ -347,7 +348,7 @@ function handleNextBtn(phase) {
 
                 // Set the note preview to the clicked note
                 // notePreview.textContent = content;
-                console.log("Note clicked", content);
+                logger.app.info("Note clicked", content);
 
                 // Highlight the clicked note
                 const selectedNotes = document.querySelectorAll(
@@ -376,13 +377,13 @@ function handleNextBtn(phase) {
 window.addEventListener('load', function(){
     const urlParams = new URLSearchParams(window.location.search);
     const resultsMode = urlParams.get('resultsMode');
-    console.log("resultsMode:", resultsMode);
+    logger.app.info("resultsMode:", resultsMode);
     if (resultsMode === 'true') {
 
         // Submit the note scores to the server
-        console.log("noteScores:", noteScores);  // may need to set some manual scores here
+        logger.app.info("noteScores:", noteScores);  // may need to set some manual scores here
 
-        console.log("Fetching note scores");
+        logger.app.info("Fetching note scores");
         fetchNoteScores(currentSessionID);
     }
 });
@@ -402,7 +403,7 @@ function fetchNoteScores(sessionId) {
     // Check URL parameters to see if we should use small notes
     const urlParams = new URLSearchParams(window.location.search);
     let useSmallNotes = urlParams.get('useSmallNotes');
-    console.log("useSmallNotes:", useSmallNotes);
+    logger.app.info("useSmallNotes:", useSmallNotes);
 
     // Fetch the user submissions from the API and calculate the median note scores
     fetch(url)
@@ -410,7 +411,7 @@ function fetchNoteScores(sessionId) {
         .then((json) => {
             // If response is empty, display an error message
             if (json.userSubmissions.length === 0) {
-                console.log("Session does not exist or no submissions yet.");
+                logger.app.info("Session does not exist or no submissions yet.");
                 // Display an error message
                 alert("This session has no submissions yet, please hit the refresh button to load incoming results.");
 
@@ -433,20 +434,20 @@ function fetchNoteScores(sessionId) {
                 noteScoresArray = [];
 
             } else {
-                console.log("Session exists!");
+                logger.app.info("Session exists!");
 
-                console.log("Json response", json);
-                // console.log("Session exists!");
+                logger.app.info("Json response", json);
+                // logger.app.info("Session exists!");
 
                 // log all user submissions
-                console.log("All user submissions", json.userSubmissions);
+                logger.app.info("All user submissions", json.userSubmissions);
 
                 // get the note scores from each user submission
-                console.log("Note scores", json.userSubmissions[0].noteScores);
+                logger.app.info("Note scores", json.userSubmissions[0].noteScores);
 
                 // for each user submission in the array, get the note scores
                 json.userSubmissions.forEach((userSubmission) => {
-                    console.log("Note scores", userSubmission.noteScores);
+                    logger.app.info("Note scores", userSubmission.noteScores);
                 });
 
                 // for each user submission in the array, get the note scores and add them to some data structure. Convert the json string to a json object
@@ -456,11 +457,11 @@ function fetchNoteScores(sessionId) {
                 noteScoresArray = [];
 
                 json.userSubmissions.forEach((userSubmission) => {
-                    console.log("Note scores", userSubmission.noteScores);
+                    logger.app.info("Note scores", userSubmission.noteScores);
                     let noteScoresJson = JSON.parse(userSubmission.noteScores);
                     noteScoresArray.push(noteScoresJson);
                 });
-                console.log("Note scores array", noteScoresArray);
+                logger.app.info("Note scores array", noteScoresArray);
 
                 // Create an object to store linear scores for each note
                 let linearScores = {};
@@ -477,7 +478,7 @@ function fetchNoteScores(sessionId) {
                         linearScores[note].push(linearScore);
                     }
                 });
-                console.log("Linear Scores:", linearScores);
+                logger.app.info("Linear Scores:", linearScores);
 
                 // Calculate median linear score for each note
                 let medianScores = {};
@@ -485,7 +486,7 @@ function fetchNoteScores(sessionId) {
                     medianScores[note] = median(linearScores[note]);
                 }
 
-                console.log("Median Linear Scores:", medianScores);
+                logger.app.info("Median Linear Scores:", medianScores);
 
                 // Now instead of calculating the median linear score for each note, calculate the average score for each note
                 let averageNoteScores = {};
@@ -494,18 +495,18 @@ function fetchNoteScores(sessionId) {
                     let avg = sum / linearScores[note].length;
                     averageNoteScores[note] = avg;
                 }
-                console.log("Average Linear Scores:", averageNoteScores);
+                logger.app.info("Average Linear Scores:", averageNoteScores);
 
                 // Sort notes based on median linear scores and render them
                 // const sortedNotesDescending = Object.entries(medianScores)
                 //     .sort((a, b) => a[1] - b[1])
                 //     .map((entry) => entry[0]);
-                // console.log("sortedNotes", sortedNotesDescending);
+                // logger.app.info("sortedNotes", sortedNotesDescending);
 
                 const sortedNotes = Object.entries(medianScores)
                     .sort((a, b) => b[1] - a[1])
                     .map((entry) => entry[0]);
-                console.log("sortedNotes", sortedNotes);
+                logger.app.info("sortedNotes", sortedNotes);
 
                 // Render the notes in phase2-sticky-notes
                 const phase2StickyNotes = document.getElementById(
@@ -606,10 +607,10 @@ function fetchNoteScores(sessionId) {
 
 function refreshResults() {
     // Re-fetch the note scores
-    console.log("Refresh results called");
+    logger.app.info("Refresh results called");
     // Re-fetch the note scores
     fetchNoteScores(currentSessionID);
-    console.log("Refresh results finished");
+    logger.app.info("Refresh results finished");
 }
 
 function median(values) {

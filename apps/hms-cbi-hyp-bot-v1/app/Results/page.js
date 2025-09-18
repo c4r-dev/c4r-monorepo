@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import {
@@ -94,7 +95,7 @@ function FetchSearchParams({
           setData(data.users)
           // setHypothesisDesc(data.hypDesc);
         } catch (error) {
-          console.error('Error fetching data:', error)
+          logger.app.error('Error fetching data:', error)
         }
       }
       fetchData()
@@ -124,7 +125,7 @@ export default function Page() {
   //     const result = await response.json()
   //     setData(result.users) // Update the state with the fetched data
   //   } catch (error) {
-  //     console.error('Error fetching data:', error)
+  //     logger.app.error('Error fetching data:', error)
   //   }
   // }
 

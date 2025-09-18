@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, Suspense, useRef, useCallback } from 'react';
@@ -93,7 +94,7 @@ function FlowchartPage() {
       const response = await fetch(`/api/getSessionTimerStatus?sessionID=${sessionID}`);
       if (!response.ok) {
         if (response.status !== 404) {
-            console.error(`HTTP error! status: ${response.status}`); // Log non-404 errors
+            logger.app.error(`HTTP error! status: ${response.status}`); // Log non-404 errors
         }
         // Ensure timer is reset if status fetch fails or returns 404
         setTimerInfo({ isActive: false, startTime: null, durationSeconds: 90 });
@@ -107,7 +108,7 @@ function FlowchartPage() {
         }
       }
     } catch (error) {
-      console.error('Error fetching timer status:', error);
+      logger.app.error('Error fetching timer status:', error);
       // Don't set errorMessage here to avoid spamming user for background errors
     }
   }, [sessionID]);
@@ -117,7 +118,7 @@ function FlowchartPage() {
     // Prevent starting if no sessionID or polling already active
     if (!sessionID || pollIntervalRef.current) return; 
 
-    console.log("[Polling] Starting polling...");
+    logger.app.info("[Polling] Starting polling...");
     fetchTimerStatus(); // Fetch immediately
 
     const pollFrequency = isTimerConfirmedStarted ? 30000 : 5000;
@@ -128,7 +129,7 @@ function FlowchartPage() {
   // Function to stop polling interval
   const stopPolling = useCallback(() => {
     if (pollIntervalRef.current) {
-      console.log("[Polling] Stopping polling...");
+      logger.app.info("[Polling] Stopping polling...");
       clearInterval(pollIntervalRef.current);
       pollIntervalRef.current = null;
     }
@@ -153,21 +154,21 @@ function FlowchartPage() {
       if (!sessionID) return; // Exit if no sessionID is set yet
       
       if (document.hidden) {
-        console.log("[Visibility] Tab hidden, pausing polling.");
+        logger.app.info("[Visibility] Tab hidden, pausing polling.");
         stopPolling();
       } else {
-        console.log("[Visibility] Tab visible, resuming polling.");
+        logger.app.info("[Visibility] Tab visible, resuming polling.");
         // Restart polling. startPolling checks if it's already running.
         startPolling(); 
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    console.log("[Visibility] Listener added.");
+    logger.app.info("[Visibility] Listener added.");
 
     // Cleanup listener on component unmount
     return () => {
-      console.log("[Visibility] Removing listener.");
+      logger.app.info("[Visibility] Removing listener.");
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       // Ensure polling stops if component unmounts while tab is hidden
       stopPolling(); 

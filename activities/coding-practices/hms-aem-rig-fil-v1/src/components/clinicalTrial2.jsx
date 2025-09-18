@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import html2canvas from 'html2canvas';
@@ -24,7 +25,7 @@ export default function ClinicalTrial2() {
                 pdf.save('download.pdf');
             })
             .catch(error => {
-                console.error('Error generating PDF:', error);
+                logger.app.error('Error generating PDF:', error);
             });
     };
 

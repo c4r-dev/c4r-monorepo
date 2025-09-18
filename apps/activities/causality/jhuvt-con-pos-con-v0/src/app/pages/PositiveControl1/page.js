@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useCallback, Suspense, useRef, useMemo } from 'react';
@@ -199,10 +200,10 @@ function PositiveControlContent() {
       );
       
       if (!result.success) {
-        console.error('Failed to save session flow:', result.message);
+        logger.app.error('Failed to save session flow:', result.message);
       }
     } catch (error) {
-      console.error('Error saving session flow:', error);
+      logger.app.error('Error saving session flow:', error);
     }
   }, [currentSessionId, flowId, selectedFlowInfo, nodes, edges, validations]);
 
@@ -272,7 +273,7 @@ function PositiveControlContent() {
         setEdges(data.edges || []);
         
         // Debug: Compare ALL node positions with PositiveControl2
-        console.log('[PositiveControl1] ALL positions:', 
+        logger.app.info('[PositiveControl1] ALL positions:', 
           Object.fromEntries(processedNodes.map(n => [n.id, n.position]))
         );
         
@@ -280,7 +281,7 @@ function PositiveControlContent() {
         throw new Error('Flow data is missing.');
       }
     } catch (err) {
-      console.error('Error loading flow:', err);
+      logger.app.error('Error loading flow:', err);
       setError(err.message || 'An error occurred while fetching the flow.');
       setFlowData(null);
       setNodes([]);
@@ -313,7 +314,7 @@ function PositiveControlContent() {
       // Auto-save session flow when edge is added (disabled for now)
       // setTimeout(() => {
       //   if (selectedFlowInfo) {
-      //     console.log(`[SessionFlow] Auto-saving after edge addition`);
+      //     logger.app.info(`[SessionFlow] Auto-saving after edge addition`);
       //     const modifiedFlowData = {
       //       nodes: nodes,
       //       edges: updatedEdges
@@ -326,7 +327,7 @@ function PositiveControlContent() {
       //       modifiedFlowData,
       //       validations
       //     ).catch(error => {
-      //       console.error('Error auto-saving session flow:', error);
+      //       logger.app.error('Error auto-saving session flow:', error);
       //     });
       //   }
       // }, 100);
@@ -461,7 +462,7 @@ function PositiveControlContent() {
       // Auto-save session flow when node and edges are added (disabled for now)
       // setTimeout(() => {
       //   if (selectedFlowInfo) {
-      //     console.log(`[SessionFlow] Auto-saving after control group addition`);
+      //     logger.app.info(`[SessionFlow] Auto-saving after control group addition`);
       //     const modifiedFlowData = {
       //       nodes: [...nodes, newNode],
       //       edges: updatedEdges
@@ -474,7 +475,7 @@ function PositiveControlContent() {
       //       modifiedFlowData,
       //       validations
       //     ).catch(error => {
-      //       console.error('Error auto-saving session flow:', error);
+      //       logger.app.error('Error auto-saving session flow:', error);
       //     });
       //   }
       // }, 100);
@@ -608,7 +609,7 @@ function PositiveControlContent() {
         setValidations(validations);
       }
     } catch (error) {
-      console.error('Error during validation submission:', error);
+      logger.app.error('Error during validation submission:', error);
       setValidations(validations);
     } finally {
       setIsSubmittingValidation(false);
@@ -664,7 +665,7 @@ function PositiveControlContent() {
         alert(`Error submitting work: ${result.message}`);
       }
     } catch (error) {
-      console.error('Error during work submission:', error);
+      logger.app.error('Error during work submission:', error);
       alert(`Error submitting work: ${error.message}`);
     } finally {
       setIsSubmittingWork(false);

@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React from 'react'
 import * as d3 from 'd3'
 // import data from "../../Data/data.json";
@@ -107,7 +108,7 @@ function TreatmentPlot({
       .enter()
       .append('circle')
       .attr('cx', (d, i) => {
-        console.log("d and i iss" + JSON.stringify(d), i)
+        logger.app.info("d and i iss" + JSON.stringify(d), i)
         const xJitterArray = xJitterPositions[d.treatmentType] || []
         return (
           xScale(d.treatmentType) +

@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -37,12 +38,12 @@ export default function Home() {
     fetch('/data.json')
       .then(response => response.json())
       .then(jsonData => setData(jsonData[0]))
-      .catch(error => console.error('Error loading data:', error));
+      .catch(error => logger.app.error('Error loading data:', error));
     
     fetch('/hint.json')
       .then(response => response.json())
       .then(hintJson => setHintData(hintJson))
-      .catch(error => console.error('Error loading hint data:', error));
+      .catch(error => logger.app.error('Error loading hint data:', error));
     
     // Scroll to top on first render
     setTimeout(() => {
@@ -220,7 +221,7 @@ export default function Home() {
                 className="button"
                 disabled={userResponse.length < 10 || showSecondQuestion}
                 onClick={() => {
-                  console.log('User response:', userResponse);
+                  logger.app.info('User response:', userResponse);
                   setShowSecondQuestion(true);
                   setTimeout(() => {
                     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -309,7 +310,7 @@ export default function Home() {
                   className="button"
                   disabled={secondResponse.length < 10 || showThirdQuestion}
                   onClick={() => {
-                    console.log('Second response:', secondResponse);
+                    logger.app.info('Second response:', secondResponse);
                     setShowThirdQuestion(true);
                     setTimeout(() => {
                       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -387,10 +388,10 @@ export default function Home() {
                           window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
                         }, 100);
                       } else {
-                        console.error('Failed to submit data');
+                        logger.app.error('Failed to submit data');
                       }
                     } catch (error) {
-                      console.error('Error submitting data:', error);
+                      logger.app.error('Error submitting data:', error);
                     }
                   }}
                 >

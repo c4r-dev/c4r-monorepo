@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 /**
  * Flow Viewer Page
  * 
@@ -47,7 +48,7 @@ export default function FlowViewerPage() {
         dbFlows = await getFlowsFromDatabase();
         setSavedFlows(dbFlows);
       } catch (error) {
-        console.error('Error loading database flows:', error);
+        logger.app.error('Error loading database flows:', error);
       }
       
       setIsLoading(false);

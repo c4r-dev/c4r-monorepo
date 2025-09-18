@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { Suspense, useState, useEffect } from "react";
@@ -24,7 +25,7 @@ export default function DrawPage() {
   });
 
   const changeDagProps = () => {
-    console.log("changeDagProps");
+    logger.app.info("changeDagProps");
     // Update state to trigger a re-render
     setDagProps({
       labelA: "New Label",
@@ -37,7 +38,7 @@ export default function DrawPage() {
   };
 
   useEffect(() => {
-    console.log("dagProps", dagProps);
+    logger.app.info("dagProps", dagProps);
   }, [dagProps]);
 
   const dagContainerStyle = {

@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class DependencySynchronizer {
     constructor() {
@@ -57,7 +58,7 @@ class DependencySynchronizer {
     }
 
     createBackup() {
-        console.log('🔄 Creating backup of all package.json files...');
+        logger.app.info('🔄 Creating backup of all package.json files...');
         
         if (!fs.existsSync(this.backupDir)) {
             fs.mkdirSync(this.backupDir, { recursive: true });
@@ -74,7 +75,7 @@ class DependencySynchronizer {
             fs.copyFileSync(activity.packageJsonPath, backupPath);
         });
 
-        console.log(`✅ Backed up ${this.activities.length + 1} package.json files to ${this.backupDir}`);
+        logger.app.info(`✅ Backed up ${this.activities.length + 1} package.json files to ${this.backupDir}`);
     }
 
     findAllActivities() {
@@ -111,10 +112,10 @@ class DependencySynchronizer {
     }
 
     collectAllDependencies() {
-        console.log('🔍 Collecting all dependencies from activities...');
+        logger.app.info('🔍 Collecting all dependencies from activities...');
         
         this.activities = this.findAllActivities();
-        console.log(`📦 Found ${this.activities.length} activities with package.json files`);
+        logger.app.info(`📦 Found ${this.activities.length} activities with package.json files`);
 
         // Collect all unique dependencies and their versions
         for (const activity of this.activities) {
@@ -136,16 +137,16 @@ class DependencySynchronizer {
                 });
                 
             } catch (error) {
-                console.error(`❌ Error reading package.json for ${activity.route}:`, error.message);
+                logger.app.error(`❌ Error reading package.json for ${activity.route}:`, error.message);
                 activity.dependencies = {};
             }
         }
 
-        console.log(`📊 Found ${this.allDependencies.size} unique packages across all activities`);
+        logger.app.info(`📊 Found ${this.allDependencies.size} unique packages across all activities`);
     }
 
     determineStandardVersions() {
-        console.log('🎯 Determining standard versions...');
+        logger.app.info('🎯 Determining standard versions...');
 
         // For each dependency, determine the standard version to use
         for (const [pkg, versions] of this.allDependencies.entries()) {
@@ -165,11 +166,11 @@ class DependencySynchronizer {
             }
         }
 
-        console.log(`✅ Determined standard versions for ${this.standardVersions.size} packages`);
+        logger.app.info(`✅ Determined standard versions for ${this.standardVersions.size} packages`);
     }
 
     updateRootPackageJson() {
-        console.log('🔧 Updating root package.json...');
+        logger.app.info('🔧 Updating root package.json...');
         
         const rootPackageJsonPath = path.join(this.baseDir, 'package.json');
         const rootPackageJson = JSON.parse(fs.readFileSync(rootPackageJsonPath, 'utf8'));
@@ -200,11 +201,11 @@ class DependencySynchronizer {
         rootPackageJson.devDependencies.eslint = this.targetVersions.get('eslint');
         
         fs.writeFileSync(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2));
-        console.log('✅ Updated root package.json with standardized dependencies');
+        logger.app.info('✅ Updated root package.json with standardized dependencies');
     }
 
     generateConsolidatedPackageJson() {
-        console.log('📝 Generating consolidated package.json for future single-package architecture...');
+        logger.app.info('📝 Generating consolidated package.json for future single-package architecture...');
         
         const rootPackageJsonPath = path.join(this.baseDir, 'package.json');
         const rootPackageJson = JSON.parse(fs.readFileSync(rootPackageJsonPath, 'utf8'));
@@ -245,13 +246,13 @@ class DependencySynchronizer {
         const consolidatedPath = path.join(this.baseDir, 'package-consolidated.json');
         fs.writeFileSync(consolidatedPath, JSON.stringify(consolidatedPackageJson, null, 2));
         
-        console.log(`📄 Generated consolidated package.json: ${consolidatedPath}`);
-        console.log(`📊 Total dependencies: ${Object.keys(consolidatedPackageJson.dependencies).length}`);
-        console.log(`📊 Total devDependencies: ${Object.keys(consolidatedPackageJson.devDependencies).length}`);
+        logger.app.info(`📄 Generated consolidated package.json: ${consolidatedPath}`);
+        logger.app.info(`📊 Total dependencies: ${Object.keys(consolidatedPackageJson.dependencies).length}`);
+        logger.app.info(`📊 Total devDependencies: ${Object.keys(consolidatedPackageJson.devDependencies).length}`);
     }
 
     updateActivityPackageJsons() {
-        console.log('🔄 Updating all activity package.json files...');
+        logger.app.info('🔄 Updating all activity package.json files...');
         
         let updatedCount = 0;
         
@@ -288,41 +289,41 @@ class DependencySynchronizer {
                 }
                 
             } catch (error) {
-                console.error(`❌ Error updating ${activity.route}:`, error.message);
+                logger.app.error(`❌ Error updating ${activity.route}:`, error.message);
             }
         }
         
-        console.log(`✅ Updated ${updatedCount} activity package.json files`);
+        logger.app.info(`✅ Updated ${updatedCount} activity package.json files`);
     }
 
     generateReport() {
-        console.log('\n' + '='.repeat(80));
-        console.log('📊 DEPENDENCY SYNCHRONIZATION REPORT');
-        console.log('='.repeat(80));
+        logger.app.info('\n' + '='.repeat(80));
+        logger.app.info('📊 DEPENDENCY SYNCHRONIZATION REPORT');
+        logger.app.info('='.repeat(80));
         
-        console.log(`\n📈 SUMMARY:`);
-        console.log(`   • Activities processed: ${this.activities.length}`);
-        console.log(`   • Unique packages found: ${this.allDependencies.size}`);
-        console.log(`   • Standard versions defined: ${this.standardVersions.size}`);
+        logger.app.info(`\n📈 SUMMARY:`);
+        logger.app.info(`   • Activities processed: ${this.activities.length}`);
+        logger.app.info(`   • Unique packages found: ${this.allDependencies.size}`);
+        logger.app.info(`   • Standard versions defined: ${this.standardVersions.size}`);
         
-        console.log('\n🎯 KEY STANDARDIZATIONS:');
+        logger.app.info('\n🎯 KEY STANDARDIZATIONS:');
         const criticalPackages = ['react', 'react-dom', 'next', '@types/react', 'eslint', 'typescript'];
         criticalPackages.forEach(pkg => {
             if (this.standardVersions.has(pkg)) {
-                console.log(`   • ${pkg}: ${this.standardVersions.get(pkg)}`);
+                logger.app.info(`   • ${pkg}: ${this.standardVersions.get(pkg)}`);
             }
         });
         
-        console.log('\n📁 FILES CREATED:');
-        console.log(`   • Backup directory: ${this.backupDir}`);
-        console.log(`   • Consolidated package.json: package-consolidated.json`);
+        logger.app.info('\n📁 FILES CREATED:');
+        logger.app.info(`   • Backup directory: ${this.backupDir}`);
+        logger.app.info(`   • Consolidated package.json: package-consolidated.json`);
         
-        console.log('\n💡 NEXT STEPS FOR SINGLE PACKAGE.JSON:');
-        console.log('   1. Test the updated dependencies with: npm install');
-        console.log('   2. Run activity tests to verify compatibility');
-        console.log('   3. Replace root package.json with package-consolidated.json');
-        console.log('   4. Remove all individual activity package.json files');
-        console.log('   5. Update seamless server to skip package.json discovery');
+        logger.app.info('\n💡 NEXT STEPS FOR SINGLE PACKAGE.JSON:');
+        logger.app.info('   1. Test the updated dependencies with: npm install');
+        logger.app.info('   2. Run activity tests to verify compatibility');
+        logger.app.info('   3. Replace root package.json with package-consolidated.json');
+        logger.app.info('   4. Remove all individual activity package.json files');
+        logger.app.info('   5. Update seamless server to skip package.json discovery');
         
         return {
             activitiesProcessed: this.activities.length,
@@ -334,7 +335,7 @@ class DependencySynchronizer {
 
     async run() {
         try {
-            console.log('🚀 Starting dependency synchronization...\n');
+            logger.app.info('🚀 Starting dependency synchronization...\n');
             
             this.collectAllDependencies();
             this.createBackup();
@@ -345,13 +346,13 @@ class DependencySynchronizer {
             
             const report = this.generateReport();
             
-            console.log('\n🎉 Dependency synchronization completed successfully!');
-            console.log('\n⚠️  IMPORTANT: Run "npm install" to update package-lock.json');
+            logger.app.info('\n🎉 Dependency synchronization completed successfully!');
+            logger.app.info('\n⚠️  IMPORTANT: Run "npm install" to update package-lock.json');
             
             return report;
             
         } catch (error) {
-            console.error('💥 Synchronization failed:', error);
+            logger.app.error('💥 Synchronization failed:', error);
             process.exit(1);
         }
     }

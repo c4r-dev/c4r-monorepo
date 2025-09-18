@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import { useState } from 'react';
@@ -33,7 +34,7 @@ export default function Main() {
     }
 
     const showResource = () => {
-        console.log("showResource");
+        logger.app.info("showResource");
         setShowInitScreen(false);
         setShowInputScreen(false);
         setShowReviewScreen(false);

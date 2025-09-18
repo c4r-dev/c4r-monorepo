@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 import React, { useEffect, Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -188,7 +189,7 @@ function ResultsMultipleLabs() {
   }, [selectedOption, selectedSecondOption, selectedVariableValue])
 
   const handleStudent = (variable) => {
-    // console.log(variable, 'is variable')
+    // logger.app.info(variable, 'is variable')
     groupDetails.students.map((student) => {
       if (student.assignedVariable === variable) {
         setStudentData(student)
@@ -693,7 +694,7 @@ function ResultsMultipleLabs() {
                 }}
               >
                 <div className="box-container">
-                  {/* {console.log(variables + "this is in return variables of HELLOOOOOO") } */}
+                  {/* {logger.app.info(variables + "this is in return variables of HELLOOOOOO") } */}
                   {/* {!loading ? ( */}
                   {
                     exploredVariables.length > 0 &&

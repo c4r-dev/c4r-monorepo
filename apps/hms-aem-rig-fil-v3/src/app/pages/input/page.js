@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
@@ -113,7 +114,7 @@ function InputPage() {
                 router.push(`/pages/review?sessionID=${sessionID}`);
             }
         } catch (error) {
-            console.error("Error submitting:", error);
+            logger.app.error("Error submitting:", error);
         }
     };
 

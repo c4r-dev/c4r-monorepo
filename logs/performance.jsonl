@@ -1,0 +1,5 @@
+{"duration_ms":3264,"event":"slow_request","level":"warn","message":"Slow request","method":"HEAD","requestId":"32hz22gfa","service":"performance","timestamp":"2025-09-18 13:17:04.912","url":"/static/css/app/layout.css"}
+{"duration_ms":1977,"event":"slow_request","level":"warn","message":"Slow request","method":"GET","requestId":"5nlzxakt1","service":"performance","timestamp":"2025-09-18 13:24:56.862","url":"/"}
+{"duration_ms":1448,"event":"slow_request","level":"warn","message":"Slow request","method":"GET","requestId":"2ztslq2sy","service":"performance","timestamp":"2025-09-18 13:29:53.653","url":"/static/css/app/layout.css"}
+{"duration_ms":2394,"event":"slow_request","level":"warn","message":"Slow request","method":"GET","requestId":"2u42vry9n","service":"performance","timestamp":"2025-09-18 13:32:00.176","url":"/"}
+{"duration_ms":2706,"event":"slow_request","level":"warn","message":"Slow request","method":"GET","requestId":"iybmja43n","service":"performance","timestamp":"2025-09-18 13:35:44.374","url":"/static/css/app/layout.css"}

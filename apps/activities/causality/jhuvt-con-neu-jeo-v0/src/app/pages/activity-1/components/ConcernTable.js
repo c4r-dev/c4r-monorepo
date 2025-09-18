@@ -1,3 +1,4 @@
+const logger = require('../../../../../../../../../packages/logging/logger.js');
 /**
  * ConcernTable Component
  * 
@@ -46,7 +47,7 @@ const ConcernTable = ({ concerns, isLoading, onConcernHover, onConcernLeave, onC
           onConcernUpdate();
         }
       } catch (error) {
-        console.error("Error deleting concern:", error);
+        logger.app.error("Error deleting concern:", error);
       }
     }
   };

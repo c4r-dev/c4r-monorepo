@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { Suspense, useState, useEffect, useRef } from "react";
@@ -116,7 +117,7 @@ function CompareContent() {
     const [showAllUsersData, setShowAllUsersData] = useState(false);
 
     const handleShowAllUsersDataChange = (event) => {
-        console.log("showAllUsersData changed:", event.target.checked);
+        logger.app.info("showAllUsersData changed:", event.target.checked);
         setShowAllUsersData(event.target.checked);
 
 
@@ -133,7 +134,7 @@ function CompareContent() {
     const searchParams = useSearchParams();
     const guessID = searchParams.get("guessID");
     const sessionID = searchParams.get("sessionID");
-    console.log("sessionID from URL:", sessionID);
+    logger.app.info("sessionID from URL:", sessionID);
 
     const router = useRouter();
     const handleRestart = () => {
@@ -148,7 +149,7 @@ function CompareContent() {
 
 
     useEffect(() => {
-        console.log("showAllUsersData changed:", showAllUsersData);
+        logger.app.info("showAllUsersData changed:", showAllUsersData);
 
 
     }, [showAllUsersData]);
@@ -157,9 +158,9 @@ function CompareContent() {
     const fetchCompareData = async () => {
         try {
             const response = await fetch(`/api/numberRuleGuessApi`);
-            console.log("response:", response);
+            logger.app.info("response:", response);
             let result = await response.json();
-            console.log("result:", result);
+            logger.app.info("result:", result);
 
             if (showAllUsersData){
                 // Do nothing
@@ -168,13 +169,13 @@ function CompareContent() {
                 // REMOVE THIS TO TEST WITH ALL DATA FROM ALL SESSIONS
                 // Filter result so that it only contains items where sessionID matches the sessionID in the URL
                 result = result.filter(item => item.sessionID === sessionID);
-                console.log("filtered result:", result);
+                logger.app.info("filtered result:", result);
             }
 
 
             // Find the current user's true and false guesses
             const currentUser = result.find(item => item.guessID === guessID);
-            console.log("currentUser:", currentUser);
+            logger.app.info("currentUser:", currentUser);
 
             let tempTrueNum = 0;
             let tempFalseNum = 0;
@@ -189,8 +190,8 @@ function CompareContent() {
             setCurrentUserTrueNum(tempTrueNum);
             setCurrentUserFalseNum(tempFalseNum);
 
-            // console.log("currentUserTrueNum:", currentUserTrueNum);
-            // console.log("currentUserFalseNum:", currentUserFalseNum);
+            // logger.app.info("currentUserTrueNum:", currentUserTrueNum);
+            // logger.app.info("currentUserFalseNum:", currentUserFalseNum);
 
 
 
@@ -220,8 +221,8 @@ function CompareContent() {
                 numberOfFalseGuesses.push(falseCountInItem);
             });
 
-            console.log("numberOfTrueGuesses:", numberOfTrueGuesses);
-            console.log("numberOfFalseGuesses:", numberOfFalseGuesses);
+            logger.app.info("numberOfTrueGuesses:", numberOfTrueGuesses);
+            logger.app.info("numberOfFalseGuesses:", numberOfFalseGuesses);
 
 
             // We will graph the above data in two bar charts (One for true and one for false)
@@ -287,7 +288,7 @@ function CompareContent() {
                 falseData: tempFalseData
             }
 
-            console.log("tempConsolidatedGuesses:", tempConsolidatedGuesses);
+            logger.app.info("tempConsolidatedGuesses:", tempConsolidatedGuesses);
 
             setConsolidatedGuesses(tempConsolidatedGuesses);
 
@@ -317,8 +318,8 @@ function CompareContent() {
                 falseCounts.push({guessListLength: guessListLength, falseCount: falseCount});
             });
 
-            console.log("trueCounts:", trueCounts);
-            console.log("falseCounts:", falseCounts);
+            logger.app.info("trueCounts:", trueCounts);
+            logger.app.info("falseCounts:", falseCounts);
 
             // For each given guessListLength, find the average of the trueCount and falseCount
             let averagesByLength = {};
@@ -345,12 +346,12 @@ function CompareContent() {
 
             setAveragesByLength(averagesByLength);
 
-            console.log("averagesByLength:", averagesByLength);
+            logger.app.info("averagesByLength:", averagesByLength);
 
 
 
         } catch (error) {
-            console.log("Error loading results: ", error);
+            logger.app.info("Error loading results: ", error);
         }
     };
 

@@ -10,6 +10,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 // Colors for console output
 const colors = {
@@ -22,12 +23,12 @@ const colors = {
 };
 
 function log(color, message) {
-  console.log(`${colors[color]}${message}${colors.reset}`);
+  logger.app.info(`${colors[color]}${message}${colors.reset}`);
 }
 
 async function installDependencies() {
   log('blue', '🔧 C4R Dependency Installer');
-  console.log();
+  logger.app.info();
   
   try {
     // Check if node_modules exists
@@ -106,7 +107,7 @@ async function installDependencies() {
 // Run the installer
 if (require.main === module) {
   installDependencies().catch(error => {
-    console.error('Fatal error:', error.message);
+    logger.app.error('Fatal error:', error.message);
     process.exit(1);
   });
 }

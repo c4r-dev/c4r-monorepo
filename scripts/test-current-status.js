@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 async function testActivityStatus() {
-    console.log('🧪 Testing current activity status...');
+    logger.app.info('🧪 Testing current activity status...');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -16,7 +17,7 @@ async function testActivityStatus() {
     
     for (const url of testUrls) {
         try {
-            console.log(`\n🔗 Testing: ${url}`);
+            logger.app.info(`\n🔗 Testing: ${url}`);
             
             const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 10000 });
             
@@ -35,23 +36,23 @@ async function testActivityStatus() {
                 });
                 
                 if (hasReactContent) {
-                    console.log(`   ✅ Working React app (200 OK)`);
+                    logger.app.info(`   ✅ Working React app (200 OK)`);
                 } else if (hasContent) {
-                    console.log(`   ✅ Working static content (200 OK)`);
+                    logger.app.info(`   ✅ Working static content (200 OK)`);
                 } else {
-                    console.log(`   ⚠️  Loading but minimal content (200 OK)`);
+                    logger.app.info(`   ⚠️  Loading but minimal content (200 OK)`);
                 }
             } else {
-                console.log(`   ❌ Failed with status: ${response?.status() || 'Unknown'}`);
+                logger.app.info(`   ❌ Failed with status: ${response?.status() || 'Unknown'}`);
             }
             
         } catch (error) {
-            console.log(`   ❌ Error: ${error.message}`);
+            logger.app.info(`   ❌ Error: ${error.message}`);
         }
     }
     
     await browser.close();
-    console.log('\n✅ Status check complete!');
+    logger.app.info('\n✅ Status check complete!');
 }
 
 testActivityStatus().catch(console.error);

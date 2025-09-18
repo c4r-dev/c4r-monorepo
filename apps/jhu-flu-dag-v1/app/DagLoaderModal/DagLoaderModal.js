@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 import React, { useState, useCallback } from "react";
 import {
     ReactFlow,
@@ -27,13 +28,13 @@ const getNodeId = () => `randomnode_${+new Date()}`;
 
 const SaveRestore = (flowObjectNested) => {
 
-    console.log("flowObjectNested in DagLoaderModal", flowObjectNested);
+    logger.app.info("flowObjectNested in DagLoaderModal", flowObjectNested);
 
     const flowObject = flowObjectNested.flowObject.flowObject;
     const flowDescription = flowObject.description;
     const closeDagModal = flowObject.closeDagModal;
-    console.log("flowObject in DagLoaderModal", flowObject);
-    console.log("flowDescription in DagLoaderModal", flowDescription);
+    logger.app.info("flowObject in DagLoaderModal", flowObject);
+    logger.app.info("flowDescription in DagLoaderModal", flowDescription);
 
     // get the width and height of the parent container
     // const containerWidth = document.querySelector('.dag-designer-container');
@@ -50,10 +51,10 @@ const SaveRestore = (flowObjectNested) => {
 
 
 
-    // console.log("parentWidth", parentWidth);
-    // console.log("parentHeight", parentHeight);
+    // logger.app.info("parentWidth", parentWidth);
+    // logger.app.info("parentHeight", parentHeight);
 
-    console.log("flowDescription", flowObject.flowDescription);
+    logger.app.info("flowDescription", flowObject.flowDescription);
 
     const inputFlow = flowObject.flowObject;
 
@@ -67,9 +68,9 @@ const SaveRestore = (flowObjectNested) => {
     const initialNodes = inputFlow.nodes;
     const initialEdges = inputFlow.edges;
     // const { x = 0, y = 0, zoom = 1 } = inputFlow.viewport;
-    // console.log("inputFlow", inputFlow);
-    // console.log("inputFlow type", typeof inputFlow);
-    // console.log("inputFlow.edges", inputFlow.edges);
+    // logger.app.info("inputFlow", inputFlow);
+    // logger.app.info("inputFlow type", typeof inputFlow);
+    // logger.app.info("inputFlow.edges", inputFlow.edges);
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes || []);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges || []);
     const [rfInstance, setRfInstance] = useState(null);
@@ -92,7 +93,7 @@ const SaveRestore = (flowObjectNested) => {
     // const onLoad = useCallback(() => {
     //     const restoreFlow = async () => {
     //         const flow = flowObject.flow;
-    //         console.log("flow", flow);
+    //         logger.app.info("flow", flow);
 
     //         if (flow) {
     //             const { x = 0, y = 0, zoom = 1 } = flow.viewport;
@@ -119,40 +120,40 @@ const SaveRestore = (flowObjectNested) => {
             const flow = rfInstance.toObject();
             localStorage.setItem(flowKey, JSON.stringify(flow));
         }
-        console.log("rfInstance", rfInstance);
-        console.log("rfInstance type", typeof rfInstance);
+        logger.app.info("rfInstance", rfInstance);
+        logger.app.info("rfInstance type", typeof rfInstance);
         // convert to array
         const flowArray = Object.values(rfInstance);
-        console.log("flowArray", flowArray);
-        console.log("flowArray type", typeof flowArray);
+        logger.app.info("flowArray", flowArray);
+        logger.app.info("flowArray type", typeof flowArray);
 
         // Flow object
         const flowObject = rfInstance.toObject();
-        console.log("flowObject", flowObject);
-        console.log("flowObject type", typeof flowObject);
+        logger.app.info("flowObject", flowObject);
+        logger.app.info("flowObject type", typeof flowObject);
 
     }, [rfInstance]);
 
 
     const onSubmit = useCallback(() => {
-        console.log('onSubmit');
+        logger.app.info('onSubmit');
         if (rfInstance) {
             const flow = rfInstance.toObject();
-            // console.log("flow", flow);
+            // logger.app.info("flow", flow);
 
             const flowString = JSON.stringify(flow);
             handleSubmitToApi(flowString);
         }     
         else {
             // TODO: Add error handling
-            console.log("No flow instance found");
+            logger.app.info("No flow instance found");
             alert("No flow instance found");
         }  
     }, [rfInstance]);   
 
 
     const handleSubmitToApi = async (flowString) => {
-        console.log(flowString);
+        logger.app.info(flowString);
         
         // Prepare payload
         const payload = {
@@ -174,13 +175,13 @@ const SaveRestore = (flowObjectNested) => {
             });
     
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
 
             } else {
                 throw new Error("Response not ok.");
             }
         } catch (error) {
-            console.log(error);
+            logger.app.info(error);
         }
 
         // Handle after submit

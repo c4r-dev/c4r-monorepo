@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
@@ -26,7 +27,7 @@ function ChartGameBox({
   }
 
   const handleGuideBtn = () => {
-    console.log('Guide button clicked')
+    logger.app.info('Guide button clicked')
     openModal(true)
   }
   return (

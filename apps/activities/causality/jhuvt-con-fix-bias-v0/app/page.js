@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -51,7 +52,7 @@ export default function FixThatBiasPage() {
   useEffect(() => {
     if (currentCaseStudy) {
       window.scrollTo(0, 0);
-      console.log(`Case study ${currentCaseStudyIndex + 1} loaded, scroll to top`);
+      logger.app.info(`Case study ${currentCaseStudyIndex + 1} loaded, scroll to top`);
     }
   }, [currentCaseStudy]);
 
@@ -80,10 +81,10 @@ export default function FixThatBiasPage() {
       
       // Remove initial scroll to test
       // setTimeout(() => {
-      //   console.log('Initial load scroll position:', window.scrollY);
+      //   logger.app.info('Initial load scroll position:', window.scrollY);
       // }, 200);
     } catch (error) {
-      console.error('Failed to initialize session:', error);
+      logger.app.error('Failed to initialize session:', error);
       setLoading(false);
     }
   };
@@ -111,7 +112,7 @@ export default function FixThatBiasPage() {
       setJustConfirmedWrong(false);
       setIncorrectSelectionId(null);
     } catch (error) {
-      console.error('Failed to load case study:', error);
+      logger.app.error('Failed to load case study:', error);
     }
   };
 
@@ -166,7 +167,7 @@ export default function FixThatBiasPage() {
         setSelectedNodeId(null);
       }
     } catch (error) {
-      console.error('Failed to process selection:', error);
+      logger.app.error('Failed to process selection:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
       setSelectedNodeId(null);
@@ -229,7 +230,7 @@ export default function FixThatBiasPage() {
         // Keep pendingSolution so button remains visible for wrong answers
       }
     } catch (error) {
-      console.error('Failed to process solution:', error);
+      logger.app.error('Failed to process solution:', error);
       setFeedback('An error occurred. Please try again.');
       setFeedbackType('error');
     }
@@ -254,7 +255,7 @@ export default function FixThatBiasPage() {
       loadCaseStudy(nextIndex + 1);
       
       // Remove navigation scroll to test
-      console.log('Navigation from case study', currentCaseStudyIndex, 'to', nextIndex);
+      logger.app.info('Navigation from case study', currentCaseStudyIndex, 'to', nextIndex);
     } else {
       // Show completion message or restart
       alert('Congratulations! You have completed all case studies. The application will restart.');

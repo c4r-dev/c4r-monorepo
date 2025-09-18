@@ -1,0 +1,18 @@
+{
+  "name": "@c4r/logging",
+  "version": "1.0.0",
+  "description": "C4R unified logging infrastructure for 3-developer team + LLM usage",
+  "main": "logger.js",
+  "scripts": {
+    "analyze": "node ../scripts/analyze-logs.js",
+    "daily-report": "node ../scripts/analyze-logs.js report",
+    "tail-logs": "tail -f logs/*.jsonl",
+    "clean-logs": "find logs -name '*.jsonl' -mtime +7 -delete"
+  },
+  "dependencies": {
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}

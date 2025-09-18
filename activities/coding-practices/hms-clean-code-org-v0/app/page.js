@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -1532,7 +1533,7 @@ def smooth_image(image, factor):
     if (currentView === 'organize' && organizationFiles.length > 0) {
       const initialLocations = updateFileLocations(organizationFiles, folders);
       setFileLocations(initialLocations);
-      console.log('Initial file locations:', initialLocations);
+      logger.app.info('Initial file locations:', initialLocations);
     }
   }, [currentView, organizationFiles, folders]);
 
@@ -1582,7 +1583,7 @@ def smooth_image(image, factor):
     let currentBlock = null;
     let currentLines = [];
     
-    console.log('parseFunctionBlocks called with', lines.length, 'lines');
+    logger.app.info('parseFunctionBlocks called with', lines.length, 'lines');
     
     // Colors for different functions and imports - highly diverse and distinct
     const colors = [
@@ -1617,7 +1618,7 @@ def smooth_image(image, factor):
       
       // Check if this is an import statement
       if (line.trim().startsWith('import ') || line.trim().startsWith('from ')) {
-        console.log('Found import statement at line', i, ':', line.trim());
+        logger.app.info('Found import statement at line', i, ':', line.trim());
         // Each import is a single-line block
         const importName = line.trim().startsWith('import ') ? 
           line.trim().substring(7) : 
@@ -1634,7 +1635,7 @@ def smooth_image(image, factor):
       }
       // Check if this is a function definition (but not main block)
       else if (line.trim().startsWith('def ') && line.trim().endsWith(':')) {
-        console.log('Found function definition at line', i, ':', line.trim());
+        logger.app.info('Found function definition at line', i, ':', line.trim());
         // Save previous block if exists
         if (currentBlock) {
           blocks.push({
@@ -1673,7 +1674,7 @@ def smooth_image(image, factor):
       }
     }
     
-    console.log('parseFunctionBlocks returning', blocks.length, 'blocks:', blocks);
+    logger.app.info('parseFunctionBlocks returning', blocks.length, 'blocks:', blocks);
     return blocks;
   };
 
@@ -3543,9 +3544,9 @@ if __name__ == "__main__":
   };
 
   const debugFileLocations = () => {
-    console.log('Current file locations:', fileLocations);
-    console.log('Validation result:', validateOrganization());
-    console.log('File structure JSON:', exportFileStructure());
+    logger.app.info('Current file locations:', fileLocations);
+    logger.app.info('Validation result:', validateOrganization());
+    logger.app.info('File structure JSON:', exportFileStructure());
   };
 
 
@@ -3694,10 +3695,10 @@ if __name__ == "__main__":
       });
     }
 
-    console.log('updateFileContent called for file:', fileId);
-    console.log('Generated content:', content);
-    console.log('File functions:', file.functions);
-    console.log('File functionsCode:', file.functionsCode);
+    logger.app.info('updateFileContent called for file:', fileId);
+    logger.app.info('Generated content:', content);
+    logger.app.info('File functions:', file.functions);
+    logger.app.info('File functionsCode:', file.functionsCode);
 
     setFiles(files.map(f => f.id === fileId ? { ...f, content } : f));
   };
@@ -3787,9 +3788,9 @@ if __name__ == "__main__":
           content: content
         };
         
-        console.log('Import dropped:', importName);
-        console.log('Generated content:', content);
-        console.log('Updated file:', updatedFile);
+        logger.app.info('Import dropped:', importName);
+        logger.app.info('Generated content:', content);
+        logger.app.info('Updated file:', updatedFile);
         
         // Update files array
         const updatedFiles = files.map(f => f.id === fileId ? updatedFile : f);
@@ -3863,9 +3864,9 @@ if __name__ == "__main__":
         content: content
       };
       
-      console.log('Function dropped:', draggedFunctionBlock.name);
-      console.log('Generated content:', content);
-      console.log('Updated file:', updatedTargetFile);
+      logger.app.info('Function dropped:', draggedFunctionBlock.name);
+      logger.app.info('Generated content:', content);
+      logger.app.info('Updated file:', updatedTargetFile);
       
       // Update files state with the final files array including the updated target
       const finalFiles = updatedFiles.map(f => f.id === fileId ? updatedTargetFile : f);
@@ -3998,17 +3999,17 @@ if __name__ == "__main__":
   };
 
   const handleSingleClick = (fileId, currentName) => {
-    console.log('Single click:', fileId, currentName, 'selectedFile:', selectedFile); // Debug log
+    logger.app.info('Single click:', fileId, currentName, 'selectedFile:', selectedFile); // Debug log
     // If file is already selected, enable editing
     if (selectedFile === fileId) {
-      console.log('Enabling edit mode for:', fileId); // Debug log
+      logger.app.info('Enabling edit mode for:', fileId); // Debug log
       setEditingFile(fileId);
       // Remove .py extension for editing
       const nameWithoutExtension = currentName.replace(/\.py$/i, '');
       setEditingName(nameWithoutExtension);
     } else {
       // If not selected, select it first
-      console.log('Selecting file:', fileId); // Debug log
+      logger.app.info('Selecting file:', fileId); // Debug log
       setSelectedFile(fileId);
     }
   };
@@ -4019,7 +4020,7 @@ if __name__ == "__main__":
 
   const handleNameSubmit = (e) => {
     if (e.key === 'Enter' || e.type === 'blur') {
-      console.log('handleNameSubmit called with editingFile:', editingFile, 'editingName:', editingName); // Debug log
+      logger.app.info('handleNameSubmit called with editingFile:', editingFile, 'editingName:', editingName); // Debug log
       // Allow saving with any name (including same name)
       const trimmedName = editingName.trim();
       if (trimmedName.length > 0) {
@@ -4034,10 +4035,10 @@ if __name__ == "__main__":
         
         // Always append .py extension in lowercase
         const finalName = trimmedName.toLowerCase() + '.py';
-        console.log('Saving file name:', finalName); // Debug log
-        console.log('Current files before update:', files); // Debug log
+        logger.app.info('Saving file name:', finalName); // Debug log
+        logger.app.info('Current files before update:', files); // Debug log
         const updatedFiles = files.map(f => f.id === editingFile ? { ...f, name: finalName } : f);
-        console.log('Updated files:', updatedFiles); // Debug log
+        logger.app.info('Updated files:', updatedFiles); // Debug log
         setFiles(updatedFiles);
         // Update content with new file name - use the updated file data
         const updatedFile = updatedFiles.find(f => f.id === editingFile);
@@ -4134,7 +4135,7 @@ if __name__ == "__main__":
       setNewFolderName('');
       setNewFolderDialog(false);
       
-      console.log('New folder created:', {
+      logger.app.info('New folder created:', {
         folderName: newFolder.name,
         folderId: newFolder.id,
         path: `/${newFolder.name}`,
@@ -4192,7 +4193,7 @@ if __name__ == "__main__":
     
     handleCloseContextMenu();
     
-    console.log('Folder deleted:', {
+    logger.app.info('Folder deleted:', {
       folderName: folderToDelete.name,
       folderId: folderId,
       filesMovedToRoot: filesInFolder.length,
@@ -4242,7 +4243,7 @@ if __name__ == "__main__":
       setFileLocations(newLocations);
       
       // Log the updated location for the moved file
-      console.log('File moved:', {
+      logger.app.info('File moved:', {
         file: draggedFile.name,
         from: fileLocations[draggedFile.id]?.currentPath || '/',
         to: buildFilePath({ folder: targetFolder.id }, folders),
@@ -4269,7 +4270,7 @@ if __name__ == "__main__":
     
     // Log the move to root
     const file = organizationFiles.find(f => f.id === fileId);
-    console.log('File moved to root:', {
+    logger.app.info('File moved to root:', {
       file: file.name,
       from: fileLocations[fileId]?.currentPath || '/',
       to: '/',
@@ -4324,10 +4325,10 @@ if __name__ == "__main__":
   const handleOrganizeProject = () => {
     if (canProceed()) {
       // All conditions satisfied, proceed to final view
-      console.log('Project organized successfully!');
-      console.log('Files:', organizationFiles);
-      console.log('Folders:', folders);
-      console.log('Final file locations:', fileLocations);
+      logger.app.info('Project organized successfully!');
+      logger.app.info('Files:', organizationFiles);
+      logger.app.info('Folders:', folders);
+      logger.app.info('Final file locations:', fileLocations);
       
       // Initialize main.py content for final view with custom imports
       setMainPyContent(generateMainPyContentWithEditableLines());
@@ -5143,7 +5144,7 @@ Codebase Organization        </Typography>
                               draggable
                               onClick={(e) => {
                                 e.stopPropagation();
-                                console.log('Function block clicked:', functionBlock);
+                                logger.app.info('Function block clicked:', functionBlock);
                                 setSelectedFunction(functionBlock);
                               }}
                               onDragStart={(e) => {

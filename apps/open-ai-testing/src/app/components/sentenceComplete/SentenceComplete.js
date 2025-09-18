@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -38,7 +39,7 @@ const SentenceComplete = () => {
                     const newMessage = userMessage.replace("...", data.content);
                     setUserMessage(newMessage);
                 } catch (error) {
-                    console.error("Error:", error);
+                    logger.app.error("Error:", error);
                 } finally {
                     setLoading(false);
                 }

@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const logger = require('../packages/logging/logger.js');
 
 // Test a broader set of activities to validate font fixes and identify any other issues
 const testActivities = [
@@ -25,7 +26,7 @@ const testActivities = [
 ];
 
 async function testComprehensive() {
-    console.log('🧪 Running comprehensive test of font fixes and system health...\n');
+    logger.app.info('🧪 Running comprehensive test of font fixes and system health...\n');
     
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -36,7 +37,7 @@ async function testComprehensive() {
     
     for (let i = 0; i < testActivities.length; i++) {
         const activity = testActivities[i];
-        console.log(`[${i+1}/${testActivities.length}] Testing: ${activity}`);
+        logger.app.info(`[${i+1}/${testActivities.length}] Testing: ${activity}`);
         
         try {
             const url = `http://localhost:3333${activity}`;
@@ -44,42 +45,42 @@ async function testComprehensive() {
             
             if (response.status() === 200) {
                 const title = await page.title();
-                console.log(`✅ ${activity} - ${response.status()} - "${title}"`);
+                logger.app.info(`✅ ${activity} - ${response.status()} - "${title}"`);
                 successCount++;
             } else {
-                console.log(`❌ ${activity} - ${response.status()}`);
+                logger.app.info(`❌ ${activity} - ${response.status()}`);
                 errorCount++;
                 errors.push({ activity, status: response.status(), type: 'HTTP_ERROR' });
             }
         } catch (error) {
-            console.log(`❌ ${activity} - Error: ${error.message}`);
+            logger.app.info(`❌ ${activity} - Error: ${error.message}`);
             errorCount++;
             errors.push({ activity, error: error.message, type: 'EXCEPTION' });
         }
         
-        console.log('');
+        logger.app.info('');
     }
     
     await browser.close();
     
-    console.log('🎉 Comprehensive testing complete!');
-    console.log(`📊 Results: ${successCount} success, ${errorCount} errors`);
+    logger.app.info('🎉 Comprehensive testing complete!');
+    logger.app.info(`📊 Results: ${successCount} success, ${errorCount} errors`);
     
     if (errors.length > 0) {
-        console.log('\n❌ Issues found:');
+        logger.app.info('\n❌ Issues found:');
         errors.forEach(err => {
             if (err.type === 'HTTP_ERROR') {
-                console.log(`  - ${err.activity}: HTTP ${err.status}`);
+                logger.app.info(`  - ${err.activity}: HTTP ${err.status}`);
             } else {
-                console.log(`  - ${err.activity}: ${err.error}`);
+                logger.app.info(`  - ${err.activity}: ${err.error}`);
             }
         });
     } else {
-        console.log('\n✅ All activities are working correctly!');
+        logger.app.info('\n✅ All activities are working correctly!');
     }
     
     const successRate = ((successCount / testActivities.length) * 100).toFixed(1);
-    console.log(`\n📈 Success rate: ${successRate}%`);
+    logger.app.info(`\n📈 Success rate: ${successRate}%`);
 }
 
 testComprehensive().catch(console.error);

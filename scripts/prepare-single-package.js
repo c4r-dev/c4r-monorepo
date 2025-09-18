@@ -10,7 +10,7 @@ class SinglePackagePreparation {
     }
 
     createSinglePackageJson() {
-        console.log('📝 Creating single package.json for C4R monorepo...');
+        logger.app.info('📝 Creating single package.json for C4R monorepo...');
         
         const rootPackageJson = JSON.parse(fs.readFileSync(path.join(this.baseDir, 'package.json'), 'utf8'));
         
@@ -88,7 +88,7 @@ class SinglePackagePreparation {
         const singlePackagePath = path.join(this.baseDir, 'package-single.json');
         fs.writeFileSync(singlePackagePath, JSON.stringify(singlePackageJson, null, 2));
         
-        console.log(`✅ Created single package.json: ${singlePackagePath}`);
+        logger.app.info(`✅ Created single package.json: ${singlePackagePath}`);
         return singlePackageJson;
     }
 
@@ -110,7 +110,7 @@ class SinglePackagePreparation {
     }
 
     createBackupScript() {
-        console.log('📝 Creating backup script for individual package.json files...');
+        logger.app.info('📝 Creating backup script for individual package.json files...');
         
         const backupScript = `#!/usr/bin/env node
 
@@ -124,7 +124,7 @@ class PackageBackup {
     }
 
     backup() {
-        console.log('🔄 Creating comprehensive backup of all individual package.json files...');
+        logger.app.info('🔄 Creating comprehensive backup of all individual package.json files...');
         
         if (!fs.existsSync(this.backupDir)) {
             fs.mkdirSync(this.backupDir, { recursive: true });
@@ -153,7 +153,7 @@ class PackageBackup {
             }
         }
         
-        console.log(\`✅ Backed up \${backupCount} individual package.json files to \${this.backupDir}\`);
+        logger.app.info(\`✅ Backed up \${backupCount} individual package.json files to \${this.backupDir}\`);
     }
 }
 
@@ -165,16 +165,17 @@ if (require.main === module) {
 module.exports = { PackageBackup };`;
         
         fs.writeFileSync(path.join(this.baseDir, 'backup-individual-packages.js'), backupScript);
-        console.log('✅ Created backup script: backup-individual-packages.js');
+        logger.app.info('✅ Created backup script: backup-individual-packages.js');
     }
 
     createValidationScript() {
-        console.log('📝 Creating validation script for single package architecture...');
+        logger.app.info('📝 Creating validation script for single package architecture...');
         
         const validationScript = `#!/usr/bin/env node
 
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 class SinglePackageValidator {
     constructor() {
@@ -182,7 +183,7 @@ class SinglePackageValidator {
     }
 
     validate() {
-        console.log('🔍 Validating single package architecture...');
+        logger.app.info('🔍 Validating single package architecture...');
         
         const packageJsonPath = path.join(this.baseDir, 'package.json');
         const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
@@ -209,13 +210,13 @@ class SinglePackageValidator {
         }
         
         if (issues.length === 0) {
-            console.log('✅ Single package architecture validation passed');
-            console.log(\`📊 Total activities: \${packageJson.c4rConfig?.totalActivities || 'Unknown'}\`);
-            console.log(\`📦 Total dependencies: \${Object.keys(packageJson.dependencies).length}\`);
-            console.log(\`🔧 Total devDependencies: \${Object.keys(packageJson.devDependencies).length}\`);
+            logger.app.info('✅ Single package architecture validation passed');
+            logger.app.info(\`📊 Total activities: \${packageJson.c4rConfig?.totalActivities || 'Unknown'}\`);
+            logger.app.info(\`📦 Total dependencies: \${Object.keys(packageJson.dependencies).length}\`);
+            logger.app.info(\`🔧 Total devDependencies: \${Object.keys(packageJson.devDependencies).length}\`);
         } else {
-            console.log('❌ Validation issues found:');
-            issues.forEach(issue => console.log(\`   • \${issue}\`));
+            logger.app.info('❌ Validation issues found:');
+            issues.forEach(issue => logger.app.info(\`   • \${issue}\`));
         }
         
         return issues.length === 0;
@@ -230,11 +231,11 @@ if (require.main === module) {
 module.exports = { SinglePackageValidator };`;
         
         fs.writeFileSync(path.join(this.baseDir, 'validate-single-package.js'), validationScript);
-        console.log('✅ Created validation script: validate-single-package.js');
+        logger.app.info('✅ Created validation script: validate-single-package.js');
     }
 
     createMigrationInstructions() {
-        console.log('📝 Creating migration instructions...');
+        logger.app.info('📝 Creating migration instructions...');
         
         const instructions = `# C4R Monorepo: Single Package.json Migration
 
@@ -310,42 +311,42 @@ If issues occur:
 `;
         
         fs.writeFileSync(path.join(this.baseDir, 'SINGLE-PACKAGE-MIGRATION.md'), instructions);
-        console.log('✅ Created migration instructions: SINGLE-PACKAGE-MIGRATION.md');
+        logger.app.info('✅ Created migration instructions: SINGLE-PACKAGE-MIGRATION.md');
     }
 
     async run() {
         try {
-            console.log('🚀 Preparing single package.json architecture...\n');
+            logger.app.info('🚀 Preparing single package.json architecture...\n');
             
             const singlePackageJson = this.createSinglePackageJson();
             this.createBackupScript();
             this.createValidationScript();
             this.createMigrationInstructions();
             
-            console.log('\n📊 SINGLE PACKAGE PREPARATION REPORT');
-            console.log('=====================================');
-            console.log(`📦 Total dependencies: ${Object.keys(singlePackageJson.dependencies).length}`);
-            console.log(`🔧 Total devDependencies: ${Object.keys(singlePackageJson.devDependencies).length}`);
-            console.log(`🎯 Total activities: ${singlePackageJson.c4rConfig.totalActivities}`);
+            logger.app.info('\n📊 SINGLE PACKAGE PREPARATION REPORT');
+            logger.app.info('=====================================');
+            logger.app.info(`📦 Total dependencies: ${Object.keys(singlePackageJson.dependencies).length}`);
+            logger.app.info(`🔧 Total devDependencies: ${Object.keys(singlePackageJson.devDependencies).length}`);
+            logger.app.info(`🎯 Total activities: ${singlePackageJson.c4rConfig.totalActivities}`);
             
-            console.log('\n📁 FILES CREATED:');
-            console.log('   • package-single.json - The ultimate single package.json');
-            console.log('   • backup-individual-packages.js - Backup script');
-            console.log('   • validate-single-package.js - Validation script');
-            console.log('   • SINGLE-PACKAGE-MIGRATION.md - Migration instructions');
+            logger.app.info('\n📁 FILES CREATED:');
+            logger.app.info('   • package-single.json - The ultimate single package.json');
+            logger.app.info('   • backup-individual-packages.js - Backup script');
+            logger.app.info('   • validate-single-package.js - Validation script');
+            logger.app.info('   • SINGLE-PACKAGE-MIGRATION.md - Migration instructions');
             
-            console.log('\n💡 NEXT STEPS:');
-            console.log('   1. Review package-single.json');
-            console.log('   2. Test current system: npm run dev');
-            console.log('   3. Validate: node validate-single-package.js');
-            console.log('   4. Follow SINGLE-PACKAGE-MIGRATION.md for full migration');
+            logger.app.info('\n💡 NEXT STEPS:');
+            logger.app.info('   1. Review package-single.json');
+            logger.app.info('   2. Test current system: npm run dev');
+            logger.app.info('   3. Validate: node validate-single-package.js');
+            logger.app.info('   4. Follow SINGLE-PACKAGE-MIGRATION.md for full migration');
             
-            console.log('\n🎉 Single package preparation completed!');
+            logger.app.info('\n🎉 Single package preparation completed!');
             
             return singlePackageJson;
             
         } catch (error) {
-            console.error('💥 Single package preparation failed:', error);
+            logger.app.error('💥 Single package preparation failed:', error);
             process.exit(1);
         }
     }

@@ -1,3 +1,4 @@
+const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 
 import { useState } from "react";
@@ -93,7 +94,7 @@ export default function Activity() {
     });
     const router = useRouter();
 
-    console.log(sessionID);
+    logger.app.info(sessionID);
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -129,13 +130,13 @@ export default function Activity() {
             });
 
             if (response.ok) {
-                console.log("Rigor Files Submitted");
+                logger.app.info("Rigor Files Submitted");
                 openReviewPage();
             } else {
-                console.error("Failed to submit Rigor Files");
+                logger.app.error("Failed to submit Rigor Files");
             }
         } catch (error) {
-            console.error("Error submitting Rigor Files:", error);
+            logger.app.error("Error submitting Rigor Files:", error);
         }
     };
 

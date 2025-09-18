@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client'
 
 import React, { useState, useEffect, useRef, Suspense } from 'react'
@@ -69,7 +70,7 @@ export default function HomePage() {
   }
 
   // const handleGuideBtn = () => {
-  //   console.log('Guide button clicked')
+  //   logger.app.info('Guide button clicked')
   //   openModal(true)
   // }
 
@@ -138,18 +139,18 @@ export default function HomePage() {
       // Handle the response
       if (!response.ok) {
         const errorData = await response.json()
-        console.error('Error posting data:', errorData)
+        logger.app.error('Error posting data:', errorData)
         alert(`Error: ${errorData.message}`)
         return
       }
 
       const responseData = await response.json()
-      console.log('POST API Response:', responseData)
+      logger.app.info('POST API Response:', responseData)
 
       // Navigate to the next page with the query parameters
       router.push(`/LLMBot${queryParam}`)
     } catch (error) {
-      console.error('Error calling POST API:', error)
+      logger.app.error('Error calling POST API:', error)
       alert('An error occurred while submitting data. Please try again.')
     }
   }

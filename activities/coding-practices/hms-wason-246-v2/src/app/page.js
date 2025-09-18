@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -119,11 +120,11 @@ export function InputContent() {
 
     useEffect(() => {
         if (sessionID && !sessionIdFromUrl && !ruleID){
-            console.log("sessionID determined:", sessionID);
+            logger.app.info("sessionID determined:", sessionID);
             router.push(`/?sessionID=${sessionID}`);
         }
         else if (sessionID && !sessionIdFromUrl && ruleID){
-            console.log("sessionID determined:", sessionID);
+            logger.app.info("sessionID determined:", sessionID);
             router.push(`/?ruleID=${ruleID}&sessionID=${sessionID}`);
         }
 
@@ -140,7 +141,7 @@ export function InputContent() {
     };
 
     const handleGuideBtn = () => {
-        console.log("Guide button clicked");
+        logger.app.info("Guide button clicked");
         openModal(true);
     };
 
@@ -153,7 +154,7 @@ export function InputContent() {
             : ruleID
             ? parseInt(ruleID)
             : initialRandomNumber; // Changed from 1 to initialRandomNumber, so default rule is random
-    console.log("ruleNumber:", ruleNumber);
+    logger.app.info("ruleNumber:", ruleNumber);
 
     // Map the imports from sequenceChecks.js to a mapping, such that the key is the rule number and the value is the function
     const ruleFunctions = {
@@ -165,7 +166,7 @@ export function InputContent() {
         6: isArithmeticSequence,
     };
     const ruleFunction = ruleFunctions[ruleNumber];
-    console.log("ruleFunction:", ruleFunction);
+    logger.app.info("ruleFunction:", ruleFunction);
 
     // Map each rule function to a string that describes the rule
     const ruleDescriptions = {
@@ -213,7 +214,7 @@ export function InputContent() {
     const submitTest = (testSequence, testHypothesis) => {
         // Convert all elements of testSequence to integers
         const testSequenceInt = testSequence.map(Number);
-        console.log("testSequenceInt:", testSequenceInt);
+        logger.app.info("testSequenceInt:", testSequenceInt);
 
         // Sequence matching logic
         const isMatch = ruleFunction(
@@ -221,7 +222,7 @@ export function InputContent() {
             testSequenceInt[1],
             testSequenceInt[2]
         );
-        console.log("isMatch", isMatch);
+        logger.app.info("isMatch", isMatch);
 
         const newTest = {
             number: currentTestNumber.toString().padStart(2, "0"),
@@ -261,7 +262,7 @@ export function InputContent() {
     }, [tests]);
 
     const handleCancelFinalGuess = () => {
-        console.log("Cancel final guess clicked");
+        logger.app.info("Cancel final guess clicked");
         setFinalGuess("");
         setIsFinalGuessActive(false);
     };
@@ -327,15 +328,15 @@ export function InputContent() {
             });
 
             if (res.ok) {
-                console.log("Successfully submitted");
+                logger.app.info("Successfully submitted");
                 loadReviewPage(guessID);
             } else {
-                console.log("Response not ok.");
+                logger.app.info("Response not ok.");
                 throw new Error("Response not ok.");
             }
         } catch (error) {
-            console.log("Error in fetch");
-            console.log(error);
+            logger.app.info("Error in fetch");
+            logger.app.info(error);
         }
     };
 
@@ -351,7 +352,7 @@ export function InputContent() {
 
         // Check if at least one test has been created
         if (tests.length === 0) {
-            console.log("No tests created");
+            logger.app.info("No tests created");
             setErrorSnackbarMessage(
                 "Please create at least one test before submitting your final guess."
             );
@@ -381,13 +382,13 @@ export function InputContent() {
 
     const handleSequenceFormEvent = (e) => {
         e.preventDefault();
-        console.log("sequence form submitted");
+        logger.app.info("sequence form submitted");
         handleTest();
     };
 
     const onFinalGuessFormEvent = (e) => {
         e.preventDefault();
-        console.log("Final guess submitted");
+        logger.app.info("Final guess submitted");
         handleSubmitFinalGuess();
     };
 

@@ -1,3 +1,4 @@
+const logger = require('../../../packages/logging/logger.js');
 'use client';
 
 // Import useRef along with other hooks
@@ -253,7 +254,7 @@ export default function Page() {
       router.push("/success");
 
     } catch (error) {
-      console.error("Error submitting data:", error);
+      logger.app.error("Error submitting data:", error);
       alert(`An error occurred while saving your response: ${error.message}`);
     }
   };

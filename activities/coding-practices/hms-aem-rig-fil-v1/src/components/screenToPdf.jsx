@@ -1,3 +1,4 @@
+const logger = require('../../../../../packages/logging/logger.js');
 import React, { useRef } from "react";
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
@@ -16,7 +17,7 @@ const ScreenToPDF = () => {
                 pdf.save('download.pdf');
             })
             .catch(error => {
-                console.error('Error generating PDF:', error);
+                logger.app.error('Error generating PDF:', error);
             });
     };
 

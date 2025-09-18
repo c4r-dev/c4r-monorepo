@@ -1,10 +1,11 @@
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../packages/logging/logger.js');
 
 async function checkServerErrors() {
-    console.log('🔍 Checking for server errors in real-time...');
-    console.log('This will monitor server output for error patterns\n');
+    logger.app.info('🔍 Checking for server errors in real-time...');
+    logger.app.info('This will monitor server output for error patterns\n');
     
     // Create error log
     const errorLogPath = path.join(__dirname, 'server-error-log.txt');
@@ -13,30 +14,30 @@ async function checkServerErrors() {
     function logError(type, message) {
         const timestamp = new Date().toISOString();
         const logEntry = `[${timestamp}] ${type}: ${message}\n`;
-        console.log(`🔴 ${logEntry.trim()}`);
+        logger.app.info(`🔴 ${logEntry.trim()}`);
         logStream.write(logEntry);
     }
     
     // First, check if server is already running
-    console.log('📋 Checking server status...');
+    logger.app.info('📋 Checking server status...');
     
     try {
         const response = await fetch('http://localhost:3333/api/activities');
         if (response.ok) {
-            console.log('✅ Server is running on port 3333');
+            logger.app.info('✅ Server is running on port 3333');
             
             // Test a few activities to see current error state
             const activities = await response.json();
-            console.log(`📦 Found ${activities.length} activities\n`);
+            logger.app.info(`📦 Found ${activities.length} activities\n`);
             
-            console.log('🧪 Testing sample activities for immediate errors...');
+            logger.app.info('🧪 Testing sample activities for immediate errors...');
             
             // Test first 5 activities for quick error check
             for (let i = 0; i < Math.min(5, activities.length); i++) {
                 const activity = activities[i];
                 const url = activity.url;
                 
-                console.log(`\n🔗 Testing: ${activity.route}`);
+                logger.app.info(`\n🔗 Testing: ${activity.route}`);
                 
                 try {
                     const activityResponse = await fetch(url, { 
@@ -45,7 +46,7 @@ async function checkServerErrors() {
                     });
                     
                     const status = activityResponse.status;
-                    console.log(`   📊 HTTP ${status}`);
+                    logger.app.info(`   📊 HTTP ${status}`);
                     
                     if (status >= 400) {
                         logError('HTTP_ERROR', `${status} ${activityResponse.statusText} for ${url}`);
@@ -53,7 +54,7 @@ async function checkServerErrors() {
                         // Try to get error details
                         const text = await activityResponse.text();
                         if (text.length < 1000) {
-                            console.log(`   📄 Error response: ${text.substring(0, 200)}...`);
+                            logger.app.info(`   📄 Error response: ${text.substring(0, 200)}...`);
                             logError('ERROR_DETAILS', text.substring(0, 500));
                         }
                     } else if (status === 200) {
@@ -62,32 +63,32 @@ async function checkServerErrors() {
                         const htmlLower = html.toLowerCase();
                         
                         if (htmlLower.includes('error') || htmlLower.includes('failed') || htmlLower.includes('cannot')) {
-                            console.log('   ⚠️  Success response but contains error indicators');
+                            logger.app.info('   ⚠️  Success response but contains error indicators');
                             
                             // Extract error messages
                             const errorMatches = html.match(/(error[^<>\n]{0,100}|failed[^<>\n]{0,100}|cannot[^<>\n]{0,100})/gi);
                             if (errorMatches) {
                                 errorMatches.slice(0, 3).forEach(match => {
-                                    console.log(`      • ${match.trim()}`);
+                                    logger.app.info(`      • ${match.trim()}`);
                                     logError('CONTENT_ERROR', match.trim());
                                 });
                             }
                         } else {
-                            console.log('   ✅ Working');
+                            logger.app.info('   ✅ Working');
                         }
                     }
                     
                 } catch (fetchError) {
-                    console.log(`   ❌ Fetch error: ${fetchError.message}`);
+                    logger.app.info(`   ❌ Fetch error: ${fetchError.message}`);
                     logError('FETCH_ERROR', `${fetchError.message} for ${url}`);
                 }
             }
             
-            console.log('\n✅ Quick error check complete!');
-            console.log(`📄 Errors logged to: ${errorLogPath}`);
+            logger.app.info('\n✅ Quick error check complete!');
+            logger.app.info(`📄 Errors logged to: ${errorLogPath}`);
             
             // Show recent server logs if available
-            console.log('\n📋 Recent server activity (if available):');
+            logger.app.info('\n📋 Recent server activity (if available):');
             
             // Try to read recent server output from common log locations
             const possibleLogPaths = [
@@ -98,52 +99,52 @@ async function checkServerErrors() {
             
             for (const logPath of possibleLogPaths) {
                 if (fs.existsSync(logPath)) {
-                    console.log(`📄 Found log: ${logPath}`);
+                    logger.app.info(`📄 Found log: ${logPath}`);
                     try {
                         const logContent = fs.readFileSync(logPath, 'utf8');
                         const recentLines = logContent.split('\n').slice(-10);
                         recentLines.forEach(line => {
                             if (line.trim() && (line.toLowerCase().includes('error') || line.toLowerCase().includes('warn'))) {
-                                console.log(`   🔴 ${line.trim()}`);
+                                logger.app.info(`   🔴 ${line.trim()}`);
                                 logError('SERVER_LOG_ERROR', line.trim());
                             }
                         });
                     } catch (e) {
-                        console.log(`   ⚠️  Could not read log: ${e.message}`);
+                        logger.app.info(`   ⚠️  Could not read log: ${e.message}`);
                     }
                 }
             }
             
         } else {
-            console.log('❌ Server not responding on port 3333');
+            logger.app.info('❌ Server not responding on port 3333');
             logError('SERVER_DOWN', 'Server not responding on port 3333');
         }
         
     } catch (error) {
-        console.log('❌ Could not connect to server:', error.message);
+        logger.app.info('❌ Could not connect to server:', error.message);
         logError('CONNECTION_ERROR', error.message);
         
-        console.log('\n🚀 Server might not be running. You can start it with:');
-        console.log('   npm run dev');
-        console.log('   or');
-        console.log('   node server/seamless-activity-server.js');
+        logger.app.info('\n🚀 Server might not be running. You can start it with:');
+        logger.app.info('   npm run dev');
+        logger.app.info('   or');
+        logger.app.info('   node server/seamless-activity-server.js');
     }
     
     // Instructions for further debugging
-    console.log('\n🛠️  DEBUGGING SUGGESTIONS:');
-    console.log('1. Visual Error Detection:');
-    console.log('   node test-activities-error-detection.js');
-    console.log('');
-    console.log('2. Live Browser Monitoring:');
-    console.log('   node live-error-monitor.js');
-    console.log('');
-    console.log('3. Check specific activity:');
-    console.log('   Open browser to http://localhost:3333/[domain]/[activity-name]');
-    console.log('   Open DevTools (F12) → Console tab to see JavaScript errors');
-    console.log('');
-    console.log('4. Server-side debugging:');
-    console.log('   Check terminal running npm run dev for server errors');
-    console.log('   Add console.log statements in server/seamless-activity-server.js');
+    logger.app.info('\n🛠️  DEBUGGING SUGGESTIONS:');
+    logger.app.info('1. Visual Error Detection:');
+    logger.app.info('   node test-activities-error-detection.js');
+    logger.app.info('');
+    logger.app.info('2. Live Browser Monitoring:');
+    logger.app.info('   node live-error-monitor.js');
+    logger.app.info('');
+    logger.app.info('3. Check specific activity:');
+    logger.app.info('   Open browser to http://localhost:3333/[domain]/[activity-name]');
+    logger.app.info('   Open DevTools (F12) → Console tab to see JavaScript errors');
+    logger.app.info('');
+    logger.app.info('4. Server-side debugging:');
+    logger.app.info('   Check terminal running npm run dev for server errors');
+    logger.app.info('   Add console.log statements in server/seamless-activity-server.js');
     
     logStream.end();
 }

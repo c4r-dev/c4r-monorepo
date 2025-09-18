@@ -1,3 +1,4 @@
+const logger = require('../../../../packages/logging/logger.js');
 'use client';
 
 import { useState, useEffect } from "react";
@@ -18,7 +19,7 @@ export default function Home() {
       const data = await response.json();
       setEmails(data);
     } catch (error) {
-      console.error('Error fetching emails:', error);
+      logger.app.error('Error fetching emails:', error);
     }
   };
 
