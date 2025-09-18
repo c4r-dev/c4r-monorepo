@@ -412,12 +412,14 @@ class SeamlessActivityServer {
         // Add debugging middleware to see all requests
         this.app.use((req, res, next) => {
             if (req.url.includes('_next')) {
-                logger.app.info(`🔍 REQUEST DEBUG: ${req.method} ${req.url} (referer: ${req.get('Referer') || 'none'})`);
+                console.log(`🔍 REQUEST DEBUG MIDDLEWARE HIT: ${req.method} ${req.url} (referer: ${req.get('Referer') || 'none'})`);
+                logger.app.info(`🔍 REQUEST DEBUG MIDDLEWARE HIT: ${req.method} ${req.url} (referer: ${req.get('Referer') || 'none'})`);
             }
             next();
         });
 
         // Global /_next handler for Next.js static assets (browser requests without activity path)
+        // IMPORTANT: This must come BEFORE activity routes to intercept /_next requests
         this.app.use('/_next', (req, res) => {
             try {
                 logger.app.info(`🎯 GLOBAL /_next HANDLER HIT: ${req.originalUrl}`);
