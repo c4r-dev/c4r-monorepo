@@ -1,0 +1,121 @@
+[
+  {
+    "url": "http://localhost:3333/apps/c4r-component-test",
+    "status": "PASSED",
+    "title": "c4r-component-test - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/apps/activities/causality/jhuvt-pos-con-v1",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+    "status": "PASSED",
+    "title": "hms-cbi-hyp-bot-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/apps/c4r-template-test",
+    "status": "PASSED",
+    "title": "c4r-template-test - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/apps/duq-finer-v1",
+    "status": "PASSED",
+    "title": "duq-finer-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/randomization/smi-ran-ran-lit-v1",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/coding-practices/hms-cbi-fav-game-v0",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/coding-practices/hms-clean-code-org-v0",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/randomization/smi-ran-simple-ran-v1",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/coding-practices/hms-wason-246-v2",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+    "status": "PASSED",
+    "title": "jhuvt-caus-cau-lang-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-con-con-issue-v0",
+    "status": "PASSED",
+    "title": "jhuvt-con-con-issue-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-dag-for-caus-v0",
+    "status": "PASSED",
+    "title": "jhuvt-dag-for-caus-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-bias-map-v0",
+    "status": "PASSED",
+    "title": "hms-bias-map-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/apps/neuroserpin_v0",
+    "status": "PASSED",
+    "title": "neuroserpin_v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/randomization/smi-ran-why-ran-v2",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  },
+  {
+    "url": "http://localhost:3333/activities/coding-practices/hms-int-exe-v0",
+    "status": "PASSED",
+    "title": "404 - Activity Not Found",
+    "errors": [],
+    "hasContent": true
+  }
+]

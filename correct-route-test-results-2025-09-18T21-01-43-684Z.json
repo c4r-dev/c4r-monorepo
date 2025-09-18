@@ -1,0 +1,191 @@
+[
+  {
+    "url": "http://localhost:3333/apps/c4r-component-test",
+    "status": "FAILED",
+    "title": "c4r-component-test - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+    "status": "FAILED",
+    "title": "hms-cbi-hyp-bot-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/apps/c4r-template-test",
+    "status": "FAILED",
+    "title": "c4r-template-test - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/apps/duq-finer-v1",
+    "status": "FAILED",
+    "title": "duq-finer-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-bias-map-v0",
+    "status": "FAILED",
+    "title": "hms-bias-map-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/apps/neuroserpin_v0",
+    "status": "FAILED",
+    "title": "neuroserpin_v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/apps/smi-ran-why-ran-v4",
+    "status": "FAILED",
+    "title": "smi-ran-why-ran-v4 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+    "status": "FAILED",
+    "title": "smi-ran-ran-lit-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+    "status": "FAILED",
+    "title": "smi-ran-simple-ran-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-why-ran-v2",
+    "status": "FAILED",
+    "title": "smi-ran-why-ran-v2 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-str-ran-v1",
+    "status": "FAILED",
+    "title": "smi-ran-str-ran-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+    "status": "FAILED",
+    "title": "hms-cbi-fav-game-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+    "status": "FAILED",
+    "title": "hms-clean-code-org-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-wason-246-v2",
+    "status": "FAILED",
+    "title": "hms-wason-246-v2 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-int-exe-v0",
+    "status": "FAILED",
+    "title": "hms-int-exe-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+    "status": "FAILED",
+    "title": "jhuvt-caus-cau-lang-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-con-con-issue-v0",
+    "status": "FAILED",
+    "title": "jhuvt-con-con-issue-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-dag-for-caus-v0",
+    "status": "FAILED",
+    "title": "jhuvt-dag-for-caus-v0 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-pos-con-v1",
+    "status": "FAILED",
+    "title": "jhuvt-pos-con-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-pos-con-v1/pages/PositiveControl1",
+    "status": "FAILED",
+    "title": "jhuvt-pos-con-v1 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-wason-246-v2/pages/input",
+    "status": "FAILED",
+    "title": "hms-wason-246-v2 - C4R Activity",
+    "errors": [],
+    "hasContent": true,
+    "hasActivityElements": false,
+    "webpackErrors": []
+  }
+]
