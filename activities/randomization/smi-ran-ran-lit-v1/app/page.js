@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@mui/material';
 
 import SessionConfigPopup from './components/SessionPopup/SessionConfigPopup';
-import CustomButton from '../app/components/CustomButton'; // Update this path to the actual location of your CustomButton component
+import C4RButton from '../../../../packages/ui/src/mui/components/C4RButton';
 
 // Define papers outside of components
 const papers = [
@@ -127,7 +127,7 @@ function StudySelectionContent() {
                 onClick={() => handlePaperSelect(paper.id)}
                 sx={{
                   height: 200,
-                  backgroundColor: '#f47321', // Orange color
+                  backgroundColor: 'secondary.main', // C4R Orange color
                   cursor: 'pointer',
                   border: selectedPaper === paper.id ? `4px solid ${theme.palette.primary.main}` : 'none',
                   transition: 'all 0.2s ease-in-out',
@@ -152,25 +152,20 @@ function StudySelectionContent() {
       </Box>
       
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 6 }}>
-      <Button 
-  variant="contained"
-  disabled={!selectedPaper}
-  onClick={handleContinue}
-  aria-label="Continue to selected study"
-  sx={{ 
-    px: 4,
-    py: 1,
-    borderRadius: 1,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    backgroundColor: 'primary.main', // Your default blue color
-    '&:hover': {
-      backgroundColor: '#6e00ff', // Purple hover color
-    }
-  }}
->
-  CONTINUE
-</Button>
+        <C4RButton 
+          variant="c4rPrimary"
+          disabled={!selectedPaper}
+          onClick={handleContinue}
+          aria-label="Continue to selected study"
+          sx={{ 
+            px: 4,
+            py: 1,
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+          }}
+        >
+          CONTINUE
+        </C4RButton>
       </Box>
     </Container>
   );

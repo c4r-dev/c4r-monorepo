@@ -1,6 +1,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* C4R Design System Colors */
+  --c4r-primary: #6E00FF;
+  --c4r-primary-dark: #5700CA;
+  --c4r-secondary: #FF5A00;
+  --c4r-secondary-alt: #f47321;
+  --c4r-accent: #00C802;
+  --c4r-accent-alt: #4CAF50;
 }
 
 .outer-container {
@@ -45,7 +53,7 @@
 }
 
 .participant-button button {
-  background-color: #4caf50;
+  background-color: var(--c4r-accent, #4caf50);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -105,7 +113,7 @@
 }
 
 .bubble-text {
-    background-color: #6E00FF;
+    background-color: var(--c4r-primary, #6E00FF);
     text-align: left;
     border-radius: 10px;
     padding: 10px;
@@ -542,7 +550,7 @@ padding: 10px;
 
 .qr-code-text-heading {
   /* margin-bottom: 90px; */
-  color: #6E00FF;
+  color: var(--c4r-primary, #6E00FF);
 }
 
 
@@ -613,7 +621,7 @@ text-align: left;
   }
   .qr-code-text-heading{
     margin-bottom: 110px;
-    color: #6E00FF;
+    color: var(--c4r-primary, #6E00FF);
   }
 }
 
@@ -628,7 +636,7 @@ text-align: left;
   }
  .qr-code-text-heading {
     margin-bottom: 110px;
-    color: #6E00FF;
+    color: var(--c4r-primary, #6E00FF);
   }
   .copy-link-container {
     width: 55%; /* Adjust width on tablet screens */

@@ -221,10 +221,10 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Button,
   Box,
   Typography
 } from '@mui/material';
+import C4RButton from '../../../../../../packages/ui/src/mui/components/C4RButton';
 
 const SessionConfigPopup = ({ 
   open, 
@@ -333,40 +333,22 @@ const SessionConfigPopup = ({
               mt: 6,
               mb: 6
             }}>
-              <Button
-                variant="contained"
+              <C4RButton
+                variant="c4rPrimary"
                 size="large"
                 onClick={() => handleModeSelect('individual')}
-                style={{ 
-                  backgroundColor: '#6200EE',
-                  color: 'white',
-                  width: '200px'
-                }}
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#5000C8',
-                  }
-                }}
+                sx={{ width: '200px' }}
               >
                 As an Individual
-              </Button>
-              <Button
-                variant="contained"
+              </C4RButton>
+              <C4RButton
+                variant="c4rPrimary"
                 size="large"
                 onClick={() => handleModeSelect('group')}
-                style={{ 
-                  backgroundColor: '#6200EE',
-                  color: 'white',
-                  width: '200px'
-                }}
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#5000C8',
-                  }
-                }}
+                sx={{ width: '200px' }}
               >
                 As a Group
-              </Button>
+              </C4RButton>
             </Box>
           </DialogContent>
         </>
@@ -374,13 +356,13 @@ const SessionConfigPopup = ({
         <>
           <DialogTitle>Configure Group Activity</DialogTitle>
           <DialogContent>
-            <Button 
+            <C4RButton 
               variant="text" 
               onClick={handleBack}
               sx={{ mb: 2 }}
             >
               ← Back
-            </Button>
+            </C4RButton>
             
             <Box sx={{ 
               display: 'flex', 
@@ -404,23 +386,14 @@ const SessionConfigPopup = ({
                 }}>
                   {`${window.location.origin}/Selection?sessionID=${sessionID}`}
                 </Typography>
-                <Button 
-                  variant="contained"
+                <C4RButton 
+                  variant="c4rPrimary"
                   onClick={handleCopyLink}
                   fullWidth
-                  style={{ 
-                    backgroundColor: '#6200EE',
-                    color: 'white'
-                  }}
-                  sx={{ 
-                    mb: 2,
-                    '&:hover': {
-                      backgroundColor: '#5000C8',
-                    }
-                  }}
+                  sx={{ mb: 2 }}
                 >
                   Copy Link
-                </Button>
+                </C4RButton>
               </Box>
 
               {/* Right side - QR Code */}
@@ -456,22 +429,13 @@ const SessionConfigPopup = ({
             </Box>
 
             <Box sx={{ textAlign: 'center', mt: 3 }}>
-              <Button
-                variant="contained"
+              <C4RButton
+                variant="c4rPrimary"
                 size="large"
                 onClick={handleStart}
-                style={{ 
-                  backgroundColor: '#6200EE',
-                  color: 'white'
-                }}
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#5000C8',
-                  }
-                }}
               >
                 Start Activity
-              </Button>
+              </C4RButton>
             </Box>
           </DialogContent>
         </>

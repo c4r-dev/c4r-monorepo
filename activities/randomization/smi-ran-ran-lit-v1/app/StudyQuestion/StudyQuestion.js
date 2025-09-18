@@ -15,6 +15,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { useSearchParams, useRouter } from 'next/navigation'
+import C4RButton from '../../../../../packages/ui/src/mui/components/C4RButton'
 
 export default function RandomizationQuestionsScreen({
   studyName = 'Study name',
@@ -198,7 +199,7 @@ export default function RandomizationQuestionsScreen({
   const getProgressColor = () => {
     if (progressPercentage < 50) return '#f44336' // Red
     if (progressPercentage < 100) return '#ff9800' // Orange
-    return '#4caf50' // Green
+    return '#00C802' // C4R Green
   }
 
   // Get status text for character count
@@ -211,20 +212,6 @@ export default function RandomizationQuestionsScreen({
     return 'Question meets character requirement ✓'
   }
 
-  // Common button styles for both buttons
-  const buttonStyle = {
-    borderRadius: 2,
-    textTransform: 'none',
-    bgcolor: '#000',
-    color: '#fff',
-    '&:hover': {
-      bgcolor: '#6E00ff',
-    },
-    '&.Mui-disabled': {
-      bgcolor: '#ccc',
-      color: '#666',
-    },
-  }
 
   return (
     <Container maxWidth="md" sx={{ py: 3 }}>
@@ -316,7 +303,7 @@ export default function RandomizationQuestionsScreen({
               sx={{
                 color:
                   charCount >= minCharCount
-                    ? '#4caf50'
+                    ? '#00C802'
                     : charCount > 0
                     ? '#ff9800'
                     : '#757575',
@@ -353,15 +340,14 @@ export default function RandomizationQuestionsScreen({
               }
             >
               <span>
-                <Button
-                  variant="contained"
+                <C4RButton
+                  variant="c4rPrimary"
                   onClick={handleAddQuestion}
                   disabled={charCount < minCharCount || isLoading}
                   startIcon={<AddCircleIcon />}
-                  sx={buttonStyle}
                 >
                   {isLoading ? 'Saving...' : 'Add Question'}
-                </Button>
+                </C4RButton>
               </span>
             </Tooltip>
           </Box>
@@ -443,12 +429,11 @@ export default function RandomizationQuestionsScreen({
       </Paper>
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-          variant="contained"
+        <C4RButton
+          variant="c4rPrimary"
           disabled={questions.length === 0 || isLoading}
           onClick={handleContinue}
           sx={{
-            ...buttonStyle,
             textTransform: 'uppercase',
             fontWeight: 500,
             px: 3,
@@ -456,7 +441,7 @@ export default function RandomizationQuestionsScreen({
           }}
         >
           CONTINUE
-        </Button>
+        </C4RButton>
       </Box>
     </Container>
   )

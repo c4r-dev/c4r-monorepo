@@ -1,0 +1,31 @@
+{
+  "name": "smi-ran-ran-lit-v1",
+  "version": "1.0.0",
+  "description": "Randomization in the Literature - Research Activity",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@c4r/ui": "file:../../../packages/ui",
+    "@mui/material": "^5.15.14",
+    "@mui/icons-material": "^5.15.14",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "next": "^14.2.18",
+    "mongoose": "^8.15.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.7",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^14.2.18",
+    "typescript": "^5.0.0"
+  }
+}

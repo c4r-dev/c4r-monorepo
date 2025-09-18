@@ -53,6 +53,12 @@ open http://localhost:3333
 - **Shared node_modules** across all projects
 - **No individual installs** required per activity
 
+### 🎨 **Enhanced Design System**
+- **C4R brand colors** integrated across all components (#6E00FF purple, #FF5A00 orange, #00C802 green)
+- **Material-UI enhancement** with 85+ activities using unified theming
+- **7-size font system** enforced (xs, sm, base, lg, xl, 2xl, 3xl)
+- **Color violation detection** and automated fixing tools
+
 ### 🌐 **Unified Development Server**
 - **Single port** (3000) serves all activities
 - **Auto-discovery** of activities in the repo
@@ -88,6 +94,12 @@ npm run dev:list        # List all available activities
 npm run build           # Build all activities
 npm run test            # Run all tests
 npm run lint            # Lint all code
+
+# Design System & Validation
+npm run fix:font-sizes  # Fix font size violations across activities
+npm run migrate:colors  # Migrate hardcoded colors to C4R brand system
+npm run lint:font-sizes # Check for font size violations
+npm run validate        # Comprehensive activity validation
 ```
 
 ## 📊 Architecture
@@ -133,14 +145,57 @@ BUILD_CACHE=true            # Enable build caching
 All activities use these shared dependencies:
 ```json
 {
-  "react": "^19.0.0",
-  "react-dom": "^19.0.0", 
-  "next": "^15.0.0",
-  "@mui/material": "^5.15.0",
-  "mongoose": "^8.0.0",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1", 
+  "next": "^14.2.18",
+  "@mui/material": "^5.15.14",
+  "@c4r/ui": "file:./packages/ui",
+  "mongoose": "^8.15.1",
   "express": "^4.18.0"
 }
 ```
+
+## 🎨 C4R UI Component Library
+
+### **Enhanced MUI Integration**
+The `@c4r/ui` package provides production-ready components with C4R branding:
+
+```tsx
+import { 
+  C4RThemeProvider,
+  C4RActivityLayout,
+  C4RButton,
+  C4RDataTable,
+  C4RQuestionCard 
+} from '@c4r/ui/mui';
+
+export default function MyActivity() {
+  return (
+    <C4RThemeProvider>
+      <C4RActivityLayout title="Research Activity">
+        <C4RButton variant="c4rPrimary">Take Action</C4RButton>
+        <C4RDataTable data={results} searchable exportable />
+      </C4RActivityLayout>
+    </C4RThemeProvider>
+  );
+}
+```
+
+### **Component Features**
+- **🎨 C4R Brand Colors**: Purple (#6E00FF), Orange (#FF5A00), Green (#00C802)
+- **📱 Responsive Design**: Mobile-first with Tailwind integration
+- **♿ Accessibility**: WCAG compliant with proper focus management
+- **🔧 TypeScript**: Full type safety and IntelliSense support
+- **📏 Typography**: 7-size font system enforcement
+- **🚀 Activity Patterns**: Pre-built components for research workflows
+
+### **Available Components**
+- `C4RActivityLayout` - Standardized activity wrapper with navigation
+- `C4RDataTable` - Feature-rich tables with sorting, search, export
+- `C4RQuestionCard` - Interactive cards with drag-and-drop support
+- `C4RButton` - Enhanced buttons with C4R brand variants
+- `SessionConfigDialog` - Unified session configuration
+- `ActivityHeader` - Consistent header with help integration
 
 ## 🚀 Development Workflow
 

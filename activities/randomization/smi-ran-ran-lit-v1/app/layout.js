@@ -2,21 +2,10 @@
 'use client';
 import React, {useState} from 'react';
 import { AppBar, Toolbar, Typography, Box, Container } from '@mui/material';
-import LockIcon from '@mui/icons-material/Lock';
-import Image from 'next/image';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import C4RThemeProvider from '../../../../packages/ui/src/mui/ThemeProvider';
+import C4RActivityLayout from '../../../../packages/ui/src/mui/components/C4RActivityLayout';
 import Header from './components/Header/Header';
 import CustomModal from './components/CustomModal';
-
-// Create theme here directly if you're having issues with the import
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#6200ee',
-    },
-  },
-});
 
 
 
@@ -25,10 +14,6 @@ const theme = createTheme({
 export default function RootLayout({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleLogoClick = () => {
-    router.push('/')
-  }
-  
   const handleHelpClick = () => {
     setIsModalOpen(true)
   }
@@ -37,59 +22,23 @@ export default function RootLayout({ children }) {
     setIsModalOpen(false)
   }
 
-  const openModal = () => {
-    setIsGuideModalVisible(true)
-  }
+  const helpContent = (
+    <CustomModal isOpen={isModalOpen} closeModal={closeModal} />
+  );
   
   return (
     <html lang="en">
       <body style={{ margin: 0, padding: 0 }}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <CustomModal isOpen={isModalOpen} closeModal={closeModal} />
-
-          <AppBar 
-            position="fixed" 
-            color="default" 
-            elevation={1}
-            sx={{ 
-              backgroundColor: 'white',
-              borderBottom: '1px solid #e0e0e0',
-              zIndex: 1200
-            }}
+        <C4RThemeProvider>
+          <C4RActivityLayout 
+            title="Randomization in the Literature"
+            helpContent={helpContent}
+            showHome
+            showRefresh
           >
-            <Toolbar sx={{ height: 64 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                {/* <LockIcon sx={{ mr: 1, color: '#6200ee' }} /> */}
-                {/* <Image src="/01_RR_Large.png" alt="Logo" width={40} height={40} />
-                <br/><br/><br/><br/>
-                <Typography 
-                  variant="h6" 
-                  component="h1" 
-                  sx={{ 
-                    fontWeight: 'bold',
-                    color: '#333'
-                  }}
-                >
-                      Randomization in the literatures
-                </Typography> */}
-              {/* <Header/> */}
-                <Header
-              onLogoClick={handleLogoClick}
-              onHelpClick={handleHelpClick}
-              text="Randomization in the literature"
-            />
-              </Box>
-            </Toolbar>
-          </AppBar>
-          
-          {/* This adds spacing below the fixed header */}
-          <Toolbar />
-          
-          <Container component="main" sx={{ pt: 2, pb: 4 }}>
             {children}
-          </Container>
-        </ThemeProvider>
+          </C4RActivityLayout>
+        </C4RThemeProvider>
       </body>
     </html>
   );

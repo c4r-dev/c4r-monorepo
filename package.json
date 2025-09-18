@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "C4R Monorepo",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "dev": "node server/seamless-activity-server.js",
     "dev:unified": "node server/unified-dev-server.js",
@@ -23,7 +19,8 @@
     "pkg:validate": "node scripts/validate-single-package.js",
     "pkg:test": "node scripts/test-all-activities.js",
     "pkg:backup": "node scripts/backup-individual-packages.js",
-    "test:random5": "node scripts/test-random-5-from-api.js"
+    "test:random5": "node scripts/test-random-5-from-api.js",
+    "local": "node scripts/local-dev-server.js"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.14",
@@ -38,7 +35,7 @@
     "@lottiefiles/react-lottie-player": "^3.5.4",
     "@mui/docs": "^5.16.5",
     "@mui/icons-material": "^5.15.14",
-    "@mui/material": "^6.4.1",
+    "@mui/material": "^5.15.14",
     "@mui/material-nextjs": "^6.1.4",
     "@mui/styled-engine": "^7.2.0",
     "@mui/x-charts": "^7.11.1",
