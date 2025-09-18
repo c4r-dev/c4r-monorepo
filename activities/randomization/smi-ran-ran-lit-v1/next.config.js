@@ -2,7 +2,7 @@
 const path = require('path');
 
 const nextConfig = {
-  webpack: (config) => {
+  webpack: (config, { webpack }) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -28,7 +28,7 @@ const nextConfig = {
     };
 
     config.plugins = (config.plugins || []).concat([
-      new config.webpack.ProvidePlugin({
+      new webpack.ProvidePlugin({
         process: 'process/browser',
         Buffer: ['buffer', 'Buffer'],
       }),
@@ -43,9 +43,8 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
-    // Fix asset routing for unified server
-    assetPrefix: process.env.NODE_ENV === 'production' ? '/randomization/smi-ran-ran-lit-v1' : '',
-    basePath: process.env.NODE_ENV === 'production' ? '/randomization/smi-ran-ran-lit-v1' : '',
+    // Asset routing handled by seamless server
+    // assetPrefix and basePath are set dynamically by the seamless server
     // Ensure proper static file handling
     experimental: {
         outputFileTracingRoot: path.join(__dirname, '../../..'),
