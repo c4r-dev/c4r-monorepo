@@ -1,4 +1,3 @@
-const logger = require('../../../../../packages/logging/logger.js');
 import React from "react";
 import Image from "next/image";
 import "./header.css";
@@ -8,6 +7,8 @@ import helpTooltip from "@/public/help-tooltip-fix.svg";
 
 const Header = ({ onLogoClick, onHelpClick }) => {
     const handleLogoClick = () => {
+const logger = require('../../../../../packages/logging/logger.js');
+
         if (onLogoClick) {
             logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();

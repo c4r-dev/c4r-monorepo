@@ -16,7 +16,7 @@ export const saveNodeValidation = async (flowId, nodeId, validationText) => {
 
     return result; // Should be { success: true, message: ..., data: ... }
   } catch (error) {
-    window.c4rLogger ? window.c4rLogger.error('app_error', 'Error saving node validation:', error);
+    window.c4rLogger && window.c4rLogger.error('app_error', 'Error saving node validation:', error);
     return { success: false, message: error.message || 'An unexpected error occurred.' };
   }
 }; 
@@ -43,7 +43,7 @@ export const saveMultiNodeValidation = async (flowId, nodeIds, validationText, n
 
     return result;
   } catch (error) {
-    window.c4rLogger ? window.c4rLogger.error('app_error', 'Error saving multi-node validation:', error);
+    window.c4rLogger && window.c4rLogger.error('app_error', 'Error saving multi-node validation:', error);
     return { success: false, message: error.message || 'An unexpected error occurred.' };
   }
 };
@@ -65,7 +65,7 @@ export const loadValidationsForFlow = async (flowId) => {
 
     return result; // Should be { success: true, data: [...] }
   } catch (error) {
-    window.c4rLogger ? window.c4rLogger.error('app_error', 'Error loading validations:', error);
+    window.c4rLogger && window.c4rLogger.error('app_error', 'Error loading validations:', error);
     return { success: false, message: error.message || 'An unexpected error occurred.', data: [] };
   }
 };
@@ -88,7 +88,7 @@ export const submitPositiveControlWork = async (submissionData) => {
 
     return result;
   } catch (error) {
-    window.c4rLogger ? window.c4rLogger.error('app_error', 'Error submitting positive control work:', error);
+    window.c4rLogger && window.c4rLogger.error('app_error', 'Error submitting positive control work:', error);
     return { success: false, message: error.message || 'An unexpected error occurred.' };
   }
 };
@@ -118,7 +118,7 @@ export const saveSessionFlow = async (sessionId, originalFlowId, originalFlowNam
 
     return result;
   } catch (error) {
-    window.c4rLogger ? window.c4rLogger.error('app_error', 'Error saving session flow:', error);
+    window.c4rLogger && window.c4rLogger.error('app_error', 'Error saving session flow:', error);
     return { success: false, message: error.message || 'An unexpected error occurred.' };
   }
 };
@@ -140,7 +140,7 @@ export const loadSessionFlow = async (sessionId) => {
 
     return result; // Should be { success: true, data: {...} }
   } catch (error) {
-    window.c4rLogger ? window.c4rLogger.error('app_error', 'Error loading session flow:', error);
+    window.c4rLogger && window.c4rLogger.error('app_error', 'Error loading session flow:', error);
     return { success: false, message: error.message || 'An unexpected error occurred.', data: null };
   }
-};  : console.$1(
+};

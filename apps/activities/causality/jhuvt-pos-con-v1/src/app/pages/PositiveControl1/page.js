@@ -1,4 +1,3 @@
-const logger = require('../../../../../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useCallback, Suspense, useRef, useMemo } from 'react';
@@ -121,8 +120,38 @@ const HighlightableNode = ({ updateNodeData, ...props }) => {
 function PositiveControlContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const flowIdFromUrl = searchParams.get('flowId');
-  const sessionIdFromUrl = searchParams.get('sessionID');
+  
+  // Reliable parameter extraction with fallback for hydration issues
+  const getUrlParams = useCallback(() => {
+    // First try useSearchParams (Next.js recommended)
+    const flowIdFromParams = searchParams.get('flowId');
+    const sessionIdFromParams = searchParams.get('sessionID');
+    
+    // If useSearchParams doesn't have values but we're on client, parse from window.location
+    if ((!flowIdFromParams || !sessionIdFromParams) && typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      return {
+        flowId: flowIdFromParams || urlParams.get('flowId'),
+        sessionId: sessionIdFromParams || urlParams.get('sessionID')
+      };
+    }
+    
+    return {
+      flowId: flowIdFromParams,
+      sessionId: sessionIdFromParams
+    };
+  }, [searchParams]);
+  
+  const [urlParams, setUrlParams] = useState({ flowId: null, sessionId: null });
+  
+  // Update URL params whenever searchParams changes or on mount
+  useEffect(() => {
+    const params = getUrlParams();
+    setUrlParams(params);
+  }, [getUrlParams]);
+  
+  const flowIdFromUrl = urlParams.flowId;
+  const sessionIdFromUrl = urlParams.sessionId;
   const reactFlowWrapper = useRef(null);
   const reactFlowInstance = useReactFlow();
 
@@ -230,7 +259,7 @@ function PositiveControlContent() {
     };
 
     try {
-      logger.app.info(`[SessionFlow] Saving session ${sessionId} for flow ${flowIdFromUrl}`);
+      window.c4rLogger && window.c4rLogger.info(`[SessionFlow] Saving session ${sessionId} for flow ${flowIdFromUrl}`);
       const result = await saveSessionFlow(
         sessionId,
         flowIdFromUrl,
@@ -240,12 +269,12 @@ function PositiveControlContent() {
       );
       
       if (!result.success) {
-        logger.app.error('Failed to save session flow:', result.message);
+        window.c4rLogger && window.c4rLogger.error('Failed to save session flow:', result.message);
       } else {
-        logger.app.info(`[SessionFlow] Successfully saved session ${sessionId}`);
+        window.c4rLogger && window.c4rLogger.info(`[SessionFlow] Successfully saved session ${sessionId}`);
       }
     } catch (error) {
-      logger.app.error('Error saving session flow:', error);
+      window.c4rLogger && window.c4rLogger.error('Error saving session flow:', error);
     }
   }, [sessionId, flowIdFromUrl, selectedFlowInfo, nodes, edges, validations]);
 
@@ -265,7 +294,7 @@ function PositiveControlContent() {
       // Always load original flow from database first
       // SessionID is only used for saving user modifications, not for loading initial state
       const dbFlows = await getFlowsFromDatabase();
-      const selectedFlowData = dbFlows.find(flow => flow.id === flowIdFromUrl);
+      let selectedFlowData = dbFlows.find(flow => flow.id === flowIdFromUrl);
       
       if (!selectedFlowData) {
         throw new Error(`Flow with ID ${flowIdFromUrl} not found.`);
@@ -310,7 +339,7 @@ function PositiveControlContent() {
         throw new Error('Flow data is missing.');
       }
     } catch (err) {
-      logger.app.error('Error loading flow:', err);
+      window.c4rLogger && window.c4rLogger.error('Error loading flow:', err);
       setError(err.message || 'An error occurred while fetching the flow.');
       setFlowData(null);
       setNodes([]);
@@ -320,10 +349,12 @@ function PositiveControlContent() {
     }
   }, [flowIdFromUrl, setNodes, setEdges]);
 
-  // Load flows from database on component mount
+  // Load flows from database on component mount, but only if we have both sessionID and flowID
   useEffect(() => {
-    loadFlowData();
-  }, [loadFlowData]);
+    if (sessionIdFromUrl && flowIdFromUrl) {
+      loadFlowData();
+    }
+  }, [loadFlowData, sessionIdFromUrl, flowIdFromUrl]);
 
   // Update available nodes when nodes change
   useEffect(() => {
@@ -343,7 +374,7 @@ function PositiveControlContent() {
       // Auto-save session flow when edge is added
       setTimeout(() => {
         if (selectedFlowInfo) {
-          logger.app.info(`[SessionFlow] Auto-saving after edge addition`);
+          window.c4rLogger && window.c4rLogger.info(`[SessionFlow] Auto-saving after edge addition`);
           const modifiedFlowData = {
             nodes: nodes,
             edges: updatedEdges
@@ -356,7 +387,7 @@ function PositiveControlContent() {
             modifiedFlowData,
             validations
           ).catch(error => {
-            logger.app.error('Error auto-saving session flow:', error);
+            window.c4rLogger && window.c4rLogger.error('Error auto-saving session flow:', error);
           });
         }
       }, 100);
@@ -459,7 +490,7 @@ function PositiveControlContent() {
         // Auto-save session flow when node is added
         setTimeout(() => {
           if (selectedFlowInfo) {
-            logger.app.info(`[SessionFlow] Auto-saving after node addition`);
+            window.c4rLogger && window.c4rLogger.info(`[SessionFlow] Auto-saving after node addition`);
             const modifiedFlowData = {
               nodes: updatedNodes,
               edges: edges
@@ -472,7 +503,7 @@ function PositiveControlContent() {
               modifiedFlowData,
               validations
             ).catch(error => {
-              logger.app.error('Error auto-saving session flow:', error);
+              window.c4rLogger && window.c4rLogger.error('Error auto-saving session flow:', error);
             });
           }
         }, 100);
@@ -607,7 +638,7 @@ function PositiveControlContent() {
         setValidations(validations);
       }
     } catch (error) {
-      logger.app.error('Error during validation submission:', error);
+      window.c4rLogger && window.c4rLogger.error('Error during validation submission:', error);
       setValidations(validations);
     } finally {
       setIsSubmittingValidation(false);
@@ -647,8 +678,8 @@ function PositiveControlContent() {
       sessionId: sessionId // Include session ID for reference
     };
 
-    logger.app.info(`[PositiveControl1] Submitting data with sessionId: ${sessionId}`);
-    logger.app.info(`[PositiveControl1] Submission data:`, submissionData);
+    window.c4rLogger && window.c4rLogger.info(`[PositiveControl1] Submitting data with sessionId: ${sessionId}`);
+    window.c4rLogger && window.c4rLogger.info(`[PositiveControl1] Submission data:`, submissionData);
 
     setIsSubmittingWork(true);
 
@@ -665,7 +696,7 @@ function PositiveControlContent() {
         alert(`Error submitting work: ${result.message}`);
       }
     } catch (error) {
-      logger.app.error('Error during work submission:', error);
+      window.c4rLogger && window.c4rLogger.error('Error during work submission:', error);
       alert(`Error submitting work: ${error.message}`);
     } finally {
       setIsSubmittingWork(false);

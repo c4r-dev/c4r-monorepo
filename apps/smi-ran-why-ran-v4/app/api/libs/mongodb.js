@@ -1,7 +1,7 @@
+require('dotenv').config();
 const logger = require('../../../../../packages/logging/logger.js');
 import { mongoose } from 'mongoose'
-const MONGODB_URI =
-  'mongodb+srv://c4rdfischer4623:df4623DF!@serverlessaws.onx2ah0.mongodb.net/c4r?retryWrites=true&w=majority&appName=ServerlessAWS'
+const MONGODB_URI = process.env.MONGODB_URI
 const connectMongoDB = async () => {
   try {
     await mongoose.connect(MONGODB_URI)

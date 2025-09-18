@@ -1,0 +1,105 @@
+Activity Testing Error Summary
+Generated: 2025-09-18T20:13:00.337Z
+Total Activities Tested: 99
+Activities with Errors: 97
+Duration: 131 seconds
+
+ERROR DETAILS:
+=============
+/randomization/smi-ran-ran-flo-v2 (500): Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+/randomization/smi-ran-ran-lab-v0 (200): Failed to load resource: the server responded with a status of 404 (Not Found)
+/randomization/smi-ran-ran-lit-v0 (500): Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+/randomization/smi-ran-ran-lit-v1 (failed): Navigation timeout of 10000 ms exceeded
+/randomization/smi-ran-rou-whe-v0 (200): Failed to load resource: the server responded with a status of 404 (Not Found)
+/randomization/smi-ran-simple-ran-v1 (failed): Navigation timeout of 10000 ms exceeded
+/randomization/smi-ran-str-ran-v1 (failed): Navigation timeout of 10000 ms exceeded
+/randomization/smi-ran-why-ran-v0 (failed): Navigation timeout of 10000 ms exceeded
+/randomization/smi-ran-why-ran-v1 (failed): Navigation timeout of 10000 ms exceeded
+/randomization/smi-ran-why-ran-v2 (failed): Navigation timeout of 10000 ms exceeded
+/randomization/smi-ran-why-ran-v3 (failed): Navigation timeout of 10000 ms exceeded
+/coding-practices/hms-aem-rig-fil-v1 (200): Failed to load resource: the server responded with a status of 404 (Not Found)
+/coding-practices/hms-cbi-fav-game-v0 (failed): Navigation timeout of 10000 ms exceeded
+/coding-practices/hms-clean-code-comments-v0 (failed): Navigation timeout of 10000 ms exceeded
+/coding-practices/hms-clean-code-org-v0 (failed): Navigation timeout of 10000 ms exceeded
+/coding-practices/hms-int-exe-v0 (failed): Navigation timeout of 10000 ms exceeded
+/coding-practices/hms-wason-246-v2 (failed): Navigation timeout of 10000 ms exceeded
+/collaboration/r2r-feed-back-v1 (404): Failed to load resource: the server responded with a status of 404 (Not Found)
+/collaboration/r2r-sticky-note-v2 (404): Failed to load resource: the server responded with a status of 404 (Not Found)
+/collaboration/r2r-whiteboard-v1 (404): Failed to load resource: the server responded with a status of 404 (Not Found)
+/tools/c4r-team-nextjs-template (404): Failed to load resource: the server responded with a status of 404 (Not Found)
+/tools/activity-template-v0 (failed): Navigation timeout of 10000 ms exceeded
+/tools/activity-template-v1 (failed): Navigation timeout of 10000 ms exceeded
+/apps/DAG-generator (200): Failed to load resource: the server responded with a status of 404 (Not Found)
+/apps/c4r-component-test (failed): Navigation timeout of 10000 ms exceeded
+/apps/c4r-email-api (failed): Navigation timeout of 10000 ms exceeded
+/apps/c4r-team-nextjs-template (failed): Navigation timeout of 10000 ms exceeded
+/apps/c4r-template-test (failed): Navigation timeout of 10000 ms exceeded
+/apps/c4r-useqrcode (failed): Navigation timeout of 10000 ms exceeded
+/apps/c4r-v0 (failed): Navigation timeout of 10000 ms exceeded
+/apps/claude-chat (failed): Navigation timeout of 10000 ms exceeded
+/apps/clip-repository-v0 (failed): Navigation timeout of 10000 ms exceeded
+/apps/duq-4ws-eva-res-que-v1 (200): Failed to load resource: the server responded with a status of 404 (Not Found)
+/apps/duq-eva-res-que-v1 (failed): Navigation timeout of 10000 ms exceeded
+/apps/duq-finer-v1 (failed): Navigation timeout of 10000 ms exceeded
+/apps/hms-aem-rig-fil-v2 (failed): Navigation timeout of 10000 ms exceeded
+/apps/hms-aem-rig-fil-v3 (failed): Navigation timeout of 10000 ms exceeded
+/apps/hms-bias-map-v0 (failed): Navigation timeout of 10000 ms exceeded
+/apps/hms-cbi-dat-hld-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cbi-dat-hld-v0
+/apps/hms-cbi-dat-hld-v1 (failed): net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-dat-hld-v1
+/apps/hms-cbi-fly-gam-v0 (failed): net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-fly-gam-v0
+/apps/hms-cbi-gar-for-v0 (failed): net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-gar-for-v0
+/apps/hms-cbi-hyp-bot-v1 (failed): net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-hyp-bot-v1
+/apps/hms-cbi-pub-bia-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cbi-pub-bia-v0
+/apps/hms-cln-cod-cor.v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cln-cod-cor.v0
+/apps/hms-cln-fib-tst-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cln-fib-tst-v0
+/apps/hms-cln-res-sug-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cln-res-sug-v0
+/apps/hms-fun-bld-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-fun-bld-v0
+/apps/hms-wason-246-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-wason-246-v1
+/apps/hms-wason-246-v2-grid (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-wason-246-v2-grid
+/apps/hms-wason-246-v2-old (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-wason-246-v2-old
+/apps/jacks-github-pages-workspace (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jacks-github-pages-workspace
+/apps/jhu-flu-dag-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jhu-flu-dag-v1
+/apps/jhu-polio-ice-cream-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jhu-polio-ice-cream-v1
+/apps/jhu-polio-ice-cream-v2 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jhu-polio-ice-cream-v2
+/apps/neuroserpin_v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/neuroserpin_v0
+/apps/observable_plot (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/observable_plot
+/apps/open-ai-testing (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/open-ai-testing
+/apps/p-hack-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/p-hack-v0
+/apps/phackingdemo (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/phackingdemo
+/apps/publicationbias (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/publicationbias
+/apps/r2r-audience-prompting-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-audience-prompting-v1
+/apps/r2r-feed-back-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-feed-back-v1
+/apps/r2r-stats-wizard-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-stats-wizard-v1
+/apps/r2r-sticky-note-v2 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-sticky-note-v2
+/apps/r2r-whiteboard-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-whiteboard-v1
+/apps/smi-ran-all-seqa-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-all-seqa-v1
+/apps/smi-ran-all-seqb-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-all-seqb-v1
+/apps/smi-ran-blk-ran-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v1
+/apps/smi-ran-blk-ran-v2 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v2
+/apps/smi-ran-blk-ran-v3 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v3
+/apps/smi-ran-blk-ran-v4 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v4
+/apps/smi-ran-ran-flo-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-ran-flo-v1
+/apps/smi-ran-why-ran-v4 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-why-ran-v4
+/apps/wason-2-4-6-next-test (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/wason-2-4-6-next-test
+/apps/wason-2-4-6-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/wason-2-4-6-v0
+/apps/webflow-animation-tests (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/webflow-animation-tests
+/apps/whiteboard-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/whiteboard-v0
+/causality/jhubt-cau-rat-con-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhubt-cau-rat-con-v0
+/causality/jhubt-cau-tri-inf-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhubt-cau-tri-inf-v0
+/causality/jhuvt-cau-eva-exp-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-eva-exp-v0
+/causality/jhuvt-cau-exp-cor-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-exp-cor-v0
+/causality/jhuvt-cau-lev-exp-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-lev-exp-v0
+/causality/jhuvt-cau-lif-tim-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-lif-tim-v0
+/causality/jhuvt-caus-cau-lang-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-caus-cau-lang-v0
+/causality/jhuvt-con-con-issue-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-con-issue-v0
+/causality/jhuvt-con-con-pan-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-con-pan-v0
+/causality/jhuvt-con-con-rev-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-con-rev-v0
+/causality/jhuvt-con-fix-bias-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-fix-bias-v0
+/causality/jhuvt-con-neg-con-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-neg-con-v0
+/causality/jhuvt-con-neu-jeo-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-neu-jeo-v0
+/causality/jhuvt-con-pos-con-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-pos-con-v0
+/causality/jhuvt-con-tim-neg-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-tim-neg-v0
+/causality/jhuvt-dag-for-caus-v0 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-dag-for-caus-v0
+/causality/jhuvt-fix-bia-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-fix-bia-v1
+/causality/jhuvt-pos-con-v1 (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-pos-con-v1
+/hms-int-exe-v0/src (failed): net::ERR_CONNECTION_REFUSED at http://localhost:3333/hms-int-exe-v0/src

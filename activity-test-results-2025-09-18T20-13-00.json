@@ -1,0 +1,2499 @@
+{
+  "summary": {
+    "total_activities": 99,
+    "duration_seconds": 131,
+    "timestamp": "2025-09-18T20:13:00.336Z",
+    "total_errors": 131,
+    "total_warnings": 0,
+    "total_network_errors": 123,
+    "failed_activities": 92
+  },
+  "results": [
+    {
+      "activity": "/api/activities",
+      "url": "http://localhost:3333/api/activities",
+      "status": 200,
+      "errors": [],
+      "warnings": [],
+      "networkErrors": [],
+      "timestamp": "2025-09-18T20:11:00.027Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-ran-flo-v2",
+      "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v2",
+      "status": 500,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "The above error occurred in the <ServerRoot> component:\n\n    at ServerRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:112:27)\n    at Root (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:117:11)\n    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay.",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-flo-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 500,
+          "url": "http://localhost:3333/randomization/smi-ran-ran-flo-v2",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Factivities%2Frandomization%2Fsmi-ran-ran-lit-v0%2F.next%2Fstatic%2Fchunks%2Fwebpack.js&methodName=options.factory&arguments=&lineNumber=715&column=31",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Factivities%2Frandomization%2Fsmi-ran-ran-lit-v0%2F.next%2Fstatic%2Fchunks%2Fwebpack.js&methodName=__webpack_require__&arguments=&lineNumber=37&column=33",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Factivities%2Frandomization%2Fsmi-ran-ran-lit-v0%2F.next%2Fstatic%2Fchunks%2Fwebpack.js&methodName=fn&arguments=&lineNumber=371&column=21",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fnode_modules%2Fnext%2Fdist%2Fcompiled%2Freact-server-dom-webpack%2Fcjs%2Freact-server-dom-webpack-client.browser.development.js&methodName=eval&arguments=&lineNumber=186&column=16",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fnode_modules%2Fnext%2Fdist%2Fcompiled%2Freact-server-dom-webpack%2Fcjs%2Freact-server-dom-webpack-client.browser.development.js&methodName=requireAsyncModule&arguments=&lineNumber=131&column=17",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "network_error",
+          "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0ic3ZnIj48dGV4dCB4PSIxMCIgeT0iMjAiIGlkPSJzdmctbGluay10ZXh0Ij50ZXh0PC90ZXh0Pjwvc3ZnPg==",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        },
+        {
+          "type": "network_error",
+          "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0ic3ZnIj48dGV4dCB4PSIxMCIgeT0iMjAiIGlkPSJzdmctbGluay10ZXh0Ij50ZXh0PC90ZXh0Pjwvc3ZnPg==",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-ran-flo-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:03.939Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-ran-lab-v0",
+      "url": "http://localhost:3333/randomization/smi-ran-ran-lab-v0",
+      "status": 200,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lab-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lab-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/pages/flowchart?_rsc=1werc",
+          "activity": "/randomization/smi-ran-ran-lab-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/pages/flowchart",
+          "activity": "/randomization/smi-ran-ran-lab-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/pages/flowchart?_rsc=1werc",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-ran-lab-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:03.719Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-ran-lit-v0",
+      "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v0",
+      "status": 500,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "The above error occurred in the <ServerRoot> component:\n\n    at ServerRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:112:27)\n    at Root (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:117:11)\n    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay.",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-ran-lit-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 500,
+          "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v0",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Factivities%2Frandomization%2Fsmi-ran-ran-lit-v0%2F.next%2Fstatic%2Fchunks%2Fwebpack.js&methodName=options.factory&arguments=&lineNumber=715&column=31",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Factivities%2Frandomization%2Fsmi-ran-ran-lit-v0%2F.next%2Fstatic%2Fchunks%2Fwebpack.js&methodName=__webpack_require__&arguments=&lineNumber=37&column=33",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Factivities%2Frandomization%2Fsmi-ran-ran-lit-v0%2F.next%2Fstatic%2Fchunks%2Fwebpack.js&methodName=fn&arguments=&lineNumber=371&column=21",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fnode_modules%2Fnext%2Fdist%2Fcompiled%2Freact-server-dom-webpack%2Fcjs%2Freact-server-dom-webpack-client.browser.development.js&methodName=requireAsyncModule&arguments=&lineNumber=131&column=17",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+Cannot+read+properties+of+undefined+%28reading+%27call%27%29&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fnode_modules%2Fnext%2Fdist%2Fcompiled%2Freact-server-dom-webpack%2Fcjs%2Freact-server-dom-webpack-client.browser.development.js&methodName=eval&arguments=&lineNumber=186&column=16",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0ic3ZnIj48dGV4dCB4PSIxMCIgeT0iMjAiIGlkPSJzdmctbGluay10ZXh0Ij50ZXh0PC90ZXh0Pjwvc3ZnPg==",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0ic3ZnIj48dGV4dCB4PSIxMCIgeT0iMjAiIGlkPSJzdmctbGluay10ZXh0Ij50ZXh0PC90ZXh0Pjwvc3ZnPg==",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-ran-lit-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:03.705Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-ran-lit-v1",
+      "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-ran-lit-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-ran-lit-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:10:59.194Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-rou-whe-v0",
+      "url": "http://localhost:3333/randomization/smi-ran-rou-whe-v0",
+      "status": 200,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. #document",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "console_error",
+          "message": "The above error occurred in the <ServerRoot> component:\n\n    at ServerRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:112:27)\n    at Root (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:117:11)\n\nConsider adding an error boundary to your tree to customize error handling behavior.\nVisit https://reactjs.org/link/error-boundaries to learn more about error boundaries.",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "page_error",
+          "message": "There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.",
+          "stack": "Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.\n    at updateHostRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16571:57)\n    at beginWork$1 (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18486:14)\n    at beginWork (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)\n    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)\n    at workLoopSync (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25464:5)\n    at renderRootSync (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25419:7)\n    at recoverFromConcurrentError (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24597:20)\n    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24542:26)\n    at workLoop (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)\n    at flushWork (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "page_error",
+          "message": "Cannot read properties of undefined (reading 'call')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'call')\n    at options.factory (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:715:31)\n    at __webpack_require__ (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:37:33)\n    at fn (http://localhost:3333/_next/static/chunks/webpack.js?v=1758226269844:371:21)\n    at requireAsyncModule (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:131:17)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:186:16)",
+          "url": "/randomization/smi-ran-rou-whe-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/roulette-wheel.svg",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Bold.woff2",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Bold.woff2",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Regular.woff2",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Regular.woff2",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Bold.woff",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Bold.woff",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Regular.woff",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        },
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/fonts/GeneralSans/GeneralSans-Regular.woff",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-rou-whe-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:20.603Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-simple-ran-v1",
+      "url": "http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-simple-ran-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-simple-ran-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:15.083Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-str-ran-v1",
+      "url": "http://localhost:3333/randomization/smi-ran-str-ran-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-str-ran-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-str-ran-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-str-ran-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:15.082Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-why-ran-v0",
+      "url": "http://localhost:3333/randomization/smi-ran-why-ran-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-why-ran-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-why-ran-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-why-ran-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:15.083Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-why-ran-v1",
+      "url": "http://localhost:3333/randomization/smi-ran-why-ran-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-why-ran-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-why-ran-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-why-ran-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:15.125Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-why-ran-v2",
+      "url": "http://localhost:3333/randomization/smi-ran-why-ran-v2",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-why-ran-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-why-ran-v2",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-why-ran-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:31.728Z"
+    },
+    {
+      "activity": "/randomization/smi-ran-why-ran-v3",
+      "url": "http://localhost:3333/randomization/smi-ran-why-ran-v3",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/randomization/smi-ran-why-ran-v3"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/randomization/smi-ran-why-ran-v3",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/randomization/smi-ran-why-ran-v3"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:31.728Z"
+    },
+    {
+      "activity": "/coding-practices/hms-aem-rig-fil-v1",
+      "url": "http://localhost:3333/coding-practices/hms-aem-rig-fil-v1",
+      "status": 200,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/coding-practices/hms-aem-rig-fil-v1"
+        },
+        {
+          "type": "console_error",
+          "message": "Manifest fetch from http://localhost:3333/coding-practices/%PUBLIC_URL%/manifest.json failed, code 404",
+          "url": "/coding-practices/hms-aem-rig-fil-v1"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/coding-practices/hms-aem-rig-fil-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/coding-practices/%PUBLIC_URL%/manifest.json",
+          "activity": "/coding-practices/hms-aem-rig-fil-v1"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/coding-practices/%PUBLIC_URL%/favicon.ico",
+          "activity": "/coding-practices/hms-aem-rig-fil-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:33.790Z"
+    },
+    {
+      "activity": "/coding-practices/hms-cbi-fav-game-v0",
+      "url": "http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/coding-practices/hms-cbi-fav-game-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/coding-practices/hms-cbi-fav-game-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:31.727Z"
+    },
+    {
+      "activity": "/coding-practices/hms-clean-code-comments-v0",
+      "url": "http://localhost:3333/coding-practices/hms-clean-code-comments-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/coding-practices/hms-clean-code-comments-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/coding-practices/hms-clean-code-comments-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/coding-practices/hms-clean-code-comments-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:31.783Z"
+    },
+    {
+      "activity": "/coding-practices/hms-clean-code-org-v0",
+      "url": "http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/coding-practices/hms-clean-code-org-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/coding-practices/hms-clean-code-org-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:44.925Z"
+    },
+    {
+      "activity": "/coding-practices/hms-int-exe-v0",
+      "url": "http://localhost:3333/coding-practices/hms-int-exe-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/coding-practices/hms-int-exe-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/coding-practices/hms-int-exe-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/coding-practices/hms-int-exe-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:44.925Z"
+    },
+    {
+      "activity": "/coding-practices/hms-wason-246-v2",
+      "url": "http://localhost:3333/coding-practices/hms-wason-246-v2",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/coding-practices/hms-wason-246-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/coding-practices/hms-wason-246-v2",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/coding-practices/hms-wason-246-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:44.925Z"
+    },
+    {
+      "activity": "/collaboration/r2r-feed-back-v1",
+      "url": "http://localhost:3333/collaboration/r2r-feed-back-v1",
+      "status": 404,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/collaboration/r2r-feed-back-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/collaboration/r2r-feed-back-v1",
+          "activity": "/collaboration/r2r-feed-back-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:46.918Z"
+    },
+    {
+      "activity": "/collaboration/r2r-sticky-note-v2",
+      "url": "http://localhost:3333/collaboration/r2r-sticky-note-v2",
+      "status": 404,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/collaboration/r2r-sticky-note-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/collaboration/r2r-sticky-note-v2",
+          "activity": "/collaboration/r2r-sticky-note-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:45.917Z"
+    },
+    {
+      "activity": "/collaboration/r2r-whiteboard-v1",
+      "url": "http://localhost:3333/collaboration/r2r-whiteboard-v1",
+      "status": 404,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/collaboration/r2r-whiteboard-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/collaboration/r2r-whiteboard-v1",
+          "activity": "/collaboration/r2r-whiteboard-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:58.701Z"
+    },
+    {
+      "activity": "/tools/c4r-team-nextjs-template",
+      "url": "http://localhost:3333/tools/c4r-team-nextjs-template",
+      "status": 404,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/tools/c4r-team-nextjs-template"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/tools/c4r-team-nextjs-template",
+          "activity": "/tools/c4r-team-nextjs-template"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:58.701Z"
+    },
+    {
+      "activity": "/tools/activity-template-v0",
+      "url": "http://localhost:3333/tools/activity-template-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/tools/activity-template-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/tools/activity-template-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/tools/activity-template-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:58.055Z"
+    },
+    {
+      "activity": "/tools/activity-template-v1",
+      "url": "http://localhost:3333/tools/activity-template-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/tools/activity-template-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/tools/activity-template-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/tools/activity-template-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:11:58.055Z"
+    },
+    {
+      "activity": "/apps/D3Plots",
+      "url": "http://localhost:3333/apps/D3Plots",
+      "status": 200,
+      "errors": [],
+      "warnings": [],
+      "networkErrors": [],
+      "timestamp": "2025-09-18T20:11:58.701Z"
+    },
+    {
+      "activity": "/apps/DAG-generator",
+      "url": "http://localhost:3333/apps/DAG-generator",
+      "status": 200,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/apps/DAG-generator"
+        },
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/apps/DAG-generator"
+        },
+        {
+          "type": "console_error",
+          "message": "Manifest fetch from http://localhost:3333/apps/%PUBLIC_URL%/manifest.json failed, code 404",
+          "url": "/apps/DAG-generator"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/apps/%PUBLIC_URL%/favicon.ico",
+          "activity": "/apps/DAG-generator"
+        },
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/apps/%PUBLIC_URL%/manifest.json",
+          "activity": "/apps/DAG-generator"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:10.491Z"
+    },
+    {
+      "activity": "/apps/c4r-component-test",
+      "url": "http://localhost:3333/apps/c4r-component-test",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/c4r-component-test"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/c4r-component-test",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/c4r-component-test"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:09.949Z"
+    },
+    {
+      "activity": "/apps/c4r-email-api",
+      "url": "http://localhost:3333/apps/c4r-email-api",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/c4r-email-api"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/c4r-email-api",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/c4r-email-api"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:09.973Z"
+    },
+    {
+      "activity": "/apps/c4r-team-nextjs-template",
+      "url": "http://localhost:3333/apps/c4r-team-nextjs-template",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/c4r-team-nextjs-template"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/c4r-team-nextjs-template",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/c4r-team-nextjs-template"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:09.972Z"
+    },
+    {
+      "activity": "/apps/c4r-template-test",
+      "url": "http://localhost:3333/apps/c4r-template-test",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/c4r-template-test"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/c4r-template-test",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/c4r-template-test"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:09.978Z"
+    },
+    {
+      "activity": "/apps/c4r-useqrcode",
+      "url": "http://localhost:3333/apps/c4r-useqrcode",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/c4r-useqrcode"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/c4r-useqrcode",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/c4r-useqrcode"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:21.635Z"
+    },
+    {
+      "activity": "/apps/c4r-v0",
+      "url": "http://localhost:3333/apps/c4r-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/c4r-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/c4r-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/c4r-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:21.637Z"
+    },
+    {
+      "activity": "/apps/claude-chat",
+      "url": "http://localhost:3333/apps/claude-chat",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/claude-chat"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/claude-chat",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/claude-chat"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:21.637Z"
+    },
+    {
+      "activity": "/apps/clip-repository-v0",
+      "url": "http://localhost:3333/apps/clip-repository-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/clip-repository-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/clip-repository-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/clip-repository-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:21.637Z"
+    },
+    {
+      "activity": "/apps/duq-4ws-eva-res-que-v1",
+      "url": "http://localhost:3333/apps/duq-4ws-eva-res-que-v1",
+      "status": 200,
+      "errors": [
+        {
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "url": "/apps/duq-4ws-eva-res-que-v1"
+        },
+        {
+          "type": "console_error",
+          "message": "Manifest fetch from http://localhost:3333/apps/%PUBLIC_URL%/manifest.json failed, code 404",
+          "url": "/apps/duq-4ws-eva-res-que-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "http_error",
+          "status": 404,
+          "url": "http://localhost:3333/apps/%PUBLIC_URL%/manifest.json",
+          "activity": "/apps/duq-4ws-eva-res-que-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:23.054Z"
+    },
+    {
+      "activity": "/apps/duq-eva-res-que-v1",
+      "url": "http://localhost:3333/apps/duq-eva-res-que-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/duq-eva-res-que-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/duq-eva-res-que-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/duq-eva-res-que-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:34.202Z"
+    },
+    {
+      "activity": "/apps/duq-finer-v1",
+      "url": "http://localhost:3333/apps/duq-finer-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/duq-finer-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/duq-finer-v1",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/duq-finer-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:34.202Z"
+    },
+    {
+      "activity": "/apps/hms-aem-rig-fil-v2",
+      "url": "http://localhost:3333/apps/hms-aem-rig-fil-v2",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/hms-aem-rig-fil-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-aem-rig-fil-v2",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/hms-aem-rig-fil-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:34.200Z"
+    },
+    {
+      "activity": "/apps/hms-aem-rig-fil-v3",
+      "url": "http://localhost:3333/apps/hms-aem-rig-fil-v3",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/hms-aem-rig-fil-v3"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-aem-rig-fil-v3",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/hms-aem-rig-fil-v3"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:34.202Z"
+    },
+    {
+      "activity": "/apps/hms-bias-map-v0",
+      "url": "http://localhost:3333/apps/hms-bias-map-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "Navigation timeout of 10000 ms exceeded",
+          "url": "/apps/hms-bias-map-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-bias-map-v0",
+          "failure": "net::ERR_ABORTED",
+          "activity": "/apps/hms-bias-map-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:34.203Z"
+    },
+    {
+      "activity": "/apps/hms-cbi-dat-hld-v0",
+      "url": "http://localhost:3333/apps/hms-cbi-dat-hld-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cbi-dat-hld-v0",
+          "url": "/apps/hms-cbi-dat-hld-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cbi-dat-hld-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-cbi-dat-hld-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:45.369Z"
+    },
+    {
+      "activity": "/apps/hms-cbi-dat-hld-v1",
+      "url": "http://localhost:3333/apps/hms-cbi-dat-hld-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-dat-hld-v1",
+          "url": "/apps/hms-cbi-dat-hld-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cbi-dat-hld-v1",
+          "failure": "net::ERR_EMPTY_RESPONSE",
+          "activity": "/apps/hms-cbi-dat-hld-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:45.366Z"
+    },
+    {
+      "activity": "/apps/hms-cbi-fly-gam-v0",
+      "url": "http://localhost:3333/apps/hms-cbi-fly-gam-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-fly-gam-v0",
+          "url": "/apps/hms-cbi-fly-gam-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cbi-fly-gam-v0",
+          "failure": "net::ERR_EMPTY_RESPONSE",
+          "activity": "/apps/hms-cbi-fly-gam-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:45.365Z"
+    },
+    {
+      "activity": "/apps/hms-cbi-gar-for-v0",
+      "url": "http://localhost:3333/apps/hms-cbi-gar-for-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-gar-for-v0",
+          "url": "/apps/hms-cbi-gar-for-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cbi-gar-for-v0",
+          "failure": "net::ERR_EMPTY_RESPONSE",
+          "activity": "/apps/hms-cbi-gar-for-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:45.363Z"
+    },
+    {
+      "activity": "/apps/hms-cbi-hyp-bot-v1",
+      "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_EMPTY_RESPONSE at http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+          "url": "/apps/hms-cbi-hyp-bot-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+          "failure": "net::ERR_EMPTY_RESPONSE",
+          "activity": "/apps/hms-cbi-hyp-bot-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:45.368Z"
+    },
+    {
+      "activity": "/apps/hms-cbi-pub-bia-v0",
+      "url": "http://localhost:3333/apps/hms-cbi-pub-bia-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cbi-pub-bia-v0",
+          "url": "/apps/hms-cbi-pub-bia-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cbi-pub-bia-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-cbi-pub-bia-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:46.573Z"
+    },
+    {
+      "activity": "/apps/hms-cln-cod-cor.v0",
+      "url": "http://localhost:3333/apps/hms-cln-cod-cor.v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cln-cod-cor.v0",
+          "url": "/apps/hms-cln-cod-cor.v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cln-cod-cor.v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-cln-cod-cor.v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:46.573Z"
+    },
+    {
+      "activity": "/apps/hms-cln-fib-tst-v0",
+      "url": "http://localhost:3333/apps/hms-cln-fib-tst-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cln-fib-tst-v0",
+          "url": "/apps/hms-cln-fib-tst-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cln-fib-tst-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-cln-fib-tst-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:46.574Z"
+    },
+    {
+      "activity": "/apps/hms-cln-res-sug-v0",
+      "url": "http://localhost:3333/apps/hms-cln-res-sug-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-cln-res-sug-v0",
+          "url": "/apps/hms-cln-res-sug-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-cln-res-sug-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-cln-res-sug-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:46.576Z"
+    },
+    {
+      "activity": "/apps/hms-fun-bld-v0",
+      "url": "http://localhost:3333/apps/hms-fun-bld-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-fun-bld-v0",
+          "url": "/apps/hms-fun-bld-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-fun-bld-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-fun-bld-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:46.578Z"
+    },
+    {
+      "activity": "/apps/hms-wason-246-v1",
+      "url": "http://localhost:3333/apps/hms-wason-246-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-wason-246-v1",
+          "url": "/apps/hms-wason-246-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-wason-246-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-wason-246-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:47.793Z"
+    },
+    {
+      "activity": "/apps/hms-wason-246-v2-grid",
+      "url": "http://localhost:3333/apps/hms-wason-246-v2-grid",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-wason-246-v2-grid",
+          "url": "/apps/hms-wason-246-v2-grid"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-wason-246-v2-grid",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-wason-246-v2-grid"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:47.800Z"
+    },
+    {
+      "activity": "/apps/hms-wason-246-v2-old",
+      "url": "http://localhost:3333/apps/hms-wason-246-v2-old",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/hms-wason-246-v2-old",
+          "url": "/apps/hms-wason-246-v2-old"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/hms-wason-246-v2-old",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/hms-wason-246-v2-old"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:47.805Z"
+    },
+    {
+      "activity": "/apps/jacks-github-pages-workspace",
+      "url": "http://localhost:3333/apps/jacks-github-pages-workspace",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jacks-github-pages-workspace",
+          "url": "/apps/jacks-github-pages-workspace"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/jacks-github-pages-workspace",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/jacks-github-pages-workspace"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:47.900Z"
+    },
+    {
+      "activity": "/apps/jhu-flu-dag-v1",
+      "url": "http://localhost:3333/apps/jhu-flu-dag-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jhu-flu-dag-v1",
+          "url": "/apps/jhu-flu-dag-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/jhu-flu-dag-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/jhu-flu-dag-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:47.918Z"
+    },
+    {
+      "activity": "/apps/jhu-polio-ice-cream-v1",
+      "url": "http://localhost:3333/apps/jhu-polio-ice-cream-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jhu-polio-ice-cream-v1",
+          "url": "/apps/jhu-polio-ice-cream-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/jhu-polio-ice-cream-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/jhu-polio-ice-cream-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:49.158Z"
+    },
+    {
+      "activity": "/apps/jhu-polio-ice-cream-v2",
+      "url": "http://localhost:3333/apps/jhu-polio-ice-cream-v2",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/jhu-polio-ice-cream-v2",
+          "url": "/apps/jhu-polio-ice-cream-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/jhu-polio-ice-cream-v2",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/jhu-polio-ice-cream-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:49.161Z"
+    },
+    {
+      "activity": "/apps/neuroserpin_v0",
+      "url": "http://localhost:3333/apps/neuroserpin_v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/neuroserpin_v0",
+          "url": "/apps/neuroserpin_v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/neuroserpin_v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/neuroserpin_v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:49.161Z"
+    },
+    {
+      "activity": "/apps/observable_plot",
+      "url": "http://localhost:3333/apps/observable_plot",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/observable_plot",
+          "url": "/apps/observable_plot"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/observable_plot",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/observable_plot"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:49.162Z"
+    },
+    {
+      "activity": "/apps/open-ai-testing",
+      "url": "http://localhost:3333/apps/open-ai-testing",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/open-ai-testing",
+          "url": "/apps/open-ai-testing"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/open-ai-testing",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/open-ai-testing"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:49.164Z"
+    },
+    {
+      "activity": "/apps/p-hack-v0",
+      "url": "http://localhost:3333/apps/p-hack-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/p-hack-v0",
+          "url": "/apps/p-hack-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/p-hack-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/p-hack-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:50.440Z"
+    },
+    {
+      "activity": "/apps/phackingdemo",
+      "url": "http://localhost:3333/apps/phackingdemo",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/phackingdemo",
+          "url": "/apps/phackingdemo"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/phackingdemo",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/phackingdemo"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:50.440Z"
+    },
+    {
+      "activity": "/apps/publicationbias",
+      "url": "http://localhost:3333/apps/publicationbias",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/publicationbias",
+          "url": "/apps/publicationbias"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/publicationbias",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/publicationbias"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:50.441Z"
+    },
+    {
+      "activity": "/apps/r2r-audience-prompting-v1",
+      "url": "http://localhost:3333/apps/r2r-audience-prompting-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-audience-prompting-v1",
+          "url": "/apps/r2r-audience-prompting-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/r2r-audience-prompting-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/r2r-audience-prompting-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:50.441Z"
+    },
+    {
+      "activity": "/apps/r2r-feed-back-v1",
+      "url": "http://localhost:3333/apps/r2r-feed-back-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-feed-back-v1",
+          "url": "/apps/r2r-feed-back-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/r2r-feed-back-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/r2r-feed-back-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:50.442Z"
+    },
+    {
+      "activity": "/apps/r2r-stats-wizard-v1",
+      "url": "http://localhost:3333/apps/r2r-stats-wizard-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-stats-wizard-v1",
+          "url": "/apps/r2r-stats-wizard-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/r2r-stats-wizard-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/r2r-stats-wizard-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:51.692Z"
+    },
+    {
+      "activity": "/apps/r2r-sticky-note-v2",
+      "url": "http://localhost:3333/apps/r2r-sticky-note-v2",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-sticky-note-v2",
+          "url": "/apps/r2r-sticky-note-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/r2r-sticky-note-v2",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/r2r-sticky-note-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:51.697Z"
+    },
+    {
+      "activity": "/apps/r2r-whiteboard-v1",
+      "url": "http://localhost:3333/apps/r2r-whiteboard-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/r2r-whiteboard-v1",
+          "url": "/apps/r2r-whiteboard-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/r2r-whiteboard-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/r2r-whiteboard-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:51.694Z"
+    },
+    {
+      "activity": "/apps/smi-ran-all-seqa-v1",
+      "url": "http://localhost:3333/apps/smi-ran-all-seqa-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-all-seqa-v1",
+          "url": "/apps/smi-ran-all-seqa-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-all-seqa-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-all-seqa-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:51.696Z"
+    },
+    {
+      "activity": "/apps/smi-ran-all-seqb-v1",
+      "url": "http://localhost:3333/apps/smi-ran-all-seqb-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-all-seqb-v1",
+          "url": "/apps/smi-ran-all-seqb-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-all-seqb-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-all-seqb-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:51.736Z"
+    },
+    {
+      "activity": "/apps/smi-ran-blk-ran-v1",
+      "url": "http://localhost:3333/apps/smi-ran-blk-ran-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v1",
+          "url": "/apps/smi-ran-blk-ran-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-blk-ran-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-blk-ran-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:52.931Z"
+    },
+    {
+      "activity": "/apps/smi-ran-blk-ran-v2",
+      "url": "http://localhost:3333/apps/smi-ran-blk-ran-v2",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v2",
+          "url": "/apps/smi-ran-blk-ran-v2"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-blk-ran-v2",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-blk-ran-v2"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:52.948Z"
+    },
+    {
+      "activity": "/apps/smi-ran-blk-ran-v3",
+      "url": "http://localhost:3333/apps/smi-ran-blk-ran-v3",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v3",
+          "url": "/apps/smi-ran-blk-ran-v3"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-blk-ran-v3",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-blk-ran-v3"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:52.963Z"
+    },
+    {
+      "activity": "/apps/smi-ran-blk-ran-v4",
+      "url": "http://localhost:3333/apps/smi-ran-blk-ran-v4",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-blk-ran-v4",
+          "url": "/apps/smi-ran-blk-ran-v4"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-blk-ran-v4",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-blk-ran-v4"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:52.947Z"
+    },
+    {
+      "activity": "/apps/smi-ran-ran-flo-v1",
+      "url": "http://localhost:3333/apps/smi-ran-ran-flo-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-ran-flo-v1",
+          "url": "/apps/smi-ran-ran-flo-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-ran-flo-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-ran-flo-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:53.007Z"
+    },
+    {
+      "activity": "/apps/smi-ran-why-ran-v4",
+      "url": "http://localhost:3333/apps/smi-ran-why-ran-v4",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/smi-ran-why-ran-v4",
+          "url": "/apps/smi-ran-why-ran-v4"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/smi-ran-why-ran-v4",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/smi-ran-why-ran-v4"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:54.282Z"
+    },
+    {
+      "activity": "/apps/wason-2-4-6-next-test",
+      "url": "http://localhost:3333/apps/wason-2-4-6-next-test",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/wason-2-4-6-next-test",
+          "url": "/apps/wason-2-4-6-next-test"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/wason-2-4-6-next-test",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/wason-2-4-6-next-test"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:54.282Z"
+    },
+    {
+      "activity": "/apps/wason-2-4-6-v0",
+      "url": "http://localhost:3333/apps/wason-2-4-6-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/wason-2-4-6-v0",
+          "url": "/apps/wason-2-4-6-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/wason-2-4-6-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/wason-2-4-6-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:54.322Z"
+    },
+    {
+      "activity": "/apps/webflow-animation-tests",
+      "url": "http://localhost:3333/apps/webflow-animation-tests",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/webflow-animation-tests",
+          "url": "/apps/webflow-animation-tests"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/webflow-animation-tests",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/webflow-animation-tests"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:54.324Z"
+    },
+    {
+      "activity": "/apps/whiteboard-v0",
+      "url": "http://localhost:3333/apps/whiteboard-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/apps/whiteboard-v0",
+          "url": "/apps/whiteboard-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/apps/whiteboard-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/apps/whiteboard-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:54.328Z"
+    },
+    {
+      "activity": "/causality/jhubt-cau-rat-con-v0",
+      "url": "http://localhost:3333/causality/jhubt-cau-rat-con-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhubt-cau-rat-con-v0",
+          "url": "/causality/jhubt-cau-rat-con-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhubt-cau-rat-con-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhubt-cau-rat-con-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:55.554Z"
+    },
+    {
+      "activity": "/causality/jhubt-cau-tri-inf-v0",
+      "url": "http://localhost:3333/causality/jhubt-cau-tri-inf-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhubt-cau-tri-inf-v0",
+          "url": "/causality/jhubt-cau-tri-inf-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhubt-cau-tri-inf-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhubt-cau-tri-inf-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:55.556Z"
+    },
+    {
+      "activity": "/causality/jhuvt-cau-eva-exp-v0",
+      "url": "http://localhost:3333/causality/jhuvt-cau-eva-exp-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-eva-exp-v0",
+          "url": "/causality/jhuvt-cau-eva-exp-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-cau-eva-exp-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-cau-eva-exp-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:55.557Z"
+    },
+    {
+      "activity": "/causality/jhuvt-cau-exp-cor-v0",
+      "url": "http://localhost:3333/causality/jhuvt-cau-exp-cor-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-exp-cor-v0",
+          "url": "/causality/jhuvt-cau-exp-cor-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-cau-exp-cor-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-cau-exp-cor-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:55.557Z"
+    },
+    {
+      "activity": "/causality/jhuvt-cau-lev-exp-v0",
+      "url": "http://localhost:3333/causality/jhuvt-cau-lev-exp-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-lev-exp-v0",
+          "url": "/causality/jhuvt-cau-lev-exp-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-cau-lev-exp-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-cau-lev-exp-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:55.558Z"
+    },
+    {
+      "activity": "/causality/jhuvt-cau-lif-tim-v0",
+      "url": "http://localhost:3333/causality/jhuvt-cau-lif-tim-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-cau-lif-tim-v0",
+          "url": "/causality/jhuvt-cau-lif-tim-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-cau-lif-tim-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-cau-lif-tim-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:56.772Z"
+    },
+    {
+      "activity": "/causality/jhuvt-caus-cau-lang-v0",
+      "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+          "url": "/causality/jhuvt-caus-cau-lang-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-caus-cau-lang-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:56.771Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-con-issue-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-con-issue-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-con-issue-v0",
+          "url": "/causality/jhuvt-con-con-issue-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-con-issue-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-con-issue-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:56.770Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-con-pan-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-con-pan-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-con-pan-v0",
+          "url": "/causality/jhuvt-con-con-pan-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-con-pan-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-con-pan-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:56.772Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-con-rev-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-con-rev-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-con-rev-v0",
+          "url": "/causality/jhuvt-con-con-rev-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-con-rev-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-con-rev-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:56.774Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-fix-bias-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-fix-bias-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-fix-bias-v0",
+          "url": "/causality/jhuvt-con-fix-bias-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-fix-bias-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-fix-bias-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:58.013Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-neg-con-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-neg-con-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-neg-con-v0",
+          "url": "/causality/jhuvt-con-neg-con-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-neg-con-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-neg-con-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:58.006Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-neu-jeo-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-neu-jeo-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-neu-jeo-v0",
+          "url": "/causality/jhuvt-con-neu-jeo-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-neu-jeo-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-neu-jeo-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:58.015Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-pos-con-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-pos-con-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-pos-con-v0",
+          "url": "/causality/jhuvt-con-pos-con-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-pos-con-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-pos-con-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:58.018Z"
+    },
+    {
+      "activity": "/causality/jhuvt-con-tim-neg-v0",
+      "url": "http://localhost:3333/causality/jhuvt-con-tim-neg-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-con-tim-neg-v0",
+          "url": "/causality/jhuvt-con-tim-neg-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-con-tim-neg-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-con-tim-neg-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:58.018Z"
+    },
+    {
+      "activity": "/causality/jhuvt-dag-for-caus-v0",
+      "url": "http://localhost:3333/causality/jhuvt-dag-for-caus-v0",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-dag-for-caus-v0",
+          "url": "/causality/jhuvt-dag-for-caus-v0"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-dag-for-caus-v0",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-dag-for-caus-v0"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:59.209Z"
+    },
+    {
+      "activity": "/causality/jhuvt-fix-bia-v1",
+      "url": "http://localhost:3333/causality/jhuvt-fix-bia-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-fix-bia-v1",
+          "url": "/causality/jhuvt-fix-bia-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-fix-bia-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-fix-bia-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:59.207Z"
+    },
+    {
+      "activity": "/causality/jhuvt-pos-con-v1",
+      "url": "http://localhost:3333/causality/jhuvt-pos-con-v1",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/causality/jhuvt-pos-con-v1",
+          "url": "/causality/jhuvt-pos-con-v1"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/causality/jhuvt-pos-con-v1",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/causality/jhuvt-pos-con-v1"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:59.212Z"
+    },
+    {
+      "activity": "/hms-int-exe-v0/src",
+      "url": "http://localhost:3333/hms-int-exe-v0/src",
+      "status": "failed",
+      "errors": [
+        {
+          "type": "navigation_error",
+          "message": "net::ERR_CONNECTION_REFUSED at http://localhost:3333/hms-int-exe-v0/src",
+          "url": "/hms-int-exe-v0/src"
+        }
+      ],
+      "warnings": [],
+      "networkErrors": [
+        {
+          "type": "network_error",
+          "url": "http://localhost:3333/hms-int-exe-v0/src",
+          "failure": "net::ERR_CONNECTION_REFUSED",
+          "activity": "/hms-int-exe-v0/src"
+        }
+      ],
+      "timestamp": "2025-09-18T20:12:59.212Z"
+    }
+  ]
+}

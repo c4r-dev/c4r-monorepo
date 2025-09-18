@@ -1,4 +1,3 @@
-const logger = require('../../../../../../packages/logging/logger.js');
 import React from "react";
 import Image from "next/image";
 import "./header.css";
@@ -8,9 +7,11 @@ import helpTooltip from "./help-tooltip-fix.svg";
 import RR_Logo from "./01_RR_Large.png";
 import favicon from "./favicon.ico";
 
+const logger = require('../../../../../../packages/logging/logger.js');
 
 const Header = ({ onLogoClick, onHelpClick }) => {
     const handleLogoClick = () => {
+
         if (onLogoClick) {
             logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();

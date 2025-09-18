@@ -1,0 +1,12 @@
+{"level":"error","message":"❌ Failed to initialize Next.js app c4r-component-test:","service":"c4r-app","timestamp":"2025-09-18 16:44:08.024"}
+{"level":"error","message":"❌ Static export build failed for c4r-component-test:","service":"c4r-app","timestamp":"2025-09-18 16:44:09.854"}
+{"level":"error","message":"❌ Next request handler error for c4r-component-test:","service":"c4r-app","timestamp":"2025-09-18 16:44:09.854"}
+{"level":"error","message":"❌ Failed to initialize Next.js app hms-cbi-hyp-bot-v1:","service":"c4r-app","timestamp":"2025-09-18 16:44:16.496"}
+{"level":"error","message":"❌ Static export build failed for hms-cbi-hyp-bot-v1:","service":"c4r-app","timestamp":"2025-09-18 16:44:18.614"}
+{"level":"error","message":"❌ Next request handler error for hms-cbi-hyp-bot-v1:","service":"c4r-app","timestamp":"2025-09-18 16:44:18.614"}
+{"level":"error","message":"❌ Failed to initialize Next.js app c4r-component-test:","service":"c4r-app","timestamp":"2025-09-18 16:44:32.404"}
+{"level":"error","message":"❌ Static export build failed for c4r-component-test:","service":"c4r-app","timestamp":"2025-09-18 16:44:33.185"}
+{"level":"error","message":"❌ Next request handler error for c4r-component-test:","service":"c4r-app","timestamp":"2025-09-18 16:44:33.185"}
+{"level":"error","message":"❌ Failed to initialize Next.js app hms-cbi-hyp-bot-v1:","service":"c4r-app","timestamp":"2025-09-18 16:44:47.017"}
+{"level":"error","message":"❌ Static export build failed for hms-cbi-hyp-bot-v1:","service":"c4r-app","timestamp":"2025-09-18 16:44:48.207"}
+{"level":"error","message":"❌ Next request handler error for hms-cbi-hyp-bot-v1:","service":"c4r-app","timestamp":"2025-09-18 16:44:48.207"}

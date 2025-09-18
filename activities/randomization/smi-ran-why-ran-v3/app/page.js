@@ -1,5 +1,6 @@
-const logger = require('../../../../packages/logging/logger.js');
-// 'use client'
+'use client'
+
+// 
 
 // import * as React from 'react'
 // import Box from '@mui/material/Box'
@@ -76,7 +77,7 @@ const logger = require('../../../../packages/logging/logger.js');
 // }
 
 
-'use client'
+
 
 import React, { useState } from 'react'
 import { useQRCode } from 'next-qrcode'

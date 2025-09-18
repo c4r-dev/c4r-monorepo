@@ -1,4 +1,3 @@
-const logger = require('../../../../../../../../../packages/logging/logger.js');
 /**
  * Utilities for saving and loading flow data
  */
@@ -9,7 +8,7 @@ const logger = require('../../../../../../../../../packages/logging/logger.js');
 export const saveFlowToDatabase = async (flowName, flowDescription, nodes, edges) => {
   try {
     const flowchart = JSON.stringify({ nodes, edges });
-    const response = await fetch('/api/customFlowchartAPI', {
+    const response = await fetch('/causality/jhuvt-pos-con-v1/api/customFlowchartAPI', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +30,7 @@ export const saveFlowToDatabase = async (flowName, flowDescription, nodes, edges
     const result = await response.json();
     return { success: true, data: result };
   } catch (error) {
-    logger.app.error('Error saving flow to database:', error);
+    console.error('Error saving flow to database:', error);
     return { success: false, error: error.message };
   }
 };
@@ -39,7 +38,7 @@ export const saveFlowToDatabase = async (flowName, flowDescription, nodes, edges
 // Get all flowcharts from MongoDB
 export const getFlowsFromDatabase = async () => {
   try {
-    const response = await fetch('/api/customFlowchartAPI');
+    const response = await fetch('/causality/jhuvt-pos-con-v1/api/customFlowchartAPI');
     
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
@@ -63,7 +62,7 @@ export const getFlowsFromDatabase = async () => {
       };
     });
   } catch (error) {
-    logger.app.error('Error fetching flows from database:', error);
+    console.error('Error fetching flows from database:', error);
     return [];
   }
 };
@@ -105,7 +104,7 @@ export const exportFlowToJson = (nodes, edges, filename = 'flow-export', addTime
     URL.revokeObjectURL(url);
     return true;
   } catch (error) {
-    logger.app.error('Error exporting flow:', error);
+    console.error('Error exporting flow:', error);
     return false;
   }
 };

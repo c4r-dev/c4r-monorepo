@@ -6,6 +6,9 @@
  * NO individual npm installs required!
  */
 
+// Load environment variables
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -310,6 +313,38 @@ class SeamlessActivityServer {
             next();
         });
 
+        // Direct route mapping for common page routes
+        // This simplifies access to sub-routes by providing direct paths
+        const directRouteMap = {
+            '/pages/PositiveControl1': '/causality/jhuvt-pos-con-v1/pages/PositiveControl1',
+            '/pages/PositiveControl2': '/causality/jhuvt-pos-con-v1/pages/PositiveControl2',
+            '/pages/FTB-1': '/causality/jhuvt-pos-con-v1/pages/FTB-1',
+            '/pages/FTB-results': '/causality/jhuvt-pos-con-v1/pages/FTB-results',
+            '/pages/activity-1': '/causality/jhuvt-pos-con-v1/pages/activity-1',
+            '/pages/activity-2': '/causality/jhuvt-pos-con-v1/pages/activity-2',
+            '/pages/activity-3': '/causality/jhuvt-pos-con-v1/pages/activity-3',
+            '/pages/word-cloud': '/causality/jhuvt-pos-con-v1/pages/word-cloud',
+            '/pages/designer': '/causality/jhuvt-pos-con-v1/pages/designer',
+            '/pages/flow-viewer': '/causality/jhuvt-pos-con-v1/pages/flow-viewer',
+            '/pages/newSession-NS': '/causality/jhuvt-pos-con-v1/pages/newSession-NS',
+            '/pages/newSession-PC': '/causality/jhuvt-pos-con-v1/pages/newSession-PC'
+        };
+
+        this.app.use((req, res, next) => {
+            if (directRouteMap[req.path]) {
+                const originalUrl = req.url;
+                const mappedPath = directRouteMap[req.path];
+                
+                // Preserve query parameters
+                const queryString = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
+                const newUrl = mappedPath + queryString;
+                
+                logger.app.info(`🔀 Direct route mapping: ${originalUrl} -> ${newUrl}`);
+                req.url = newUrl;
+            }
+            next();
+        });
+
         // Serve static assets from shared location
         this.app.use('/assets', express.static(path.join(this.baseDir, 'assets')));
         
@@ -323,59 +358,7 @@ class SeamlessActivityServer {
             }
         });
 
-        // Global handler for root-level /_next requests in dev
-        // Use the request Referer to route to the correct Next app instance
-        this.app.use('/_next', async (req, res, next) => {
-            const referer = req.headers.referer || '';
-            try {
-                const urlObj = new URL(referer);
-                const m = urlObj.pathname.match(/^\/([^\/]+)\/([^\/]+)/);
-                if (m) {
-                    const route = `/${m[1]}/${m[2]}`;
-                    const activity = this.activities.get(route);
-                    if (activity && activity.type === 'nextjs') {
-                        const nextApp = await this.getOrCreateNextApp(activity);
-                        if (nextApp) {
-                            return nextApp.getRequestHandler()(req, res);
-                        }
-                    }
-                }
-            } catch (_) {
-                // ignore parse errors and fall back below
-            }
-            // Fallback: try to find a matching static asset among activities
-            const assetPath = req.url.split('?')[0];
-            for (const activity of this.activities.values()) {
-                if (activity.type === 'nextjs') {
-                    const relativePath = assetPath.replace(/^\/_next\/static\//, '');
-                    const possiblePaths = [
-                        path.join(activity.path, '.next', 'static', relativePath),
-                        path.join(activity.path, 'out', '_next', 'static', relativePath),
-                        path.join(activity.path, 'build', '_next', 'static', relativePath)
-                    ];
-                    for (const filePath of possiblePaths) {
-                        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                            logger.app.info(`📄 Serving static asset: ${assetPath} from ${filePath}`);
-                            
-                            // Set appropriate MIME type and cache headers
-                            if (filePath.endsWith('.css')) {
-                                res.setHeader('Content-Type', 'text/css');
-                            } else if (filePath.endsWith('.js')) {
-                                res.setHeader('Content-Type', 'application/javascript');
-                            } else if (filePath.endsWith('.woff2')) {
-                                res.setHeader('Content-Type', 'font/woff2');
-                            } else if (filePath.endsWith('.woff')) {
-                                res.setHeader('Content-Type', 'font/woff');
-                            }
-                            res.setHeader('Cache-Control', 'public, max-age=31536000');
-                            
-                            return res.sendFile(filePath);
-                        }
-                    }
-                }
-            }
-            res.status(404).send('Asset not found');
-        });
+        // NOTE: Global /_next handler moved to setupRoutes() to handle all static asset routing with Referer header logic
     }
 
     setupRoutes() {
@@ -433,16 +416,40 @@ class SeamlessActivityServer {
 
                 // Parse the referer to get the activity route
                 const refererUrl = new URL(referer);
-                const activityRoute = refererUrl.pathname;
+                let activityRoute = refererUrl.pathname;
+                
+                // Check if this is a direct route mapping - if so, resolve to the real activity route
+                const directRouteMap = {
+                    '/pages/PositiveControl1': '/causality/jhuvt-pos-con-v1/pages/PositiveControl1',
+                    '/pages/PositiveControl2': '/causality/jhuvt-pos-con-v1/pages/PositiveControl2',
+                    '/pages/FTB-1': '/causality/jhuvt-pos-con-v1/pages/FTB-1',
+                    '/pages/FTB-results': '/causality/jhuvt-pos-con-v1/pages/FTB-results',
+                    '/pages/activity-1': '/causality/jhuvt-pos-con-v1/pages/activity-1',
+                    '/pages/activity-2': '/causality/jhuvt-pos-con-v1/pages/activity-2',
+                    '/pages/activity-3': '/causality/jhuvt-pos-con-v1/pages/activity-3',
+                    '/pages/word-cloud': '/causality/jhuvt-pos-con-v1/pages/word-cloud',
+                    '/pages/designer': '/causality/jhuvt-pos-con-v1/pages/designer',
+                    '/pages/flow-viewer': '/causality/jhuvt-pos-con-v1/pages/flow-viewer',
+                    '/pages/newSession-NS': '/causality/jhuvt-pos-con-v1/pages/newSession-NS',
+                    '/pages/newSession-PC': '/causality/jhuvt-pos-con-v1/pages/newSession-PC'
+                };
+                
+                if (directRouteMap[activityRoute]) {
+                    logger.app.info(`🔀 Resolving direct route mapping for static assets: ${activityRoute} -> ${directRouteMap[activityRoute]}`);
+                    activityRoute = directRouteMap[activityRoute];
+                }
+                
+                // Extract the base activity route (before /pages/)
+                const baseActivityRoute = activityRoute.split('/pages/')[0];
                 
                 // Find the activity for this route
-                const activity = this.activities.get(activityRoute);
+                const activity = this.activities.get(baseActivityRoute);
                 if (!activity) {
-                    logger.app.info(`❌ No activity found for route: ${activityRoute} (from referer: ${referer})`);
+                    logger.app.info(`❌ No activity found for route: ${baseActivityRoute} (from referer: ${referer})`);
                     return res.status(404).send('Asset not found - no matching activity');
                 }
 
-                logger.app.info(`🔗 Global /_next handler: ${req.originalUrl} -> ${activity.name} (from ${activityRoute})`);
+                logger.app.info(`🔗 Global /_next handler: ${req.originalUrl} -> ${activity.name} (from ${baseActivityRoute})`);
                 
                 // Serve the static asset using the activity's asset handler
                 this.serveActivityStaticAsset(activity, req, res);
@@ -497,6 +504,9 @@ class SeamlessActivityServer {
                     this.serveStaticFallback(activity, req, res, next);
                 }
             });
+
+            // Setup sub-routes for Next.js activities with custom page structures
+            this.setupNextJSSubRoutes(route, activity);
             return;
         }
 
@@ -789,6 +799,52 @@ class SeamlessActivityServer {
             </body>
             </html>
         `;
+    }
+
+    setupNextJSSubRoutes(route, activity) {
+        try {
+            const appPagesDir = path.join(activity.path, 'src', 'app', 'pages');
+            
+            if (!fs.existsSync(appPagesDir)) {
+                // No custom pages directory found
+                return;
+            }
+
+            logger.app.info(`🔍 Scanning for sub-routes in ${activity.name} at ${appPagesDir}`);
+
+            const pageDirectories = fs.readdirSync(appPagesDir).filter(item => {
+                const itemPath = path.join(appPagesDir, item);
+                return fs.statSync(itemPath).isDirectory() && !item.startsWith('.');
+            });
+
+            for (const pageDir of pageDirectories) {
+                const subRoute = `${route}/pages/${pageDir}`;
+                
+                logger.app.info(`🔗 Setting up sub-route: ${subRoute} for ${activity.name}`);
+                
+                // Create a route that serves the main activity but with the sub-route path
+                this.app.use(subRoute, async (req, res, next) => {
+                    try {
+                        // Rewrite the URL to the root for the Next.js handler
+                        const originalUrl = req.url;
+                        req.url = '/'; // Reset to root since Next.js will handle internal routing
+                        
+                        const nextApp = await this.getOrCreateNextApp(activity);
+                        return nextApp.getRequestHandler()(req, res);
+                    } catch (e) {
+                        logger.app.error(`❌ Sub-route handler error for ${activity.name} ${subRoute}:`, e.message);
+                        this.serveStaticFallback(activity, req, res, next);
+                    }
+                });
+            }
+
+            if (pageDirectories.length > 0) {
+                logger.app.info(`✅ Setup ${pageDirectories.length} sub-routes for ${activity.name}: ${pageDirectories.map(p => `/pages/${p}`).join(', ')}`);
+            }
+
+        } catch (e) {
+            logger.app.error(`❌ Error setting up sub-routes for ${activity.name}:`, e.message);
+        }
     }
 
     serveStaticFallback(activity, req, res, next) {

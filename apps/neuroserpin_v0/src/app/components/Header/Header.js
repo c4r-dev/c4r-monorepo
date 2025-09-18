@@ -1,4 +1,3 @@
-const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 import React from "react";
 import Image from "next/image";
@@ -12,6 +11,8 @@ import ravenImage from "./01_RR_Large.png";
 
 const Header = ({ onLogoClick, onHelpClick, title = "Positive Controls" }) => {
     const handleLogoClick = () => {
+const logger = require('../../../../../../packages/logging/logger.js');
+
         if (onLogoClick) {
             // logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();

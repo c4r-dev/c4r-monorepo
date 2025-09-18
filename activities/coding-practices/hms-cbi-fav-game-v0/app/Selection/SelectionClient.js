@@ -1,4 +1,3 @@
-const logger = require('../../../../../packages/logging/logger.js');
 'use client'
 
 import { useState, useEffect } from 'react'

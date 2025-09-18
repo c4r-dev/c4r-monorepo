@@ -9,7 +9,7 @@ const logger = require('../../../../../../../../../packages/logging/logger.js');
 export const saveFlowToDatabase = async (flowName, flowDescription, nodes, edges) => {
   try {
     const flowchart = JSON.stringify({ nodes, edges });
-    const response = await fetch('/api/customFlowchartAPI', {
+    const response = await fetch('/causality/jhuvt-fix-bia-v1/api/customFlowchartAPI', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export const saveFlowToDatabase = async (flowName, flowDescription, nodes, edges
 // Get all flowcharts from MongoDB
 export const getFlowsFromDatabase = async () => {
   try {
-    const response = await fetch('/api/customFlowchartAPI');
+    const response = await fetch('/causality/jhuvt-fix-bia-v1/api/customFlowchartAPI');
     
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);

@@ -1,4 +1,3 @@
-const logger = require('../../../../../../../packages/logging/logger.js');
 import React from "react";
 import Image from "next/image";
 import "./Header.css";
@@ -6,6 +5,8 @@ import "./Header.css";
 
 const Header = ({ onLogoClick, onHelpClick, text="Integration Exercise" }) => {
     const handleLogoClick = () => {
+const logger = require('../../../../../../../packages/logging/logger.js');
+
         if (onLogoClick) {
             logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();

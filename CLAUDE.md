@@ -18,8 +18,11 @@
 - **`packages/logging/`** - Comprehensive logging system (browser + server)
 - **`scripts/local-dev-server.js`** - Development server manager
 - **`scripts/analyze-logs.js`** - Log analysis tool for LLM consumption
+- **`scripts/migrate-credentials-to-env.js`** - Security tool for credential migration
 - **`logs/`** - Structured log files (app.jsonl, browser.jsonl, errors.jsonl, etc.)
 - **`LOGGING.md`** - Complete logging documentation
+- **`SECURITY.md`** - Security guidelines and credential management
+- **`.env`** - Environment variables (excluded from git, contains MongoDB credentials)
 
 ## 🎯 Most Common AI Tasks
 

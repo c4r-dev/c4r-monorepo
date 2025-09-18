@@ -1,4 +1,3 @@
-const logger = require('../../../../../../packages/logging/logger.js');
 import React from "react";
 import Image from "next/image";
 import "./Header.css";
@@ -9,6 +8,8 @@ import helpTooltip from "@/public/help-tooltip-fix.svg";
 
 const Header = ({ onLogoClick, onHelpClick, text="Randomization in the literature" }) => {
     const handleLogoClick = () => {
+const logger = require('../../../../../../packages/logging/logger.js');
+
         if (onLogoClick) {
             logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();

@@ -1,4 +1,3 @@
-const logger = require('../../../../../packages/logging/logger.js');
 import React, {useState} from "react";
 import Image from "next/image";
 import "./header.css";
@@ -13,6 +12,8 @@ import CustomModal from '../CustomModal'
 const Header = ({ onLogoClick, onHelpClick, text="Develop an alternative hypothesis" }) => {
      const [isGuideModalVisible, setIsGuideModalVisible] = useState(false)
     const handleLogoClick = () => {
+const logger = require('../../../../../packages/logging/logger.js');
+
         if (onLogoClick) {
             logger.app.info("Logo clicked, calling onLogoClick");
             onLogoClick();

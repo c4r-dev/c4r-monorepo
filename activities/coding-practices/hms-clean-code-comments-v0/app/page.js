@@ -1,9 +1,10 @@
-const logger = require('../../../../packages/logging/logger.js');
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { flushSync } from 'react-dom';
 import {
+const logger = require('../../../../packages/logging/logger.js');
+
   Box,
   Typography,
   Card,
