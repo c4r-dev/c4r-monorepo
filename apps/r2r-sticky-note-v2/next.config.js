@@ -1,8 +1,19 @@
 /** @type {import('next').NextConfig} */
+const webpack = require('webpack');
+
 const path = require('path');
 
 const nextConfig = {
   webpack: (config) => {
+        // Add alias to redirect logger to browser-compatible version for client-side code
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '../../../../packages/logging/logger.js': require.resolve('../../../../packages/logging/browser-logger.js'),
+      '../../../packages/logging/logger.js': require.resolve('../../../packages/logging/browser-logger.js'),
+      '../../packages/logging/logger.js': require.resolve('../../packages/logging/browser-logger.js'),
+      '../packages/logging/logger.js': require.resolve('../packages/logging/browser-logger.js'),
+    };
+
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -28,7 +39,7 @@ const nextConfig = {
     };
 
     config.plugins = (config.plugins || []).concat([
-      new config.webpack.ProvidePlugin({
+      new webpack.ProvidePlugin({
         process: 'process/browser',
         Buffer: ['buffer', 'Buffer'],
       }),

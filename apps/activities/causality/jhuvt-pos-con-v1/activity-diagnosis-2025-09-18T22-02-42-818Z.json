@@ -1,0 +1,277 @@
+[
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "PAGE ERROR: fs.existsSync is not a function",
+      "PAGE ERROR: fs.existsSync is not a function",
+      "The above error occurred in the <ServerRoot> component:\n\n    at ServerRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:112:27)\n    at Root (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:117:11)\n    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay."
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+      "404 http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+fs.existsSync+is+not+a+function&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fpackages%2Flogging%2Flogger.js&methodName=C4RLogger.ensureLogDirectory&arguments=&lineNumber=11&column=17",
+      "404 http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+fs.existsSync+is+not+a+function&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fpackages%2Flogging%2Flogger.js&methodName=new+C4RLogger&arguments=&lineNumber=233&column=14"
+    ],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 13,
+      "bodyClasses": "",
+      "scripts": 9
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/activities/coding-practices/hms-cbi-fav-game-v0/app/components/CustomModal/CustomModal.js:1:1]\n 1 | const logger = require('../../../../../../packages/logging/logger.js');\n 2 | 'use client'\n   : ^^^^^^^^^^^^\n 3 | \n 4 | /*\n   `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/apps/c4r-component-test",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/apps/c4r-component-test/src/app/page.js:1:1]\n 1 | const logger = require('../../../../packages/logging/logger.js');\n 2 | \"use client\";\n   : ^^^^^^^^^^^^^\n 3 | \n 4 | import Image from \"next/image\";\n 5 | import styles from \"./page.module.css\";\n   `----\n\n  x You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n    ,-[/Users/konrad_1/c4r-dev/apps/c4r-component-test/src/app/page.js:7:1]\n  7 | import Header from \"@/app/components/Header/Header\";\n  8 | import CustomModal from \"@/app/components/CustomModal/CustomModal\";\n  9 | import CustomButton from \"@/app/components/CustomButton/CustomButton\";\n 10 | import { useState } from \"react\";\n    :          ^^^^^^^^\n 11 | \n 12 | export default function Home() {\n 13 |     // State to control the visibility of the guide modal\n    `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/apps/c4r-component-test",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-pos-con-v1",
+    "title": "Flow Designer",
+    "status": "NO_CONTENT",
+    "errors": [
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": true,
+      "totalElements": 84,
+      "bodyClasses": "__className_f367f3",
+      "scripts": 10
+    },
+    "contentLength": 94,
+    "hasCompilationError": false,
+    "bodySnippet": "Configuring your session...\n\nHow are you completing this activity?\nAS AN INDIVIDUAL\nAS A GROUP"
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/apps/hms-cbi-hyp-bot-v1/app/components/SessionPopup/SessionConfigPopup.js:1:1]\n 1 | const logger = require('../../../../../packages/logging/logger.js');\n 2 | \"use client\";\n   : ^^^^^^^^^^^^^\n 3 | \n 4 | import { useState, useEffect } from 'react';\n 5 | import { useRouter, useSearchParams } from 'next/navigation';\n   `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/activities/randomization/smi-ran-simple-ran-v1/app/components/SessionPopup/SessionConfigPopup.js:1:1]\n 1 | const logger = require('../../../../../../packages/logging/logger.js');\n 2 | \"use client\";\n   : ^^^^^^^^^^^^^\n 3 | \n 4 | import { useState, useEffect } from 'react';\n 5 | import { useRouter, useSearchParams } from 'next/navigation';\n   `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: Module not found: Can't resolve 'highlight.js/lib/core'\n  48 | import { useRouter } from 'next/navigation';\n  49 | import CustomModal from './components/CustomModal';\n> 50 | import hljs from 'highlight.js/lib/core';\n     | ^\n  51 | import python from 'highlight.js/lib/languages/python';\n  52 | import 'highlight.js/styles/vs2015.css'; // Dark theme that matches the editor\n  53 |\n\nhttps://nextjs.org/docs/messages/module-not-found\n\n<unknown> (https://nextjs.org/docs/messages/module-not-found)\ngetNotFoundError (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/parseNotFoundError.js:124:16)\nprocess.processTicksAndRejections (node:internal/process/task_queues:105:5)\nasync getModuleBuildError (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/webpackModuleError.js:104:27)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json",
+      "404 http://localhost:3333/__nextjs_original-stack-frame?isServer=true&isEdgeServer=false&isAppDirectory=false&errorMessage=Error%3A+Module+not+found%3A+Can%27t+resolve+%27highlight.js%2Flib%2Fcore%27%0A++48+%7C+import+%7B+useRouter+%7D+from+%27next%2Fnavigation%27%3B%0A++49+%7C+import+CustomModal+from+%27.%2Fcomponents%2FCustomModal%27%3B%0A%3E+50+%7C+import+hljs+from+%27highlight.js%2Flib%2Fcore%27%3B%0A+++++%7C+%5E%0A++51+%7C+import+python+from+%27highlight.js%2Flib%2Flanguages%2Fpython%27%3B%0A++52+%7C+import+%27highlight.js%2Fstyles%2Fvs2015.css%27%3B+%2F%2F+Dark+theme+that+matches+the+editor%0A++53+%7C%0A%0Ahttps%3A%2F%2Fnextjs.org%2Fdocs%2Fmessages%2Fmodule-not-found%0A&file=file%3A%2F%2F%2FUsers%2Fkonrad_1%2Fc4r-dev%2Fnode_modules%2Fnext%2Fdist%2Fbuild%2Fwebpack%2Fplugins%2Fwellknown-errors-plugin%2FparseNotFoundError.js&methodName=getNotFoundError&arguments=&lineNumber=124&column=16"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/apps/duq-finer-v1",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/apps/duq-finer-v1/src/app/page.js:1:1]\n 1 | const logger = require('../../../../packages/logging/logger.js');\n 2 | \"use client\";\n   : ^^^^^^^^^^^^^\n 3 | import React, { useState, useEffect, Suspense } from \"react\";\n 4 | import { useRouter, useSearchParams } from \"next/navigation\";\n   `----\n\n  x You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n   ,-[/Users/konrad_1/c4r-dev/apps/duq-finer-v1/src/app/page.js:1:1]\n 1 | const logger = require('../../../../packages/logging/logger.js');\n 2 | \"use client\";\n 3 | import React, { useState, useEffect, Suspense } from \"react\";\n   :                 ^^^^^^^^\n 4 | import { useRouter, useSearchParams } from \"next/navigation\";\n 5 | \n 6 | import Header from \"@/app/components/Header/Header\";\n   `----\n\n  x You're importing a component that needs useEffect. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n   ,-[/Users/konrad_1/c4r-dev/apps/duq-finer-v1/src/app/page.js:1:1]\n 1 | const logger = require('../../../../packages/logging/logger.js');\n 2 | \"use client\";\n 3 | import React, { useState, useEffect, Suspense } from \"react\";\n   :                           ^^^^^^^^^\n 4 | import { useRouter, useSearchParams } from \"next/navigation\";\n 5 | \n 6 | import Header from \"@/app/components/Header/Header\";\n   `----\n\n  x You're importing a component that needs useRouter. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n   ,-[/Users/konrad_1/c4r-dev/apps/duq-finer-v1/src/app/page.js:1:1]\n 1 | const logger = require('../../../../packages/logging/logger.js');\n 2 | \"use client\";\n 3 | import React, { useState, useEffect, Suspense } from \"react\";\n 4 | import { useRouter, useSearchParams } from \"next/navigation\";\n   :          ^^^^^^^^^\n 5 | \n 6 | import Header from \"@/app/components/Header/Header\";\n 7 | import CustomModal from \"@/app/components/CustomModal/CustomModal\";\n   `----\n\n  x You're importing a component that needs useSearchParams. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n   ,-[/Users/konrad_1/c4r-dev/apps/duq-finer-v1/src/app/page.js:1:1]\n 1 | const logger = require('../../../../packages/logging/logger.js');\n 2 | \"use client\";\n 3 | import React, { useState, useEffect, Suspense } from \"react\";\n 4 | import { useRouter, useSearchParams } from \"next/navigation\";\n   :                     ^^^^^^^^^^^^^^^\n 5 | \n 6 | import Header from \"@/app/components/Header/Header\";\n 7 | import CustomModal from \"@/app/components/CustomModal/CustomModal\";\n   `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/apps/duq-finer-v1",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-caus-cau-lang-v0/app/page.js:1:1]\n 1 | const logger = require('../../../../../packages/logging/logger.js');\n 2 | 'use client';\n   : ^^^^^^^^^^^^^\n 3 | \n 4 | import React, { useState, useEffect } from 'react';\n 5 | import {\n   `----\n\n  x You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n   ,-[/Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-caus-cau-lang-v0/app/page.js:1:1]\n 1 | const logger = require('../../../../../packages/logging/logger.js');\n 2 | 'use client';\n 3 | \n 4 | import React, { useState, useEffect } from 'react';\n   :                 ^^^^^^^^\n 5 | import {\n 6 |   Box,\n 7 |   Container,\n   `----\n\n  x You're importing a component that needs useEffect. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.\n  | Learn more: https://nextjs.org/docs/getting-started/react-essentials\n  | \n  | \n   ,-[/Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-caus-cau-lang-v0/app/page.js:1:1]\n 1 | const logger = require('../../../../../packages/logging/logger.js');\n 2 | 'use client';\n 3 | \n 4 | import React, { useState, useEffect } from 'react';\n   :                           ^^^^^^^^^\n 5 | import {\n 6 |   Box,\n 7 |   Container,\n   `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-wason-246-v2",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "PAGE ERROR: ModuleBuildError: Module build failed (from ../../../node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\nError: \n  x The \"use client\" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.\n   ,-[/Users/konrad_1/c4r-dev/activities/coding-practices/hms-wason-246-v2/src/app/components/CustomModal/CustomModal.js:1:1]\n 1 | const logger = require('../../../../../../../packages/logging/logger.js');\n 2 | \"use client\";\n   : ^^^^^^^^^^^^^\n 3 | \n 4 | /*\n   `----\n\nprocessResult (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)\n<unknown> (file:///Users/konrad_1/c4r-dev/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/coding-practices/hms-wason-246-v2",
+      "404 http://localhost:3333/_next/static/development/_devMiddlewareManifest.json"
+    ],
+    "domInfo": {
+      "hasReactRoot": true,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 19,
+      "bodyClasses": "",
+      "scripts": 7
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  }
+]

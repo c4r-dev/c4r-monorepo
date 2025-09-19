@@ -1,3 +1,4 @@
+'"use client"';
 const logger = require('../../../../../../packages/logging/logger.js');
 "use client";
 

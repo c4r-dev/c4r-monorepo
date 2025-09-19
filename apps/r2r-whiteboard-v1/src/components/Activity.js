@@ -1,5 +1,7 @@
-const logger = require('../../../../packages/logging/logger.js');
 'use client'
+
+
+const logger = require('../../../../packages/logging/logger.js');
 
 import { useState } from 'react';
 import InitialScreen from './InitialScreen';

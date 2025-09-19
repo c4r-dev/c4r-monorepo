@@ -1,5 +1,6 @@
-const logger = require('../../../../packages/logging/logger.js');
 "use client";
+
+const logger = require('../../../../packages/logging/logger.js');
 
 import Image from "next/image";
 import styles from "./page.module.css";

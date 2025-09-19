@@ -1,8 +1,9 @@
+'use client';
+
 const logger = require('../../../../packages/logging/logger.js');
-'use client'
 
 import { Textarea } from '../components/ui/textarea'
-import { useChat } from 'ai/react'
+import { useChat } from 'ai'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '../components/ui/button'
@@ -948,7 +949,7 @@ export default function Page() {
 // 'use client'
 
 // import { Textarea } from '../components/ui/textarea'
-// import { useChat } from 'ai/react'
+// import { useChat } from 'ai'
 // import Image from 'next/image'
 // import { useRouter, useSearchParams } from 'next/navigation'
 // import { Button } from '../components/ui/button'

@@ -1,5 +1,6 @@
+'use client';
+
 const logger = require('../../../../packages/logging/logger.js');
-'use client'
 
 import React, { useState, useEffect, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'

@@ -1,3 +1,5 @@
+'use client';
+
 const logger = require('../../../../packages/logging/logger.js');
 import * as React from 'react'
 import { useEffect } from 'react'

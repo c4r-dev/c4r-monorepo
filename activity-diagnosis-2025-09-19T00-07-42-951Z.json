@@ -1,0 +1,195 @@
+[
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+    "title": "",
+    "status": "NO_REACT",
+    "errors": [
+      "Warning: Prop `%s` did not match. Server: %s Client: %s%s className \"MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1sv9ra6-MuiButtonBase-root-MuiIconButton-root\" \"MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1975kei-MuiButtonBase-root-MuiIconButton-root\" \n    at button\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at ButtonBase (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/ButtonBase/ButtonBase.js:99:98)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at IconButton (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/IconButton/IconButton.js:222:99)\n    at Tooltip (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/Tooltip/Tooltip.js:387:99)\n    at div\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at Box (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/system/esm/createBox/createBox.js:27:85)\n    at div\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at Toolbar (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/Toolbar/Toolbar.js:83:98)\n    at header\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at Paper (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/Paper/Paper.js:93:98)\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at AppBar (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/AppBar/AppBar.js:197:99)\n    at div\n    at eval (webpack-internal:///(app-pages-browser)/../../../node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js:55:66)\n    at Box (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/system/esm/createBox/createBox.js:27:85)\n    at C4RActivityLayout (webpack-internal:///(app-pages-browser)/../../../packages/ui/src/mui/components/C4RActivityLayout.tsx:50:11)\n    at DefaultPropsProvider (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/system/esm/DefaultPropsProvider/DefaultPropsProvider.js:16:11)\n    at RtlProvider (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/system/esm/RtlProvider/index.js:14:11)\n    at ThemeProvider (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/private-theming/esm/ThemeProvider/ThemeProvider.js:41:5)\n    at ThemeProvider (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js:66:13)\n    at ThemeProviderNoVars (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/styles/ThemeProviderNoVars.js:14:18)\n    at ThemeProvider (webpack-internal:///(app-pages-browser)/../../../packages/ui/node_modules/@mui/material/esm/styles/ThemeProvider.js:17:11)\n    at StyledEngineProvider (webpack-internal:///(app-pages-browser)/../../../node_modules/@mui/styled-engine/esm/StyledEngineProvider/StyledEngineProvider.js:106:13)\n    at C4RThemeProvider (webpack-internal:///(app-pages-browser)/../../../packages/ui/src/mui/ThemeProvider.tsx:43:11)\n    at body\n    at html\n    at RootLayout (webpack-internal:///(app-pages-browser)/./app/layout.js:20:11)\n    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/redirect-boundary.js:74:9)\n    at RedirectBoundary (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/redirect-boundary.js:82:11)\n    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/not-found-boundary.js:76:9)\n    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/not-found-boundary.js:84:11)\n    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)\n    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)\n    at HotReload (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)\n    at Router (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/app-router.js:207:11)\n    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/error-boundary.js:113:9)\n    at ErrorBoundary (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/error-boundary.js:160:11)\n    at AppRouter (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/app-router.js:585:13)\n    at ServerRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:112:27)\n    at Root (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:117:11)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response"
+    ],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": true,
+      "hasMain": true,
+      "totalElements": 193,
+      "bodyClasses": "",
+      "scripts": 9
+    },
+    "contentLength": 366,
+    "hasCompilationError": false,
+    "bodySnippet": "Randomization in the Literature\nSelect a study to explore\nInterimpaper 1\n\nThis is a placeholder paper that is interim before a paper is selected.\n\nPlacepaperholder 2\n\nThis is a placeholder paper that is both a paper and a placeholder.\n\nFakepaper 3\n\nThis is a fake paper that we will replace\n\nCONTINUE\nHow are you completing this activity?\nAs an Individual\nAs a Group"
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+    "title": "hms-cbi-fav-game-v0 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 253,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-cbi-fav-game-v0\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-cbi-fav-game-v0\n\nDomain: coding-practices\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/coding-practices/hms-cbi-fav-game-v0\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/apps/c4r-component-test",
+    "title": "c4r-component-test - C4R Activity",
+    "status": "NO_CONTENT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 198,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ c4r-component-test\n⚠️ This activity is being served in fallback mode\n\nComponent testing playground\n\nDomain: apps\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/c4r-component-test\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-pos-con-v1",
+    "title": "jhuvt-pos-con-v1 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 263,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ jhuvt-pos-con-v1\n⚠️ This activity is being served in fallback mode\n\nThe activity may need to be built or configured for the unified server.\n\nDomain: causality\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-pos-con-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+    "title": "hms-cbi-hyp-bot-v1 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 215,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-cbi-hyp-bot-v1\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-cbi-hyp-bot-v1\n\nDomain: apps\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/hms-cbi-hyp-bot-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+    "title": "smi-ran-simple-ran-v1 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 228,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ smi-ran-simple-ran-v1\n⚠️ This activity is being served in fallback mode\n\nSimple randomization v1\n\nDomain: randomization\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/randomization/smi-ran-simple-ran-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+    "title": "hms-clean-code-org-v0 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 259,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-clean-code-org-v0\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-clean-code-org-v0\n\nDomain: coding-practices\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/coding-practices/hms-clean-code-org-v0\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/apps/duq-finer-v1",
+    "title": "duq-finer-v1 - C4R Activity",
+    "status": "NO_CONTENT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 176,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ duq-finer-v1\n⚠️ This activity is being served in fallback mode\n\nTool: duq-finer-v1\n\nDomain: apps\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/duq-finer-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+    "title": "jhuvt-caus-cau-lang-v0 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 275,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ jhuvt-caus-cau-lang-v0\n⚠️ This activity is being served in fallback mode\n\nThe activity may need to be built or configured for the unified server.\n\nDomain: causality\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-caus-cau-lang-v0\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-wason-246-v2",
+    "title": "hms-wason-246-v2 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 244,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-wason-246-v2\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-wason-246-v2\n\nDomain: coding-practices\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/coding-practices/hms-wason-246-v2\n\n← Dashboard"
+  }
+]

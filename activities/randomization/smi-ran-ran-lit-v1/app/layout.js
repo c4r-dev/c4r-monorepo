@@ -2,8 +2,7 @@
 'use client';
 import React, {useState} from 'react';
 import { AppBar, Toolbar, Typography, Box, Container } from '@mui/material';
-import C4RThemeProvider from '../../../../packages/ui/src/mui/ThemeProvider';
-import C4RActivityLayout from '../../../../packages/ui/src/mui/components/C4RActivityLayout';
+import { C4RThemeProvider, C4RActivityLayout } from '@c4r/ui/mui';
 import Header from './components/Header/Header';
 import CustomModal from './components/CustomModal';
 

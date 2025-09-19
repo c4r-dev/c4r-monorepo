@@ -1,10 +1,11 @@
+'use client';
+
 const logger = require('../../../../packages/logging/logger.js');
-'use client'
 
 import { Textarea } from '../components/ui/textarea'
 import { useRouter } from 'next/navigation' // Import the router for navigation
 
-import { useChat } from 'ai/react'
+import { useChat } from 'ai'
 import Image from 'next/image'
 
 import { Button } from '../components/ui/button'

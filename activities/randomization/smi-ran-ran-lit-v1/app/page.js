@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@mui/material';
 
 import SessionConfigPopup from './components/SessionPopup/SessionConfigPopup';
-import C4RButton from '../../../../packages/ui/src/mui/components/C4RButton';
+import { C4RButton } from '@c4r/ui/mui';
 
 // Define papers outside of components
 const papers = [

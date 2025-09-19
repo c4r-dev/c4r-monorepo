@@ -1,4 +1,5 @@
-const logger = require('../../../../../../packages/logging/logger.js');
+'"use client"';
+
 "use client";
 
 import React, { Suspense, useState, useEffect } from "react";

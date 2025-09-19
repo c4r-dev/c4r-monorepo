@@ -3,21 +3,34 @@
  * Optimized for 3-developer team + LLM usage
  */
 
-const winston = require('winston');
-const path = require('path');
-const fs = require('fs');
+// Detect if we're in a browser environment
+const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+// Only require Node.js modules if not in browser
+let winston, path, fs;
+if (!isBrowser) {
+    winston = require('winston');
+    path = require('path');
+    fs = require('fs');
+}
 
 class C4RLogger {
     constructor() {
-        this.logDir = path.join(process.cwd(), 'logs');
-        this.ensureLogDirectory();
+        this.isBrowser = isBrowser;
         
-        // Create different loggers for different contexts
-        this.setupLoggers();
+        if (this.isBrowser) {
+            // Browser-compatible setup
+            this.setupBrowserLoggers();
+        } else {
+            // Server setup
+            this.logDir = '/Users/konrad_1/c4r-dev/logs';
+            this.ensureLogDirectory();
+            this.setupLoggers();
+        }
     }
 
     ensureLogDirectory() {
-        if (!fs.existsSync(this.logDir)) {
+        if (!this.isBrowser && !fs.existsSync(this.logDir)) {
             fs.mkdirSync(this.logDir, { recursive: true });
         }
     }
@@ -124,6 +137,81 @@ class C4RLogger {
                 })
             ]
         });
+    }
+
+    setupBrowserLoggers() {
+        // Create browser-compatible loggers using console methods
+        const createBrowserLogger = (name, color = '#007bff') => ({
+            debug: (message, meta = {}) => this.browserLog('debug', name, message, meta, color),
+            info: (message, meta = {}) => this.browserLog('info', name, message, meta, color),
+            warn: (message, meta = {}) => this.browserLog('warn', name, message, meta, '#ffc107'),
+            error: (message, meta = {}) => this.browserLog('error', name, message, meta, '#dc3545'),
+        });
+
+        // Create the same logger structure as server
+        this.app = createBrowserLogger('c4r-app', '#007bff');
+        this.activity = createBrowserLogger('activity', '#fd7e14');
+        this.perf = createBrowserLogger('performance', '#6f42c1');
+        this.dev = createBrowserLogger('dev', '#28a745');
+        this.browser = createBrowserLogger('browser', '#17a2b8');
+    }
+
+    browserLog(level, service, message, meta = {}, color = '#007bff') {
+        const timestamp = new Date().toISOString();
+        const metaStr = Object.keys(meta).length ? ` ${JSON.stringify(meta, null, 0)}` : '';
+        
+        // Format message for console
+        const formattedMessage = `%c[${timestamp}] [${service}] ${message}${metaStr}`;
+        const styles = `color: ${color}; font-weight: bold;`;
+        
+        // Use appropriate console method
+        switch (level) {
+            case 'debug':
+                console.debug(formattedMessage, styles);
+                break;
+            case 'info':
+                console.info(formattedMessage, styles);
+                break;
+            case 'warn':
+                console.warn(formattedMessage, styles);
+                break;
+            case 'error':
+                console.error(formattedMessage, styles);
+                break;
+            default:
+                console.log(formattedMessage, styles);
+        }
+
+        // Try to send to server for unified logging if possible
+        this.sendToServerIfPossible(level, service, message, meta, timestamp);
+    }
+
+    sendToServerIfPossible(level, service, message, meta, timestamp) {
+        // Only try in browser environment
+        if (this.isBrowser && typeof fetch !== 'undefined') {
+            try {
+                // Send browser events to server for unified logging
+                fetch('/api/logs/browser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        timestamp,
+                        level,
+                        service,
+                        message,
+                        meta,
+                        url: window.location.href,
+                        userAgent: navigator.userAgent,
+                    }),
+                }).catch(() => {
+                    // Silently fail if server logging is not available
+                });
+            } catch (error) {
+                // Silently fail - don't break the app if logging fails
+            }
+        }
     }
 
     // Helper methods for common logging patterns

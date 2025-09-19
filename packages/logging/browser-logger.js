@@ -260,10 +260,46 @@ class BrowserLogger {
 // Auto-initialize browser logger
 const browserLogger = new BrowserLogger();
 
-// Export for manual usage
-window.c4rLogger = browserLogger;
+// Export for manual usage (if window exists)
+if (typeof window !== 'undefined') {
+    window.c4rLogger = browserLogger;
+}
+
+// Create API-compatible wrapper to match server logger interface
+const compatibleLogger = {
+    app: {
+        debug: (message, meta) => browserLogger.debug(message, meta),
+        info: (message, meta) => browserLogger.info(message, meta),
+        warn: (message, meta) => browserLogger.warn(message, meta),
+        error: (message, meta) => browserLogger.error(message, meta),
+    },
+    browser: {
+        debug: (message, meta) => browserLogger.debug(message, meta),
+        info: (message, meta) => browserLogger.info(message, meta),
+        warn: (message, meta) => browserLogger.warn(message, meta),
+        error: (message, meta) => browserLogger.error(message, meta),
+    },
+    performance: {
+        debug: (message, meta) => browserLogger.debug(message, meta),
+        info: (message, meta) => browserLogger.info(message, meta),
+        warn: (message, meta) => browserLogger.warn(message, meta),
+        error: (message, meta) => browserLogger.error(message, meta),
+    },
+    activity: {
+        debug: (message, meta) => browserLogger.debug(message, meta),
+        info: (message, meta) => browserLogger.info(message, meta),
+        warn: (message, meta) => browserLogger.warn(message, meta),
+        error: (message, meta) => browserLogger.error(message, meta),
+    },
+    errors: {
+        debug: (message, meta) => browserLogger.debug(message, meta),
+        info: (message, meta) => browserLogger.info(message, meta),
+        warn: (message, meta) => browserLogger.warn(message, meta),
+        error: (message, meta) => browserLogger.error(message, meta),
+    }
+};
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = BrowserLogger;
+    module.exports = compatibleLogger;
 }

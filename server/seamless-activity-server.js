@@ -269,11 +269,7 @@ class SeamlessActivityServer {
         let meta = null;
         const metaPath = path.join(activityPath, 'activity.config.json');
         if (fs.existsSync(metaPath)) {
-            try {
-                meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
-            } catch (_) {
-                meta = null;
-            }
+            meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
         }
 
         // Respect optional forced type (e.g., serve as static demo)
@@ -501,7 +497,7 @@ class SeamlessActivityServer {
                     return nextApp.getRequestHandler()(req, res);
                 } catch (e) {
                     logger.app.error(`❌ Next request handler error for ${activity.name}:`, e.message);
-                    this.serveStaticFallback(activity, req, res, next);
+                    throw e;
                 }
             });
 
@@ -604,7 +600,7 @@ class SeamlessActivityServer {
             }
         } catch (error) {
             logger.app.error(`❌ Error serving ${activity.name}:`, error.message);
-            res.status(500).send(this.generateActivityErrorPage(activity, error));
+            throw error;
         }
     }
 
@@ -614,9 +610,9 @@ class SeamlessActivityServer {
             const nextApp = await this.getOrCreateNextApp(activity);
             
             if (!nextApp) {
-                logger.app.error(`❌ Failed to initialize Next.js app for ${activity.name}`);
-                this.serveStaticFallback(activity, req, res, next);
-                return;
+                const error = new Error(`Failed to initialize Next.js app for ${activity.name}`);
+                logger.app.error(`❌ ${error.message}`);
+                throw error;
             }
             
             // Rewrite URL so Next.js treats the activity route as its root
@@ -634,7 +630,7 @@ class SeamlessActivityServer {
             
         } catch (error) {
             logger.app.error(`❌ Error serving Next.js app ${activity.name}:`, error.message);
-            this.serveStaticFallback(activity, req, res, next);
+            throw error;
         }
     }
 
@@ -657,6 +653,20 @@ class SeamlessActivityServer {
                 // Dynamically import Next.js
                 const next = require('next');
                 
+                // Load activity's next.config.js if it exists
+                let activityConfig = {};
+                const configPath = path.join(activity.path, 'next.config.js');
+                if (fs.existsSync(configPath)) {
+                    try {
+                        delete require.cache[require.resolve(configPath)];
+                        activityConfig = require(configPath);
+                        logger.app.info(`📁 Loaded next.config.js for ${activity.name}`);
+                    } catch (error) {
+                        logger.app.error(`❌ Failed to load next.config.js for ${activity.name}:`, error.message);
+                        throw error;
+                    }
+                }
+
                 // Create Next.js app instance with proper configuration
                 const nextApp = next({
                     dev: true, // Enable development mode
@@ -666,11 +676,20 @@ class SeamlessActivityServer {
                     port: null, // Don't bind to a specific port since we're using custom server
                     customServer: true,
                     conf: {
+                        // Merge activity config with seamless server overrides
+                        ...activityConfig,
+                        
                         // Set assetPrefix to include activity route for seamless serving
                         assetPrefix: activity.route,
                         
                         // Webpack configuration for shared dependencies
-                        webpack: (config, { isServer, dev }) => {
+                        webpack: (config, options) => {
+                            // First, apply activity's webpack config if it exists
+                            if (activityConfig.webpack && typeof activityConfig.webpack === 'function') {
+                                config = activityConfig.webpack(config, options);
+                            }
+                            
+                            // Then apply seamless server modifications
                             // Set proper resolve paths for shared dependencies
                             config.resolve.modules = [
                                 path.join(__dirname, '..', 'node_modules'),
@@ -682,7 +701,7 @@ class SeamlessActivityServer {
                             config.resolve.symlinks = false;
                             
                             // Prevent webpack chunk conflicts between activities
-                            if (!isServer) {
+                            if (!options.isServer) {
                                 // Use activity-specific chunk names to prevent conflicts
                                 const activityName = path.basename(activity.path);
                                 config.output.chunkFilename = `static/chunks/${activityName}-[name]-[contenthash].js`;
@@ -691,20 +710,6 @@ class SeamlessActivityServer {
                                 // Configure publicPath to include the activity route
                                 config.output.publicPath = `${activity.route}/_next/`;
                             }
-                            
-                            // Add fallbacks for Node.js modules in browser
-                            config.resolve.fallback = {
-                                ...config.resolve.fallback,
-                                fs: false,
-                                path: false,
-                                os: false,
-                                crypto: false,
-                                stream: false,
-                                http: false,
-                                https: false,
-                                zlib: false,
-                                url: false
-                            };
                             
                             return config;
                         }
@@ -728,23 +733,7 @@ class SeamlessActivityServer {
             
         } catch (error) {
             logger.app.error(`❌ Failed to initialize Next.js app ${activity.name}:`, error.message);
-            
-            // If Next.js fails, try to serve as static export
-            const outDir = path.join(activity.path, 'out');
-            if (fs.existsSync(outDir)) {
-                logger.app.info(`📁 Falling back to static export for ${activity.name}`);
-                return null; // Will trigger static fallback
-            }
-            
-            // Try to build static export
-            try {
-                logger.app.info(`🔨 Building static export for ${activity.name}...`);
-                await this.buildStaticExport(activity);
-                return null; // Will serve from static export
-            } catch (buildError) {
-                logger.app.error(`❌ Static export build failed for ${activity.name}:`, buildError.message);
-                return null;
-            }
+            throw error;
         }
     }
 
@@ -833,7 +822,7 @@ class SeamlessActivityServer {
                         return nextApp.getRequestHandler()(req, res);
                     } catch (e) {
                         logger.app.error(`❌ Sub-route handler error for ${activity.name} ${subRoute}:`, e.message);
-                        this.serveStaticFallback(activity, req, res, next);
+                        throw e;
                     }
                 });
             }
@@ -847,56 +836,6 @@ class SeamlessActivityServer {
         }
     }
 
-    serveStaticFallback(activity, req, res, next) {
-        const activityPath = activity.path;
-        const url = req.url === '/' ? 'index.html' : req.url;
-        
-        // Try common static file locations
-        const possiblePaths = [
-            path.join(activityPath, 'public', url),
-            path.join(activityPath, 'build', url), 
-            path.join(activityPath, url),
-            path.join(activityPath, 'dist', url)
-        ];
-        
-        for (const filePath of possiblePaths) {
-            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                res.sendFile(filePath);
-                return;
-            }
-        }
-        
-        // If no static files found, serve a basic page
-        const fallbackHTML = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>${activity.meta?.name || activity.name} - C4R Activity</title>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <style>
-                    body { font-family: sans-serif; padding: 2rem; text-align: center; }
-                    .container { max-width: 600px; margin: 0 auto; }
-                    .status { color: #f39c12; }
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1>🏗️ ${activity.meta?.name || activity.name}</h1>
-                    <div class="status">⚠️ This activity is being served in fallback mode</div>
-                    <p>${activity.meta?.description || 'The activity may need to be built or configured for the unified server.'}</p>
-                    <p><strong>Domain:</strong> ${activity.domain}</p>
-                    <p><strong>Tech:</strong> ${activity.meta?.tech || activity.type}</p>
-                    <p><strong>Path:</strong> <code>${activity.path}</code></p>
-                    <div style="margin-top: 2rem;">
-                        <a href="/" style="background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">← Dashboard</a>
-                    </div>
-                </div>
-            </body>
-            </html>
-        `;
-        res.send(fallbackHTML);
-    }
 
     async buildNextJSApp(activity) {
         const activityPath = activity.path;
@@ -938,7 +877,8 @@ class SeamlessActivityServer {
                 });
                 logger.app.info(`✅ Exported ${activity.name} to static files`);
             } catch (exportError) {
-                logger.app.info(`⚠️  Static export failed for ${activity.name}, serving build output`);
+                logger.app.error(`❌ Static export failed for ${activity.name}:`, exportError.message);
+                throw exportError;
             }
             
         } catch (error) {
@@ -1114,37 +1054,6 @@ class SeamlessActivityServer {
         return this.generateNextJSWrapper(activity).replace('Next.js', 'React');
     }
 
-    generateActivityErrorPage(activity, error) {
-        return `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Error - ${activity.name}</title>
-                <style>
-                    body { font-family: monospace; padding: 2rem; background: #2d3748; color: #fed7d7; }
-                    .container { max-width: 800px; margin: 0 auto; }
-                    .title { color: #f6e05e; margin-bottom: 1rem; }
-                    .error { background: #4a5568; padding: 1rem; border-radius: 4px; margin: 1rem 0; }
-                    .actions { margin-top: 2rem; }
-                    .btn { background: #4299e1; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px; }
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1 class="title">❌ Error Loading Activity: ${activity.name}</h1>
-                    <div class="error">
-                        <strong>Error:</strong> ${error.message}<br>
-                        <strong>Path:</strong> ${activity.path}<br>
-                        <strong>Type:</strong> ${activity.type}
-                    </div>
-                    <div class="actions">
-                        <a href="/" class="btn">← Back to Dashboard</a>
-                    </div>
-                </div>
-            </body>
-            </html>
-        `;
-    }
 
     generateDashboard() {
         const activitiesByDomain = {};

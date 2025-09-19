@@ -1,3 +1,5 @@
+'use client';
+
 const logger = require('../../../../../../packages/logging/logger.js');
 /*
 This is a popup that appears at the start of the activity. 

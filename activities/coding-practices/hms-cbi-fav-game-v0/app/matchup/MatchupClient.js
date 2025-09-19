@@ -1,5 +1,6 @@
-const logger = require('../../../../../packages/logging/logger.js');
 'use client';
+
+const logger = require('../../../../../packages/logging/logger.js');
 
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Box } from '@mui/material';

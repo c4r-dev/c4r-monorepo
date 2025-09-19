@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectMongoDB from '../libs/mongodb';
 import NmdaSession from '../models/NmdaSession';
-const logger = require('../../../../../packages/logging/logger');
+const logger = require('../../../../../../packages/logging/logger.js');
 
 export async function POST(req) {
   try {

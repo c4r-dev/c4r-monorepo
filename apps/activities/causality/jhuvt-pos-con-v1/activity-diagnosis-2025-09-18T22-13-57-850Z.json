@@ -1,0 +1,202 @@
+[
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+    "title": "",
+    "status": "HIGH_ERRORS",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "WebSocket connection to 'ws://localhost:3333/_next/webpack-hmr' failed: Connection closed before receiving a handshake response",
+      "PAGE ERROR: fs.existsSync is not a function",
+      "PAGE ERROR: fs.existsSync is not a function",
+      "The above error occurred in the <ServerRoot> component:\n\n    at ServerRoot (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:112:27)\n    at Root (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/app-index.js:117:11)\n    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/../../../node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay."
+    ],
+    "warnings": [],
+    "networkFailures": [
+      "500 http://localhost:3333/randomization/smi-ran-ran-lit-v1",
+      "404 http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+fs.existsSync+is+not+a+function&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fpackages%2Flogging%2Flogger.js&methodName=C4RLogger.ensureLogDirectory&arguments=&lineNumber=11&column=17",
+      "404 http://localhost:3333/__nextjs_original-stack-frame?isServer=false&isEdgeServer=false&isAppDirectory=true&errorMessage=TypeError%3A+fs.existsSync+is+not+a+function&file=webpack-internal%3A%2F%2F%2F%28app-pages-browser%29%2F..%2F..%2F..%2Fpackages%2Flogging%2Flogger.js&methodName=new+C4RLogger&arguments=&lineNumber=233&column=14"
+    ],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 13,
+      "bodyClasses": "",
+      "scripts": 9
+    },
+    "contentLength": 0,
+    "hasCompilationError": false,
+    "bodySnippet": ""
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-cbi-fav-game-v0",
+    "title": "hms-cbi-fav-game-v0 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 253,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-cbi-fav-game-v0\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-cbi-fav-game-v0\n\nDomain: coding-practices\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/coding-practices/hms-cbi-fav-game-v0\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/apps/c4r-component-test",
+    "title": "c4r-component-test - C4R Activity",
+    "status": "NO_CONTENT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 198,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ c4r-component-test\n⚠️ This activity is being served in fallback mode\n\nComponent testing playground\n\nDomain: apps\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/c4r-component-test\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-pos-con-v1",
+    "title": "jhuvt-pos-con-v1 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 263,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ jhuvt-pos-con-v1\n⚠️ This activity is being served in fallback mode\n\nThe activity may need to be built or configured for the unified server.\n\nDomain: causality\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-pos-con-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/apps/hms-cbi-hyp-bot-v1",
+    "title": "hms-cbi-hyp-bot-v1 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 215,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-cbi-hyp-bot-v1\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-cbi-hyp-bot-v1\n\nDomain: apps\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/hms-cbi-hyp-bot-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/randomization/smi-ran-simple-ran-v1",
+    "title": "smi-ran-simple-ran-v1 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 228,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ smi-ran-simple-ran-v1\n⚠️ This activity is being served in fallback mode\n\nSimple randomization v1\n\nDomain: randomization\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/randomization/smi-ran-simple-ran-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-clean-code-org-v0",
+    "title": "hms-clean-code-org-v0 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 259,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-clean-code-org-v0\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-clean-code-org-v0\n\nDomain: coding-practices\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/coding-practices/hms-clean-code-org-v0\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/apps/duq-finer-v1",
+    "title": "duq-finer-v1 - C4R Activity",
+    "status": "NO_CONTENT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 176,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ duq-finer-v1\n⚠️ This activity is being served in fallback mode\n\nTool: duq-finer-v1\n\nDomain: apps\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/duq-finer-v1\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/causality/jhuvt-caus-cau-lang-v0",
+    "title": "jhuvt-caus-cau-lang-v0 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 275,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ jhuvt-caus-cau-lang-v0\n⚠️ This activity is being served in fallback mode\n\nThe activity may need to be built or configured for the unified server.\n\nDomain: causality\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/apps/activities/causality/jhuvt-caus-cau-lang-v0\n\n← Dashboard"
+  },
+  {
+    "url": "http://localhost:3333/coding-practices/hms-wason-246-v2",
+    "title": "hms-wason-246-v2 - C4R Activity",
+    "status": "NO_REACT",
+    "errors": [],
+    "warnings": [],
+    "networkFailures": [],
+    "domInfo": {
+      "hasReactRoot": false,
+      "hasHeader": false,
+      "hasMain": false,
+      "totalElements": 20,
+      "bodyClasses": "",
+      "scripts": 0
+    },
+    "contentLength": 244,
+    "hasCompilationError": false,
+    "bodySnippet": "🏗️ hms-wason-246-v2\n⚠️ This activity is being served in fallback mode\n\nCoding practices activity: hms-wason-246-v2\n\nDomain: coding-practices\n\nTech: nextjs\n\nPath: /Users/konrad_1/c4r-dev/activities/coding-practices/hms-wason-246-v2\n\n← Dashboard"
+  }
+]

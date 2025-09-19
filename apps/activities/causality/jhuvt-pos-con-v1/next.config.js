@@ -1,6 +1,11 @@
+const webpack = require('webpack');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
+    // The main logger now handles browser vs server environments automatically
+    // No aliases needed anymore
+
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -26,7 +31,7 @@ const nextConfig = {
     };
 
     config.plugins = (config.plugins || []).concat([
-      new config.webpack.ProvidePlugin({
+      new webpack.ProvidePlugin({
         process: 'process/browser',
         Buffer: ['buffer', 'Buffer'],
       }),

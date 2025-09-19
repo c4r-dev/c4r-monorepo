@@ -58,6 +58,7 @@
     "express": "^4.21.2",
     "formik": "^2.4.2",
     "framer-motion": "^12.5.0",
+    "highlight.js": "^11.11.1",
     "http-proxy-middleware": "^2.0.0",
     "https-browserify": "^1.0.0",
     "jose": "^4.14.4",

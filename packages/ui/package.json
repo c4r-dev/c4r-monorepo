@@ -2,5 +2,9 @@
   "name": "@c4r/ui",
   "version": "1.0.0",
   "private": true,
-  "main": "./index.js"
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./mui": "./src/mui/index.ts"
+  }
 }
